@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             viewport-fit=cover"
+>
+
+<title>Scout Trader</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+
+    background: #0b0f14;
+    color: #f4f7fa;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+.app {
+
+    max-width: 520px;
+    margin: auto;
+
+    padding:
+        22px 16px
+        40px 16px;
+}
+
+.header {
+
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.subtitle {
+
+    margin-top: 4px;
+
+    color: #9aa6b2;
+
+    font-size: 13px;
+    letter-spacing: 1.5px;
+}
+
+.market {
+
+    margin-top: 15px;
+
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border-radius: 100px;
+
+    background: #161d26;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.account {
+
+    background: #121821;
+
+    border: 1px solid #222c38;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    margin-bottom: 22px;
+}
+
+.account-label {
+
+    color: #8d99a6;
+    font-size: 12px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.equity {
+
+    margin-top: 4px;
+
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.cash {
+
+    margin-top: 5px;
+
+    color: #aeb8c3;
+    font-size: 14px;
+}
+
+.section-title {
+
+    margin:
+        20px 2px
+        10px 2px;
+
+    color: #aeb8c3;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.position-card {
+
+    background: #121821;
+
+    border:
+        1px solid #222c38;
+
+    border-left:
+        5px solid #66717e;
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+    margin-bottom: 11px;
+}
+
+.position-card.good {
+    border-left-color: #34c759;
+}
+
+.position-card.watch {
+    border-left-color: #ffd60a;
+}
+
+.position-card.prepare {
+    border-left-color: #ff9f0a;
+}
+
+.position-card.exit {
+    border-left-color: #ff453a;
+}
+
+.position-top {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.symbol {
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.pnl {
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.decision {
+
+    margin-top: 7px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: .4px;
+}
+
+.score-row {
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 14px;
+
+    color: #aeb8c3;
+    font-size: 13px;
+}
+
+.score-row strong {
+    color: white;
+}
+
+.score-track {
+
+    position: relative;
+
+    height: 8px;
+
+    margin-top: 8px;
+
+    border-radius: 100px;
+
+    overflow: visible;
+
+    background: #27313d;
+}
+
+.score-fill {
+
+    height: 100%;
+
+    border-radius: 100px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #34c759,
+            #ffd60a,
+            #ff453a
+        );
+}
+
+.prepare-marker {
+
+    position: absolute;
+
+    top: -3px;
+    bottom: -3px;
+
+    left: 33.33%;
+
+    width: 2px;
+
+    background: white;
+
+    opacity: .55;
+}
+
+.confirm-marker {
+
+    position: absolute;
+
+    top: -3px;
+    bottom: -3px;
+
+    left: 55.56%;
+
+    width: 2px;
+
+    background: white;
+
+    opacity: .9;
+}
+
+.thresholds {
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: #788592;
+    font-size: 10px;
+}
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.stat {
+
+    padding: 14px;
+
+    background: #121821;
+
+    border:
+        1px solid #222c38;
+
+    border-radius: 14px;
+}
+
+.stat-number {
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.stat-label {
+
+    margin-top: 3px;
+
+    color: #8995a2;
+
+    font-size: 11px;
+}
+
+.footer {
+
+    margin-top: 28px;
+
+    text-align: center;
+
+    color: #697582;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+.readonly {
+
+    margin-top: 8px;
+
+    color: #34c759;
+
+    font-weight: 700;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+
+        <div class="logo">
+            🤖 SCOUT TRADER
+        </div>
+
+        <div class="subtitle">
+            MOBILE COMMAND CENTER
+        </div>
+
+        <div class="market">
+            MARKET CLOSED
+        </div>
+
+    </div>
+
+
+    <div class="account">
+
+        <div class="account-label">
+            Paper Account Equity
+        </div>
+
+        <div class="equity">
+            $98,841.88
+        </div>
+
+        <div class="cash">
+            Cash: $40,235.57
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        POSITIONS
+    </div>
+
+    
+    <div class="position-card good">
+
+        <div class="position-top">
+
+            <div class="symbol">
+                🟢 AAPL
+            </div>
+
+            <div class="pnl">
+                +0.03%
+            </div>
+
+        </div>
+
+        <div class="decision">
+            LET RUN
+        </div>
+
+        <div class="score-row">
+
+            <span>Exit Score</span>
+
+            <strong>
+                0/18
+            </strong>
+
+        </div>
+
+        <div class="score-track">
+
+            <div
+                class="score-fill"
+                style="width:0.0%">
+            </div>
+
+            <div
+                class="prepare-marker"
+                title="Prepare Exit">
+            </div>
+
+            <div
+                class="confirm-marker"
+                title="Exit Confirmed">
+            </div>
+
+        </div>
+
+        <div class="thresholds">
+
+            <span>
+                Prepare 6/18
+            </span>
+
+            <span>
+                Confirm 10/18
+            </span>
+
+        </div>
+
+    </div>
+    
+    <div class="position-card exit">
+
+        <div class="position-top">
+
+            <div class="symbol">
+                🔴 OXY
+            </div>
+
+            <div class="pnl">
+                -5.35%
+            </div>
+
+        </div>
+
+        <div class="decision">
+            EXIT CONFIRMED
+        </div>
+
+        <div class="score-row">
+
+            <span>Exit Score</span>
+
+            <strong>
+                15/18
+            </strong>
+
+        </div>
+
+        <div class="score-track">
+
+            <div
+                class="score-fill"
+                style="width:83.3%">
+            </div>
+
+            <div
+                class="prepare-marker"
+                title="Prepare Exit">
+            </div>
+
+            <div
+                class="confirm-marker"
+                title="Exit Confirmed">
+            </div>
+
+        </div>
+
+        <div class="thresholds">
+
+            <span>
+                Prepare 6/18
+            </span>
+
+            <span>
+                Confirm 10/18
+            </span>
+
+        </div>
+
+    </div>
+    
+    <div class="position-card good">
+
+        <div class="position-top">
+
+            <div class="symbol">
+                🟢 PLTR
+            </div>
+
+            <div class="pnl">
+                +2.59%
+            </div>
+
+        </div>
+
+        <div class="decision">
+            LET RUN
+        </div>
+
+        <div class="score-row">
+
+            <span>Exit Score</span>
+
+            <strong>
+                0/18
+            </strong>
+
+        </div>
+
+        <div class="score-track">
+
+            <div
+                class="score-fill"
+                style="width:0.0%">
+            </div>
+
+            <div
+                class="prepare-marker"
+                title="Prepare Exit">
+            </div>
+
+            <div
+                class="confirm-marker"
+                title="Exit Confirmed">
+            </div>
+
+        </div>
+
+        <div class="thresholds">
+
+            <span>
+                Prepare 6/18
+            </span>
+
+            <span>
+                Confirm 10/18
+            </span>
+
+        </div>
+
+    </div>
+    
+    <div class="position-card exit">
+
+        <div class="position-top">
+
+            <div class="symbol">
+                🔴 USB
+            </div>
+
+            <div class="pnl">
+                -4.96%
+            </div>
+
+        </div>
+
+        <div class="decision">
+            EXIT CONFIRMED
+        </div>
+
+        <div class="score-row">
+
+            <span>Exit Score</span>
+
+            <strong>
+                15/18
+            </strong>
+
+        </div>
+
+        <div class="score-track">
+
+            <div
+                class="score-fill"
+                style="width:83.3%">
+            </div>
+
+            <div
+                class="prepare-marker"
+                title="Prepare Exit">
+            </div>
+
+            <div
+                class="confirm-marker"
+                title="Exit Confirmed">
+            </div>
+
+        </div>
+
+        <div class="thresholds">
+
+            <span>
+                Prepare 6/18
+            </span>
+
+            <span>
+                Confirm 10/18
+            </span>
+
+        </div>
+
+    </div>
+    
+
+
+    <div class="section-title">
+        NEW OPPORTUNITIES
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-number">
+                12
+            </div>
+
+            <div class="stat-label">
+                QUALIFIED
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                1
+            </div>
+
+            <div class="stat-label">
+                CANDIDATES
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                PROPOSED ORDERS
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                APPROVED ORDERS
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        Last Scout update<br>
+
+        Sep 16, 2026 • 05:42 PM PT
+
+        <div class="readonly">
+            🛡️ READ ONLY DASHBOARD
+        </div>
+
+        Exit Score is rules-based evidence,
+        not a confidence percentage.
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
