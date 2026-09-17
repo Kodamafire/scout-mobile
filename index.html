@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,9 +8,12 @@
 
 <meta
     name="viewport"
-    content="width=device-width,
-             initial-scale=1.0,
-             viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    http-equiv="Cache-Control"
+    content="no-cache, no-store, must-revalidate"
 >
 
 <title>Scout Trader</title>
@@ -23,340 +25,258 @@
 }
 
 body {
-
     margin: 0;
-    padding: 0;
-
-    background: #0b0f14;
-    color: #f4f7fa;
-
+    background: #080d12;
+    color: #f7f9fc;
     font-family:
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Roboto,
         Arial,
         sans-serif;
 }
 
-.app {
-
-    max-width: 520px;
+.container {
+    width: min(94%, 520px);
     margin: auto;
-
-    padding:
-        22px 16px
-        40px 16px;
+    padding: 28px 0 50px;
 }
 
 .header {
-
     text-align: center;
     margin-bottom: 20px;
 }
 
 .logo {
-
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 900;
+    letter-spacing: .5px;
 }
 
 .subtitle {
-
-    margin-top: 4px;
-
-    color: #9aa6b2;
-
-    font-size: 13px;
-    letter-spacing: 1.5px;
+    margin-top: 5px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #8da6c3;
 }
 
 .market {
-
-    margin-top: 15px;
-
     display: inline-block;
-
-    padding: 7px 13px;
-
-    border-radius: 100px;
-
-    background: #161d26;
-
-    font-size: 13px;
-    font-weight: 700;
+    margin-top: 16px;
+    padding: 8px 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
 }
 
-.account {
+.market-open {
+    background: #123d29;
+    color: #55ef9b;
+}
 
-    background: #121821;
+.market-closed {
+    background: #151e29;
+    color: #ffffff;
+}
 
-    border: 1px solid #222c38;
-
+.card {
+    background: #111923;
+    border: 1px solid #263342;
     border-radius: 18px;
-
     padding: 18px;
-
     margin-bottom: 22px;
 }
 
-.account-label {
-
-    color: #8d99a6;
-    font-size: 12px;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.label {
+    color: #8da6c3;
+    font-size: 11px;
+    letter-spacing: 1.2px;
 }
 
 .equity {
-
-    margin-top: 4px;
-
-    font-size: 32px;
-    font-weight: 800;
+    font-size: 31px;
+    font-weight: 900;
+    margin-top: 7px;
 }
 
 .cash {
-
-    margin-top: 5px;
-
-    color: #aeb8c3;
-    font-size: 14px;
+    color: #b8c9dc;
+    margin-top: 7px;
+    font-size: 13px;
 }
 
 .section-title {
-
-    margin:
-        20px 2px
-        10px 2px;
-
-    color: #aeb8c3;
-
+    margin: 22px 2px 10px;
+    color: #c9d8e8;
     font-size: 12px;
-    font-weight: 800;
-
+    font-weight: 900;
     letter-spacing: 1.4px;
 }
 
-.position-card {
-
-    background: #121821;
-
-    border:
-        1px solid #222c38;
-
-    border-left:
-        5px solid #66717e;
-
-    border-radius: 16px;
-
-    padding: 15px;
-
-    margin-bottom: 11px;
+.position {
+    position: relative;
+    background: #111923;
+    border: 1px solid #263342;
+    border-left: 5px solid #31d16c;
+    border-radius: 17px;
+    padding: 16px;
+    margin-bottom: 12px;
 }
 
-.position-card.good {
-    border-left-color: #34c759;
-}
-
-.position-card.watch {
-    border-left-color: #ffd60a;
-}
-
-.position-card.prepare {
-    border-left-color: #ff9f0a;
-}
-
-.position-card.exit {
+.position.exit {
     border-left-color: #ff453a;
 }
 
-.position-top {
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
+.position.prepare {
+    border-left-color: #ff9f0a;
 }
 
-.symbol {
+.position.watch {
+    border-left-color: #ffd60a;
+}
 
-    font-size: 21px;
-    font-weight: 800;
+.position.run {
+    border-left-color: #30d158;
+}
+
+.position-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticker {
+    font-size: 22px;
+    font-weight: 900;
 }
 
 .pnl {
+    font-size: 17px;
+    font-weight: 900;
+}
 
-    font-size: 18px;
-    font-weight: 700;
+.positive {
+    color: #ffffff;
+}
+
+.negative {
+    color: #ffffff;
 }
 
 .decision {
-
     margin-top: 7px;
-
-    font-size: 14px;
-    font-weight: 800;
-
-    letter-spacing: .4px;
+    font-size: 13px;
+    font-weight: 900;
 }
 
 .score-row {
-
     display: flex;
     justify-content: space-between;
-
-    margin-top: 14px;
-
-    color: #aeb8c3;
-    font-size: 13px;
+    margin-top: 18px;
+    font-size: 12px;
+    color: #b8c9dc;
 }
 
 .score-row strong {
     color: white;
 }
 
-.score-track {
-
+.score-wrap {
     position: relative;
-
-    height: 8px;
-
     margin-top: 8px;
+}
 
-    border-radius: 100px;
-
-    overflow: visible;
-
-    background: #27313d;
+.score-track {
+    height: 8px;
+    background: #2a3745;
+    border-radius: 99px;
+    overflow: hidden;
 }
 
 .score-fill {
-
     height: 100%;
-
-    border-radius: 100px;
-
+    border-radius: 99px;
     background:
         linear-gradient(
             90deg,
-            #34c759,
-            #ffd60a,
+            #28d66f,
+            #d9f022,
+            #ffd21a,
+            #ff8b29,
             #ff453a
         );
 }
 
-.prepare-marker {
-
+.marker {
     position: absolute;
-
     top: -3px;
-    bottom: -3px;
-
-    left: 33.33%;
-
     width: 2px;
-
+    height: 14px;
     background: white;
+    opacity: .85;
+}
 
-    opacity: .55;
+.prepare-marker {
+    left: 33.33%;
 }
 
 .confirm-marker {
-
-    position: absolute;
-
-    top: -3px;
-    bottom: -3px;
-
     left: 55.56%;
-
-    width: 2px;
-
-    background: white;
-
-    opacity: .9;
 }
 
-.thresholds {
-
+.score-labels {
     display: flex;
     justify-content: space-between;
-
     margin-top: 7px;
-
-    color: #788592;
-    font-size: 10px;
+    font-size: 9px;
+    color: #7991ad;
 }
 
 .stats {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
 .stat {
-
-    padding: 14px;
-
-    background: #121821;
-
-    border:
-        1px solid #222c38;
-
-    border-radius: 14px;
+    background: #111923;
+    border: 1px solid #263342;
+    border-radius: 15px;
+    padding: 15px;
 }
 
 .stat-number {
-
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 25px;
+    font-weight: 900;
 }
 
 .stat-label {
-
-    margin-top: 3px;
-
-    color: #8995a2;
-
-    font-size: 11px;
+    margin-top: 4px;
+    font-size: 9px;
+    color: #8da6c3;
+    letter-spacing: .6px;
 }
 
 .footer {
-
-    margin-top: 28px;
-
     text-align: center;
-
-    color: #697582;
-
-    font-size: 11px;
-
-    line-height: 1.6;
+    margin-top: 28px;
+    color: #7991ad;
+    font-size: 10px;
+    line-height: 1.8;
 }
 
-.readonly {
-
-    margin-top: 8px;
-
-    color: #34c759;
-
-    font-weight: 700;
+.safe {
+    color: #46e481;
+    font-weight: 900;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-<div class="app">
+<div class="container">
 
     <div class="header">
 
@@ -368,21 +288,21 @@ body {
             MOBILE COMMAND CENTER
         </div>
 
-        <div class="market">
+        <div class="market market-closed">
             MARKET CLOSED
         </div>
 
     </div>
 
 
-    <div class="account">
+    <div class="card">
 
-        <div class="account-label">
-            Paper Account Equity
+        <div class="label">
+            PAPER ACCOUNT EQUITY
         </div>
 
         <div class="equity">
-            $98,841.88
+            $99,123.39
         </div>
 
         <div class="cash">
@@ -397,18 +317,17 @@ body {
     </div>
 
     
-    <div class="position-card good">
+    <div class="position run">
 
         <div class="position-top">
-
-            <div class="symbol">
-                🟢 AAPL
+            <div class="ticker">
+                <span>🟢</span>
+                AAPL
             </div>
 
-            <div class="pnl">
-                +0.03%
+            <div class="pnl positive">
+                +1.06%
             </div>
-
         </div>
 
         <div class="decision">
@@ -416,60 +335,42 @@ body {
         </div>
 
         <div class="score-row">
-
             <span>Exit Score</span>
+            <strong>0/18</strong>
+        </div>
 
-            <strong>
-                0/18
-            </strong>
+        <div class="score-wrap">
+
+            <div class="score-track">
+                <div
+                    class="score-fill"
+                    style="width:0.0%;">
+                </div>
+            </div>
+
+            <div class="marker prepare-marker"></div>
+            <div class="marker confirm-marker"></div>
 
         </div>
 
-        <div class="score-track">
-
-            <div
-                class="score-fill"
-                style="width:0.0%">
-            </div>
-
-            <div
-                class="prepare-marker"
-                title="Prepare Exit">
-            </div>
-
-            <div
-                class="confirm-marker"
-                title="Exit Confirmed">
-            </div>
-
-        </div>
-
-        <div class="thresholds">
-
-            <span>
-                Prepare 6/18
-            </span>
-
-            <span>
-                Confirm 10/18
-            </span>
-
+        <div class="score-labels">
+            <span>Prepare 6/18</span>
+            <span>Confirm 10/18</span>
         </div>
 
     </div>
     
-    <div class="position-card exit">
+    <div class="position exit">
 
         <div class="position-top">
-
-            <div class="symbol">
-                🔴 OXY
+            <div class="ticker">
+                <span>🔴</span>
+                OXY
             </div>
 
-            <div class="pnl">
-                -5.35%
+            <div class="pnl negative">
+                -5.61%
             </div>
-
         </div>
 
         <div class="decision">
@@ -477,60 +378,42 @@ body {
         </div>
 
         <div class="score-row">
-
             <span>Exit Score</span>
+            <strong>15/18</strong>
+        </div>
 
-            <strong>
-                15/18
-            </strong>
+        <div class="score-wrap">
+
+            <div class="score-track">
+                <div
+                    class="score-fill"
+                    style="width:83.3%;">
+                </div>
+            </div>
+
+            <div class="marker prepare-marker"></div>
+            <div class="marker confirm-marker"></div>
 
         </div>
 
-        <div class="score-track">
-
-            <div
-                class="score-fill"
-                style="width:83.3%">
-            </div>
-
-            <div
-                class="prepare-marker"
-                title="Prepare Exit">
-            </div>
-
-            <div
-                class="confirm-marker"
-                title="Exit Confirmed">
-            </div>
-
-        </div>
-
-        <div class="thresholds">
-
-            <span>
-                Prepare 6/18
-            </span>
-
-            <span>
-                Confirm 10/18
-            </span>
-
+        <div class="score-labels">
+            <span>Prepare 6/18</span>
+            <span>Confirm 10/18</span>
         </div>
 
     </div>
     
-    <div class="position-card good">
+    <div class="position run">
 
         <div class="position-top">
-
-            <div class="symbol">
-                🟢 PLTR
+            <div class="ticker">
+                <span>🟢</span>
+                PLTR
             </div>
 
-            <div class="pnl">
-                +2.59%
+            <div class="pnl positive">
+                +2.87%
             </div>
-
         </div>
 
         <div class="decision">
@@ -538,60 +421,42 @@ body {
         </div>
 
         <div class="score-row">
-
             <span>Exit Score</span>
+            <strong>0/18</strong>
+        </div>
 
-            <strong>
-                0/18
-            </strong>
+        <div class="score-wrap">
+
+            <div class="score-track">
+                <div
+                    class="score-fill"
+                    style="width:0.0%;">
+                </div>
+            </div>
+
+            <div class="marker prepare-marker"></div>
+            <div class="marker confirm-marker"></div>
 
         </div>
 
-        <div class="score-track">
-
-            <div
-                class="score-fill"
-                style="width:0.0%">
-            </div>
-
-            <div
-                class="prepare-marker"
-                title="Prepare Exit">
-            </div>
-
-            <div
-                class="confirm-marker"
-                title="Exit Confirmed">
-            </div>
-
-        </div>
-
-        <div class="thresholds">
-
-            <span>
-                Prepare 6/18
-            </span>
-
-            <span>
-                Confirm 10/18
-            </span>
-
+        <div class="score-labels">
+            <span>Prepare 6/18</span>
+            <span>Confirm 10/18</span>
         </div>
 
     </div>
     
-    <div class="position-card exit">
+    <div class="position exit">
 
         <div class="position-top">
-
-            <div class="symbol">
-                🔴 USB
+            <div class="ticker">
+                <span>🔴</span>
+                USB
             </div>
 
-            <div class="pnl">
-                -4.96%
+            <div class="pnl negative">
+                -4.14%
             </div>
-
         </div>
 
         <div class="decision">
@@ -599,44 +464,27 @@ body {
         </div>
 
         <div class="score-row">
-
             <span>Exit Score</span>
+            <strong>15/18</strong>
+        </div>
 
-            <strong>
-                15/18
-            </strong>
+        <div class="score-wrap">
+
+            <div class="score-track">
+                <div
+                    class="score-fill"
+                    style="width:83.3%;">
+                </div>
+            </div>
+
+            <div class="marker prepare-marker"></div>
+            <div class="marker confirm-marker"></div>
 
         </div>
 
-        <div class="score-track">
-
-            <div
-                class="score-fill"
-                style="width:83.3%">
-            </div>
-
-            <div
-                class="prepare-marker"
-                title="Prepare Exit">
-            </div>
-
-            <div
-                class="confirm-marker"
-                title="Exit Confirmed">
-            </div>
-
-        </div>
-
-        <div class="thresholds">
-
-            <span>
-                Prepare 6/18
-            </span>
-
-            <span>
-                Confirm 10/18
-            </span>
-
+        <div class="score-labels">
+            <span>Prepare 6/18</span>
+            <span>Confirm 10/18</span>
         </div>
 
     </div>
@@ -644,37 +492,22 @@ body {
 
 
     <div class="section-title">
-        NEW OPPORTUNITIES
+        EXECUTION PIPELINE
     </div>
-
 
     <div class="stats">
 
         <div class="stat">
 
             <div class="stat-number">
-                12
+                2
             </div>
 
             <div class="stat-label">
-                QUALIFIED
+                SAFETY APPROVED
             </div>
 
         </div>
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                1
-            </div>
-
-            <div class="stat-label">
-                CANDIDATES
-            </div>
-
-        </div>
-
 
         <div class="stat">
 
@@ -683,20 +516,7 @@ body {
             </div>
 
             <div class="stat-label">
-                PROPOSED ORDERS
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                0
-            </div>
-
-            <div class="stat-label">
-                APPROVED ORDERS
+                ORDERS SUBMITTED
             </div>
 
         </div>
@@ -708,11 +528,15 @@ body {
 
         Last Scout update<br>
 
-        Sep 16, 2026 • 05:42 PM PT
+        Sep 17, 2026 • 04:34 PM PT
 
-        <div class="readonly">
-            🛡️ READ ONLY DASHBOARD
-        </div>
+        <br><br>
+
+        <span class="safe">
+            🛡 PAPER TRADING ONLY
+        </span>
+
+        <br>
 
         Exit Score is rules-based evidence,
         not a confidence percentage.
