@@ -1,0 +1,16 @@
+{
+  "version": 44,
+  "high_water": {
+    "AAPL": 0.624,
+    "OXY": -6.239,
+    "PLTR": 1.743,
+    "USB": -4.694
+  },
+  "warning_streak": {
+    "AAPL": 0,
+    "OXY": 0,
+    "PLTR": 0,
+    "USB": 0
+  },
+  "last_cycle": "2026-09-18T07:09:29.662963-07:00"
+}
