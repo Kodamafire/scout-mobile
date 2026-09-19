@@ -37,7 +37,13 @@ class ScoutConfig:
     position_fraction: float = 0.10
     minimum_cash_reserve_fraction: float = 0.35
     minimum_order_dollars: float = 50.0
-
+    # Portfolio upgrade / replacement engine
+    
+    upgrade_engine_enabled: bool = True
+    upgrade_execute_trades: bool = False   # WATCH ONLY for now
+    upgrade_min_score_advantage: int = 2
+    upgrade_max_replacements_per_cycle: int = 1
+    
     # Candidate scan / entry rules
     most_active_count: int = 100
     candidate_shortlist: int = 12
