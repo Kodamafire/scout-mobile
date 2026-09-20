@@ -39,7 +39,7 @@ class ScoutConfig:
     minimum_cash_reserve_fraction: float = 0.35
     minimum_order_dollars: float = 50.0
     # Portfolio upgrade / replacement engine
-    # WATCH ONLY: identify upgrades, but do not rotate positions yet.
+    # Paper replacements require confirmed market-open checks.
     upgrade_engine_enabled: bool = True
     upgrade_execute_trades: bool = True
     upgrade_candidate_score_min: int = 9
@@ -221,13 +221,48 @@ def entry_score(m):
     }
     return sum(checks.values()), checks
 
-def analyze_position(position, m, state):
+def prepare_confirmation_cycle(state, market_open, observed_at):
+    """Count checks only during an open session, at least 15 minutes apart.
+
+    Old state without a timestamp cannot supply trusted confirmations.
+    """
+    previous = state.get("last_confirmation_check")
+    now = observed_at.timestamp()
+    session = observed_at.date().isoformat()
+    if not market_open or not previous or previous.get("session") != session:
+        state["warning_streak"] = {}
+        state["upgrade_challenge"] = None
+        state["last_confirmation_check"] = None
+    if not market_open:
+        return False
+    previous = state.get("last_confirmation_check")
+    if previous and now - float(previous["timestamp"]) < 900:
+        return False
+    state["last_confirmation_check"] = {"session": session, "timestamp": now}
+    return True
+
+
+def analyze_position(position, m, state, advance_confirmation=True):
     symbol = str(position.symbol).upper()
     pnl_pct = float(position.unrealized_plpc) * 100
     previous_high = float(state["high_water"].get(symbol, pnl_pct))
     high_water = max(previous_high, pnl_pct)
     state["high_water"][symbol] = round(high_water, 4)
     giveback = max(0.0, high_water - pnl_pct)
+    if m is None:
+        # The account loss check must not depend on historical chart data.
+        hard_exit = pnl_pct <= CFG.hard_stop_pct
+        state["warning_streak"][symbol] = 0
+        return {
+            "symbol": symbol, "qty": float(position.qty),
+            "market_value": float(position.market_value), "pnl_pct": pnl_pct,
+            "high_water": high_water, "giveback": giveback, "leash": 0.0,
+            "exit_score": 10 if hard_exit else 0, "confirmation": 0,
+            "decision": "EXIT CONFIRMED" if hard_exit else "DATA UNAVAILABLE",
+            "exit_confirmed": hard_exit, "rsi14": None,
+            "reasons": (["Hard loss limit reached"] if hard_exit else [])
+                       + ["Chart data unavailable; account loss check still active"],
+        }
     leash = min(CFG.max_trailing_leash_pct, max(CFG.base_trailing_floor_pct, m["atr_pct"] * 1.35))
 
     score = 0
@@ -251,7 +286,7 @@ def analyze_position(position, m, state):
 
     warning = score >= CFG.exit_score_min
     streak = int(state["warning_streak"].get(symbol, 0))
-    streak = streak + 1 if warning else 0
+    streak = (streak + int(advance_confirmation)) if warning else 0
     state["warning_streak"][symbol] = streak
     hard_exit = pnl_pct <= CFG.hard_stop_pct
     exit_confirmed = hard_exit or (warning and streak >= CFG.exit_confirmations)
@@ -286,7 +321,9 @@ def open_orders_by_symbol(trading):
 def submit_sell_if_allowed(trading, row, market_open, open_orders):
     symbol = row["symbol"]
     if not (CFG.auto_sell_paper and market_open and row["exit_confirmed"]):
-        return "DRY RUN" if row["exit_confirmed"] else "NO ACTION"
+        if not row["exit_confirmed"]:
+            return "NO ACTION"
+        return "WAITING — MARKET CLOSED" if not market_open else "SELLING DISABLED"
     if symbol in open_orders:
         return "SKIPPED — OPEN ORDER EXISTS"
     qty = abs(float(row["qty"]))
@@ -379,7 +416,7 @@ def choose_upgrade(managed, candidates, held_symbols, open_orders):
 
 
 
-def confirm_upgrade_persistence(upgrade, state):
+def confirm_upgrade_persistence(upgrade, state, advance_confirmation=True):
     """Require the same candidate -> holding challenge across consecutive cycles."""
     previous = state.get("upgrade_challenge")
 
@@ -399,7 +436,8 @@ def confirm_upgrade_persistence(upgrade, state):
         and previous.get("candidate_symbol") == candidate_symbol
         and previous.get("replace_symbol") == replace_symbol
     )
-    confirmations = int(previous.get("confirmations", 0)) + 1 if same_challenge else 1
+    confirmations = (int(previous.get("confirmations", 0)) if same_challenge else 0)
+    confirmations += int(advance_confirmation)
 
     state["upgrade_challenge"] = {
         "candidate_symbol": candidate_symbol,
@@ -420,7 +458,8 @@ def confirm_upgrade_persistence(upgrade, state):
     return upgrade
 
 def _order_status_text(order):
-    return str(getattr(order, "status", "")).upper()
+    status = getattr(order, "status", "")
+    return str(getattr(status, "value", status)).upper().rsplit(".", 1)[-1]
 
 
 def _wait_for_terminal_order(trading, order_id, timeout_seconds=None):
@@ -431,9 +470,9 @@ def _wait_for_terminal_order(trading, order_id, timeout_seconds=None):
     while time.time() < deadline:
         last = trading.get_order_by_id(order_id)
         status = _order_status_text(last)
-        if "FILLED" in status:
+        if status == "FILLED":
             return True, last
-        if any(x in status for x in ("CANCELED", "CANCELLED", "REJECTED", "EXPIRED")):
+        if status in ("CANCELED", "CANCELLED", "REJECTED", "EXPIRED"):
             return False, last
         time.sleep(CFG.upgrade_fill_poll_seconds)
     return False, last
@@ -594,15 +633,32 @@ def dashboard_html(report):
     cards = []
     for p in report["positions"]:
         pnl_class = "good" if p["pnl_pct"] >= 0 else "bad"
+        reasons = "; ".join(p.get("reasons", [])) or "No exit warning signals"
         cards.append(f'''<section class="card"><div class="top"><b>{esc(p['symbol'])}</b><span class="pill">{esc(p['decision'])}</span></div>
         <div class="pnl {pnl_class}">{p['pnl_pct']:+.2f}%</div>
-        <div class="grid"><span>Exit score</span><b>{p['exit_score']}/18</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Action</span><b>{esc(p['order_status'])}</b></div></section>''')
+        <div class="grid"><span>Exit score (trigger: {CFG.exit_score_min})</span><b>{p['exit_score']}</b><span>Confirmed checks</span><b>{p.get('confirmation', 0)}/{CFG.exit_confirmations}</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Action</span><b>{esc(p['order_status'])}</b></div><p>{esc(reasons)}</p></section>''')
     candidates = "".join(f"<li><b>{esc(c['symbol'])}</b> — score {c['entry_score']}/9 — {esc(c['order_status'])}</li>" for c in report["candidates"])
+    upgrade = report.get("upgrade")
+    if upgrade:
+        replacement = (
+            f"Considering {esc(upgrade['replace_symbol'])} → {esc(upgrade['candidate']['symbol'])}. "
+            f"Holding exit score: {upgrade['replace_exit_score']}; "
+            f"candidate entry score: {upgrade['candidate']['entry_score']}/9. "
+            f"Confirmed checks: {upgrade.get('upgrade_confirmation', 0)}/{CFG.upgrade_confirmations_required}. "
+            f"Status: {esc(upgrade.get('order_status', 'WAITING'))}."
+        )
+    else:
+        replacement = "No replacement currently qualifies."
+    replacement_panel = (
+        f'<div class="panel"><h2>Position replacement</h2><p>{replacement}</p>'
+        '<p>Confirmations count only while the market is open, at least 15 minutes apart. '
+        'They restart each trading session. Closed-market checks do not count.</p></div>'
+    )
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cache-control" content="no-cache"><title>Scout Trader</title>
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -635,28 +691,38 @@ def run_scout_cycle():
     state = mount_and_load_state()
     clock = trading.get_clock()
     market_open = bool(clock.is_open)
+    advance_confirmation = prepare_confirmation_cycle(state, market_open, clock.timestamp)
     positions = list(trading.get_all_positions())
     held = {str(p.symbol).upper() for p in positions}
     open_orders = open_orders_by_symbol(trading)
 
     analysis_symbols = sorted(held | {"SPY"})
-    frames = bars_frame(data_client, analysis_symbols)
+    try:
+        frames = bars_frame(data_client, analysis_symbols)
+    except Exception as exc:
+        print("Position chart data unavailable; checking account losses:", type(exc).__name__)
+        frames = {}
     spy = frames.get("SPY")
     managed = []
     for position in positions:
         symbol = str(position.symbol).upper()
-        m = indicators(frames[symbol], spy) if symbol in frames else None
-        if not m:
-            managed.append({"symbol": symbol, "qty": float(position.qty), "market_value": float(position.market_value), "pnl_pct": float(position.unrealized_plpc)*100, "high_water": float(state["high_water"].get(symbol, 0)), "giveback": 0.0, "leash": 0.0, "exit_score": 0, "confirmation": 0, "decision": "DATA UNAVAILABLE", "exit_confirmed": False, "rsi14": 0.0, "reasons": ["Not enough market data"], "order_status": "NO ACTION"})
-            continue
-        row = analyze_position(position, m, state)
+        try:
+            m = indicators(frames[symbol], spy) if symbol in frames else None
+        except Exception as exc:
+            print(f"Chart analysis unavailable for {symbol}:", type(exc).__name__)
+            m = None
+        row = analyze_position(position, m, state, advance_confirmation)
         row["order_status"] = submit_sell_if_allowed(trading, row, market_open, open_orders)
         managed.append(row)
 
-    candidates = scan_candidates(screener, data_client, held)
+    try:
+        candidates = scan_candidates(screener, data_client, held)
+    except Exception as exc:
+        print("Candidate scan unavailable:", type(exc).__name__)
+        candidates = []
 
     # Upgrade intelligence: at 4/4, elite candidates can still challenge weak holdings.
-    # WATCH ONLY until upgrade_execute_trades is deliberately enabled.
+    # Execution is gated by confirmed checks and the paper-trading setting.
     print(
         f"UPGRADE DEBUG | managed={len(managed)} | held={len(held)} | "
         f"max_positions={CFG.max_positions} | candidates={len(candidates)} | "
@@ -664,7 +730,7 @@ def run_scout_cycle():
         f"best_score={candidates[0]['entry_score'] if candidates else 'NONE'}"
     )
     raw_upgrade = choose_upgrade(managed, candidates, held, open_orders)
-    upgrade = confirm_upgrade_persistence(raw_upgrade, state)
+    upgrade = confirm_upgrade_persistence(raw_upgrade, state, advance_confirmation)
     if upgrade:
         rotation = execute_upgrade_rotation_if_allowed(
             trading, upgrade, market_open, open_orders
@@ -724,3 +790,4 @@ def run_scout_cycle():
 
 if __name__ == "__main__":
     scout_report = run_scout_cycle()
+
