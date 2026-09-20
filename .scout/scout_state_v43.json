@@ -12,11 +12,11 @@
     "PLTR": 0,
     "USB": 0
   },
-  "last_cycle": "2026-09-19T20:05:09.090891-07:00",
+  "last_cycle": "2026-09-19T20:06:57.886017-07:00",
   "upgrade_challenge": {
     "candidate_symbol": "MSTR",
     "replace_symbol": "USB",
-    "confirmations": 2,
+    "confirmations": 3,
     "entry_score": 9,
     "score_advantage": 7
   }
