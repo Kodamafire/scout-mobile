@@ -3,8 +3,8 @@
   "high_water": {
     "AAPL": 1.852,
     "PLTR": 7.467,
-    "USB": -3.678,
-    "WBD": 3.103
+    "USB": -3.532,
+    "WBD": 3.539
   },
   "warning_streak": {
     "AAPL": 0,
@@ -12,17 +12,11 @@
     "USB": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-21T09:58:35.414822-07:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "INTC",
-    "replace_symbol": "USB",
-    "confirmations": 2,
-    "entry_score": 9,
-    "score_advantage": 9
-  },
+  "last_cycle": "2026-09-21T10:17:15.537230-07:00",
+  "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-09-21",
-    "timestamp": 1790009032.874663
+    "timestamp": 1790011035.636565
   },
   "activity_journal": {
     "events": [
@@ -410,6 +404,69 @@
         "symbol": "USB \u2192 INTC",
         "action": "Replacement check",
         "reason": "2 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 2/3."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "USB",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "WBD",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "USB \u2192 INTC",
+        "action": "Replacement check",
+        "reason": "3 of 3 checks confirmed. ROTATION COMPLETE \u2014 USB -> INTC."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "USB",
+        "action": "Sell requested",
+        "reason": "Portfolio replacement: USB \u2192 INTC"
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "INTC",
+        "action": "Buy requested",
+        "reason": "Portfolio replacement: USB \u2192 INTC"
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "USB",
+        "action": "Order filled",
+        "reason": "Sell: 238 shares filled at average $60.6300."
+      },
+      {
+        "at": "2026-09-21T10:17:15.537230-07:00",
+        "cycle": "20260921_101715",
+        "symbol": "INTC",
+        "action": "Order filled",
+        "reason": "Buy: 82.020554139 shares filled at average $121.6346."
       }
     ],
     "orders": {
@@ -432,6 +489,26 @@
         "price": "29.81",
         "side": "buy",
         "filled_at": "2026-09-21T13:58:45.994749+00:00"
+      },
+      "d319b142-a6bf-43b0-ab7f-fb542efefa42": {
+        "symbol": "USB",
+        "reason": "Portfolio replacement: USB \u2192 INTC",
+        "status": "filled",
+        "requested_at": "2026-09-21T10:17:15.537230-07:00",
+        "qty": "238",
+        "price": "60.63",
+        "side": "sell",
+        "filled_at": "2026-09-21T17:17:18.312544+00:00"
+      },
+      "98849ccf-30e3-453d-b137-19fefe9f7f1e": {
+        "symbol": "INTC",
+        "reason": "Portfolio replacement: USB \u2192 INTC",
+        "status": "filled",
+        "requested_at": "2026-09-21T10:17:15.537230-07:00",
+        "qty": "82.020554139",
+        "price": "121.634632",
+        "side": "buy",
+        "filled_at": "2026-09-21T17:17:22.637692+00:00"
       }
     },
     "cycles": [
@@ -446,7 +523,8 @@
       "20260921_085638",
       "20260921_091917",
       "20260921_094352",
-      "20260921_095835"
+      "20260921_095835",
+      "20260921_101715"
     ],
     "sync_note": "Order status checked during the latest cycle."
   }
