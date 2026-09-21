@@ -6,13 +6,14 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace as NS
 from unittest.mock import Mock
+from scout_journal import record_cycle, journal_html
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
 tree = ast.parse(source)
 names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'dataclass': dataclass}
+ns = {'dataclass': dataclass, 'record_cycle': record_cycle, 'journal_html': journal_html}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)
 ns['CFG'] = ns['ScoutConfig']()
