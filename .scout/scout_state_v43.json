@@ -3,8 +3,8 @@
   "high_water": {
     "AAPL": 1.054,
     "OXY": -5.618,
-    "PLTR": 4.506,
-    "USB": -4.193
+    "PLTR": 5.053,
+    "USB": -3.678
   },
   "warning_streak": {
     "AAPL": 0,
@@ -12,12 +12,57 @@
     "PLTR": 0,
     "USB": 0
   },
-  "last_cycle": "2026-09-19T20:14:03.208357-07:00",
+  "last_cycle": "2026-09-21T06:15:58.747606-07:00",
   "upgrade_challenge": {
     "candidate_symbol": "MSTR",
     "replace_symbol": "USB",
-    "confirmations": 4,
+    "confirmations": 0,
     "entry_score": 9,
     "score_advantage": 7
+  },
+  "last_confirmation_check": null,
+  "activity_journal": {
+    "events": [
+      {
+        "at": "2026-09-21T06:15:58.747606-07:00",
+        "cycle": "20260921_061558",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:15:58.747606-07:00",
+        "cycle": "20260921_061558",
+        "symbol": "OXY",
+        "action": "Position checked",
+        "reason": "Exit confirmed; waiting \u2014 market closed."
+      },
+      {
+        "at": "2026-09-21T06:15:58.747606-07:00",
+        "cycle": "20260921_061558",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:15:58.747606-07:00",
+        "cycle": "20260921_061558",
+        "symbol": "USB",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:15:58.747606-07:00",
+        "cycle": "20260921_061558",
+        "symbol": "USB \u2192 MSTR",
+        "action": "Replacement check",
+        "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
+      }
+    ],
+    "orders": {},
+    "cycles": [
+      "20260921_061558"
+    ],
+    "sync_note": "Order status checked during the latest cycle."
   }
 }
