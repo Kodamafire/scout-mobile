@@ -8,19 +8,16 @@
   },
   "warning_streak": {
     "AAPL": 0,
-    "OXY": 0,
+    "OXY": 1,
     "PLTR": 0,
     "USB": 0
   },
-  "last_cycle": "2026-09-21T06:15:58.747606-07:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "MSTR",
-    "replace_symbol": "USB",
-    "confirmations": 0,
-    "entry_score": 9,
-    "score_advantage": 7
+  "last_cycle": "2026-09-21T06:43:46.823980-07:00",
+  "upgrade_challenge": null,
+  "last_confirmation_check": {
+    "session": "2026-09-21",
+    "timestamp": 1789998227.122009
   },
-  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -57,11 +54,58 @@
         "symbol": "USB \u2192 MSTR",
         "action": "Replacement check",
         "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
+      },
+      {
+        "at": "2026-09-21T06:43:46.823980-07:00",
+        "cycle": "20260921_064346",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:43:46.823980-07:00",
+        "cycle": "20260921_064346",
+        "symbol": "OXY",
+        "action": "Sell requested",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; RSI weakening; Hard loss limit reached"
+      },
+      {
+        "at": "2026-09-21T06:43:46.823980-07:00",
+        "cycle": "20260921_064346",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:43:46.823980-07:00",
+        "cycle": "20260921_064346",
+        "symbol": "USB",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T06:43:46.823980-07:00",
+        "cycle": "20260921_064346",
+        "symbol": "OXY",
+        "action": "Order filled",
+        "reason": "Sell: 239 shares filled at average $57.3300."
       }
     ],
-    "orders": {},
+    "orders": {
+      "4f2d6155-6406-4ce4-9f2d-498dadc245dc": {
+        "symbol": "OXY",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; RSI weakening; Hard loss limit reached",
+        "status": "filled",
+        "requested_at": "2026-09-21T06:43:46.823980-07:00",
+        "qty": "239",
+        "price": "57.33",
+        "side": "sell",
+        "filled_at": "2026-09-21T13:43:47.998112+00:00"
+      }
+    },
     "cycles": [
-      "20260921_061558"
+      "20260921_061558",
+      "20260921_064346"
     ],
     "sync_note": "Order status checked during the latest cycle."
   }
