@@ -1,20 +1,22 @@
 {
   "version": 44,
   "high_water": {
-    "AAPL": 1.054,
-    "PLTR": 6.415,
-    "USB": -3.678
+    "AAPL": 1.341,
+    "PLTR": 6.709,
+    "USB": -3.678,
+    "WBD": 2.248
   },
   "warning_streak": {
     "AAPL": 0,
     "PLTR": 0,
-    "USB": 0
+    "USB": 0,
+    "WBD": 0
   },
-  "last_cycle": "2026-09-21T06:58:43.914469-07:00",
+  "last_cycle": "2026-09-21T07:20:33.376929-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-09-21",
-    "timestamp": 1789998227.122009
+    "timestamp": 1790000433.553225
   },
   "activity_journal": {
     "events": [
@@ -122,6 +124,41 @@
         "symbol": "WBD",
         "action": "Order new",
         "reason": "Buy: 0 shares filled."
+      },
+      {
+        "at": "2026-09-21T07:20:33.376929-07:00",
+        "cycle": "20260921_072033",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T07:20:33.376929-07:00",
+        "cycle": "20260921_072033",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T07:20:33.376929-07:00",
+        "cycle": "20260921_072033",
+        "symbol": "USB",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T07:20:33.376929-07:00",
+        "cycle": "20260921_072033",
+        "symbol": "WBD",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T07:20:33.376929-07:00",
+        "cycle": "20260921_072033",
+        "symbol": "WBD",
+        "action": "Order filled",
+        "reason": "Buy: 332.54780275 shares filled at average $29.8100."
       }
     ],
     "orders": {
@@ -138,18 +175,19 @@
       "a103c018-d558-4a88-a1f5-06adbff718e5": {
         "symbol": "WBD",
         "reason": "Entry score 9/9 met the entry rules.",
-        "status": "new",
+        "status": "filled",
         "requested_at": "2026-09-21T06:58:43.914469-07:00",
-        "qty": "0",
-        "price": null,
+        "qty": "332.54780275",
+        "price": "29.81",
         "side": "buy",
-        "filled_at": null
+        "filled_at": "2026-09-21T13:58:45.994749+00:00"
       }
     },
     "cycles": [
       "20260921_061558",
       "20260921_064346",
-      "20260921_065843"
+      "20260921_065843",
+      "20260921_072033"
     ],
     "sync_note": "Order status checked during the latest cycle."
   }
