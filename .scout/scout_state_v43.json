@@ -3,20 +3,20 @@
   "high_water": {
     "AAPL": 1.852,
     "PLTR": 7.467,
-    "USB": -3.532,
-    "WBD": 3.539
+    "WBD": 3.556,
+    "INTC": 0.196
   },
   "warning_streak": {
     "AAPL": 0,
     "PLTR": 0,
-    "USB": 0,
-    "WBD": 0
+    "WBD": 0,
+    "INTC": 0
   },
-  "last_cycle": "2026-09-21T10:17:15.537230-07:00",
+  "last_cycle": "2026-09-21T10:42:18.259429-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-09-21",
-    "timestamp": 1790011035.636565
+    "timestamp": 1790012538.343984
   },
   "activity_journal": {
     "events": [
@@ -467,6 +467,34 @@
         "symbol": "INTC",
         "action": "Order filled",
         "reason": "Buy: 82.020554139 shares filled at average $121.6346."
+      },
+      {
+        "at": "2026-09-21T10:42:18.259429-07:00",
+        "cycle": "20260921_104218",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:42:18.259429-07:00",
+        "cycle": "20260921_104218",
+        "symbol": "INTC",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:42:18.259429-07:00",
+        "cycle": "20260921_104218",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T10:42:18.259429-07:00",
+        "cycle": "20260921_104218",
+        "symbol": "WBD",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -524,7 +552,8 @@
       "20260921_091917",
       "20260921_094352",
       "20260921_095835",
-      "20260921_101715"
+      "20260921_101715",
+      "20260921_104218"
     ],
     "sync_note": "Order status checked during the latest cycle."
   }
