@@ -8,16 +8,13 @@
   },
   "warning_streak": {
     "AAPL": 0,
+    "INTC": 0,
     "PLTR": 0,
-    "WBD": 0,
-    "INTC": 0
+    "WBD": 0
   },
-  "last_cycle": "2026-09-21T12:53:50.349200-07:00",
+  "last_cycle": "2026-09-21T13:16:25.081839-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-09-21",
-    "timestamp": 1790020430.627354
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -663,6 +660,34 @@
         "symbol": "WBD",
         "action": "Position checked",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T13:16:25.081839-07:00",
+        "cycle": "20260921_131625",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T13:16:25.081839-07:00",
+        "cycle": "20260921_131625",
+        "symbol": "INTC",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T13:16:25.081839-07:00",
+        "cycle": "20260921_131625",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-21T13:16:25.081839-07:00",
+        "cycle": "20260921_131625",
+        "symbol": "WBD",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -727,7 +752,8 @@
       "20260921_114704",
       "20260921_121503",
       "20260921_123305",
-      "20260921_125350"
+      "20260921_125350",
+      "20260921_131625"
     ],
     "sync_note": "Order status checked during the latest cycle."
   }
