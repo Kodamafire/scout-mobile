@@ -900,6 +900,43 @@
       "20260921_144119",
       "20260921_145527"
     ],
-    "sync_note": "Order status checked during the latest cycle."
+    "sync_note": "Order status checked during the latest cycle.",
+    "loss_log": {
+      "rows": [
+        {
+          "symbol": "OXY",
+          "sale_id": "4f2d6155-6406-4ce4-9f2d-498dadc245dc",
+          "scout": true,
+          "entry_date": "2026-09-14T13:32:56.036943Z",
+          "last_entry_date": "2026-09-14T13:32:56.036943Z",
+          "exit_date": "2026-09-21T13:43:47.998113Z",
+          "qty": "239",
+          "entry_price": "62.83",
+          "exit_price": "57.33",
+          "loss_dollars": "1314.50",
+          "loss_percent": "8.753780041381505650167117619",
+          "reason": "Price below EMA20; MACD bearish; MACD falling; RSI weakening; Hard loss limit reached",
+          "status": "Confirmed loss"
+        },
+        {
+          "symbol": "USB",
+          "sale_id": "d319b142-a6bf-43b0-ab7f-fb542efefa42",
+          "scout": true,
+          "entry_date": "2026-09-14T13:33:23.939764Z",
+          "last_entry_date": "2026-09-14T13:33:23.939764Z",
+          "exit_date": "2026-09-21T17:17:18.312544Z",
+          "qty": "238",
+          "entry_price": "62.85",
+          "exit_price": "60.63",
+          "loss_dollars": "528.36",
+          "loss_percent": "3.532219570405727923627684964",
+          "reason": "Portfolio replacement: USB \u2192 INTC",
+          "status": "Confirmed loss"
+        }
+      ],
+      "checked_at": "2026-09-22T04:37:52.285098+00:00",
+      "status": "History checked",
+      "orders_checked": 8
+    }
   }
 }
