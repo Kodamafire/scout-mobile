@@ -1,8 +1,8 @@
 {
   "version": 44,
   "high_water": {
-    "AAPL": 1.99,
-    "PLTR": 7.467,
+    "AAPL": 2.181,
+    "PLTR": 8.3,
     "WBD": 3.573,
     "INTC": 0.489
   },
@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-21T14:55:27.696019-07:00",
+  "last_cycle": "2026-09-22T06:17:31.032704-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -828,6 +828,34 @@
         "symbol": "WBD",
         "action": "Position checked",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-22T06:17:31.032704-07:00",
+        "cycle": "20260922_061731",
+        "symbol": "AAPL",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-22T06:17:31.032704-07:00",
+        "cycle": "20260922_061731",
+        "symbol": "INTC",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-22T06:17:31.032704-07:00",
+        "cycle": "20260922_061731",
+        "symbol": "PLTR",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-22T06:17:31.032704-07:00",
+        "cycle": "20260922_061731",
+        "symbol": "WBD",
+        "action": "Position checked",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -898,7 +926,8 @@
       "20260921_135428",
       "20260921_141602",
       "20260921_144119",
-      "20260921_145527"
+      "20260921_145527",
+      "20260922_061731"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -934,7 +963,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-22T10:55:46.294412+00:00",
+      "checked_at": "2026-09-22T13:17:32.786222+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
