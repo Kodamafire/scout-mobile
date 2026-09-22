@@ -2,6 +2,7 @@
 from datetime import datetime
 from html import escape
 from decimal import Decimal
+from scout_loss_log import loss_log_html
 
 
 TERMINAL = {'filled', 'canceled', 'cancelled', 'expired', 'rejected'}
@@ -137,9 +138,14 @@ def journal_html(journal, report):
     for sale in reversed(matched_sales(journal)[-20:]):
         outcome = ('Result unavailable—opening fills are incomplete or a partial order needs reconciliation.' if sale['pnl'] is None
                    else f"Gross result ${sale['pnl']:+,.2f}; held {sale['days']:.1f} calendar days (quantity-weighted).")
+        for loss in journal.get('loss_log', {}).get('rows', []):
+            if (loss['symbol'] == sale['symbol'] and loss.get('loss_dollars') is not None
+                    and datetime.fromisoformat(loss['exit_date'].replace('Z', '+00:00')) == datetime.fromisoformat(sale['at'])):
+                outcome = f"Gross loss ${Decimal(loss['loss_dollars']):,.2f}; entry and exit details are in the loss log above."
+                break
         sales.append(f"<li><b>{esc(sale['symbol'])}</b> · {esc(sale['qty'])} shares sold<br>"
                      f"{esc(outcome)}<br>{esc(sale['reason'])}<br><small>{esc(sale['at'])}</small></li>")
-    return (f'<section class="panel"><h2>Today’s summary</h2><p>{esc(summary)}</p>'
+    return (loss_log_html(journal) + f'<section class="panel"><h2>Today’s summary</h2><p>{esc(summary)}</p>'
             f'<p class="sub">As of the saved cycle: {esc(report["updated"])}. This is not a live account feed.</p></section>'
             '<section class="panel"><h2>Scout’s Activity</h2>'
             f'<p>{esc(journal.get("sync_note", "Waiting for the first journal cycle."))}</p>'
