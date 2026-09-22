@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from scout_journal import record_cycle, journal_html
+from scout_loss_log import refresh_loss_log
 
 import numpy as np
 import pandas as pd
@@ -770,6 +771,7 @@ def run_scout_cycle():
     report["journal_date"] = started.date().isoformat()
     try:
         report["journal"] = record_cycle(report, state, trading)
+        refresh_loss_log(report["journal"])
     except Exception as exc:
         print("Activity journal unavailable:", type(exc).__name__)
         report["journal"] = state.get("activity_journal", {})
