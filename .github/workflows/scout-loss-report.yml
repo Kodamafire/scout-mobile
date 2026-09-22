@@ -1,0 +1,40 @@
+name: Scout loss log (read-only account check)
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/scout-loss-report.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scout-paper-cycle
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read paper order history and rebuild loss log
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python scout_loss_log.py
+      - name: Save loss log and dashboard
+        run: |
+          git config user.name "Scout Trader Bot"
+          git config user.email "scout-trader@users.noreply.github.com"
+          git add -f index.html .scout/scout_state_v43.json scout-loss-log.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Refresh Scout loss log from paper order history"
+          git push origin HEAD:main
+
