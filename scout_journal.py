@@ -89,7 +89,7 @@ def matched_sales(journal):
     lots, sales = {}, []
     uncertain = {o['symbol'] for o in journal.get('orders', {}).values()
                  if o.get('status') != 'filled' and Decimal(o.get('qty', '0')) > 0}
-    orders = sorted((o for o in journal.get('orders', {}).values()
+    orders = sorted((dict(o, sale_id=order_id) for order_id, o in journal.get('orders', {}).items()
                      if o.get('status') == 'filled' and o.get('filled_at') and o.get('price')),
                     key=lambda o: (datetime.fromisoformat(o['filled_at']), 0 if o.get('side') == 'buy' else 1))
     for o in orders:
@@ -114,7 +114,7 @@ def matched_sales(journal):
             lot[0] -= matched
             if lot[0] == 0:
                 available.pop(0)
-        sales.append(dict(symbol=symbol, at=o['filled_at'], qty=str(qty),
+        sales.append(dict(symbol=symbol, sale_id=o['sale_id'], at=o['filled_at'], qty=str(qty),
                           pnl=float(qty * price - cost) if not remaining and symbol not in uncertain else None,
                           days=float(weighted_days / qty) if not remaining and symbol not in uncertain else None,
                           reason=o.get('reason', 'Reason not recorded')))
@@ -139,8 +139,7 @@ def journal_html(journal, report):
         outcome = ('Result unavailable—opening fills are incomplete or a partial order needs reconciliation.' if sale['pnl'] is None
                    else f"Gross result ${sale['pnl']:+,.2f}; held {sale['days']:.1f} calendar days (quantity-weighted).")
         for loss in journal.get('loss_log', {}).get('rows', []):
-            if (loss['symbol'] == sale['symbol'] and loss.get('loss_dollars') is not None
-                    and datetime.fromisoformat(loss['exit_date'].replace('Z', '+00:00')) == datetime.fromisoformat(sale['at'])):
+            if (loss.get('sale_id') == sale.get('sale_id') and loss.get('loss_dollars') is not None):
                 outcome = f"Gross loss ${Decimal(loss['loss_dollars']):,.2f}; entry and exit details are in the loss log above."
                 break
         sales.append(f"<li><b>{esc(sale['symbol'])}</b> · {esc(sale['qty'])} shares sold<br>"
