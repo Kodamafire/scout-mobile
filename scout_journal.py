@@ -26,13 +26,24 @@ def record_cycle(report, state, trading):
                 reason = '; '.join(p.get('reasons', [])) or 'Exit conditions met'
                 entries.append((p['symbol'], 'Sell requested', reason, status[10:]))
             else:
-                reason = ('Exit conditions not met.' if not p.get('exit_confirmed')
-                          else 'Exit confirmed; ' + status.lower() + '.')
-                if p.get('decision') == 'DATA UNAVAILABLE':
-                    reason = 'Chart data unavailable; account loss check remains active.'
-                if p.get('confirmation', 0) and not p.get('exit_confirmed'):
-                    reason = f"Waiting for exit confirmation ({p['confirmation']} checks)."
-                entries.append((p['symbol'], 'Position checked', reason, None))
+                # Keep the visible activity feed signal-only. Routine HOLD/LET RUN
+                # checks are still preserved in cycle history, but are not repeated
+                # in the dashboard activity journal every scheduled run.
+                decision = p.get('decision', '')
+                confirmation = int(p.get('confirmation', 0) or 0)
+                meaningful = (
+                    p.get('exit_confirmed')
+                    or decision in ('DATA UNAVAILABLE', 'EXIT WARNING', 'RISK WARNING', 'PROTECT PROFIT')
+                    or confirmation > 0
+                )
+                if meaningful:
+                    reason = ('Exit conditions not met.' if not p.get('exit_confirmed')
+                              else 'Exit confirmed; ' + status.lower() + '.')
+                    if decision == 'DATA UNAVAILABLE':
+                        reason = 'Chart data unavailable; account loss check remains active.'
+                    elif confirmation and not p.get('exit_confirmed'):
+                        reason = f"Waiting for exit confirmation ({confirmation} checks)."
+                    entries.append((p['symbol'], decision or 'Position update', reason, None))
         for c in report['candidates']:
             if c['order_status'].startswith('SUBMITTED '):
                 entries.append((c['symbol'], 'Buy requested',
@@ -132,8 +143,14 @@ def journal_html(journal, report):
                + ('Market open at the latest check.' if report['market_open'] else 'Market closed at the latest check.'))
     if not events:
         summary = 'The journal is ready. Activity will appear after Scout’s next scheduled cycle.'
+    # Hide legacy routine position-check spam from the dashboard. Keep it in
+    # saved state for audit/debugging, while showing only meaningful activity.
+    visible_events = [
+        e for e in events
+        if not (e.get('action') == 'Position checked' and e.get('reason') == 'Exit conditions not met.')
+    ]
     activity = ''.join(f"<li><b>{esc(e['symbol'])} · {esc(e['action'])}</b><br>{esc(e['reason'])}"
-                       f"<br><small>{esc(e['at'])}</small></li>" for e in reversed(events[-40:]))
+                       f"<br><small>{esc(e['at'])}</small></li>" for e in reversed(visible_events[-25:]))
     sales = []
     for sale in reversed(matched_sales(journal)[-20:]):
         outcome = ('Result unavailable—opening fills are incomplete or a partial order needs reconciliation.' if sale['pnl'] is None
