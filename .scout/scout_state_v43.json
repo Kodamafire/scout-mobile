@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-25T08:43:54.419584-07:00",
+  "last_cycle": "2026-09-25T08:57:34.937529-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-09-25",
@@ -2952,6 +2952,13 @@
         "symbol": "INTC",
         "action": "PROTECT PROFIT",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-25T08:57:34.937529-07:00",
+        "cycle": "20260925_085734",
+        "symbol": "INTC",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -3103,7 +3110,8 @@
       "20260925_072249",
       "20260925_074535",
       "20260925_081811",
-      "20260925_084354"
+      "20260925_084354",
+      "20260925_085734"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3139,7 +3147,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-25T15:43:59.597945+00:00",
+      "checked_at": "2026-09-25T15:57:39.694357+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
