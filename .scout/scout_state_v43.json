@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-24T22:47:13.181797-07:00",
+  "last_cycle": "2026-09-25T06:18:21.079438-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -2900,6 +2900,13 @@
         "symbol": "WBD",
         "action": "Position checked",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-25T06:18:21.079438-07:00",
+        "cycle": "20260925_061821",
+        "symbol": "AAPL",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -3044,7 +3051,8 @@
       "20260924_135842",
       "20260924_141917",
       "20260924_144151",
-      "20260924_224713"
+      "20260924_224713",
+      "20260925_061821"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3080,7 +3088,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-25T05:47:16.108638+00:00",
+      "checked_at": "2026-09-25T13:18:24.644624+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
