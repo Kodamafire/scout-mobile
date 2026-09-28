@@ -21,7 +21,7 @@ def clamp(value, low=0, high=100):
 def market_regime(spy):
     """Classify broad market conditions from the same daily indicators Scout uses."""
     if not spy:
-        return {"name": "UNKNOWN", "risk": "HIGH", "score": 0, "trade_gate": False}
+        return {"name": "UNKNOWN", "risk": "HIGH", "score": 0, "long_gate": False, "short_gate": False}
 
     close = spy["close"]
     ema20 = spy["ema20"]
@@ -59,7 +59,7 @@ def market_regime(spy):
         "name": name,
         "risk": risk,
         "score": trend,
-        "trade_gate": name != "BEARISH TREND" and not (name == "HIGH VOLATILITY" and trend < 55),
+        "long_gate": name != "BEARISH TREND" and not (name == "HIGH VOLATILITY" and trend < 55),\n        "short_gate": name != "BULLISH TREND" and not (name == "HIGH VOLATILITY" and trend > 45),
     }
 
 
@@ -108,30 +108,69 @@ def entry_timing_score(m, regime):
     return score, parts
 
 
-def shadow_decision(m, regime, thresholds=None):
-    thresholds = thresholds or ShadowThresholds()
-    setup, setup_parts = setup_score(m)
-    entry, entry_parts = entry_timing_score(m, regime)
-    required_entry = thresholds.hostile_entry_min if regime["risk"] == "HIGH" else thresholds.entry_min
+def short_setup_score(m):
+    if not m:
+        return 0, {}
+    groups = {
+        "trend": 30 if (m["close"] < m["ema20"] < m["ema50"] and m["close"] < m["sma200"]) else 20 if (m["close"] < m["ema20"] and m["close"] < m["sma200"]) else 10 if m["close"] < m["sma200"] else 0,
+        "momentum": 25 if (m["macd"] < m["macd_signal"] and not m["macd_rising"] and 30 <= m["rsi14"] <= 52) else 15 if (m["macd"] < m["macd_signal"] and 26 <= m["rsi14"] <= 55) else 5,
+        "relative_weakness": 20 if m["rs20"] <= -8 else 15 if m["rs20"] <= -4 else 10 if m["rs20"] <= -2 else 0,
+        "participation": 15 if m["relative_volume"] >= 1.5 else 10 if m["relative_volume"] >= 1.1 else 5,
+        "liquidity": 10 if m["avg_dollar_volume"] >= 50_000_000 else 7 if m["avg_dollar_volume"] >= 20_000_000 else 0,
+    }
+    return clamp(sum(groups.values())), groups
 
-    if not regime["trade_gate"]:
-        decision = "NO TRADE — MARKET REGIME"
+
+def short_entry_timing_score(m, regime):
+    if not m:
+        return 0, {}
+    distance = (m["close"] / m["ema20"] - 1) * 100
+    parts = {
+        "not_extended": 30 if -max(3.0, m["atr_pct"] * 1.5) <= distance <= 1.0 else 5,
+        "momentum_live": 25 if (m["macd"] < m["macd_signal"] and not m["macd_rising"]) else 5,
+        "rsi_window": 20 if 32 <= m["rsi14"] <= 52 else 5,
+        "volume_confirm": 15 if m["relative_volume"] >= 1.10 else 5,
+        "relative_weakness": 10 if m["rs20"] <= -2.0 else 0,
+    }
+    score = clamp(sum(parts.values()))
+    if regime["name"] == "CHOP / MIXED":
+        score = clamp(score - 10)
+    elif regime["name"] == "BULLISH TREND":
+        score = clamp(score - 20)
+    return score, parts
+
+
+def directional_decision(m, regime, direction="LONG", thresholds=None):
+    thresholds = thresholds or ShadowThresholds()
+    if direction == "SHORT":
+        setup, setup_parts = short_setup_score(m)
+        entry, entry_parts = short_entry_timing_score(m, regime)
+        gate = regime["short_gate"]
+    else:
+        setup, setup_parts = setup_score(m)
+        entry, entry_parts = entry_timing_score(m, regime)
+        gate = regime["long_gate"]
+    required_entry = thresholds.hostile_entry_min if regime["risk"] == "HIGH" else thresholds.entry_min
+    if not gate:
+        decision = "NO TRADE — " + direction + " REGIME BLOCK"
     elif setup < thresholds.setup_min:
         decision = "WATCH — SETUP TOO WEAK"
     elif entry < required_entry:
         decision = "WAIT — ENTRY NOT READY"
     else:
         decision = "QUALIFIED"
+    return {"direction": direction, "setup_score": setup, "entry_score": entry, "decision": decision,
+            "setup_parts": setup_parts, "entry_parts": entry_parts,
+            "required_setup": thresholds.setup_min, "required_entry": required_entry}
 
-    return {
-        "setup_score": setup,
-        "entry_score": entry,
-        "decision": decision,
-        "setup_parts": setup_parts,
-        "entry_parts": entry_parts,
-        "required_setup": thresholds.setup_min,
-        "required_entry": required_entry,
-    }
+
+def shadow_decision(m, regime, thresholds=None):
+    long_case = directional_decision(m, regime, "LONG", thresholds)
+    short_case = directional_decision(m, regime, "SHORT", thresholds)
+    qualified = [x for x in (long_case, short_case) if x["decision"] == "QUALIFIED"]
+    best = max(qualified or [long_case, short_case],
+               key=lambda x: (x["decision"] == "QUALIFIED", x["setup_score"] + x["entry_score"]))
+    return {**best, "long_case": long_case, "short_case": short_case}
 
 
 def enrich_candidates(candidates, regime):
