@@ -12,12 +12,9 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-28T12:45:29.889535-07:00",
+  "last_cycle": "2026-09-28T13:15:59.466703-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-09-28",
-    "timestamp": 1790624730.152309
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -3218,6 +3215,20 @@
         "symbol": "PLTR",
         "action": "PROTECT PROFIT",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-28T13:15:59.466703-07:00",
+        "cycle": "20260928_131559",
+        "symbol": "INTC",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-28T13:15:59.466703-07:00",
+        "cycle": "20260928_131559",
+        "symbol": "PLTR",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -3401,7 +3412,8 @@
       "20260928_112513",
       "20260928_114925",
       "20260928_121627",
-      "20260928_124529"
+      "20260928_124529",
+      "20260928_131559"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3437,7 +3449,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-28T19:45:35.703275+00:00",
+      "checked_at": "2026-09-28T20:16:02.346627+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
