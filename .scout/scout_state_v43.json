@@ -12,15 +12,12 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-28T06:18:51.484448-07:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "SMCI",
-    "replace_symbol": "INTC",
-    "confirmations": 0,
-    "entry_score": 9,
-    "score_advantage": 6
+  "last_cycle": "2026-09-28T06:48:46.409593-07:00",
+  "upgrade_challenge": null,
+  "last_confirmation_check": {
+    "session": "2026-09-28",
+    "timestamp": 1790603326.685106
   },
-  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -3039,6 +3036,20 @@
         "symbol": "INTC \u2192 SMCI",
         "action": "Replacement check",
         "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
+      },
+      {
+        "at": "2026-09-28T06:48:46.409593-07:00",
+        "cycle": "20260928_064846",
+        "symbol": "INTC",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-28T06:48:46.409593-07:00",
+        "cycle": "20260928_064846",
+        "symbol": "PLTR",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -3208,7 +3219,8 @@
       "20260925_141830",
       "20260925_144358",
       "20260925_145748",
-      "20260928_061851"
+      "20260928_061851",
+      "20260928_064846"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3244,7 +3256,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-28T13:18:53.273380+00:00",
+      "checked_at": "2026-09-28T13:48:51.476960+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
