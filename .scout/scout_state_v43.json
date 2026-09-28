@@ -3,7 +3,7 @@
   "high_water": {
     "AAPL": 3.293,
     "PLTR": 13.795,
-    "WBD": 3.589,
+    "WBD": 3.623,
     "INTC": 6.253
   },
   "warning_streak": {
@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-09-28T13:45:51.086560-07:00",
+  "last_cycle": "2026-09-28T14:17:06.100524-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -3243,6 +3243,20 @@
         "symbol": "PLTR",
         "action": "PROTECT PROFIT",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-28T14:17:06.100524-07:00",
+        "cycle": "20260928_141706",
+        "symbol": "INTC",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-28T14:17:06.100524-07:00",
+        "cycle": "20260928_141706",
+        "symbol": "PLTR",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -3428,7 +3442,8 @@
       "20260928_121627",
       "20260928_124529",
       "20260928_131559",
-      "20260928_134551"
+      "20260928_134551",
+      "20260928_141706"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3464,7 +3479,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-28T20:45:53.952915+00:00",
+      "checked_at": "2026-09-28T21:17:09.377100+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
