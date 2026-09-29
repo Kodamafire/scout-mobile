@@ -9,12 +9,15 @@
   "warning_streak": {
     "AAPL": 0,
     "INTC": 0,
-    "PLTR": 0,
+    "PLTR": 1,
     "WBD": 0
   },
-  "last_cycle": "2026-09-29T06:21:01.236495-07:00",
+  "last_cycle": "2026-09-29T06:48:32.012546-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": null,
+  "last_confirmation_check": {
+    "session": "2026-09-29",
+    "timestamp": 1790689712.335533
+  },
   "activity_journal": {
     "events": [
       {
@@ -3306,6 +3309,27 @@
         "symbol": "PLTR",
         "action": "PROTECT PROFIT",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-29T06:48:32.012546-07:00",
+        "cycle": "20260929_064832",
+        "symbol": "AAPL",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-29T06:48:32.012546-07:00",
+        "cycle": "20260929_064832",
+        "symbol": "INTC",
+        "action": "PROTECT PROFIT",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-09-29T06:48:32.012546-07:00",
+        "cycle": "20260929_064832",
+        "symbol": "PLTR",
+        "action": "EXIT WARNING",
+        "reason": "Waiting for exit confirmation (1 checks)."
       }
     ],
     "orders": {
@@ -3495,7 +3519,8 @@
       "20260928_141706",
       "20260928_144330",
       "20260928_145806",
-      "20260929_062101"
+      "20260929_062101",
+      "20260929_064832"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -3531,7 +3556,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-09-29T13:21:04.092626+00:00",
+      "checked_at": "2026-09-29T13:48:38.053401+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
