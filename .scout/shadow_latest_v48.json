@@ -1,6 +1,6 @@
 {
-  "cycle": "20260929_160159",
-  "updated": "2026-09-29T16:01:59.230056-07:00",
+  "cycle": "20260929_160342",
+  "updated": "2026-09-29T16:03:42.660980-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,7 +11,7 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 74,
+    "symbols_scored": 75,
     "qualified_long": 1,
     "qualified_short": 14,
     "long": [
@@ -255,6 +255,26 @@
         "price": 30.845,
         "setup_score": 20,
         "entry_score": 10,
+        "decision": "WATCH \u2014 SETUP TOO WEAK",
+        "held": true,
+        "main_score": null
+      },
+      {
+        "symbol": "AAPL",
+        "direction": "LONG",
+        "price": 329.58,
+        "setup_score": 45,
+        "entry_score": 60,
+        "decision": "WATCH \u2014 SETUP TOO WEAK",
+        "held": true,
+        "main_score": null
+      },
+      {
+        "symbol": "AAPL",
+        "direction": "SHORT",
+        "price": 329.58,
+        "setup_score": 40,
+        "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
         "held": true,
         "main_score": null
