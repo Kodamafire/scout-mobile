@@ -381,7 +381,9 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
         if frame is None:
             continue
         metrics = indicators(frame, spy)
-        if metrics is None or not (CFG.min_price <= metrics["close"] <= CFG.max_price):
+        if metrics is None or (symbol not in held_symbols and not (
+            CFG.min_price <= metrics["close"] <= CFG.max_price
+        )):
             continue
         for direction in ("LONG", "SHORT"):
             result = directional_decision(metrics, regime, direction)
