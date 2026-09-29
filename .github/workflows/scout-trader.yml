@@ -1,6 +1,11 @@
 name: Scout Trader Automatic Paper Cycle
 
 on:
+  push:
+    paths:
+      - 'scout_runner.py'
+      - 'scout_shadow_v48.py'
+      - '.github/workflows/scout-trader.yml'
   schedule:
     - cron: "*/15 13-23 * * 1-5"
   workflow_dispatch:
