@@ -2,6 +2,7 @@ name: Scout Trader Automatic Paper Cycle
 
 on:
   push:
+    branches: [main]
     paths:
       - 'scout_runner.py'
       - 'scout_shadow_v48.py'
