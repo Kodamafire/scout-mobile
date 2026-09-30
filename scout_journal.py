@@ -149,8 +149,31 @@ def journal_html(journal, report):
         e for e in events
         if not (e.get('action') == 'Position checked' and e.get('reason') == 'Exit conditions not met.')
     ]
-    activity = ''.join(f"<li><b>{esc(e['symbol'])} · {esc(e['action'])}</b><br>{esc(e['reason'])}"
-                       f"<br><small>{esc(e['at'])}</small></li>" for e in reversed(visible_events[-25:]))
+    # Show each repeated decision once, keeping its newest timestamp. Order
+    # requests and fills remain separate events even when they look similar.
+    compact = []
+    seen = set()
+    for event in reversed(visible_events):
+        key = ((event.get('cycle'), event.get('symbol'), event.get('action'))
+               if event.get('action', '').startswith('Order ') or event.get('action', '').endswith('requested')
+               else (event.get('symbol'), event.get('action'), event.get('reason')))
+        if key in seen:
+            continue
+        seen.add(key)
+        compact.append(event)
+        if len(compact) == 20:
+            break
+
+    def activity_row(event):
+        time = event.get('at', '')
+        short_time = time[11:16] if len(time) >= 16 else time
+        return (f'<div class="activity-row"><b>{esc(event["symbol"])} · {esc(event["action"])}</b>'
+                f'<small>{esc(short_time)}</small><p>{esc(event["reason"])}</p></div>')
+
+    recent = ''.join(activity_row(e) for e in compact[:3]) or '<p>No activity recorded yet.</p>'
+    older = ''.join(activity_row(e) for e in compact[3:])
+    older_panel = (f'<details><summary>Show {len(compact) - 3} older updates</summary>{older}</details>'
+                   if older else '')
     sales = []
     for sale in reversed(matched_sales(journal)[-20:]):
         outcome = ('Result unavailable—opening fills are incomplete or a partial order needs reconciliation.' if sale['pnl'] is None
@@ -164,8 +187,8 @@ def journal_html(journal, report):
     return (loss_log_html(journal) + f'<section class="panel"><h2>Today’s summary</h2><p>{esc(summary)}</p>'
             f'<p class="sub">As of the saved cycle: {esc(report["updated"])}. This is not a live account feed.</p></section>'
             '<section class="panel"><h2>Scout’s Activity</h2>'
-            f'<p>{esc(journal.get("sync_note", "Waiting for the first journal cycle."))}</p>'
-            f'<details open><summary>Recent decisions and order updates</summary><ul>{activity or "<li>No activity recorded yet.</li>"}</ul></details></section>'
+            f'{"<p>" + esc(journal["sync_note"]) + "</p>" if "unavailable" in journal.get("sync_note", "").lower() else ""}'
+            f'{recent}{older_panel}</section>'
             '<section class="panel"><h2>Completed sales</h2>'
             f'<ul>{"".join(sales) or "<li>No fully filled sales recorded yet.</li>"}</ul>'
             '<p class="sub">Tracked paper orders only, starting when this journal was installed. '
