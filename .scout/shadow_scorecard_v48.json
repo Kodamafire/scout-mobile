@@ -612,6 +612,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|SMCI|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-09-30",
+      "at": "2026-09-30T12:53:16.491054-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 60,
+      "reference_price": 41.28,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
