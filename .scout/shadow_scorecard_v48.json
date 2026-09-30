@@ -238,6 +238,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|VBIO|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-09-30",
+      "at": "2026-09-30T09:55:54.086817-07:00",
+      "symbol": "VBIO",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 55,
+      "reference_price": 3.19,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|PLTR|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T09:55:54.086817-07:00",
+      "symbol": "PLTR",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 70,
+      "reference_price": 189.26,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
