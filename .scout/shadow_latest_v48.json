@@ -1,6 +1,6 @@
 {
-  "cycle": "20260930_135538",
-  "updated": "2026-09-30T13:55:38.790234-07:00",
+  "cycle": "20260930_140859",
+  "updated": "2026-09-30T14:08:59.658343-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,7 +11,7 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 74,
+    "symbols_scored": 73,
     "qualified_long": 4,
     "qualified_short": 8,
     "long": [
@@ -1047,31 +1047,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "RXRX",
-        "direction": "LONG",
-        "price": 4.13,
-        "setup_score": 90,
-        "entry_score": 65,
-        "decision": "WAIT \u2014 ENTRY NOT READY",
-        "held": false,
-        "main_score": 8,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 25,
-          "relative_strength": 20,
-          "participation": 15,
-          "liquidity": 0
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "HPE",
         "direction": "LONG",
         "price": 63.9,
@@ -1092,6 +1067,31 @@
           "momentum_live": 25,
           "rsi_window": 20,
           "volume_confirm": 5,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "RXRX",
+        "direction": "LONG",
+        "price": 4.13,
+        "setup_score": 90,
+        "entry_score": 65,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
+        "held": false,
+        "main_score": 8,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_strength": 20,
+          "participation": 15,
+          "liquidity": 0
+        },
+        "entry_parts": {
+          "not_extended": 5,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 15,
           "relative_strength": 10
         },
         "required_entry": 70
