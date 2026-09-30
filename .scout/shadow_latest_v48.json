@@ -1,6 +1,6 @@
 {
-  "cycle": "20260930_142830",
-  "updated": "2026-09-30T14:28:30.244789-07:00",
+  "cycle": "20260930_144535",
+  "updated": "2026-09-30T14:45:35.570334-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,7 +11,7 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 73,
+    "symbols_scored": 74,
     "qualified_long": 4,
     "qualified_short": 8,
     "long": [
@@ -1047,6 +1047,31 @@
         "required_entry": 70
       },
       {
+        "symbol": "PFE",
+        "direction": "LONG",
+        "price": 28.53,
+        "setup_score": 62,
+        "entry_score": 60,
+        "decision": "WATCH \u2014 SETUP TOO WEAK",
+        "held": false,
+        "main_score": 7,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 15,
+          "relative_strength": 0,
+          "participation": 10,
+          "liquidity": 7
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 5,
+          "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_strength": 0
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "HPE",
         "direction": "LONG",
         "price": 63.9,
@@ -1093,31 +1118,6 @@
           "rsi_window": 20,
           "volume_confirm": 15,
           "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "PFE",
-        "direction": "LONG",
-        "price": 28.53,
-        "setup_score": 62,
-        "entry_score": 60,
-        "decision": "WATCH \u2014 SETUP TOO WEAK",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 15,
-          "relative_strength": 0,
-          "participation": 10,
-          "liquidity": 7
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 0
         },
         "required_entry": 70
       },
