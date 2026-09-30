@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace as NS
 from unittest.mock import Mock
+from scout_profit_protection import update_profit_floor
 from scout_journal import record_cycle, journal_html
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
@@ -14,7 +15,7 @@ tree = ast.parse(source)
 names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
+ns = {'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
       'refresh_loss_log': Mock()}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)
@@ -151,11 +152,14 @@ class ScoutSafetyTests(unittest.TestCase):
             def __getitem__(self, key): return self
             def to_string(self, **kw): return 'simulated report'
         ns['pd'] = NS(DataFrame=lambda _: Table())
+        self.state['profit_floor'] = {'CLOSED_POSITION': 4.0}
         report = ns['run_scout_cycle']()
+        self.assertNotIn('CLOSED_POSITION', self.state['profit_floor'])
         self.assertTrue(report['positions'][0]['exit_confirmed'])
         trading.submit_order.assert_called_once()
         ns['save_state'].assert_called_once()
 
 if __name__ == '__main__':
     unittest.main()
+
 

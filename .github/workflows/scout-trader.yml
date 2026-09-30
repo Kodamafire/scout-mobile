@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scout_runner.py'
+      - 'scout_profit_protection.py'
       - 'scout_shadow_v48.py'
       - 'shadow_scorecard.py'
       - '.github/workflows/scout-trader.yml'
@@ -33,6 +34,9 @@ jobs:
           cache: pip
 
       - run: pip install -r requirements-scout.txt
+
+      - name: Check paper safety and profit floors
+        run: python -m unittest discover -v
 
       - name: Run Scout paper cycle
         env:
@@ -66,3 +70,4 @@ jobs:
 
           echo "Pushing Scout results..."
           git push origin HEAD:main
+

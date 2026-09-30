@@ -13,6 +13,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from scout_journal import record_cycle, journal_html
 from scout_loss_log import refresh_loss_log
+from scout_profit_protection import update_profit_floor
 from scout_shadow_v48 import market_regime as shadow_market_regime, directional_decision
 from shadow_scorecard import (load_scorecard, pending_symbols, record_signals,
                               save_scorecard, scorecard_summary, settle_outcomes)
@@ -123,6 +124,7 @@ def mount_and_load_state():
         "version": 47,
         "high_water": {},
         "warning_streak": {},
+        "profit_floor": {},
         "upgrade_challenge": None,
         "last_cycle": None,
     }
@@ -256,6 +258,16 @@ def analyze_position(position, m, state, advance_confirmation=True):
     high_water = max(previous_high, pnl_pct)
     state["high_water"][symbol] = round(high_water, 4)
     giveback = max(0.0, high_water - pnl_pct)
+    leash = (min(CFG.max_trailing_leash_pct,
+                 max(CFG.base_trailing_floor_pct, m["atr_pct"] * 1.35))
+             if m is not None else None)
+    floors = state.setdefault("profit_floor", {})
+    profit_floor, profit_exit = update_profit_floor(
+        high_water, pnl_pct, leash, floors.get(symbol))
+    if profit_floor is not None:
+        floors[symbol] = profit_floor
+    profit_reason = ([f"Profit floor breached ({profit_floor:+.2f}% return)"]
+                     if profit_exit else [])
     if m is None:
         # The account loss check must not depend on historical chart data.
         hard_exit = pnl_pct <= CFG.hard_stop_pct
@@ -265,12 +277,13 @@ def analyze_position(position, m, state, advance_confirmation=True):
             "market_value": float(position.market_value), "pnl_pct": pnl_pct,
             "high_water": high_water, "giveback": giveback, "leash": 0.0,
             "exit_score": 10 if hard_exit else 0, "confirmation": 0,
-            "decision": "EXIT CONFIRMED" if hard_exit else "DATA UNAVAILABLE",
-            "exit_confirmed": hard_exit, "rsi14": None,
+            "decision": "EXIT CONFIRMED" if hard_exit or profit_exit else "DATA UNAVAILABLE",
+            "profit_floor_pct": profit_floor, "profit_exit": profit_exit,
+            "exit_trigger": "HARD LOSS" if hard_exit else "PROFIT FLOOR" if profit_exit else "NONE",
+            "exit_confirmed": hard_exit or profit_exit, "rsi14": None,
             "reasons": (["Hard loss limit reached"] if hard_exit else [])
-                       + ["Chart data unavailable; account loss check still active"],
+                       + profit_reason + ["Chart data unavailable; stored profit floor and account loss check still active"],
         }
-    leash = min(CFG.max_trailing_leash_pct, max(CFG.base_trailing_floor_pct, m["atr_pct"] * 1.35))
 
     score = 0
     reasons = []
@@ -296,7 +309,8 @@ def analyze_position(position, m, state, advance_confirmation=True):
     streak = (streak + int(advance_confirmation)) if warning else 0
     state["warning_streak"][symbol] = streak
     hard_exit = pnl_pct <= CFG.hard_stop_pct
-    exit_confirmed = hard_exit or (warning and streak >= CFG.exit_confirmations)
+    exit_confirmed = hard_exit or profit_exit or (warning and streak >= CFG.exit_confirmations)
+    reasons.extend(profit_reason)
     if exit_confirmed:
         decision = "EXIT CONFIRMED"
     elif warning:
@@ -316,6 +330,8 @@ def analyze_position(position, m, state, advance_confirmation=True):
         "symbol": symbol, "qty": float(position.qty), "market_value": float(position.market_value),
         "pnl_pct": pnl_pct, "high_water": high_water, "giveback": giveback,
         "leash": leash, "exit_score": score, "confirmation": streak,
+        "profit_floor_pct": profit_floor, "profit_exit": profit_exit,
+        "exit_trigger": "HARD LOSS" if hard_exit else "PROFIT FLOOR" if profit_exit else "INDICATORS" if exit_confirmed else "NONE",
         "decision": decision, "exit_confirmed": exit_confirmed,
         "rsi14": m["rsi14"], "reasons": reasons,
     }
@@ -692,9 +708,12 @@ def dashboard_html(report):
     for p in report["positions"]:
         pnl_class = "good" if p["pnl_pct"] >= 0 else "bad"
         reasons = "; ".join(p.get("reasons", [])) or "No exit warning signals"
+        floor = p.get("profit_floor_pct")
+        floor_label = f"{floor:+.2f}%" if floor is not None else "Not armed"
+        trigger = esc(p.get("exit_trigger", "NONE"))
         cards.append(f'''<section class="card"><div class="top"><b>{esc(p['symbol'])}</b><span class="pill">{esc(p['decision'])}</span></div>
         <div class="pnl {pnl_class}">{p['pnl_pct']:+.2f}%</div>
-        <div class="grid"><span>Exit score (trigger: {CFG.exit_score_min})</span><b>{p['exit_score']}</b><span>Confirmed checks</span><b>{p.get('confirmation', 0)}/{CFG.exit_confirmations}</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Action</span><b>{esc(p['order_status'])}</b></div><p>{esc(reasons)}</p></section>''')
+        <div class="grid"><span>Exit score (trigger: {CFG.exit_score_min})</span><b>{p['exit_score']}</b><span>Confirmed checks</span><b>{p.get('confirmation', 0)}/{CFG.exit_confirmations}</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Profit floor (return)</span><b>{floor_label}</b><span>Exit trigger</span><b>{trigger}</b><span>Action</span><b>{esc(p['order_status'])}</b></div><p>{esc(reasons)}</p></section>''')
     candidates = "".join(f"<li><b>{esc(c['symbol'])}</b> — score {c['entry_score']}/9 — {esc(c['order_status'])}</li>" for c in report["candidates"])
     shadow = report.get("shadow", {})
     if shadow.get("status") == "OK":
@@ -786,6 +805,7 @@ def dashboard_html(report):
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cache-control" content="no-cache"><title>Scout Trader</title>
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}.activity-row{{border-top:1px solid #223955;padding:9px 0}}.activity-row b{{font-size:14px}}.activity-row small{{float:right;color:#8ca3bf}}.activity-row p{{margin:4px 0 0;color:#a8bad0;font-size:13px}}details summary{{cursor:pointer;color:#8dc5ff;padding:10px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
+    <p class="sub">Profit floors trigger exits independently of indicator scores. Floors tighten as winners grow. Checked each cycle; not standing broker stops. Gaps and delayed checks can result in worse fills.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
     {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
@@ -910,6 +930,7 @@ def run_scout_cycle():
     active_symbols = {p["symbol"] for p in managed}
     state["high_water"] = {k: v for k, v in state["high_water"].items() if k in active_symbols}
     state["warning_streak"] = {k: v for k, v in state["warning_streak"].items() if k in active_symbols}
+    state["profit_floor"] = {k: v for k, v in state.get("profit_floor", {}).items() if k in active_symbols}
     state["last_cycle"] = started.isoformat()
 
     report = {
@@ -973,3 +994,4 @@ def run_scout_cycle():
 
 if __name__ == "__main__":
     scout_report = run_scout_cycle()
+
