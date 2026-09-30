@@ -75,6 +75,18 @@ class JournalTests(unittest.TestCase):
         j = {'events': [dict(at='2026-09-21', cycle='one', symbol='ABC', action='Buy requested', reason='Qualified')]}
         self.assertIn('0 recorded checks; 0 order requests', journal_html(j, report))
 
+    def test_activity_compacts_repeats_and_collapses_older_updates(self):
+        report = dict(updated='Sep 29', market_open=False, journal_date='2026-09-29')
+        events = [dict(at=f'2026-09-29T14:{i:02d}:00-07:00', cycle=str(i),
+                       symbol='AAPL', action='PROTECT PROFIT', reason='Exit conditions not met.')
+                  for i in range(12)]
+        events += [dict(at='2026-09-29T14:20:00-07:00', cycle='20', symbol=s,
+                        action='RISK WARNING', reason='Weak momentum') for s in ('INTC', 'PLTR', 'WBD')]
+        html = journal_html({'events': events}, report)
+        self.assertEqual(html.count('AAPL · PROTECT PROFIT'), 1)
+        self.assertIn('Show 1 older updates', html)
+        self.assertNotIn('<details open>', html)
+
 if __name__ == '__main__':
     unittest.main()
 
