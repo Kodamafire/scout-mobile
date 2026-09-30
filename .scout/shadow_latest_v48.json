@@ -1,6 +1,6 @@
 {
-  "cycle": "20260930_150832",
-  "updated": "2026-09-30T15:08:32.244494-07:00",
+  "cycle": "20260930_151425",
+  "updated": "2026-09-30T15:14:25.350897-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -1252,21 +1252,21 @@
     "positions": [
       {
         "symbol": "AAPL",
-        "decision": "EXIT CONFIRMED",
-        "exit_score": 6,
-        "order_status": "WAITING \u2014 MARKET CLOSED"
+        "decision": "WATCH CLOSELY",
+        "exit_score": 3,
+        "order_status": "NO ACTION"
       },
       {
         "symbol": "INTC",
-        "decision": "EXIT CONFIRMED",
-        "exit_score": 7,
-        "order_status": "WAITING \u2014 MARKET CLOSED"
+        "decision": "HOLD",
+        "exit_score": 1,
+        "order_status": "NO ACTION"
       },
       {
         "symbol": "PLTR",
-        "decision": "EXIT CONFIRMED",
-        "exit_score": 7,
-        "order_status": "WAITING \u2014 MARKET CLOSED"
+        "decision": "LET RUN",
+        "exit_score": 1,
+        "order_status": "NO ACTION"
       },
       {
         "symbol": "WBD",
