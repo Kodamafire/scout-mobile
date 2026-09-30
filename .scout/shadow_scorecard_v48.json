@@ -578,6 +578,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|VTEB|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T12:14:33.668382-07:00",
+      "symbol": "VTEB",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 75,
+      "reference_price": 47.335,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
