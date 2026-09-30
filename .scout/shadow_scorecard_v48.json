@@ -272,6 +272,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|VBIO|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:10:19.778372-07:00",
+      "symbol": "VBIO",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 75,
+      "reference_price": 3.23,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|LGHL|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:10:19.778372-07:00",
+      "symbol": "LGHL",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 5.78,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
