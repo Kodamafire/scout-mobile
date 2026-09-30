@@ -1,6 +1,6 @@
 {
-  "cycle": "20260930_071414",
-  "updated": "2026-09-30T07:14:14.620911-07:00",
+  "cycle": "20260930_073540",
+  "updated": "2026-09-30T07:35:40.316047-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,14 +11,14 @@
       "short_gate": false
     },
     "symbols_scanned": 100,
-    "symbols_scored": 64,
-    "qualified_long": 12,
+    "symbols_scored": 68,
+    "qualified_long": 11,
     "qualified_short": 0,
     "long": [
       {
         "symbol": "TQQQ",
         "direction": "LONG",
-        "price": 79.04,
+        "price": 78.835,
         "setup_score": 90,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -28,7 +28,7 @@
       {
         "symbol": "HPE",
         "direction": "LONG",
-        "price": 63.73,
+        "price": 64.33,
         "setup_score": 90,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -38,47 +38,47 @@
       {
         "symbol": "SOXL",
         "direction": "LONG",
-        "price": 146.14,
+        "price": 145.26,
         "setup_score": 80,
         "entry_score": 90,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": null
-      },
-      {
-        "symbol": "VBIO",
-        "direction": "LONG",
-        "price": 3.335,
-        "setup_score": 85,
-        "entry_score": 75,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 8
-      },
-      {
-        "symbol": "MSGY",
-        "direction": "LONG",
-        "price": 5.76,
-        "setup_score": 85,
-        "entry_score": 75,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 8
-      },
-      {
-        "symbol": "BIYA",
-        "direction": "LONG",
-        "price": 2.64,
-        "setup_score": 80,
-        "entry_score": 75,
         "decision": "QUALIFIED",
         "held": false,
         "main_score": 7
       },
       {
+        "symbol": "IONQ",
+        "direction": "LONG",
+        "price": 45.525,
+        "setup_score": 77,
+        "entry_score": 90,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": 7
+      },
+      {
+        "symbol": "MSGY",
+        "direction": "LONG",
+        "price": 5.44,
+        "setup_score": 90,
+        "entry_score": 75,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": 8
+      },
+      {
+        "symbol": "VBIO",
+        "direction": "LONG",
+        "price": 3.35,
+        "setup_score": 85,
+        "entry_score": 75,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": 8
+      },
+      {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 118.08,
+        "price": 118.34,
         "setup_score": 80,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -86,29 +86,29 @@
         "main_score": null
       },
       {
-        "symbol": "IBIT",
+        "symbol": "LGHL",
         "direction": "LONG",
-        "price": 47.74,
+        "price": 5.39,
         "setup_score": 70,
-        "entry_score": 70,
+        "entry_score": 80,
         "decision": "QUALIFIED",
         "held": false,
         "main_score": null
       },
       {
-        "symbol": "HOOD",
+        "symbol": "PLTR",
         "direction": "LONG",
-        "price": 115.05,
-        "setup_score": 70,
+        "price": 189.295,
+        "setup_score": 75,
         "entry_score": 70,
         "decision": "QUALIFIED",
-        "held": false,
+        "held": true,
         "main_score": null
       },
       {
         "symbol": "SMCI",
         "direction": "LONG",
-        "price": 40.79,
+        "price": 40.64,
         "setup_score": 70,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -130,7 +130,7 @@
       {
         "symbol": "TSLL",
         "direction": "SHORT",
-        "price": 8.73,
+        "price": 8.82,
         "setup_score": 82,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -138,9 +138,9 @@
         "main_score": null
       },
       {
-        "symbol": "SOFI",
+        "symbol": "TSLG",
         "direction": "SHORT",
-        "price": 16.09,
+        "price": 4.4,
         "setup_score": 82,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -150,7 +150,7 @@
       {
         "symbol": "ORCL",
         "direction": "SHORT",
-        "price": 137.515,
+        "price": 136.98,
         "setup_score": 80,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -158,10 +158,10 @@
         "main_score": null
       },
       {
-        "symbol": "PSKY",
+        "symbol": "SPDN",
         "direction": "SHORT",
-        "price": 10.155,
-        "setup_score": 65,
+        "price": 8.42,
+        "setup_score": 77,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
         "held": false,
@@ -170,7 +170,17 @@
       {
         "symbol": "SQQQ",
         "direction": "SHORT",
-        "price": 33.95,
+        "price": 34.05,
+        "setup_score": 87,
+        "entry_score": 45,
+        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
+        "held": false,
+        "main_score": null
+      },
+      {
+        "symbol": "QID",
+        "direction": "SHORT",
+        "price": 13.09,
         "setup_score": 87,
         "entry_score": 45,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -180,7 +190,7 @@
       {
         "symbol": "SOXS",
         "direction": "SHORT",
-        "price": 33.47,
+        "price": 33.69,
         "setup_score": 57,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -188,31 +198,21 @@
         "main_score": null
       },
       {
+        "symbol": "SOFI",
+        "direction": "SHORT",
+        "price": 15.945,
+        "setup_score": 82,
+        "entry_score": 45,
+        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
+        "held": false,
+        "main_score": null
+      },
+      {
         "symbol": "WULF",
         "direction": "SHORT",
-        "price": 14.915,
+        "price": 14.84,
         "setup_score": 67,
         "entry_score": 60,
-        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
-        "held": false,
-        "main_score": null
-      },
-      {
-        "symbol": "CIFR",
-        "direction": "SHORT",
-        "price": 16.245,
-        "setup_score": 67,
-        "entry_score": 60,
-        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
-        "held": false,
-        "main_score": null
-      },
-      {
-        "symbol": "LQD",
-        "direction": "SHORT",
-        "price": 102.42,
-        "setup_score": 70,
-        "entry_score": 55,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
         "held": false,
         "main_score": null
@@ -222,7 +222,7 @@
       {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 118.08,
+        "price": 118.34,
         "setup_score": 80,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -232,7 +232,7 @@
       {
         "symbol": "INTC",
         "direction": "SHORT",
-        "price": 118.08,
+        "price": 118.34,
         "setup_score": 20,
         "entry_score": 0,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -242,7 +242,7 @@
       {
         "symbol": "AAPL",
         "direction": "LONG",
-        "price": 337.76,
+        "price": 338.16,
         "setup_score": 60,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -252,7 +252,7 @@
       {
         "symbol": "AAPL",
         "direction": "SHORT",
-        "price": 337.76,
+        "price": 338.16,
         "setup_score": 20,
         "entry_score": 20,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -262,7 +262,7 @@
       {
         "symbol": "WBD",
         "direction": "LONG",
-        "price": 30.825,
+        "price": 30.805,
         "setup_score": 65,
         "entry_score": 50,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -272,7 +272,7 @@
       {
         "symbol": "WBD",
         "direction": "SHORT",
-        "price": 30.825,
+        "price": 30.805,
         "setup_score": 20,
         "entry_score": 0,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -282,8 +282,8 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 188.57,
-        "setup_score": 70,
+        "price": 189.295,
+        "setup_score": 75,
         "entry_score": 70,
         "decision": "QUALIFIED",
         "held": true,
@@ -292,7 +292,7 @@
       {
         "symbol": "PLTR",
         "direction": "SHORT",
-        "price": 188.57,
+        "price": 189.295,
         "setup_score": 20,
         "entry_score": 0,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -305,7 +305,7 @@
     "positions": [
       {
         "symbol": "AAPL",
-        "decision": "PROTECT PROFIT",
+        "decision": "WATCH CLOSELY",
         "exit_score": 3,
         "order_status": "NO ACTION"
       },
@@ -317,7 +317,7 @@
       },
       {
         "symbol": "PLTR",
-        "decision": "PROTECT PROFIT",
+        "decision": "LET RUN",
         "exit_score": 1,
         "order_status": "NO ACTION"
       },
@@ -350,11 +350,6 @@
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "BIYA",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
         "symbol": "PACB",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
@@ -365,17 +360,12 @@
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "MRNA",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
         "symbol": "RXRX",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "IONQ",
+        "symbol": "MRNA",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
@@ -385,7 +375,17 @@
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
+        "symbol": "IONQ",
+        "entry_score": 7,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
         "symbol": "SGOV",
+        "entry_score": 7,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "SOXL",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       }
