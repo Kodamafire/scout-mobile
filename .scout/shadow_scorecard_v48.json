@@ -306,6 +306,193 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|NVD|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "NVD",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 3.57,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|VBIO|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "VBIO",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 65,
+      "reference_price": 3.22,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|TSLL|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "TSLL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 82,
+      "entry_score": 80,
+      "reference_price": 8.81,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|TSLG|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "TSLG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 90,
+      "reference_price": 4.41,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|SPDN|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "SPDN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 80,
+      "reference_price": 8.43,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|SQQQ|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "SQQQ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 80,
+      "reference_price": 34.12,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|CMCT|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "CMCT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 2.62,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|VCLT|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "VCLT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 72,
+      "entry_score": 75,
+      "reference_price": 68.365,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|BB|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "BB",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 75,
+      "entry_score": 65,
+      "reference_price": 9.1,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|HL|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "HL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 80,
+      "reference_price": 17.055,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|SMR|SHORT|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:28:35.048773-07:00",
+      "symbol": "SMR",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 7.92,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
