@@ -493,6 +493,74 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|RXRX|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:44:09.392287-07:00",
+      "symbol": "RXRX",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 85,
+      "entry_score": 75,
+      "reference_price": 4.16,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|HPE|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:44:09.392287-07:00",
+      "symbol": "HPE",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 90,
+      "reference_price": 64.88,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|BB|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:44:09.392287-07:00",
+      "symbol": "BB",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 75,
+      "entry_score": 75,
+      "reference_price": 9.105,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-09-30|IBRX|LONG|QUALIFIED",
+      "session": "2026-09-30",
+      "at": "2026-09-30T10:44:09.392287-07:00",
+      "symbol": "IBRX",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 75,
+      "reference_price": 9.79,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
