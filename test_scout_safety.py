@@ -7,15 +7,15 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace as NS
 from unittest.mock import Mock
-from scout_profit_protection import update_profit_floor
+from scout_profit_protection import update_profit_floor, update_runner_floor, risk_sized_budget
 from scout_journal import record_cycle, journal_html
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
 tree = ast.parse(source)
 names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
-         'submit_sell_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
+         'submit_sell_if_allowed', 'submit_buys_if_allowed', 'execute_upgrade_rotation_if_allowed', 'dashboard_html', 'run_scout_cycle'}
+ns = {'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
       'refresh_loss_log': Mock()}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)

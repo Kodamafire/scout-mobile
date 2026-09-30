@@ -1,44 +1,53 @@
-# Independent profit exits
+# Runner exits and planned account risk
 
-Scout now evaluates a return floor separately from its indicator exit score.
-For long paper holdings, reaching +2% activates the existing ATR-based leash
-(1.25 to 6 percentage points), with a floor no lower than break-even. At +5%,
-the floor also retains at least 65% of the observed peak return; at +10%, 70%.
-The tightest applicable floor wins. Persisted floors never move downward.
+Scout's long-only paper strategy now separates initial loss protection from
+winner management. These settings are an experimental starting point, not
+optimized thresholds or a claim of improved returns.
 
-A return at or below the floor marks an exit immediately, without requiring
-an indicator score of 10 or two confirmation checks. Actual order submission
-still requires the paper account, an open market, and no existing open order.
-Stored floors remain usable during chart-data failures. Floors are discarded
-when their symbol is no longer held. Existing saved high-water values seed
-the rule, so current holdings may qualify for exit on the next open check.
+- Initial loss trigger remains -7.5% relative to entry and bypasses confirmation.
+- No fixed take-profit target and no tightening at +10%.
+- After a sampled peak of +5%, activate a trail using the greater of 3 ATR
+  or 5% of peak price. No automatic break-even floor. The trail never exceeds
+  the initial 7.5% loss allowance and ratchets upward once established.
+- Indicator exits remain available at score 10 after two eligible checks.
+  Old percentage-giveback score points are removed, so they cannot force an
+  early runner exit indirectly. Confirmed weak-holding rotation remains active.
+- Normal and rotation entries both cap planned initial loss at 0.75% of equity,
+  allocation at 10%, and maintain the existing 35% cash reserve.
+  With a 7.5% stop, 10% allocation already equals 0.75% planned account risk.
+  Budget amounts round down to cents; smaller available cash reduces size.
 
-The dashboard shows the floor, the exit trigger, and the order action separately.
-These are software checks, not standing broker stop orders. Scheduled checks
-can be delayed; gaps and slippage can cause fills below the floor. Peaks remain
-sampled returns, not every intraday high. Adding to a holding or externally
-changing its cost basis can require resetting its saved high-water/floor.
+ATR percent uses the latest chart close, while returns use the account mark.
+Trail distance in entry-return percentage points is the greater of:
+`5 * (1 + peak_return/100)` and `3 * ATR_pct * (1 + current_return/100)`.
+For example, at +10% with ATR 2%, the floor is +3.4%, not the old +7% floor.
+When chart and account prices differ, this conversion is approximate.
 
-## Offline observations, September 30, 2026
+## Migration and comparison
 
-39 regression checks pass, including independent profit exits, monotonic floors,
-missing charts, threshold boundaries, market-closed and open-order gates, and
-cleanup for closed holdings. CI runs the suite before a paper cycle.
+The first runner-policy check preserves old tight floors under
+`legacy_profit_floor`, resets executable floors and warning/rotation
+confirmations once, and preserves sampled high-water observations.
+This intentional policy change allows current winners more room. Later checks
+never loosen the new floor. A missing chart retains an established floor; if
+there is no established runner floor, only the account loss trigger can act.
+Closed-position cleanup removes both executable and legacy floors.
 
-The saved CSV lacks historical ATR values and broker market-clock flags, so
-exact volatility-floor replay and executable fill backtesting are unavailable.
-An illustrative replay used logged checks on weekdays from 06:30 to 13:00 PT,
-with the retained sampled high-water values (including out-of-session peaks).
+The old floor remains observation-only. Up to 2,000 symbol/check comparisons
+are retained under `exit_comparison` in Scout state, including both floors,
+breach signals, and the observed return. This is a signal comparison, not two
+independent portfolios or a fill backtest. Once Scout sells a position it no
+longer follows that holding's counterfactual return. The historical CSV lacks
+ATR and precise market-clock data; it cannot establish which policy earns more.
 
-| Variant | INTC first observed trigger | Later best logged session return |
-| --- | --- | --- |
-| Winner tiers alone | Sep 25 06:45, +3.721% | +3.721% |
-| Constant 1.25-point leash | Sep 24 08:44, +0.744% | +4.608% |
-| Constant 6-point leash plus winner tiers | Sep 25 06:45, +3.721% | +3.721% |
+## Execution and validation
 
-Winner tiers alone also flagged PLTR at +8.917% on September 29; subsequent
-logged returns reached +11.860%. A fixed tight leash flagged it still earlier,
-at +7.035%, before a later +13.795% observation. Those recoveries demonstrate
-the cost of tighter protection. These examples are observations, not fills,
-strategy returns, or evidence that the new rule improves profitability. No
-threshold was optimized to maximize this small sample's result.
+These are scheduled software checks, not standing broker stop orders. Orders
+require the paper account, open market, and no duplicate open order. Gaps,
+slippage, outages, and delayed checks can exceed planned risk. Peaks are sampled
+account returns, not every intraday high. External changes to cost basis require
+resetting the corresponding saved peaks and floors.
+
+Offline tests cover runner pullbacks, trail conversion and ratcheting, policy
+migration, chart outages, loss boundaries, entry and rotation sizing, cash
+reserves, and order gates. CI runs the suite before connecting to the paper broker.

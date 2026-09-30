@@ -13,7 +13,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from scout_journal import record_cycle, journal_html
 from scout_loss_log import refresh_loss_log
-from scout_profit_protection import update_profit_floor
+from scout_profit_protection import update_profit_floor, update_runner_floor, risk_sized_budget
 from scout_shadow_v48 import market_regime as shadow_market_regime, directional_decision
 from shadow_scorecard import (load_scorecard, pending_symbols, record_signals,
                               save_scorecard, scorecard_summary, settle_outcomes)
@@ -42,6 +42,7 @@ class ScoutConfig:
     max_positions: int = 4
     max_new_entries_per_cycle: int = 2
     position_fraction: float = 0.10
+    risk_fraction_per_trade: float = 0.0075
     minimum_cash_reserve_fraction: float = 0.35
     minimum_order_dollars: float = 50.0
     # Portfolio upgrade / replacement engine
@@ -73,7 +74,10 @@ class ScoutConfig:
     exit_score_min: int = 10
     exit_confirmations: int = 2
     base_trailing_floor_pct: float = 1.25
-    max_trailing_leash_pct: float = 6.0
+    max_trailing_leash_pct: float = 6.0  # Legacy comparison only
+    runner_activation_pct: float = 5.0
+    runner_atr_multiple: float = 3.0
+    runner_minimum_trail_pct: float = 5.0
 
 
     # Paper automation
@@ -252,6 +256,14 @@ def prepare_confirmation_cycle(state, market_open, observed_at):
 
 
 def analyze_position(position, m, state, advance_confirmation=True):
+    # Explicit policy migration: old tight floors must not remain execution triggers.
+    # Preserve them for observational comparison; reset confirmations once.
+    if state.get("exit_policy") != "runner_v1":
+        state["legacy_profit_floor"] = dict(state.get("profit_floor", {}))
+        state["profit_floor"] = {}
+        state["warning_streak"] = {}
+        state["upgrade_challenge"] = None
+        state["exit_policy"] = "runner_v1"
     symbol = str(position.symbol).upper()
     pnl_pct = float(position.unrealized_plpc) * 100
     previous_high = float(state["high_water"].get(symbol, pnl_pct))
@@ -261,12 +273,18 @@ def analyze_position(position, m, state, advance_confirmation=True):
     leash = (min(CFG.max_trailing_leash_pct,
                  max(CFG.base_trailing_floor_pct, m["atr_pct"] * 1.35))
              if m is not None else None)
+    legacy = state.setdefault("legacy_profit_floor", {})
+    old_floor, old_exit = update_profit_floor(high_water, pnl_pct, leash, legacy.get(symbol))
+    if old_floor is not None:
+        legacy[symbol] = old_floor
     floors = state.setdefault("profit_floor", {})
-    profit_floor, profit_exit = update_profit_floor(
-        high_water, pnl_pct, leash, floors.get(symbol))
+    profit_floor, profit_exit = update_runner_floor(
+        high_water, pnl_pct, m["atr_pct"] if m is not None else None,
+        floors.get(symbol), CFG.runner_activation_pct, CFG.runner_atr_multiple,
+        CFG.runner_minimum_trail_pct, CFG.hard_stop_pct)
     if profit_floor is not None:
         floors[symbol] = profit_floor
-    profit_reason = ([f"Profit floor breached ({profit_floor:+.2f}% return)"]
+    profit_reason = ([f"Runner trail breached ({profit_floor:+.2f}% return)"]
                      if profit_exit else [])
     if m is None:
         # The account loss check must not depend on historical chart data.
@@ -279,7 +297,8 @@ def analyze_position(position, m, state, advance_confirmation=True):
             "exit_score": 10 if hard_exit else 0, "confirmation": 0,
             "decision": "EXIT CONFIRMED" if hard_exit or profit_exit else "DATA UNAVAILABLE",
             "profit_floor_pct": profit_floor, "profit_exit": profit_exit,
-            "exit_trigger": "HARD LOSS" if hard_exit else "PROFIT FLOOR" if profit_exit else "NONE",
+            "legacy_floor_pct": old_floor, "legacy_exit_signal": old_exit,
+            "exit_trigger": "HARD LOSS" if hard_exit else "RUNNER TRAIL" if profit_exit else "NONE",
             "exit_confirmed": hard_exit or profit_exit, "rsi14": None,
             "reasons": (["Hard loss limit reached"] if hard_exit else [])
                        + profit_reason + ["Chart data unavailable; stored profit floor and account loss check still active"],
@@ -299,9 +318,6 @@ def analyze_position(position, m, state, advance_confirmation=True):
     if not m["macd_rising"]: add(1, "MACD falling")
     if m["rsi14"] < 45: add(1, "RSI weakening")
     if m["rsi14"] < 40: add(1, "RSI weak")
-    if high_water >= 2 and giveback >= leash: add(3, "Adaptive profit leash breached")
-    if high_water >= 5 and giveback >= high_water * 0.35: add(3, "Strong winner reversing")
-    if high_water >= 10 and giveback >= high_water * 0.30: add(3, "Nuclear winner reversing")
     if pnl_pct <= CFG.hard_stop_pct: add(10, "Hard loss limit reached")
 
     warning = score >= CFG.exit_score_min
@@ -315,7 +331,7 @@ def analyze_position(position, m, state, advance_confirmation=True):
         decision = "EXIT CONFIRMED"
     elif warning:
         decision = "EXIT WARNING"
-    elif high_water > 0 and (score >= 6 or (high_water >= 2 and giveback >= leash * .70)):
+    elif high_water > 0 and score >= 6:
         decision = "PROTECT PROFIT"
     elif score >= 6:
         decision = "RISK WARNING"
@@ -331,7 +347,8 @@ def analyze_position(position, m, state, advance_confirmation=True):
         "pnl_pct": pnl_pct, "high_water": high_water, "giveback": giveback,
         "leash": leash, "exit_score": score, "confirmation": streak,
         "profit_floor_pct": profit_floor, "profit_exit": profit_exit,
-        "exit_trigger": "HARD LOSS" if hard_exit else "PROFIT FLOOR" if profit_exit else "INDICATORS" if exit_confirmed else "NONE",
+        "legacy_floor_pct": old_floor, "legacy_exit_signal": old_exit,
+        "exit_trigger": "HARD LOSS" if hard_exit else "RUNNER TRAIL" if profit_exit else "INDICATORS" if exit_confirmed else "NONE",
         "decision": decision, "exit_confirmed": exit_confirmed,
         "rsi14": m["rsi14"], "reasons": reasons,
     }
@@ -634,7 +651,8 @@ def execute_upgrade_rotation_if_allowed(trading, upgrade, market_open, open_orde
     cash = float(account.cash)
     reserve = equity * CFG.minimum_cash_reserve_fraction
     spendable = max(0.0, cash - reserve)
-    budget = min(equity * CFG.position_fraction, spendable)
+    budget = risk_sized_budget(equity, spendable, CFG.position_fraction,
+                               CFG.risk_fraction_per_trade, CFG.hard_stop_pct)
     if budget < CFG.minimum_order_dollars:
         result["status"] = "SELL FILLED — BUY BLOCKED BY CASH RESERVE"
         return result
@@ -679,7 +697,8 @@ def submit_buys_if_allowed(trading, candidates, account, market_open, held_symbo
     cash = float(account.cash)
     reserve = equity * CFG.minimum_cash_reserve_fraction
     spendable = max(0.0, cash - reserve)
-    budget_each = min(equity * CFG.position_fraction, spendable / max(1, limit))
+    budget_each = risk_sized_budget(equity, spendable / max(1, limit),
+                                    CFG.position_fraction, CFG.risk_fraction_per_trade, CFG.hard_stop_pct)
 
     for i, row in enumerate(candidates[:limit]):
         symbol = row["symbol"]
@@ -697,7 +716,8 @@ def submit_buys_if_allowed(trading, candidates, account, market_open, held_symbo
             ))
             status = f"SUBMITTED {getattr(order, 'id', '')}"
             spendable -= budget_each
-        results[i] = {**row, "order_status": status}
+        results[i] = {**row, "order_status": status, "planned_notional": budget_each,
+                      "planned_risk_dollars": budget_each * abs(CFG.hard_stop_pct) / 100}
     return results
 
 def dashboard_html(report):
@@ -713,7 +733,7 @@ def dashboard_html(report):
         trigger = esc(p.get("exit_trigger", "NONE"))
         cards.append(f'''<section class="card"><div class="top"><b>{esc(p['symbol'])}</b><span class="pill">{esc(p['decision'])}</span></div>
         <div class="pnl {pnl_class}">{p['pnl_pct']:+.2f}%</div>
-        <div class="grid"><span>Exit score (trigger: {CFG.exit_score_min})</span><b>{p['exit_score']}</b><span>Confirmed checks</span><b>{p.get('confirmation', 0)}/{CFG.exit_confirmations}</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Profit floor (return)</span><b>{floor_label}</b><span>Exit trigger</span><b>{trigger}</b><span>Action</span><b>{esc(p['order_status'])}</b></div><p>{esc(reasons)}</p></section>''')
+        <div class="grid"><span>Exit score (trigger: {CFG.exit_score_min})</span><b>{p['exit_score']}</b><span>Confirmed checks</span><b>{p.get('confirmation', 0)}/{CFG.exit_confirmations}</b><span>High water</span><b>{p['high_water']:+.2f}%</b><span>Giveback</span><b>{p['giveback']:.2f}%</b><span>Runner trail (return)</span><b>{floor_label}</b><span>Exit trigger</span><b>{trigger}</b><span>Action</span><b>{esc(p['order_status'])}</b></div><p>{esc(reasons)}</p></section>''')
     candidates = "".join(f"<li><b>{esc(c['symbol'])}</b> — score {c['entry_score']}/9 — {esc(c['order_status'])}</li>" for c in report["candidates"])
     shadow = report.get("shadow", {})
     if shadow.get("status") == "OK":
@@ -805,7 +825,7 @@ def dashboard_html(report):
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cache-control" content="no-cache"><title>Scout Trader</title>
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}.activity-row{{border-top:1px solid #223955;padding:9px 0}}.activity-row b{{font-size:14px}}.activity-row small{{float:right;color:#8ca3bf}}.activity-row p{{margin:4px 0 0;color:#a8bad0;font-size:13px}}details summary{{cursor:pointer;color:#8dc5ff;padding:10px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
-    <p class="sub">Profit floors trigger exits independently of indicator scores. Floors tighten as winners grow. Checked each cycle; not standing broker stops. Gaps and delayed checks can result in worse fills.</p>
+    <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
     {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
@@ -931,8 +951,16 @@ def run_scout_cycle():
     state["high_water"] = {k: v for k, v in state["high_water"].items() if k in active_symbols}
     state["warning_streak"] = {k: v for k, v in state["warning_streak"].items() if k in active_symbols}
     state["profit_floor"] = {k: v for k, v in state.get("profit_floor", {}).items() if k in active_symbols}
+    state["legacy_profit_floor"] = {k: v for k, v in state.get("legacy_profit_floor", {}).items() if k in active_symbols}
     state["last_cycle"] = started.isoformat()
 
+    comparisons = state.setdefault("exit_comparison", [])
+    comparisons.extend({"cycle": cycle, "updated": started.isoformat(), "symbol": p["symbol"],
+                        "pnl_pct": p["pnl_pct"], "runner_floor": p.get("profit_floor_pct"),
+                        "runner_signal": p.get("profit_exit", False),
+                        "legacy_floor": p.get("legacy_floor_pct"),
+                        "legacy_signal": p.get("legacy_exit_signal", False)} for p in managed)
+    state["exit_comparison"] = comparisons[-2000:]
     report = {
         "version": 47, "cycle": cycle, "updated": started.strftime("%b %d, %Y %I:%M:%S %p PT"),
         "market_open": market_open, "equity": float(account.equity), "cash": float(account.cash),
