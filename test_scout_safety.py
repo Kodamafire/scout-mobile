@@ -1,5 +1,6 @@
 """Offline regression checks; no broker connection or real orders are possible."""
 import ast
+import json
 import unittest
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -13,7 +14,7 @@ tree = ast.parse(source)
 names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'dataclass': dataclass, 'record_cycle': record_cycle, 'journal_html': journal_html,
+ns = {'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
       'refresh_loss_log': Mock()}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)
@@ -104,6 +105,27 @@ class ScoutSafetyTests(unittest.TestCase):
             self.assertIn(text, html)
         report['upgrade'] = None
         self.assertIn('No replacement currently qualifies', ns['dashboard_html'](report))
+        report['shadow'] = {'status': 'OK', 'regime': {'name': 'CHOP / MIXED', 'risk': 'NORMAL'},
+                            'symbols_scored': 1, 'qualified_long': 0, 'qualified_short': 0,
+                            'long': [dict(symbol='ABC', direction='LONG', setup_score=90, entry_score=65,
+                                          required_entry=70, decision='WAIT — ENTRY NOT READY',
+                                          held=False, main_score=8, entry_parts={
+                                              'not_extended': 30, 'momentum_live': 5, 'rsi_window': 20,
+                                              'volume_confirm': 15, 'relative_strength': 5})],
+                            'short': []}
+        report['scorecard'] = {'status': 'OK', 'count': 1, 'one_day_complete': 0,
+                               'comparison': {
+                                   'agree': {'signals': 0, 'one_day_complete': 0,
+                                             'average_one_day_pct': None},
+                                   'wait': {'signals': 1, 'one_day_complete': 0,
+                                            'average_one_day_pct': None}},
+                               'recent': [dict(symbol='ABC', direction='LONG',
+                                               shadow_decision='WAIT', main_score=8,
+                                               outcomes={'1': None})]}
+        html = ns['dashboard_html'](report)
+        self.assertIn('waiting on momentum', html)
+        self.assertIn('Shadow scorecard', html)
+        self.assertIn('1 dated signals', html)
 
     def test_chart_request_failure_still_checks_loss_in_cycle(self):
         trading = NS(get_clock=Mock(return_value=NS(is_open=True, timestamp=self.now)),
@@ -115,6 +137,12 @@ class ScoutSafetyTests(unittest.TestCase):
                   open_orders_by_symbol=lambda _: {},
                   bars_frame=Mock(side_effect=RuntimeError('simulated unavailable data')),
                   scan_candidates=Mock(side_effect=RuntimeError('simulated unavailable data')),
+                  scan_shadow=Mock(side_effect=RuntimeError('simulated unavailable data')),
+                  SHADOW_FILE=NS(write_text=Mock()),
+                  update_shadow_scorecard=Mock(return_value={'status': 'OK', 'count': 0,
+                      'one_day_complete': 0, 'recent': [], 'comparison': {
+                          key: {'signals': 0, 'one_day_complete': 0, 'average_one_day_pct': None}
+                          for key in ('agree', 'wait')}}),
                   choose_upgrade=lambda *a: None, submit_buys_if_allowed=lambda *a: [],
                   save_state=Mock(), append_history=Mock(), publish_dashboard=Mock(),
                   pd=NS(DataFrame=lambda _: NS(__unused=True)),

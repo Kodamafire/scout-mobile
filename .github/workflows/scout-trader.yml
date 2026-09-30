@@ -6,6 +6,7 @@ on:
     paths:
       - 'scout_runner.py'
       - 'scout_shadow_v48.py'
+      - 'shadow_scorecard.py'
       - '.github/workflows/scout-trader.yml'
   schedule:
     - cron: "*/15 13-23 * * 1-5"
@@ -44,7 +45,7 @@ jobs:
           git config user.name "Scout Trader Bot"
           git config user.email "scout-trader@users.noreply.github.com"
 
-          git add -f index.html .scout/scout_state_v43.json .scout/scout_cycle_history_v43.csv .scout/shadow_latest_v48.json
+          git add -f index.html .scout/scout_state_v43.json .scout/scout_cycle_history_v43.csv .scout/shadow_latest_v48.json .scout/shadow_scorecard_v48.json
 
           if git diff --cached --quiet; then
             echo "No Scout changes to save."

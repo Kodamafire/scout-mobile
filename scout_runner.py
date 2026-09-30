@@ -14,6 +14,8 @@ from zoneinfo import ZoneInfo
 from scout_journal import record_cycle, journal_html
 from scout_loss_log import refresh_loss_log
 from scout_shadow_v48 import market_regime as shadow_market_regime, directional_decision
+from shadow_scorecard import (load_scorecard, pending_symbols, record_signals,
+                              save_scorecard, scorecard_summary, settle_outcomes)
 
 import numpy as np
 import pandas as pd
@@ -96,6 +98,7 @@ STATE_FILE = MEMORY_DIR / "scout_state_v43.json"
 HISTORY_FILE = MEMORY_DIR / "scout_cycle_history_v43.csv"
 DASHBOARD_FILE = Path("index.html")
 SHADOW_FILE = MEMORY_DIR / "shadow_latest_v48.json"
+SCORECARD_FILE = MEMORY_DIR / "shadow_scorecard_v48.json"
 
 def secret(name, required=True):
     value = os.environ.get(name, "").strip()
@@ -370,13 +373,14 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
         for row in getattr(active, "most_actives", active)
         if getattr(row, "symbol", None)
     ))
-    frames = bars_frame(data_client, ["SPY", *symbols, *held_symbols])
+    main_symbols = [row["symbol"] for row in main_candidates]
+    frames = bars_frame(data_client, ["SPY", *symbols, *main_symbols, *held_symbols])
     spy = frames.get("SPY")
     spy_metrics = indicators(spy) if spy is not None else None
     regime = shadow_market_regime(spy_metrics)
     main_scores = {row["symbol"]: row["entry_score"] for row in main_candidates}
     decisions = []
-    for symbol in dict.fromkeys([*symbols, *sorted(held_symbols)]):
+    for symbol in dict.fromkeys([*symbols, *main_symbols, *sorted(held_symbols)]):
         frame = frames.get(symbol)
         if frame is None:
             continue
@@ -392,6 +396,8 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
                 "setup_score": result["setup_score"], "entry_score": result["entry_score"],
                 "decision": result["decision"], "held": symbol in held_symbols,
                 "main_score": main_scores.get(symbol),
+                "setup_parts": result["setup_parts"], "entry_parts": result["entry_parts"],
+                "required_entry": result["required_entry"],
             })
     ranked = sorted(decisions, key=lambda x: (
         x["decision"] == "QUALIFIED", x["setup_score"] + x["entry_score"]
@@ -404,6 +410,8 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
         "long": [x for x in ranked if x["direction"] == "LONG"][:10],
         "short": [x for x in ranked if x["direction"] == "SHORT"][:10],
         "held": [x for x in decisions if x["held"]],
+        "evidence": [x for x in decisions if x["decision"] == "QUALIFIED"
+                     or (x["direction"] == "LONG" and x["main_score"] is not None)],
     }
 
 def choose_upgrade(managed, candidates, held_symbols, open_orders):
@@ -690,13 +698,28 @@ def dashboard_html(report):
     candidates = "".join(f"<li><b>{esc(c['symbol'])}</b> — score {c['entry_score']}/9 — {esc(c['order_status'])}</li>" for c in report["candidates"])
     shadow = report.get("shadow", {})
     if shadow.get("status") == "OK":
+        def timing_note(row):
+            if row["decision"] != "WAIT — ENTRY NOT READY":
+                return ""
+            labels = {"not_extended": (30, "price extension"),
+                      "momentum_live": (25, "momentum"), "rsi_window": (20, "RSI"),
+                      "volume_confirm": (15, "volume"),
+                      "relative_strength": (10, "relative strength" if row["direction"] == "LONG"
+                                            else "relative weakness")}
+            parts = row.get("entry_parts", {})
+            weak = [label for key, (maximum, label) in labels.items() if parts.get(key, maximum) < maximum]
+            penalty = sum(parts.values()) - row["entry_score"]
+            if penalty > 0:
+                weak.append(f"market adjustment −{penalty}")
+            return f' · waiting on {esc(", ".join(weak))} ({row["entry_score"]}/{row["required_entry"]} needed)'
         def shadow_list(direction):
             rows = shadow[direction]
             return "".join(
                 f"<li><b>{esc(x['symbol'])}</b> · {x['setup_score']}/100 setup, "
                 f"{x['entry_score']}/100 timing · {esc(x['decision'])}"
                 f"{' · held' if x['held'] else ''}"
-                f"{' · main '+str(x['main_score'])+'/9' if x['main_score'] is not None else ''}</li>"
+                f"{' · main '+str(x['main_score'])+'/9' if x['main_score'] is not None else ''}"
+                f"{timing_note(x)}</li>"
                 for x in rows[:5]
             ) or "<li>No symbols scored.</li>"
         shadow_panel = (
@@ -705,7 +728,8 @@ def dashboard_html(report):
             f'{shadow["symbols_scored"]} stocks scored; '
             f'{shadow["qualified_long"]} qualified long, {shadow["qualified_short"]} qualified short.</p>'
             f'<h3>Long watch</h3><ul>{shadow_list("long")}</ul>'
-            f'<h3>Short watch</h3><ul>{shadow_list("short")}</ul>'
+            f'<h3>{"Short watch" if shadow["qualified_short"] else "Short ideas blocked or waiting"}</h3>'
+            f'<ul>{shadow_list("short")}</ul>'
             '<p class="sub">Read-only signals. No short orders or option orders. '
             'These are observations, not Scout trade instructions.</p></section>'
         )
@@ -714,6 +738,35 @@ def dashboard_html(report):
             '<section class="panel"><h2>Shadow Scout V48</h2><p>Scan unavailable this cycle. '
             'Main Scout continues independently.</p></section>'
         )
+    scorecard = report.get("scorecard", {})
+    if scorecard.get("status") == "OK":
+        agree = scorecard["comparison"]["agree"]
+        wait = scorecard["comparison"]["wait"]
+        def cohort_line(label, group):
+            average = group["average_one_day_pct"]
+            result = (f'average first-day reference move {average:+.2f}%'
+                      if average is not None and group["one_day_complete"] >= 5
+                      else 'collecting outcomes')
+            return (f'{label}: {group["signals"]} signals, '
+                    f'{group["one_day_complete"]} completed next-day checks — {result}')
+        recent = "".join(
+            f'<li><b>{esc(s["symbol"])} {esc(s["direction"])}</b> · {esc(s["shadow_decision"])}'
+            f'{" · Main " + str(s["main_score"]) + "/9" if s["main_score"] is not None else ""}'
+            f' · 1-day move {esc(str(s["outcomes"]["1"]["directional_move_pct"]) + "%" if s["outcomes"]["1"] else "pending")}</li>'
+            for s in scorecard["recent"]
+        )
+        scorecard_panel = (
+            f'<section class="panel"><h2>Shadow scorecard</h2><p>{scorecard["count"]} dated signals; '
+            f'{scorecard["one_day_complete"]} have a completed next-session price check.</p>'
+            f'<details><summary>See comparisons and recent signals</summary>'
+            f'<p>{esc(cohort_line("Main and Shadow agree", agree))}<br>'
+            f'{esc(cohort_line("Main likes, Shadow waits", wait))}</p>'
+            f'<ul>{recent or "<li>No market-open signals yet.</li>"}</ul>'
+            '<p class="sub">Directional price moves are reference observations, not paper trades. '
+            'No spreads, borrowing costs, or fees are included.</p></details></section>'
+        )
+    else:
+        scorecard_panel = '<section class="panel"><h2>Shadow scorecard</h2><p>Waiting for a saved signal.</p></section>'
     upgrade = report.get("upgrade")
     if upgrade:
         replacement = (
@@ -734,7 +787,7 @@ def dashboard_html(report):
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}.activity-row{{border-top:1px solid #223955;padding:9px 0}}.activity-row b{{font-size:14px}}.activity-row small{{float:right;color:#8ca3bf}}.activity-row p{{margin:4px 0 0;color:#a8bad0;font-size:13px}}details summary{{cursor:pointer;color:#8dc5ff;padding:10px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {journal_html(report.get('journal', {}), report)}{shadow_panel}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -751,6 +804,28 @@ def append_history(report):
         old = pd.read_csv(HISTORY_FILE)
         new = pd.concat([old, new], ignore_index=True)
     new.drop_duplicates(subset=["cycle", "symbol"], keep="last").to_csv(HISTORY_FILE, index=False)
+
+
+def update_shadow_scorecard(shadow, started, market_open, data_client):
+    """Persist observations after Scout's order decisions; failures stay isolated."""
+    card = load_scorecard(SCORECARD_FILE)
+    added = record_signals(card, shadow, started, market_open)
+    symbols = pending_symbols(card)
+    closes = {}
+    if symbols:
+        try:
+            for i in range(0, len(symbols), 40):
+                frames = bars_frame(data_client, symbols[i:i + 40], days=60)
+                for symbol, frame in frames.items():
+                    closes[symbol] = [(stamp.date().isoformat(), float(price))
+                                      for stamp, price in frame["close"].items()]
+        except Exception as exc:
+            print("Scorecard price check unavailable; signals remain saved:", type(exc).__name__)
+    settled = settle_outcomes(card, closes, started.date())
+    save_scorecard(SCORECARD_FILE, card)
+    summary = scorecard_summary(card)
+    print(f"SCORECARD: {added} new signals, {settled} completed price checks, {summary['count']} total")
+    return {"status": "OK", **summary}
 
 
 # SCOUT AUTOMATIC PAPER CYCLE
@@ -855,6 +930,13 @@ def run_scout_cycle():
                  "candidates": [{"symbol": c["symbol"], "entry_score": c["entry_score"],
                                  "order_status": c["order_status"]} for c in buy_results]},
     }, indent=2), encoding="utf-8")
+    try:
+        report["scorecard"] = update_shadow_scorecard(
+            report["shadow"], started, market_open, data_client
+        )
+    except Exception as exc:
+        print("Read-only scorecard unavailable:", type(exc).__name__, str(exc))
+        report["scorecard"] = {"status": "UNAVAILABLE"}
     report["journal_date"] = started.date().isoformat()
     try:
         report["journal"] = record_cycle(report, state, trading)
@@ -891,4 +973,3 @@ def run_scout_cycle():
 
 if __name__ == "__main__":
     scout_report = run_scout_cycle()
-
