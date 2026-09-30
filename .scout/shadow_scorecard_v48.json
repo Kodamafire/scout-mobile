@@ -595,6 +595,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-09-30|IOVA|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-09-30",
+      "at": "2026-09-30T12:31:27.751031-07:00",
+      "symbol": "IOVA",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 50,
+      "reference_price": 14.74,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
