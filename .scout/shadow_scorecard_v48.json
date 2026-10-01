@@ -1003,6 +1003,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|SMR|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T09:29:07.318304-07:00",
+      "symbol": "SMR",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 7.915,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
