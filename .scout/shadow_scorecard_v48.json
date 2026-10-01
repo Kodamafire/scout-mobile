@@ -1020,6 +1020,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|TLT|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T09:45:40.903627-07:00",
+      "symbol": "TLT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 75,
+      "reference_price": 77.795,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|CTVA|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T09:45:40.903627-07:00",
+      "symbol": "CTVA",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 75,
+      "reference_price": 11.97,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
