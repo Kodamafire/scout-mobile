@@ -1,6 +1,6 @@
 {
-  "cycle": "20261001_134737",
-  "updated": "2026-10-01T13:47:37.342077-07:00",
+  "cycle": "20261001_140820",
+  "updated": "2026-10-01T14:08:20.886667-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -1047,31 +1047,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "STLA",
-        "direction": "SHORT",
-        "price": 4.685,
-        "setup_score": 80,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 15,
-          "relative_weakness": 20,
-          "participation": 15,
-          "liquidity": 0
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_weakness": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "SQQQ",
         "direction": "SHORT",
         "price": 34.11,
@@ -1090,6 +1065,31 @@
         "entry_parts": {
           "not_extended": 30,
           "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_weakness": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "STLA",
+        "direction": "SHORT",
+        "price": 4.685,
+        "setup_score": 80,
+        "entry_score": 70,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 15,
+          "relative_weakness": 20,
+          "participation": 15,
+          "liquidity": 0
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 5,
           "rsi_window": 20,
           "volume_confirm": 15,
           "relative_weakness": 10
@@ -1147,6 +1147,31 @@
         "required_entry": 70
       },
       {
+        "symbol": "LQD",
+        "direction": "SHORT",
+        "price": 102.08,
+        "setup_score": 70,
+        "entry_score": 75,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 5,
+          "relative_weakness": 10,
+          "participation": 15,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 25,
+          "rsi_window": 5,
+          "volume_confirm": 15,
+          "relative_weakness": 10
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "RIG",
         "direction": "SHORT",
         "price": 5.245,
@@ -1192,31 +1217,6 @@
           "momentum_live": 25,
           "rsi_window": 20,
           "volume_confirm": 5,
-          "relative_weakness": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "LQD",
-        "direction": "SHORT",
-        "price": 102.08,
-        "setup_score": 70,
-        "entry_score": 75,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_weakness": 10,
-          "participation": 15,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 25,
-          "rsi_window": 5,
-          "volume_confirm": 15,
           "relative_weakness": 10
         },
         "required_entry": 70
