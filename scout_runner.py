@@ -1,3 +1,4 @@
+from shadow_profit_trial import update_trial, trial_html
 # STEP 1 — INSTALL, IMPORT, AND CONFIGURE
 
 import base64
@@ -396,7 +397,7 @@ def scan_candidates(screener, data_client, held_symbols):
     scored.sort(key=lambda x: (x["entry_score"], x["relative_volume"], x["rs20"]), reverse=True)
     return scored[:CFG.candidate_shortlist]
 
-def scan_shadow(screener, data_client, held_symbols, main_candidates):
+def scan_shadow(screener, data_client, held_symbols, main_candidates, tracked_symbols=()):
     """Observe long and short setups across active stocks; never submit orders."""
     active = screener.get_most_actives(MostActivesRequest(
         top=CFG.most_active_count, by=MostActivesBy.VOLUME
@@ -407,18 +408,18 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
         if getattr(row, "symbol", None)
     ))
     main_symbols = [row["symbol"] for row in main_candidates]
-    frames = bars_frame(data_client, ["SPY", *symbols, *main_symbols, *held_symbols])
+    frames = bars_frame(data_client, ["SPY", *symbols, *main_symbols, *held_symbols, *tracked_symbols])
     spy = frames.get("SPY")
     spy_metrics = indicators(spy) if spy is not None else None
     regime = shadow_market_regime(spy_metrics)
     main_scores = {row["symbol"]: row["entry_score"] for row in main_candidates}
     decisions = []
-    for symbol in dict.fromkeys([*symbols, *main_symbols, *sorted(held_symbols)]):
+    for symbol in dict.fromkeys([*symbols, *main_symbols, *sorted(held_symbols), *sorted(tracked_symbols)]):
         frame = frames.get(symbol)
         if frame is None:
             continue
         metrics = indicators(frame, spy)
-        if metrics is None or (symbol not in held_symbols and not (
+        if metrics is None or (symbol not in held_symbols and symbol not in tracked_symbols and not (
             CFG.min_price <= metrics["close"] <= CFG.max_price
         )):
             continue
@@ -444,7 +445,7 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates):
         "short": [x for x in ranked if x["direction"] == "SHORT"][:10],
         "held": [x for x in decisions if x["held"]],
         "evidence": [x for x in decisions if x["decision"] == "QUALIFIED"
-                     or (x["direction"] == "LONG" and x["main_score"] is not None)],
+                     or (x["direction"] == "LONG" and (x["main_score"] is not None or x["symbol"] in tracked_symbols))],
     }
 
 def choose_upgrade(managed, candidates, held_symbols, open_orders):
@@ -827,7 +828,7 @@ def dashboard_html(report):
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -967,7 +968,8 @@ def run_scout_cycle():
         "positions": managed, "candidates": buy_results, "upgrade": upgrade,
     }
     try:
-        report["shadow"] = scan_shadow(screener, data_client, held, candidates)
+        report["shadow"] = scan_shadow(screener, data_client, held, candidates,
+                                       state.get("profit_trial", {}).get("rows", {}).keys())
     except Exception as exc:
         print("Shadow scan unavailable:", type(exc).__name__, str(exc))
         report["shadow"] = {"status": "UNAVAILABLE", "error": type(exc).__name__}
@@ -986,6 +988,11 @@ def run_scout_cycle():
     except Exception as exc:
         print("Read-only scorecard unavailable:", type(exc).__name__, str(exc))
         report["scorecard"] = {"status": "UNAVAILABLE"}
+    try:
+        report["profit_trial"] = update_trial(state, report["shadow"], managed, started, market_open)
+    except Exception as exc:
+        print("Read-only profit trial unavailable:", type(exc).__name__)
+        report["profit_trial"] = state.get("profit_trial", {})
     report["journal_date"] = started.date().isoformat()
     try:
         report["journal"] = record_cycle(report, state, trading)
