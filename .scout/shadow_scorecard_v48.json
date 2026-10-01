@@ -1071,6 +1071,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|PSQ|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T10:28:28.725284-07:00",
+      "symbol": "PSQ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 90,
+      "reference_price": 24.73,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
