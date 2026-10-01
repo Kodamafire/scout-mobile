@@ -1224,6 +1224,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|BITO|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-01",
+      "at": "2026-10-01T12:11:25.612884-07:00",
+      "symbol": "BITO",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 75,
+      "entry_score": 45,
+      "reference_price": 11.36,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|STLA|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T12:11:25.612884-07:00",
+      "symbol": "STLA",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 4.565,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
