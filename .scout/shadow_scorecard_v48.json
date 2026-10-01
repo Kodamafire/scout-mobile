@@ -935,6 +935,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|ABAT|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T07:36:11.068664-07:00",
+      "symbol": "ABAT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 70,
+      "reference_price": 2.285,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|TSLG|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T07:36:11.068664-07:00",
+      "symbol": "TSLG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 80,
+      "reference_price": 4.53,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
