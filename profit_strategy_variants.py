@@ -12,6 +12,7 @@ class Variant:
     adaptive: bool = False
     fast: bool = False
     partial: bool = False
+    reclaim_sale: bool = True
 
 
 VARIANTS = (
@@ -98,7 +99,8 @@ class ReferenceStrategy:
             if self.config.fast:
                 # Intraday recovery must reclaim the last sale and rise on each confirmation.
                 qualify=(fast is not None and fast['qualified'] and price>previous
-                         and price>=r['last_exit'] and o['regime']!='BEARISH TREND')
+                         and (not self.config.reclaim_sale or price>=r['last_exit'])
+                         and o['regime']!='BEARISH TREND')
             else:
                 qualify=o['signal']['decision']=='QUALIFIED'
             if not qualify:

@@ -10,6 +10,8 @@ class ResearchDisplayTests(unittest.TestCase):
         self.assertIn('No new version has earned',html)
         self.assertIn('not fresh validation',html)
         self.assertEqual(html.count('<li>'),5)
+        self.assertIn('Exit and re-entry timing audit',html)
+        self.assertIn('not actual Scout orders',html)
     def test_missing_report_does_not_break_dashboard(self):
         self.assertIn('unavailable',variants_html('/tmp/missing-scout-variant-report.json'))
     def test_corrupt_report_does_not_break_dashboard(self):

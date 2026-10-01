@@ -8,6 +8,9 @@ on:
       - 'scout_profit_protection.py'
       - 'scout_shadow_v48.py'
       - 'shadow_scorecard.py'
+      - 'shadow_profit_trial.py'
+      - 'profit_strategy_variants.py'
+      - 'profit_variants_dashboard.py'
       - '.github/workflows/scout-trader.yml'
   schedule:
     - cron: "*/15 13-23 * * 1-5"

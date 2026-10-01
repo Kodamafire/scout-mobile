@@ -29,6 +29,22 @@ def variants_html(path=None):
                 'Previously inspected periods, not fresh validation. These are correlated cases, not independent trades '
                 'or actual portfolio returns. Some trials reduced drawdowns but all trailed holding on average in these samples.</p>'
                 '<p><a style="color:#8dc5ff" href="https://github.com/Kodamafire/scout-mobile/blob/main/backtests/PROFIT_VARIANTS_REPORT.md">Full comparison and limitations</a></p>'
-                '</details></section>')
+                '</details></section>' + timing_audit_html(path.parent/'timing_audit_results.json'))
     except (OSError,ValueError,KeyError,TypeError):
         return '<section class="panel"><h2>Profit strategy research</h2><p>Historical comparison unavailable.</p></section>'
+
+
+def timing_audit_html(path):
+    try:
+        report=json.loads(Path(path).read_text())
+        d=report['diagnostics']['fast_timing_only']
+        return ('<section class="panel"><h2>Exit and re-entry timing audit</h2>'
+                f'<p>{d["rebound_1pct_after_exit"]} of {d["exits"]} exits with complete follow-up '
+                'were followed by a rebound of at least 1%. '
+                f'{d["buyback_fell_1pct"]} of {d["buys"]} buybacks were followed by a fall of at least 1%.</p>'
+                '<p class="sub">Historical fast-timing simulation, not actual Scout orders. Follow-up: next 20 observed '
+                '15-minute bars; incomplete outcomes excluded. Rebounds and declines can both happen after an exit. '
+                'Removing the sale-price gate helped one period but hurt another; no active rule change.</p>'
+                '<p><a style="color:#8dc5ff" href="https://github.com/Kodamafire/scout-mobile/blob/main/backtests/TIMING_AUDIT_REPORT.md">Timing audit and matched comparisons</a></p></section>')
+    except (OSError,ValueError,KeyError,TypeError):
+        return ''
