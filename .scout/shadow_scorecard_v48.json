@@ -901,6 +901,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|TQQQ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-01",
+      "at": "2026-10-01T07:14:35.447771-07:00",
+      "symbol": "TQQQ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 60,
+      "reference_price": 77.685,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|NVD|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T07:14:35.447771-07:00",
+      "symbol": "NVD",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 85,
+      "entry_score": 80,
+      "reference_price": 3.57,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
