@@ -75,6 +75,23 @@ class JournalTests(unittest.TestCase):
         j = {'events': [dict(at='2026-09-21', cycle='one', symbol='ABC', action='Buy requested', reason='Qualified')]}
         self.assertIn('0 recorded checks; 0 order requests', journal_html(j, report))
 
+    def test_quiet_cycles_count_without_visible_events(self):
+        report = dict(updated='Oct 01', market_open=True, journal_date='2026-10-01')
+        j = {'cycles': ['20260930_150832', '20261001_101008',
+                        '20261001_111209', '20261001_111209'], 'events': []}
+        html = journal_html(j, report)
+        self.assertIn('2 recorded checks; 0 order requests', html)
+        self.assertNotIn('next scheduled cycle', html)
+
+    def test_activity_timestamp_identifies_previous_session(self):
+        report = dict(updated='Oct 01', market_open=True, journal_date='2026-10-01')
+        j = {'cycles': ['20261001_111209'], 'events': [dict(
+            at='2026-09-30T15:08:32-07:00', cycle='20260930_150832',
+            symbol='INTC', action='EXIT CONFIRMED', reason='Market closed')]}
+        html = journal_html(j, report)
+        self.assertIn('1 recorded checks; 0 order requests', html)
+        self.assertIn('2026-09-30 · 15:08 PT', html)
+
     def test_activity_compacts_repeats_and_collapses_older_updates(self):
         report = dict(updated='Sep 29', market_open=False, journal_date='2026-09-29')
         events = [dict(at=f'2026-09-29T14:{i:02d}:00-07:00', cycle=str(i),
