@@ -1173,6 +1173,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|PACB|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-01",
+      "at": "2026-10-01T11:35:07.068795-07:00",
+      "symbol": "PACB",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 50,
+      "reference_price": 2.495,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
