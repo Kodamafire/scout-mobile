@@ -986,6 +986,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|NU|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T09:10:53.072357-07:00",
+      "symbol": "NU",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 80,
+      "reference_price": 12.89,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
