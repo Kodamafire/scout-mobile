@@ -1,6 +1,6 @@
 {
-  "cycle": "20261001_124425",
-  "updated": "2026-10-01T12:44:25.363049-07:00",
+  "cycle": "20261001_124713",
+  "updated": "2026-10-01T12:47:13.032613-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,39 +11,14 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 71,
+    "symbols_scored": 72,
     "qualified_long": 5,
-    "qualified_short": 15,
+    "qualified_short": 16,
     "long": [
-      {
-        "symbol": "ITUB",
-        "direction": "LONG",
-        "price": 8.405,
-        "setup_score": 85,
-        "entry_score": 90,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 8,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 25,
-          "relative_strength": 15,
-          "participation": 15,
-          "liquidity": 0
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 25,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
       {
         "symbol": "MEDS",
         "direction": "LONG",
-        "price": 3.94,
+        "price": 3.95,
         "setup_score": 85,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -68,7 +43,7 @@
       {
         "symbol": "TQQQ",
         "direction": "LONG",
-        "price": 79.04,
+        "price": 79.14,
         "setup_score": 90,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -91,9 +66,34 @@
         "required_entry": 70
       },
       {
+        "symbol": "ITUB",
+        "direction": "LONG",
+        "price": 8.395,
+        "setup_score": 80,
+        "entry_score": 90,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": 8,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_strength": 10,
+          "participation": 15,
+          "liquidity": 0
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "BITO",
         "direction": "LONG",
-        "price": 11.335,
+        "price": 11.33,
         "setup_score": 75,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -118,7 +118,7 @@
       {
         "symbol": "VEEA",
         "direction": "LONG",
-        "price": 3.75,
+        "price": 3.63,
         "setup_score": 70,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -168,7 +168,7 @@
       {
         "symbol": "LABD",
         "direction": "LONG",
-        "price": 7.36,
+        "price": 7.37,
         "setup_score": 60,
         "entry_score": 90,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -193,7 +193,7 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 190.99,
+        "price": 191.03,
         "setup_score": 90,
         "entry_score": 55,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -218,7 +218,7 @@
       {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 120.31,
+        "price": 120.37,
         "setup_score": 80,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -243,7 +243,7 @@
       {
         "symbol": "SOXL",
         "direction": "LONG",
-        "price": 154.18,
+        "price": 154.88,
         "setup_score": 80,
         "entry_score": 55,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -270,7 +270,7 @@
       {
         "symbol": "PSQ",
         "direction": "SHORT",
-        "price": 24.71,
+        "price": 24.7,
         "setup_score": 92,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -295,7 +295,7 @@
       {
         "symbol": "TSLL",
         "direction": "SHORT",
-        "price": 9.13,
+        "price": 9.14,
         "setup_score": 87,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -320,7 +320,7 @@
       {
         "symbol": "PSKY",
         "direction": "SHORT",
-        "price": 9.38,
+        "price": 9.355,
         "setup_score": 80,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -345,7 +345,7 @@
       {
         "symbol": "SQQQ",
         "direction": "SHORT",
-        "price": 33.96,
+        "price": 33.9,
         "setup_score": 87,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -370,7 +370,7 @@
       {
         "symbol": "SOFI",
         "direction": "SHORT",
-        "price": 15.875,
+        "price": 15.865,
         "setup_score": 87,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -420,7 +420,7 @@
       {
         "symbol": "RIG",
         "direction": "SHORT",
-        "price": 5.215,
+        "price": 5.235,
         "setup_score": 80,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -445,7 +445,7 @@
       {
         "symbol": "SMR",
         "direction": "SHORT",
-        "price": 7.845,
+        "price": 7.85,
         "setup_score": 80,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -470,7 +470,7 @@
       {
         "symbol": "NU",
         "direction": "SHORT",
-        "price": 13.285,
+        "price": 13.255,
         "setup_score": 87,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -522,7 +522,7 @@
       {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 120.31,
+        "price": 120.37,
         "setup_score": 80,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -547,7 +547,7 @@
       {
         "symbol": "INTC",
         "direction": "SHORT",
-        "price": 120.31,
+        "price": 120.37,
         "setup_score": 20,
         "entry_score": 10,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -622,7 +622,7 @@
       {
         "symbol": "AAPL",
         "direction": "LONG",
-        "price": 329.82,
+        "price": 329.8,
         "setup_score": 30,
         "entry_score": 50,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -647,7 +647,7 @@
       {
         "symbol": "AAPL",
         "direction": "SHORT",
-        "price": 329.82,
+        "price": 329.8,
         "setup_score": 40,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -672,7 +672,7 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 190.99,
+        "price": 191.03,
         "setup_score": 90,
         "entry_score": 55,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -697,7 +697,7 @@
       {
         "symbol": "PLTR",
         "direction": "SHORT",
-        "price": 190.99,
+        "price": 191.03,
         "setup_score": 20,
         "entry_score": 10,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -724,7 +724,7 @@
       {
         "symbol": "NU",
         "direction": "SHORT",
-        "price": 13.285,
+        "price": 13.255,
         "setup_score": 87,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -741,6 +741,31 @@
           "not_extended": 30,
           "momentum_live": 5,
           "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_weakness": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "HYG",
+        "direction": "SHORT",
+        "price": 76.855,
+        "setup_score": 70,
+        "entry_score": 75,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 5,
+          "relative_weakness": 10,
+          "participation": 15,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 25,
+          "rsi_window": 5,
           "volume_confirm": 15,
           "relative_weakness": 10
         },
@@ -772,34 +797,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "HYG",
-        "direction": "SHORT",
-        "price": 76.855,
-        "setup_score": 70,
-        "entry_score": 75,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_weakness": 10,
-          "participation": 15,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 25,
-          "rsi_window": 5,
-          "volume_confirm": 15,
-          "relative_weakness": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 120.31,
+        "price": 120.37,
         "setup_score": 80,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -824,7 +824,7 @@
       {
         "symbol": "VEEA",
         "direction": "LONG",
-        "price": 3.75,
+        "price": 3.63,
         "setup_score": 70,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -849,7 +849,7 @@
       {
         "symbol": "BITO",
         "direction": "LONG",
-        "price": 11.335,
+        "price": 11.33,
         "setup_score": 75,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -874,7 +874,7 @@
       {
         "symbol": "SOXL",
         "direction": "LONG",
-        "price": 154.18,
+        "price": 154.88,
         "setup_score": 80,
         "entry_score": 55,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -899,7 +899,7 @@
       {
         "symbol": "TQQQ",
         "direction": "LONG",
-        "price": 79.04,
+        "price": 79.14,
         "setup_score": 90,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -949,7 +949,7 @@
       {
         "symbol": "NXL",
         "direction": "LONG",
-        "price": 7.68,
+        "price": 7.26,
         "setup_score": 70,
         "entry_score": 50,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -999,7 +999,7 @@
       {
         "symbol": "NKE",
         "direction": "SHORT",
-        "price": 35.45,
+        "price": 35.375,
         "setup_score": 75,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -1024,7 +1024,7 @@
       {
         "symbol": "TSLL",
         "direction": "SHORT",
-        "price": 9.13,
+        "price": 9.14,
         "setup_score": 87,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -1049,7 +1049,7 @@
       {
         "symbol": "SQQQ",
         "direction": "SHORT",
-        "price": 33.96,
+        "price": 33.9,
         "setup_score": 87,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -1074,8 +1074,8 @@
       {
         "symbol": "ITUB",
         "direction": "LONG",
-        "price": 8.405,
-        "setup_score": 85,
+        "price": 8.395,
+        "setup_score": 80,
         "entry_score": 90,
         "decision": "QUALIFIED",
         "held": false,
@@ -1083,7 +1083,7 @@
         "setup_parts": {
           "trend": 30,
           "momentum": 25,
-          "relative_strength": 15,
+          "relative_strength": 10,
           "participation": 15,
           "liquidity": 0
         },
@@ -1099,7 +1099,7 @@
       {
         "symbol": "RKT",
         "direction": "SHORT",
-        "price": 11.995,
+        "price": 11.975,
         "setup_score": 82,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -1124,7 +1124,7 @@
       {
         "symbol": "RIG",
         "direction": "SHORT",
-        "price": 5.215,
+        "price": 5.235,
         "setup_score": 80,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -1149,7 +1149,7 @@
       {
         "symbol": "STLA",
         "direction": "SHORT",
-        "price": 4.605,
+        "price": 4.585,
         "setup_score": 80,
         "entry_score": 70,
         "decision": "QUALIFIED",
@@ -1199,7 +1199,7 @@
       {
         "symbol": "PSKY",
         "direction": "SHORT",
-        "price": 9.38,
+        "price": 9.355,
         "setup_score": 80,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -1224,7 +1224,7 @@
       {
         "symbol": "CIFR",
         "direction": "SHORT",
-        "price": 15.17,
+        "price": 15.2,
         "setup_score": 72,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -1249,7 +1249,7 @@
       {
         "symbol": "MEDS",
         "direction": "LONG",
-        "price": 3.94,
+        "price": 3.95,
         "setup_score": 85,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -1274,7 +1274,7 @@
       {
         "symbol": "SOFI",
         "direction": "SHORT",
-        "price": 15.875,
+        "price": 15.865,
         "setup_score": 87,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -1324,7 +1324,7 @@
       {
         "symbol": "PACB",
         "direction": "LONG",
-        "price": 2.485,
+        "price": 2.465,
         "setup_score": 70,
         "entry_score": 50,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -1349,7 +1349,7 @@
       {
         "symbol": "SMR",
         "direction": "SHORT",
-        "price": 7.845,
+        "price": 7.85,
         "setup_score": 80,
         "entry_score": 80,
         "decision": "QUALIFIED",
@@ -1372,9 +1372,34 @@
         "required_entry": 70
       },
       {
+        "symbol": "WULF",
+        "direction": "SHORT",
+        "price": 14.79,
+        "setup_score": 72,
+        "entry_score": 80,
+        "decision": "QUALIFIED",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_weakness": 0,
+          "participation": 10,
+          "liquidity": 7
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_weakness": 0
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "PSQ",
         "direction": "SHORT",
-        "price": 24.71,
+        "price": 24.7,
         "setup_score": 92,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -1399,7 +1424,7 @@
       {
         "symbol": "AAPL",
         "direction": "LONG",
-        "price": 329.82,
+        "price": 329.8,
         "setup_score": 30,
         "entry_score": 50,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -1424,7 +1449,7 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 190.99,
+        "price": 191.03,
         "setup_score": 90,
         "entry_score": 55,
         "decision": "WAIT \u2014 ENTRY NOT READY",
