@@ -1275,6 +1275,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|LQD|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T12:55:49.778032-07:00",
+      "symbol": "LQD",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 75,
+      "reference_price": 102.025,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
