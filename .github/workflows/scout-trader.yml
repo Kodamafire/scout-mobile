@@ -11,6 +11,8 @@ on:
       - 'shadow_profit_trial.py'
       - 'profit_strategy_variants.py'
       - 'profit_variants_dashboard.py'
+      - 'scout_research_log.py'
+      - 'scout_portfolio_report.py'
       - '.github/workflows/scout-trader.yml'
   schedule:
     - cron: "*/15 13-23 * * 1-5"
@@ -52,6 +54,7 @@ jobs:
           git config user.name "Scout Trader Bot"
           git config user.email "scout-trader@users.noreply.github.com"
 
+          git add -f .scout/research
           git add -f index.html .scout/scout_state_v43.json .scout/scout_cycle_history_v43.csv .scout/shadow_latest_v48.json .scout/shadow_scorecard_v48.json
 
           if git diff --cached --quiet; then

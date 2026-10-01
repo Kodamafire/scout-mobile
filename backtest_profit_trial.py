@@ -71,7 +71,7 @@ def observations(symbol, intra, daily, spy):
         sig=directional_decision(m,regime,'LONG')
         out.append(dict(at=at.to_pydatetime().astimezone(PACIFIC),price=float(bar['close']),
                         signal={**sig,'symbol':symbol,'price':float(bar['close'])},
-                        score=exit_score(m),atr=m['atr_pct'],regime=regime['name']))
+                        score=exit_score(m),atr=m['atr_pct'],regime=regime['name'],metrics=m))
     return out
 
 def replay(symbol, obs, cost):

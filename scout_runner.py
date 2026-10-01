@@ -1,5 +1,7 @@
 from shadow_profit_trial import update_trial, trial_html
 from profit_variants_dashboard import variants_html
+from scout_research_log import account_snapshot, record_inputs
+from scout_portfolio_report import portfolio_html
 # STEP 1 — INSTALL, IMPORT, AND CONFIGURE
 
 import base64
@@ -376,7 +378,7 @@ def submit_sell_if_allowed(trading, row, market_open, open_orders):
     ))
     return f"SUBMITTED {getattr(order, 'id', '')}"
 
-def scan_candidates(screener, data_client, held_symbols):
+def scan_candidates(screener, data_client, held_symbols, research_sink=None):
     active = screener.get_most_actives(MostActivesRequest(top=CFG.most_active_count, by=MostActivesBy.VOLUME))
     rows = getattr(active, "most_actives", active)
     symbols = []
@@ -384,18 +386,28 @@ def scan_candidates(screener, data_client, held_symbols):
         symbol = str(getattr(row, "symbol", "")).upper()
         if symbol and symbol not in held_symbols:
             symbols.append(symbol)
+    if research_sink is not None:
+        research_sink.update(symbols=symbols,rows=[],status="STARTED")
     requested = list(dict.fromkeys(["SPY"] + symbols))
     frames = bars_frame(data_client, requested)
     spy = frames.get("SPY")
     scored = []
     for symbol in symbols:
         m = indicators(frames[symbol], spy) if symbol in frames else None
-        if not m or not (CFG.min_price <= m["close"] <= CFG.max_price):
+        if not m:
+            if research_sink is not None:
+                research_sink["rows"].append({"symbol": symbol, "status": "DATA UNAVAILABLE"})
             continue
         score, checks = entry_score(m)
+        if research_sink is not None:
+            research_sink["rows"].append({"symbol": symbol, "entry_score": score, "metrics": m, "checks": checks})
+        if not (CFG.min_price <= m["close"] <= CFG.max_price):
+            continue
         if score >= CFG.entry_score_min:
             scored.append({"symbol": symbol, "entry_score": score, **m, "checks": checks})
     scored.sort(key=lambda x: (x["entry_score"], x["relative_volume"], x["rs20"]), reverse=True)
+    if research_sink is not None:
+        research_sink["status"] = "COMPLETE"
     return scored[:CFG.candidate_shortlist]
 
 def scan_shadow(screener, data_client, held_symbols, main_candidates, tracked_symbols=()):
@@ -829,7 +841,7 @@ def dashboard_html(report):
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -888,6 +900,9 @@ def run_scout_cycle():
     positions = list(trading.get_all_positions())
     held = {str(p.symbol).upper() for p in positions}
     open_orders = open_orders_by_symbol(trading)
+    import copy
+    research_inputs = {"account": copy.deepcopy(account_snapshot(account, positions, open_orders, state)),
+                       "position_metrics": {}, "candidate_scan": {}}
 
     analysis_symbols = sorted(held | {"SPY"})
     try:
@@ -904,14 +919,16 @@ def run_scout_cycle():
         except Exception as exc:
             print(f"Chart analysis unavailable for {symbol}:", type(exc).__name__)
             m = None
+        research_inputs["position_metrics"][symbol] = m
         row = analyze_position(position, m, state, advance_confirmation)
         row["order_status"] = submit_sell_if_allowed(trading, row, market_open, open_orders)
         managed.append(row)
 
     try:
-        candidates = scan_candidates(screener, data_client, held)
+        candidates = scan_candidates(screener, data_client, held, research_inputs["candidate_scan"])
     except Exception as exc:
         print("Candidate scan unavailable:", type(exc).__name__)
+        research_inputs["candidate_scan"]["status"] = "UNAVAILABLE"
         candidates = []
 
     # Upgrade intelligence: at 4/4, elite candidates can still challenge weak holdings.
@@ -1002,6 +1019,15 @@ def run_scout_cycle():
         print("Activity journal unavailable:", type(exc).__name__)
         report["journal"] = state.get("activity_journal", {})
         report["journal"]["sync_note"] = "Journal update unavailable; showing saved activity."
+    research_inputs["qualified_candidates"] = candidates
+    try:
+        source_root = Path(__file__).parent
+        report["research_log"] = record_inputs(
+            STATE_FILE.parent / "research", cycle, started, market_open, asdict(CFG), research_inputs,
+            [source_root / name for name in ("scout_runner.py", "scout_profit_protection.py", "scout_shadow_v48.py")])
+    except Exception as exc:
+        print("Research input logging unavailable:", type(exc).__name__)
+        report["research_log"] = {"status": "UNAVAILABLE"}
     save_state(state)
     append_history(report)
     publish_status = publish_dashboard(dashboard_html(report))

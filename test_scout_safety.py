@@ -2,7 +2,7 @@
 import ast
 import json
 import unittest
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace as NS
@@ -11,13 +11,15 @@ from scout_profit_protection import update_profit_floor, update_runner_floor, ri
 from scout_journal import record_cycle, journal_html
 from shadow_profit_trial import update_trial, trial_html
 from profit_variants_dashboard import variants_html
+from scout_research_log import account_snapshot, record_inputs
+from scout_portfolio_report import portfolio_html
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
 tree = ast.parse(source)
 names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'submit_buys_if_allowed', 'execute_upgrade_rotation_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'variants_html': variants_html, 'update_trial': update_trial, 'trial_html': trial_html, 'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
+ns = {'portfolio_html': portfolio_html, 'Path': Path, '__file__': str(Path(__file__).with_name('scout_runner.py')), 'asdict': asdict, 'STATE_FILE': Path('/tmp/scout-test-state.json'), 'account_snapshot': account_snapshot, 'record_inputs': __import__('unittest.mock',fromlist=['Mock']).Mock(return_value={'status':'SIMULATED'}), 'variants_html': variants_html, 'update_trial': update_trial, 'trial_html': trial_html, 'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
       'refresh_loss_log': Mock()}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)
@@ -160,6 +162,8 @@ class ScoutSafetyTests(unittest.TestCase):
         self.assertTrue(report['positions'][0]['exit_confirmed'])
         trading.submit_order.assert_called_once()
         ns['save_state'].assert_called_once()
+        self.assertEqual(report['research_log']['status'], 'SIMULATED')
+        self.assertEqual(ns['record_inputs'].call_args.args[5]['candidate_scan']['status'], 'UNAVAILABLE')
 
 if __name__ == '__main__':
     unittest.main()
