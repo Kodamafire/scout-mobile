@@ -1054,6 +1054,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|RKT|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T10:10:08.059019-07:00",
+      "symbol": "RKT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 80,
+      "reference_price": 11.625,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
