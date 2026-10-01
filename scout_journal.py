@@ -138,10 +138,16 @@ def journal_html(journal, report):
     latest_date = report.get('journal_date', '')
     today = [e for e in events if e['at'][:10] == latest_date]
     requests = sum(e['action'] in ('Buy requested', 'Sell requested') for e in today)
-    cycles = len({e['cycle'] for e in today})
+    # Scheduled cycle IDs encode the Pacific session date, even when no
+    # visible decision or order event was produced. Retain legacy event IDs.
+    session_prefix = latest_date.replace('-', '') + '_'
+    today_cycles = {c for c in journal.get('cycles', [])
+                    if c.startswith(session_prefix)}
+    today_cycles.update(e['cycle'] for e in today)
+    cycles = len(today_cycles)
     summary = (f"{cycles} recorded checks; {requests} order requests. "
                + ('Market open at the latest check.' if report['market_open'] else 'Market closed at the latest check.'))
-    if not events:
+    if not events and not journal.get('cycles'):
         summary = 'The journal is ready. Activity will appear after Scout’s next scheduled cycle.'
     # Hide legacy routine position-check spam from the dashboard. Keep it in
     # saved state for audit/debugging, while showing only meaningful activity.
@@ -166,7 +172,8 @@ def journal_html(journal, report):
 
     def activity_row(event):
         time = event.get('at', '')
-        short_time = time[11:16] if len(time) >= 16 else time
+        short_time = (time[:10] + ' · ' + time[11:16] + ' PT'
+                      if len(time) >= 16 else time)
         return (f'<div class="activity-row"><b>{esc(event["symbol"])} · {esc(event["action"])}</b>'
                 f'<small>{esc(short_time)}</small><p>{esc(event["reason"])}</p></div>')
 
