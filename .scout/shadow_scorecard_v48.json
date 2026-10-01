@@ -1088,6 +1088,57 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-01|NKE|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T10:45:55.075438-07:00",
+      "symbol": "NKE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 35.9,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|UNG|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T10:45:55.075438-07:00",
+      "symbol": "UNG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 90,
+      "reference_price": 10.205,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-01|EOSE|SHORT|QUALIFIED",
+      "session": "2026-10-01",
+      "at": "2026-10-01T10:45:55.075438-07:00",
+      "symbol": "EOSE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 3.16,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
