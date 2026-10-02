@@ -2307,6 +2307,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|VALE|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T10:44:32.036908-07:00",
+      "symbol": "VALE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 82,
+      "entry_score": 70,
+      "reference_price": 13.525,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|MDT|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T10:44:32.036908-07:00",
+      "symbol": "MDT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 85,
+      "entry_score": 90,
+      "reference_price": 86.855,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
