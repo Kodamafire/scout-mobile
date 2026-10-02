@@ -1882,6 +1882,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|IBRX|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T07:12:25.385948-07:00",
+      "symbol": "IBRX",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 50,
+      "reference_price": 10.29,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
