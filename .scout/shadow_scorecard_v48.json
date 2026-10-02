@@ -2018,6 +2018,74 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|XLU|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:14:53.282686-07:00",
+      "symbol": "XLU",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 40.02,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|RIVN|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:14:53.282686-07:00",
+      "symbol": "RIVN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 85,
+      "entry_score": 90,
+      "reference_price": 14.4,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|CONL|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:14:53.282686-07:00",
+      "symbol": "CONL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 5.63,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|EOSE|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:14:53.282686-07:00",
+      "symbol": "EOSE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 3.17,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
