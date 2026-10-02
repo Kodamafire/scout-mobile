@@ -12,11 +12,11 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-02T07:12:25.385948-07:00",
+  "last_cycle": "2026-10-02T07:33:09.516793-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-10-02",
-    "timestamp": 1790950345.920274
+    "timestamp": 1790951589.810452
   },
   "activity_journal": {
     "events": [
@@ -4736,7 +4736,8 @@
       "20261002_061042",
       "20261002_063048",
       "20261002_065621",
-      "20261002_071225"
+      "20261002_071225",
+      "20261002_073309"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4772,7 +4773,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-02T14:12:31.997758+00:00",
+      "checked_at": "2026-10-02T14:33:24.419110+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
@@ -4784,7 +4785,7 @@
   "legacy_profit_floor": {
     "AAPL": 0.740101549469828,
     "INTC": 4.06445,
-    "PLTR": 9.9517869112882,
+    "PLTR": 9.961249518675398,
     "WBD": 2.277106623586431
   },
   "exit_policy": "runner_v1",
@@ -6908,6 +6909,46 @@
       "runner_signal": false,
       "legacy_floor": 2.277106623586431,
       "legacy_signal": false
+    },
+    {
+      "cycle": "20261002_073309",
+      "updated": "2026-10-02T07:33:09.516793-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 0.35100000000000003,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.740101549469828,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261002_073309",
+      "updated": "2026-10-02T07:33:09.516793-07:00",
+      "symbol": "INTC",
+      "pnl_pct": 2.689,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 4.06445,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261002_073309",
+      "updated": "2026-10-02T07:33:09.516793-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 13.316,
+      "runner_floor": 4.1463697742007675,
+      "runner_signal": false,
+      "legacy_floor": 9.961249518675398,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261002_073309",
+      "updated": "2026-10-02T07:33:09.516793-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.8240000000000003,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.277106623586431,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
@@ -6928,16 +6969,16 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-02T07:12:25.385948-07:00"
+        "last_at": "2026-10-02T07:33:09.516793-07:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 191.7,
+        "last": 192.92,
         "units": 0.005240798441931587,
         "cash": 0.0,
         "entry": 190.62,
-        "peak": 192.55,
+        "peak": 192.92,
         "pending": null,
         "fills": 0,
         "reentries": 0,
@@ -6945,16 +6986,16 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-02T07:12:25.385948-07:00"
+        "last_at": "2026-10-02T07:33:09.516793-07:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 124.79,
+        "last": 124.95,
         "units": 0.008290808738960116,
         "cash": 0.0,
         "entry": 120.495,
-        "peak": 124.79,
+        "peak": 124.95,
         "pending": null,
         "fills": 0,
         "reentries": 0,
@@ -6962,16 +7003,16 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-02T07:12:25.385948-07:00"
+        "last_at": "2026-10-02T07:33:09.516793-07:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 333.53,
+        "last": 334.025,
         "units": 0.0030314094947686207,
         "cash": 0.0,
         "entry": 329.55,
-        "peak": 333.53,
+        "peak": 334.025,
         "pending": null,
         "fills": 0,
         "reentries": 0,
@@ -6979,10 +7020,10 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-02T07:12:25.385948-07:00"
+        "last_at": "2026-10-02T07:33:09.516793-07:00"
       }
     },
-    "last_at": "2026-10-02T07:12:25.385948-07:00",
+    "last_at": "2026-10-02T07:33:09.516793-07:00",
     "cost_per_side": 0.001
   }
 }
