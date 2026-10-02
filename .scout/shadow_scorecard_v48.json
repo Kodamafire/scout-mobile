@@ -2137,6 +2137,125 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|BITO|LONG|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "BITO",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 11.4,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|NU|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "NU",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 70,
+      "reference_price": 13.105,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|TLT|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "TLT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 75,
+      "reference_price": 77.575,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|IREN|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "IREN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 80,
+      "reference_price": 41.77,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|RKT|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "RKT",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 70,
+      "reference_price": 11.885,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|LQD|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "LQD",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 75,
+      "reference_price": 101.975,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|RKLB|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:24:05.346424-07:00",
+      "symbol": "RKLB",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 67,
+      "entry_score": 90,
+      "reference_price": 73.8,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
