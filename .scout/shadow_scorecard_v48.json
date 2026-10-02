@@ -2120,6 +2120,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|WULF|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:55:56.940482-07:00",
+      "symbol": "WULF",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 82,
+      "entry_score": 80,
+      "reference_price": 15.23,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
