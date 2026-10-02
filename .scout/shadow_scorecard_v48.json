@@ -2358,6 +2358,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|CTVA|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T11:17:53.160972-07:00",
+      "symbol": "CTVA",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 75,
+      "reference_price": 12.02,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|CDE|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T11:17:53.160972-07:00",
+      "symbol": "CDE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 77,
+      "entry_score": 80,
+      "reference_price": 17.7,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
