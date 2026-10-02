@@ -12,6 +12,7 @@ on:
       - 'profit_strategy_variants.py'
       - 'profit_variants_dashboard.py'
       - 'scout_research_log.py'
+      - 'scout_volume.py'
       - 'scout_portfolio_report.py'
       - '.github/workflows/scout-trader.yml'
   schedule:
@@ -76,4 +77,3 @@ jobs:
 
           echo "Pushing Scout results..."
           git push origin HEAD:main
-

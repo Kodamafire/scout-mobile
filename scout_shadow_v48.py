@@ -12,6 +12,7 @@ class ShadowThresholds:
     setup_min: int = 70
     entry_min: int = 70
     hostile_entry_min: int = 85
+    min_avg_dollar_volume: float = 20_000_000.0
 
 
 def clamp(value, low=0, high=100):
@@ -152,7 +153,11 @@ def directional_decision(m, regime, direction="LONG", thresholds=None):
         entry, entry_parts = entry_timing_score(m, regime)
         gate = regime["long_gate"]
     required_entry = thresholds.hostile_entry_min if regime["risk"] == "HIGH" else thresholds.entry_min
-    if not gate:
+    if not m['avg_dollar_volume'] >= thresholds.min_avg_dollar_volume:
+        decision = "NO TRADE — LIQUIDITY BELOW MINIMUM"
+    elif m.get('relative_volume_status', 'OK') != 'OK':
+        decision = "WAIT — SAME-TIME VOLUME UNAVAILABLE"
+    elif not gate:
         decision = "NO TRADE — " + direction + " REGIME BLOCK"
     elif setup < thresholds.setup_min:
         decision = "WATCH — SETUP TOO WEAK"

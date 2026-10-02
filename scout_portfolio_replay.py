@@ -14,7 +14,7 @@ from scout_profit_protection import update_profit_floor, update_runner_floor, ri
 
 def load_rules(path=None):
     source=Path(path or Path(__file__).with_name('scout_runner.py')).read_text()
-    names={'ScoutConfig','entry_score','prepare_confirmation_cycle','analyze_position',
+    names={'ScoutConfig','entry_score','entry_eligible','prepare_confirmation_cycle','analyze_position',
            'choose_upgrade','confirm_upgrade_persistence'}
     tree=ast.parse(source)
     namespace=dict(dataclass=dataclass,update_profit_floor=update_profit_floor,
@@ -96,7 +96,7 @@ class PortfolioReplay:
         for s,x in snapshot.items():
             if s in self.positions or x.get('metrics') is None:continue
             m=x['metrics']
-            if not self.cfg.min_price<=m['close']<=self.cfg.max_price:continue
+            if not self.rules['entry_eligible'](m):continue
             score,checks=self.rules['entry_score'](m)
             if score<self.cfg.entry_score_min:continue
             if not entry_allowed(self.variant,m,score,x['regime']):self.filters+=1;continue

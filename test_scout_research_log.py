@@ -39,7 +39,7 @@ class CandidateCaptureTests(unittest.TestCase):
                   macd_rising=True,rsi14=60,atr_pct=1,relative_volume=1.3,avg_dollar_volume=1e8,rs20=5,return20=6)
         frames={'SPY':good,'GOOD':good,'PRICE':{**good,'close':500},'BAD':None}
         ns=load_rules();ns.update(MostActivesRequest=lambda **kw:kw,MostActivesBy=NS(VOLUME='volume'),
-                                 bars_frame=lambda *a:frames,indicators=lambda frame,spy:frame)
+                                 bars_frame=lambda *a,**kw:frames,indicators=lambda frame,spy:frame)
         exec(compile(ast.Module(body=[function],type_ignores=[]),'<scan capture>','exec'),ns)
         screener=NS(get_most_actives=Mock(return_value=NS(most_actives=[NS(symbol=s) for s in ('GOOD','PRICE','BAD')])))
         normal=ns['scan_candidates'](screener,None,set())

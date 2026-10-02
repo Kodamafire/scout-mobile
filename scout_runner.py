@@ -2,6 +2,7 @@ from shadow_profit_trial import update_trial, trial_html
 from profit_variants_dashboard import variants_html
 from scout_research_log import account_snapshot, record_inputs
 from scout_portfolio_report import portfolio_html
+from scout_volume import volume_window, same_time_volume
 # STEP 1 — INSTALL, IMPORT, AND CONFIGURE
 
 import base64
@@ -29,10 +30,10 @@ from alpaca.data.enums import DataFeed, MostActivesBy
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.historical.screener import ScreenerClient
 from alpaca.data.requests import StockBarsRequest, MostActivesRequest
-from alpaca.data.timeframe import TimeFrame
+from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
-from alpaca.trading.requests import GetOrdersRequest, MarketOrderRequest
+from alpaca.trading.requests import GetOrdersRequest, MarketOrderRequest, GetCalendarRequest
 
 PACIFIC = ZoneInfo("America/Los_Angeles")
 
@@ -72,6 +73,7 @@ class ScoutConfig:
     min_avg_dollar_volume: float = 20_000_000.0
     min_relative_volume: float = 1.10
     min_rs20: float = 2.0
+    entry_quality_policy: str = 'mandatory_liquidity_same_time_volume_v1'
 
     # Position management
     hard_stop_pct: float = -7.5
@@ -124,6 +126,15 @@ def connect():
     account = trading.get_account()
     if str(getattr(account, "status", "")).upper().endswith("CLOSED"):
         raise RuntimeError("Alpaca paper account is closed.")
+    observed_at = datetime.now(PACIFIC)
+    data._scout_volume_cache = {}
+    data._scout_volume_at = observed_at
+    try:
+        data._scout_volume_window = volume_window(trading.get_calendar(GetCalendarRequest(
+            start=(observed_at - timedelta(days=70)).date(), end=observed_at.date())), observed_at)
+    except Exception as exc:
+        print("Same-time volume calendar unavailable:", type(exc).__name__)
+        data._scout_volume_window = None
     return trading, data, screener, account
 
 def mount_and_load_state():
@@ -152,7 +163,7 @@ def save_state(state):
     temp.write_text(json.dumps(state, indent=2), encoding="utf-8")
     temp.replace(STATE_FILE)
 
-def bars_frame(data_client, symbols, days=420):
+def bars_frame(data_client, symbols, days=420, with_volume=False):
     symbols = sorted({str(s).upper() for s in symbols if s})
     if not symbols:
         return {}
@@ -175,6 +186,28 @@ def bars_frame(data_client, symbols, days=420):
                 pass
     elif len(symbols) == 1:
         result[symbols[0]] = raw.copy().sort_index()
+    if with_volume:
+        cache = getattr(data_client, '_scout_volume_cache', {})
+        window = getattr(data_client, '_scout_volume_window', None)
+        missing = [s for s in result if s not in cache]
+        if missing and window is not None:
+            try:
+                request = StockBarsRequest(symbol_or_symbols=missing,
+                    timeframe=TimeFrame(15, TimeFrameUnit.Minute),
+                    start=window[1][0][0].to_pydatetime(),
+                    end=window[0][1].to_pydatetime(), feed=DataFeed.IEX)
+                intraday = data_client.get_stock_bars(request).df
+                for symbol in missing:
+                    try:
+                        frame = intraday.xs(symbol, level=0) if isinstance(intraday.index, pd.MultiIndex) else intraday if len(missing) == 1 else None
+                        cache[symbol] = same_time_volume(frame, window)
+                    except (KeyError, AttributeError):
+                        cache[symbol] = same_time_volume(None, window)
+            except Exception as exc:
+                print("Same-time volume bars unavailable:", type(exc).__name__)
+        for symbol, frame in result.items():
+            frame.attrs['scout_volume'] = cache.get(symbol, same_time_volume(None, window))
+        data_client._scout_volume_cache = cache
     return result
 
 def indicators(frame, spy_frame=None):
@@ -222,7 +255,15 @@ def indicators(frame, spy_frame=None):
     }
     if not all(np.isfinite(v) for v in latest.values() if isinstance(v, (int, float))):
         return None
+    if 'scout_volume' in frame.attrs:
+        latest.update(frame.attrs['scout_volume'])
     return latest
+
+def entry_eligible(m):
+    """Mandatory gates cannot be outweighed by technical scoring points."""
+    return (CFG.min_price <= m.get('close', 0) <= CFG.max_price
+            and m.get('avg_dollar_volume', 0) >= CFG.min_avg_dollar_volume
+            and m.get('relative_volume_status', 'OK') == 'OK')
 
 def entry_score(m):
     checks = {
@@ -389,7 +430,7 @@ def scan_candidates(screener, data_client, held_symbols, research_sink=None):
     if research_sink is not None:
         research_sink.update(symbols=symbols,rows=[],status="STARTED")
     requested = list(dict.fromkeys(["SPY"] + symbols))
-    frames = bars_frame(data_client, requested)
+    frames = bars_frame(data_client, requested, with_volume=True)
     spy = frames.get("SPY")
     scored = []
     for symbol in symbols:
@@ -401,7 +442,7 @@ def scan_candidates(screener, data_client, held_symbols, research_sink=None):
         score, checks = entry_score(m)
         if research_sink is not None:
             research_sink["rows"].append({"symbol": symbol, "entry_score": score, "metrics": m, "checks": checks})
-        if not (CFG.min_price <= m["close"] <= CFG.max_price):
+        if not entry_eligible(m):
             continue
         if score >= CFG.entry_score_min:
             scored.append({"symbol": symbol, "entry_score": score, **m, "checks": checks})
@@ -421,7 +462,7 @@ def scan_shadow(screener, data_client, held_symbols, main_candidates, tracked_sy
         if getattr(row, "symbol", None)
     ))
     main_symbols = [row["symbol"] for row in main_candidates]
-    frames = bars_frame(data_client, ["SPY", *symbols, *main_symbols, *held_symbols, *tracked_symbols])
+    frames = bars_frame(data_client, ["SPY", *symbols, *main_symbols, *held_symbols, *tracked_symbols], with_volume=True)
     spy = frames.get("SPY")
     spy_metrics = indicators(spy) if spy is not None else None
     regime = shadow_market_regime(spy_metrics)
@@ -591,6 +632,9 @@ def execute_upgrade_rotation_if_allowed(trading, upgrade, market_open, open_orde
     }
     if not upgrade:
         return result
+    if not entry_eligible(upgrade['candidate']):
+        result['status'] = 'SKIPPED — ENTRY QUALITY GATE'
+        return result
 
     confirmations = int(upgrade.get("upgrade_confirmation", 0))
     if not upgrade.get("upgrade_confirmed", False):
@@ -717,7 +761,9 @@ def submit_buys_if_allowed(trading, candidates, account, market_open, held_symbo
     for i, row in enumerate(candidates[:limit]):
         symbol = row["symbol"]
         status = "QUALIFIED"
-        if symbol in open_orders or symbol in held_symbols:
+        if not entry_eligible(row):
+            status = "SKIPPED — ENTRY QUALITY GATE"
+        elif symbol in open_orders or symbol in held_symbols:
             status = "SKIPPED — DUPLICATE"
         elif budget_each < CFG.minimum_order_dollars:
             status = "SKIPPED — CASH RESERVE"
@@ -840,6 +886,7 @@ def dashboard_html(report):
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}.activity-row{{border-top:1px solid #223955;padding:9px 0}}.activity-row b{{font-size:14px}}.activity-row small{{float:right;color:#8ca3bf}}.activity-row p{{margin:4px 0 0;color:#a8bad0;font-size:13px}}details summary{{cursor:pointer;color:#8dc5ff;padding:10px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
+    <p class="sub">New entries must pass the $20 million average daily dollar-volume minimum on our IEX feed. Volume strength compares completed 15-minute intervals with the same part of 20 earlier trading sessions. Missing volume data blocks new entries.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
     {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
@@ -1024,7 +1071,7 @@ def run_scout_cycle():
         source_root = Path(__file__).parent
         report["research_log"] = record_inputs(
             STATE_FILE.parent / "research", cycle, started, market_open, asdict(CFG), research_inputs,
-            [source_root / name for name in ("scout_runner.py", "scout_profit_protection.py", "scout_shadow_v48.py")])
+            [source_root / name for name in ("scout_runner.py", "scout_profit_protection.py", "scout_shadow_v48.py", "scout_volume.py")])
     except Exception as exc:
         print("Research input logging unavailable:", type(exc).__name__)
         report["research_log"] = {"status": "UNAVAILABLE"}
@@ -1056,4 +1103,3 @@ def run_scout_cycle():
 
 if __name__ == "__main__":
     scout_report = run_scout_cycle()
-

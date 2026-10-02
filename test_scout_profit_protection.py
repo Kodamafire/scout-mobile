@@ -80,7 +80,7 @@ class RunnerTests(unittest.TestCase):
         ns['MarketOrderRequest'] = lambda **kw: kw
         ns['OrderSide'] = NS(BUY='buy', SELL='sell')
         ns['TimeInForce'] = NS(DAY='day')
-        candidates = [{'symbol': 'ABC'}, {'symbol': 'XYZ'}]
+        candidates = [dict(symbol=s, close=100, avg_dollar_volume=1e8) for s in ('ABC', 'XYZ')]
         account = NS(equity=100000, cash=36000)
         ns['submit_buys_if_allowed'](trading, candidates, account, False, set(), {})
         trading.submit_order.assert_not_called()
@@ -105,7 +105,7 @@ class RunnerTests(unittest.TestCase):
                 get_account=Mock(return_value=NS(equity=100000, cash=60000)),
                 submit_order=Mock(side_effect=[NS(id='sell'), NS(id='buy')]))
             upgrade = {'upgrade_confirmed': True, 'upgrade_confirmation': 3,
-                       'replace_symbol': 'OLD', 'candidate': {'symbol': 'NEW'}}
+                       'replace_symbol': 'OLD', 'candidate': dict(symbol='NEW', close=100, avg_dollar_volume=1e8)}
             result = ns['execute_upgrade_rotation_if_allowed'](trading, upgrade, True, {})
             self.assertTrue(result['buy_filled'])
             buy = trading.submit_order.call_args_list[1].kwargs['order_data']

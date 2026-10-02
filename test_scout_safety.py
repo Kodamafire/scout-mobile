@@ -16,7 +16,7 @@ from scout_portfolio_report import portfolio_html
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
 tree = ast.parse(source)
-names = {'ScoutConfig', 'prepare_confirmation_cycle', 'analyze_position',
+names = {'ScoutConfig', 'entry_eligible', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'submit_buys_if_allowed', 'execute_upgrade_rotation_if_allowed', 'dashboard_html', 'run_scout_cycle'}
 ns = {'portfolio_html': portfolio_html, 'Path': Path, '__file__': str(Path(__file__).with_name('scout_runner.py')), 'asdict': asdict, 'STATE_FILE': Path('/tmp/scout-test-state.json'), 'account_snapshot': account_snapshot, 'record_inputs': __import__('unittest.mock',fromlist=['Mock']).Mock(return_value={'status':'SIMULATED'}), 'variants_html': variants_html, 'update_trial': update_trial, 'trial_html': trial_html, 'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
@@ -167,5 +167,4 @@ class ScoutSafetyTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
 
