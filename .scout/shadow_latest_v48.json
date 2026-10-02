@@ -1,6 +1,6 @@
 {
-  "cycle": "20261002_141146",
-  "updated": "2026-10-02T14:11:46.835629-07:00",
+  "cycle": "20261002_143100",
+  "updated": "2026-10-02T14:31:00.879640-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,35 +11,10 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 78,
-    "qualified_long": 1,
+    "symbols_scored": 77,
+    "qualified_long": 0,
     "qualified_short": 10,
     "long": [
-      {
-        "symbol": "MSTR",
-        "direction": "LONG",
-        "price": 159.98,
-        "setup_score": 75,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
       {
         "symbol": "ITUB",
         "direction": "LONG",
@@ -261,6 +236,31 @@
           "momentum_live": 25,
           "rsi_window": 5,
           "volume_confirm": 15,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "PLTR",
+        "direction": "LONG",
+        "price": 188.8,
+        "setup_score": 70,
+        "entry_score": 60,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
+        "held": true,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 15,
+          "relative_strength": 10,
+          "participation": 5,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 5,
+          "rsi_window": 20,
+          "volume_confirm": 5,
           "relative_strength": 10
         },
         "required_entry": 70
@@ -1247,31 +1247,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "MSTR",
-        "direction": "LONG",
-        "price": 159.98,
-        "setup_score": 75,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "PLTR",
         "direction": "LONG",
         "price": 188.8,
@@ -1358,11 +1333,6 @@
       },
       {
         "symbol": "CCL",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "MSTR",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
