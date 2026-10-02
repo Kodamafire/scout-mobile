@@ -2341,6 +2341,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|HPE|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T10:57:48.207458-07:00",
+      "symbol": "HPE",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 85,
+      "entry_score": 50,
+      "reference_price": 69.805,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
