@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-01T16:52:46.806482-07:00",
+  "last_cycle": "2026-10-02T06:10:42.979174-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -4729,7 +4729,8 @@
       "20261001_161042",
       "20261001_162418",
       "20261001_163937",
-      "20261001_165246"
+      "20261001_165246",
+      "20261002_061042"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4765,7 +4766,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-01T23:52:49.704230+00:00",
+      "checked_at": "2026-10-02T13:10:46.366574+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
@@ -6737,6 +6738,46 @@
       "updated": "2026-10-01T16:52:46.806482-07:00",
       "symbol": "WBD",
       "pnl_pct": 3.819,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.2197375683596006,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261002_061042",
+      "updated": "2026-10-02T06:10:42.979174-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": -0.019,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.740101549469828,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261002_061042",
+      "updated": "2026-10-02T06:10:42.979174-07:00",
+      "symbol": "INTC",
+      "pnl_pct": 1.649,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 4.06445,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261002_061042",
+      "updated": "2026-10-02T06:10:42.979174-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 13.439,
+      "runner_floor": 4.0916838977857175,
+      "runner_signal": false,
+      "legacy_floor": 9.834462815422743,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261002_061042",
+      "updated": "2026-10-02T06:10:42.979174-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.8580000000000005,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": 2.2197375683596006,
