@@ -2290,6 +2290,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|HYG|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T10:28:43.469160-07:00",
+      "symbol": "HYG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 75,
+      "reference_price": 76.84,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
