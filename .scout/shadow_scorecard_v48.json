@@ -2086,6 +2086,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|SMCI|LONG|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:34:55.942312-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 43.195,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|PSQ|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T08:34:55.942312-07:00",
+      "symbol": "PSQ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 82,
+      "entry_score": 80,
+      "reference_price": 24.52,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
