@@ -1950,6 +1950,74 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|SDEV|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T07:57:29.125965-07:00",
+      "symbol": "SDEV",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 60,
+      "reference_price": 6.78,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|CYCU|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T07:57:29.125965-07:00",
+      "symbol": "CYCU",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 40,
+      "reference_price": 4.13,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|MSTR|LONG|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T07:57:29.125965-07:00",
+      "symbol": "MSTR",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 161.28,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|TNMG|LONG|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T07:57:29.125965-07:00",
+      "symbol": "TNMG",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 4.33,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
