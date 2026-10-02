@@ -1729,6 +1729,159 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|IBIT|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "IBIT",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 20,
+      "reference_price": 49.115,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|TNMG|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "TNMG",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 30,
+      "reference_price": 4.85,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|SOFI|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "SOFI",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 87,
+      "entry_score": 80,
+      "reference_price": 15.91,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|MSTR|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "MSTR",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 55,
+      "reference_price": 166.92,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|SMCI|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 55,
+      "reference_price": 43.55,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|CIFR|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "CIFR",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 82,
+      "entry_score": 80,
+      "reference_price": 16.17,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|ON|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "ON",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 77,
+      "entry_score": 55,
+      "reference_price": 84.45,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|GOW|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "GOW",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 75,
+      "reference_price": 3.46,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-02|SMR|SHORT|QUALIFIED",
+      "session": "2026-10-02",
+      "at": "2026-10-02T06:56:21.337792-07:00",
+      "symbol": "SMR",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 7.72,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
