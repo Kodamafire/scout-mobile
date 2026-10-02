@@ -2256,6 +2256,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-02|EWZ|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-02",
+      "at": "2026-10-02T09:48:19.526735-07:00",
+      "symbol": "EWZ",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 60,
+      "reference_price": 37.335,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
