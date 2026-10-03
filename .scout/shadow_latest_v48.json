@@ -1,6 +1,6 @@
 {
-  "cycle": "20261002_165201",
-  "updated": "2026-10-02T16:52:01.250540-07:00",
+  "cycle": "20261003_064032",
+  "updated": "2026-10-03T06:40:32.321540-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -86,31 +86,6 @@
           "momentum_live": 25,
           "rsi_window": 20,
           "volume_confirm": 5,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "BBD",
-        "direction": "LONG",
-        "price": 3.64,
-        "setup_score": 80,
-        "entry_score": 65,
-        "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 25,
-          "relative_strength": 15,
-          "participation": 10,
-          "liquidity": 0
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 20,
-          "volume_confirm": 15,
           "relative_strength": 10
         },
         "required_entry": 70
@@ -211,6 +186,31 @@
           "momentum_live": 5,
           "rsi_window": 20,
           "volume_confirm": 15,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "BBD",
+        "direction": "LONG",
+        "price": 3.64,
+        "setup_score": 75,
+        "entry_score": 55,
+        "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_strength": 15,
+          "participation": 5,
+          "liquidity": 0
+        },
+        "entry_parts": {
+          "not_extended": 5,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 5,
           "relative_strength": 10
         },
         "required_entry": 70
@@ -947,31 +947,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "RWM",
-        "direction": "LONG",
-        "price": 14.225,
-        "setup_score": 52,
-        "entry_score": 70,
-        "decision": "WATCH \u2014 SETUP TOO WEAK",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 0,
-          "momentum": 15,
-          "relative_strength": 15,
-          "participation": 15,
-          "liquidity": 7
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "SMCI",
         "direction": "LONG",
         "price": 43.69,
@@ -1323,11 +1298,6 @@
       },
       {
         "symbol": "EWZ",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "RWM",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
