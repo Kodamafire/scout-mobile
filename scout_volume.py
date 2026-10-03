@@ -42,7 +42,7 @@ def volume_window(sessions, observed_at, lookback=20):
 def same_time_volume(frame, window):
     unavailable = dict(relative_volume=0.0, relative_volume_status='UNAVAILABLE',
                        relative_volume_method='same_time_20_sessions_iex')
-    if frame is None or frame.empty or window is None:
+    if frame is None or frame.empty or window is None or 'volume' not in frame:
         return unavailable
     current, prior = window
     df = frame.copy()
@@ -55,9 +55,10 @@ def same_time_volume(frame, window):
     totals = []
     for start, end in [current, *prior]:
         part = volume[(volume.index >= start) & (volume.index < end)]
-        # An empty interval is not silently interpreted as zero volume.
-        # A missing last interval blocks potentially stale scanner inputs.
-        if (part.empty or part.index.max() < end - pd.Timedelta(minutes=15)
+        # Every completed interval must exist, including interior bars.
+        # Sparse IEX activity is unknown, not an implicit zero-volume bar.
+        expected = pd.date_range(start, end, freq='15min', inclusive='left')
+        if (part.empty or not part.index.equals(expected)
                 or not all(isfinite(v) for v in part) or (part < 0).any()):
             return unavailable
         totals.append(float(part.sum()))
