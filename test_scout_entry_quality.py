@@ -59,6 +59,32 @@ class VolumeTests(unittest.TestCase):
             frame = self.frame.copy();frame['volume'] = value
             self.assertEqual(same_time_volume(frame, window)['relative_volume_status'], 'UNAVAILABLE')
 
+    def test_missing_interior_bar_blocks_current_and_reference_windows(self):
+        window = volume_window(self.sessions, self.now)
+        for date in ('2026-10-02', '2026-10-01'):
+            with self.subTest(date=date):
+                frame = self.frame.drop(pd.Timestamp(date+' 09:45', tz='America/New_York'))
+                self.assertEqual(same_time_volume(frame, window)['relative_volume_status'], 'UNAVAILABLE')
+
+    def test_off_grid_bar_cannot_replace_missing_interval(self):
+        window = volume_window(self.sessions, self.now)
+        frame = self.frame.drop(pd.Timestamp('2026-10-02 09:45', tz='America/New_York'))
+        frame.loc[pd.Timestamp('2026-10-02 09:46', tz='America/New_York'), 'volume'] = 150
+        self.assertEqual(same_time_volume(frame, window)['relative_volume_status'], 'UNAVAILABLE')
+
+    def test_missing_volume_column_blocks_without_crashing(self):
+        self.assertEqual(same_time_volume(self.frame.rename(columns={'volume':'close'}),
+            volume_window(self.sessions, self.now))['relative_volume_status'], 'UNAVAILABLE')
+
+    def test_explicit_zero_interval_is_valid_and_duplicates_do_not_inflate(self):
+        window = volume_window(self.sessions, self.now)
+        frame = self.frame.copy()
+        frame.loc[pd.Timestamp('2026-10-02 09:45', tz='America/New_York'), 'volume'] = 0
+        frame = pd.concat([frame, frame.iloc[[-1]]])
+        result = same_time_volume(frame, window)
+        self.assertEqual(result['relative_volume_status'], 'OK')
+        self.assertEqual(result['relative_volume'], 1.0)
+
     def test_early_close_excluded_when_window_is_longer(self):
         self.sessions[-2].close = '2026-10-01 13:00'
         window = volume_window(self.sessions, pd.Timestamp('2026-10-02 14:16', tz='America/New_York'))
