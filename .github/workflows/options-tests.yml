@@ -1,0 +1,37 @@
+name: Scout Options Foundation Tests
+on:
+  pull_request:
+    paths:
+      - 'scout_options/**'
+      - 'test_scout_options.py'
+      - 'test_options_dashboard.py'
+      - 'test_paper_gateway.py'
+      - 'test_options_setup.py'
+      - 'test_options_diagnostics.py'
+      - 'test_options_local_runner.py'
+      - 'test_options_startup_verification.py'
+      - 'test_options_history.py'
+      - 'test_options_forward.py'
+      - 'test_options_quotes.py'
+      - 'test_options_read_health.py'
+      - 'test_options_health.py'
+      - 'test_options_status_server.py'
+      - 'deploy/options/**'
+      - 'options.html'
+      - '.github/workflows/options-tests.yml'
+concurrency:
+  group: options-tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements-scout.txt
+      - run: python -m unittest discover -q

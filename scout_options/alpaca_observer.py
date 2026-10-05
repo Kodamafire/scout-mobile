@@ -1,0 +1,247 @@
+"""Read-only Alpaca feed adapter. TradingClient is permanently paper=True.
+
+Quotes drive a LOCAL reference simulator; no orders are sent to Alpaca.
+"""
+import asyncio
+import os
+import threading
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
+from pathlib import Path
+from dataclasses import asdict
+
+from alpaca.data.enums import DataFeed, OptionsFeed
+from alpaca.data.historical import StockHistoricalDataClient, OptionHistoricalDataClient
+from alpaca.data.live.option import OptionDataStream
+from alpaca.data.requests import StockBarsRequest, OptionChainRequest
+from alpaca.data.timeframe import TimeFrame
+from alpaca.trading.client import TradingClient
+from alpaca.trading.enums import QueryOrderStatus, AssetStatus
+from alpaca.trading.requests import GetOrdersRequest, GetOptionContractsRequest
+from .core import Config, Contract, PaperEngine, Quote, directional_signal
+from .service import manage, write_status
+from .credentials import load_credentials
+from .read_health import ReadHealth
+
+EASTERN = ZoneInfo('America/New_York')
+UNIVERSE = ('SPY', 'QQQ', 'IWM')
+
+
+def enum_value(value): return getattr(value, 'value', value)
+
+
+class Observer:
+    def __init__(self, engine, key, secret, feed):
+        self.engine = engine
+        # No configurable endpoint or live-trading switch.
+        self.trading = TradingClient(key, secret, paper=True)
+        self.stocks = StockHistoricalDataClient(key, secret)
+        self.options = OptionHistoricalDataClient(key, secret)
+        self.stream = OptionDataStream(key, secret, feed=feed)
+        self.feed = feed.value
+        self.context = (False, datetime.now(timezone.utc), None)
+        self.account = None
+        self.contracts = {}
+        self.subscribed = set()
+        self.decisions = []
+        self.recorder = None
+        self.reads = ReadHealth()
+
+    def refresh_account(self):
+        clock = self.trading.get_clock()
+        account = self.trading.get_account()
+        positions = self.trading.get_all_positions()
+        orders = self.trading.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN))
+        now = datetime.now(timezone.utc)
+        self.context = (bool(clock.is_open), clock.next_close, now)
+        self.account = dict(at=now, equity=float(account.equity), cash=float(account.cash),
+                            gross_exposure=sum(abs(float(p.market_value)) for p in positions),
+                            pending_orders=bool(orders))
+        self.reads.success('account',now,'Market open' if clock.is_open else 'Market closed')
+
+    async def quote_handler(self, q):
+        now=datetime.now(timezone.utc)
+        if getattr(self,'reads',None):self.reads.success('stream',now,'Quote update received')
+        if self.recorder:
+            contract=self.contracts.get(q.symbol)
+            self.recorder.quote(q,self.feed,now,asdict(contract) if contract else None)
+        self.engine.on_quote(Quote(q.symbol, float(q.bid_price), float(q.ask_price),
+            int(q.bid_size), int(q.ask_size), q.timestamp, self.feed), now)
+
+    def discover(self):
+        now = datetime.now(timezone.utc)
+        day = now.astimezone(EASTERN).date()
+        # Closed one-minute bars, restricted to today's regular session.
+        bars = self.stocks.get_stock_bars(StockBarsRequest(symbol_or_symbols=list(UNIVERSE),
+            timeframe=TimeFrame.Minute, start=datetime.combine(day, datetime.min.time(), EASTERN),
+            end=now, feed=DataFeed.IEX))
+        signals = []
+        decisions = []
+        for symbol in UNIVERSE:
+            rows = [(b.timestamp, float(b.close), float(b.volume)) for b in bars.data.get(symbol, [])
+                    if b.timestamp.astimezone(EASTERN).hour*60+b.timestamp.astimezone(EASTERN).minute >= 570
+                    and b.timestamp+timedelta(minutes=1) <= now]
+            signal = directional_signal(symbol, rows, now)
+            if not signal:
+                decisions.append(dict(underlying=symbol, stage='WAIT', reason='No completed-minute trend/volume signal.'))
+                continue
+            signals.append(signal)
+            if self.recorder:self.recorder.signal(signal,self.feed,now)
+            lower, upper = day+timedelta(days=self.engine.cfg.min_dte), day+timedelta(days=self.engine.cfg.max_dte)
+            close = rows[-1][1]
+            response = self.trading.get_option_contracts(GetOptionContractsRequest(
+                underlying_symbols=[symbol], status=AssetStatus.ACTIVE,
+                expiration_date_gte=lower, expiration_date_lte=upper,
+                strike_price_gte=str(close*.90), strike_price_lte=str(close*1.10), limit=1000))
+            snapshots = self.options.get_option_chain(OptionChainRequest(underlying_symbol=symbol,
+                expiration_date_gte=lower, expiration_date_lte=upper,
+                strike_price_gte=str(close*.90), strike_price_lte=str(close*1.10), feed=OptionsFeed(self.feed)))
+            choices = []
+            for c in response.option_contracts:
+                snap = snapshots.get(c.symbol)
+                greeks = getattr(snap, 'greeks', None)
+                if (not snap or greeks is None or not c.open_interest_date
+                    or not 0 <= (day-c.open_interest_date).days <= 7 or c.root_symbol != symbol):
+                    continue
+                contract = Contract(c.symbol, symbol, str(enum_value(c.type)).upper(), c.expiration_date,
+                    float(greeks.delta), float(snap.implied_volatility or 0), int(c.open_interest or 0),
+                    now, int(c.size), bool(c.tradable))
+                if (contract.kind == signal.direction and contract.multiplier == 100 and contract.tradable
+                    and .35 <= abs(contract.delta) <= .65 and contract.open_interest >= self.engine.cfg.min_open_interest):
+                    choices.append(contract)
+            choices.sort(key=lambda c: (abs(abs(c.delta)-.5), -c.open_interest, c.symbol))
+            # Bounded stream subscriptions. This is a shortlist, not a full-market scan.
+            for contract in choices[:3]:
+                self.contracts[contract.symbol] = contract
+                if contract.symbol not in self.subscribed and len(self.subscribed) < 50:
+                    self.stream.subscribe_quotes(self.quote_handler, contract.symbol)
+                    self.subscribed.add(contract.symbol)
+            decisions.append(dict(underlying=symbol, stage=signal.direction, reason=signal.reason,
+                                  shortlisted=min(3,len(choices)), truncated=bool(response.next_page_token)))
+        self.decisions = decisions
+        self.reads.success('scanner',detail='Completed contract scan')
+        return signals
+
+    def current_health(self,now=None):
+        result=self.reads.snapshot(now)
+        account=result['account']
+        result['market']=account['detail'] if account['fresh'] else 'Market state unverified'
+        result['scanner']['current_state']=('Waiting for market open' if account['fresh'] and not self.context[0]
+            else 'Blocked: current account/clock unavailable' if not account['fresh']
+            else 'Current scan available' if result['scanner']['fresh']
+            else 'Scan overdue' if result['scanner']['status']=='OK' else result['scanner']['status'])
+        return result
+
+    def restore_subscriptions(self):
+        # Recovered held options require fresh quotes; never reuse saved prices for exits.
+        snapshot = self.engine.snapshot()
+        symbols = set(snapshot['positions']) | {o['symbol'] for o in snapshot['orders'].values() if o['status'] == 'OPEN'}
+        for symbol in symbols:
+            self.stream.subscribe_quotes(self.quote_handler, symbol)
+            self.subscribed.add(symbol)
+
+
+def stop_stream(stream, thread):
+    """The SDK has no loop before run(); stopping an unstarted stream raises."""
+    if thread is None:
+        return
+    try:
+        stream.stop()
+    except Exception:
+        # Shutdown must release the ledger even if the SDK loop already closed.
+        pass
+    thread.join(timeout=3)
+
+
+async def run(path, capital, status_path):
+    key, secret = load_credentials()
+    feed = OptionsFeed(os.environ.get('SCOUT_OPTIONS_FEED', 'opra'))
+    engine = PaperEngine(path, capital)
+    observer = Observer(engine, key, secret, feed)
+    from .quote_recorder import QuoteRecorder
+    observer.recorder=QuoteRecorder(Path(path).parent/'option-quotes.sqlite')
+    stop = asyncio.Event()
+    observer.restore_subscriptions()
+    stream_thread = None
+    forward_status = dict(status='Preparing frozen future-session study',sessions_available=0)
+
+    def run_stream():
+        try:
+            observer.stream.run()
+        except Exception as exc:
+            observer.reads.failure('stream',exc)
+            with engine.lock:
+                engine._alert(datetime.now(timezone.utc), 'Option stream failed: '+type(exc).__name__)
+                engine._save()
+
+    async def account_task():
+        while not stop.is_set():
+            try:
+                await asyncio.to_thread(observer.refresh_account)
+            except Exception as exc:
+                observer.reads.failure('account',exc)
+                with engine.lock:
+                    engine._alert(datetime.now(timezone.utc), 'Account/clock read unavailable: '+type(exc).__name__)
+                    engine._save()
+            await asyncio.sleep(5)
+
+    async def scan_task():
+        nonlocal stream_thread
+        while not stop.is_set():
+            try:
+                opened, close_at, observed = observer.context
+                now = datetime.now(timezone.utc)
+                if observed and opened and 0 <= (now-observed).total_seconds() <= 15:
+                    signals = await asyncio.to_thread(observer.discover)
+                    engine.update_signals(signals)
+                    if observer.subscribed and stream_thread is None:
+                        stream_thread = threading.Thread(target=run_stream, daemon=True)
+                        stream_thread.start()
+                    for signal in signals:
+                        if observer.account is None:
+                            continue
+                        # Fresh streamed quote, not REST chain marks, is required to enter.
+                        result = engine.enter(list(observer.contracts.values()), signal,
+                                              datetime.now(timezone.utc), observer.account)
+                        observer.decisions.append(dict(underlying=signal.underlying, stage=result))
+
+            except Exception as exc:
+                observer.reads.failure('scanner',exc)
+                with engine.lock:
+                    engine._alert(datetime.now(timezone.utc), 'Scanner unavailable: '+type(exc).__name__)
+                    engine._save()
+            await asyncio.sleep(engine.cfg.scan_seconds)
+
+    async def forward_task():
+        nonlocal forward_status
+        from .forward_test import cycle
+        # Separate read-only clients keep slow historical requests off the management loop.
+        stocks=StockHistoricalDataClient(key,secret)
+        trading=TradingClient(key,secret,paper=True)
+        while not stop.is_set():
+            try:
+                forward_status=await asyncio.to_thread(cycle,Path(path).parent,stocks,trading,
+                                                       datetime.now(timezone.utc))
+            except Exception as exc:
+                forward_status=dict(forward_status,status='Forward study unavailable: '+type(exc).__name__,
+                                    checked_at=datetime.now(timezone.utc).isoformat())
+            await asyncio.sleep(300)
+
+    tasks = [asyncio.create_task(account_task()), asyncio.create_task(scan_task()),
+             asyncio.create_task(forward_task()),
+             asyncio.create_task(manage(engine, lambda: observer.context, status_path, stop,
+                 lambda: dict(feed=observer.feed, scanner=observer.decisions, universe=list(UNIVERSE),
+                              current_health=observer.current_health(),
+                              forward_test=forward_status,
+                              quote_recorder=dict(observer.recorder.snapshot(),subscribed_contracts=len(observer.subscribed)))))]
+    try:
+        await asyncio.gather(*tasks)
+    finally:
+        stop.set()
+        for task in tasks: task.cancel()
+        await asyncio.gather(*tasks, return_exceptions=True)
+        try:
+            stop_stream(observer.stream, stream_thread)
+        finally:
+            observer.recorder.close()
+            engine.close()
