@@ -21,6 +21,7 @@ from alpaca.trading.requests import GetOrdersRequest, GetOptionContractsRequest
 from .core import Config, Contract, PaperEngine, Quote, directional_signal
 from .service import manage, write_status
 from .credentials import load_credentials
+from .read_health import ReadHealth
 
 EASTERN = ZoneInfo('America/New_York')
 UNIVERSE = ('SPY', 'QQQ', 'IWM')
@@ -44,6 +45,7 @@ class Observer:
         self.subscribed = set()
         self.decisions = []
         self.recorder = None
+        self.reads = ReadHealth()
 
     def refresh_account(self):
         clock = self.trading.get_clock()
@@ -55,9 +57,11 @@ class Observer:
         self.account = dict(at=now, equity=float(account.equity), cash=float(account.cash),
                             gross_exposure=sum(abs(float(p.market_value)) for p in positions),
                             pending_orders=bool(orders))
+        self.reads.success('account',now,'Market open' if clock.is_open else 'Market closed')
 
     async def quote_handler(self, q):
         now=datetime.now(timezone.utc)
+        if getattr(self,'reads',None):self.reads.success('stream',now,'Quote update received')
         if self.recorder:
             contract=self.contracts.get(q.symbol)
             self.recorder.quote(q,self.feed,now,asdict(contract) if contract else None)
@@ -115,7 +119,18 @@ class Observer:
             decisions.append(dict(underlying=symbol, stage=signal.direction, reason=signal.reason,
                                   shortlisted=min(3,len(choices)), truncated=bool(response.next_page_token)))
         self.decisions = decisions
+        self.reads.success('scanner',detail='Completed contract scan')
         return signals
+
+    def current_health(self,now=None):
+        result=self.reads.snapshot(now)
+        account=result['account']
+        result['market']=account['detail'] if account['fresh'] else 'Market state unverified'
+        result['scanner']['current_state']=('Waiting for market open' if account['fresh'] and not self.context[0]
+            else 'Blocked: current account/clock unavailable' if not account['fresh']
+            else 'Current scan available' if result['scanner']['fresh']
+            else 'Scan overdue' if result['scanner']['status']=='OK' else result['scanner']['status'])
+        return result
 
     def restore_subscriptions(self):
         # Recovered held options require fresh quotes; never reuse saved prices for exits.
@@ -154,6 +169,7 @@ async def run(path, capital, status_path):
         try:
             observer.stream.run()
         except Exception as exc:
+            observer.reads.failure('stream',exc)
             with engine.lock:
                 engine._alert(datetime.now(timezone.utc), 'Option stream failed: '+type(exc).__name__)
                 engine._save()
@@ -163,6 +179,7 @@ async def run(path, capital, status_path):
             try:
                 await asyncio.to_thread(observer.refresh_account)
             except Exception as exc:
+                observer.reads.failure('account',exc)
                 with engine.lock:
                     engine._alert(datetime.now(timezone.utc), 'Account/clock read unavailable: '+type(exc).__name__)
                     engine._save()
@@ -189,6 +206,7 @@ async def run(path, capital, status_path):
                         observer.decisions.append(dict(underlying=signal.underlying, stage=result))
 
             except Exception as exc:
+                observer.reads.failure('scanner',exc)
                 with engine.lock:
                     engine._alert(datetime.now(timezone.utc), 'Scanner unavailable: '+type(exc).__name__)
                     engine._save()
@@ -213,6 +231,7 @@ async def run(path, capital, status_path):
              asyncio.create_task(forward_task()),
              asyncio.create_task(manage(engine, lambda: observer.context, status_path, stop,
                  lambda: dict(feed=observer.feed, scanner=observer.decisions, universe=list(UNIVERSE),
+                              current_health=observer.current_health(),
                               forward_test=forward_status,
                               quote_recorder=dict(observer.recorder.snapshot(),subscribed_contracts=len(observer.subscribed)))))]
     try:

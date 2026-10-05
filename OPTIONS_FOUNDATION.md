@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 243 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 248 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -394,3 +394,16 @@ bodies. An accepted REST request does not establish stream entitlement,
 freshness or executable fills; an empty contract response is inconclusive.
 The probe cannot buy data or change an account's subscriptions. Actual user
 entitlement and a market-open stream test remain pending desktop verification.
+
+### Current connection checks
+
+The Protection & alerts panel separates current account/clock, scanner and
+quote-stream reads from persisted alert history. A successful read clears its
+current error, while old alerts remain visible as history. Account reads expire
+after 15 seconds, scans after 120 seconds and quote-receipt health after 15
+seconds; a failed latest attempt is unavailable even after a recent success.
+A fresh closed-market clock displays “Waiting for market open”; a stale service
+heartbeat makes current readings unverified. Recorder readiness without
+subscriptions or received quotes is labeled explicitly instead of implying
+that quotes are being saved. These checks do not establish executable data
+quality or order readiness.
