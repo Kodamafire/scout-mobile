@@ -1,5 +1,6 @@
 import contextlib
 import io
+import json
 import tempfile
 import unittest
 from datetime import date,datetime,timedelta,timezone
@@ -7,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace as Obj
 from unittest.mock import Mock,patch
 from scout_options.history import HistoryStore,collect,six_year_start,main
-from scout_options.replay import evaluate_session,replay
+from scout_options.replay import evaluate_session,replay,comparison,nonoverlapping,time_bucket,summary_text
 
 UTC=timezone.utc
 DAY=date(2026,10,2)
@@ -87,8 +88,66 @@ class HistoryTests(unittest.TestCase):
     def test_leap_day_start(self):
         self.assertEqual(six_year_start(date(2024,2,29)),date(2018,2,28))
 
+    def test_cli_report_saves_coverage_and_replay_without_touching_bars(self):
+        self.save({'SPY':[bar(OPEN)]})
+        report=Path(self.tmp.name)/'reports'/'comparison.json'
+        output=io.StringIO()
+        with patch('sys.argv',['history','--replay','--start',DAY.isoformat(),
+                               '--end',(DAY+timedelta(days=1)).isoformat(),
+                               '--database',str(self.path),'--report',str(report)]), contextlib.redirect_stdout(output):
+            main()
+        saved=json.loads(report.read_text())
+        self.assertEqual(saved['replay']['sessions_available'],1)
+        self.assertEqual(saved['coverage']['symbols']['SPY']['bars_saved'],1)
+        self.assertEqual(self.store.db.execute('SELECT COUNT(*) FROM bars').fetchone()[0],1)
+        self.assertIn('Comparison report saved:',output.getvalue())
+
+    def test_report_cannot_replace_database(self):
+        with patch('sys.argv',['history','--database',str(self.path),'--report',str(self.path)]), contextlib.redirect_stderr(io.StringIO()):
+            with self.assertRaises(SystemExit) as exc:main()
+        self.assertEqual(exc.exception.code,2)
+
 
 class ReplayTests(unittest.TestCase):
+    def sample(self,direction='PUT',move=10,entry=OPEN,underlying='SPY'):
+        return dict(direction=direction,stock_move_bps=move,
+                    signed_move_bps=move if direction=='CALL' else -move,
+                    session=entry.date().isoformat(),underlying=underlying,
+                    entry_at=entry.isoformat(),exit_at=(entry+timedelta(minutes=15)).isoformat())
+
+    def test_baselines_use_same_windows_and_down_is_not_option_profit(self):
+        stats=comparison([self.sample('CALL',20),self.sample('PUT',10)])
+        self.assertEqual(stats['bot']['average_signed_stock_move_bps'],5)
+        self.assertEqual(stats['always_up']['average_signed_stock_move_bps'],15)
+        self.assertEqual(stats['always_down']['average_signed_stock_move_bps'],-15)
+        self.assertEqual(stats['equal_weight_session_means']['bot_minus_always_up_bps'],-10)
+        self.assertIsNone(comparison([])['bot']['average_signed_stock_move_bps'])
+
+    def test_nonoverlap_keeps_first_and_allows_exit_time_and_other_symbols(self):
+        rows=[self.sample(entry=OPEN+timedelta(minutes=15)),
+              self.sample(entry=OPEN+timedelta(minutes=1)),self.sample(),
+              self.sample(entry=OPEN+timedelta(minutes=1),underlying='QQQ')]
+        kept=nonoverlapping(rows)
+        self.assertEqual(len(kept),3)
+        self.assertEqual([s['underlying'] for s in kept],['SPY','QQQ','SPY'])
+        self.assertEqual(rows[1]['entry_at'],(OPEN+timedelta(minutes=1)).isoformat())
+
+    def test_session_weighting_does_not_overweight_busy_day(self):
+        rows=[self.sample('CALL',10) for _ in range(10)]
+        rows.append(self.sample('CALL',-10,OPEN+timedelta(days=1)))
+        stats=comparison(rows)
+        self.assertGreater(stats['bot']['average_signed_stock_move_bps'],0)
+        self.assertEqual(stats['equal_weight_session_means']['bot_bps'],0)
+
+    def test_time_buckets_use_exchange_timezone_in_winter_and_summer(self):
+        winter=datetime(2026,1,5,15,29,tzinfo=UTC)
+        self.assertEqual(time_bucket(self.sample(entry=winter)),'09:30-10:30 ET')
+        self.assertEqual(time_bucket(self.sample(entry=winter+timedelta(minutes=1))),'10:30-14:00 ET')
+        self.assertEqual(time_bucket(self.sample(entry=OPEN+timedelta(hours=4,minutes=30))),'14:00-16:00 ET')
+
+    def test_invalid_horizon_rejected(self):
+        with self.assertRaises(ValueError):evaluate_session('SPY',[],0)
+
     def bars(self):
         return [(OPEN+timedelta(minutes=i),100+i,100+i+.5,200 if i==20 else 100) for i in range(45)]
 
@@ -114,11 +173,16 @@ class ReplayTests(unittest.TestCase):
                     opened=OPEN+timedelta(days=i);day=opened.date()
                     data={'SPY':[bar(opened+timedelta(minutes=j),100+j,200 if j==20 else 100) for j in range(45)]}
                     store.save_session(day,opened,opened+timedelta(minutes=45),data,opened+timedelta(hours=8))
-                result=replay(store.db,DAY,DAY+timedelta(days=3))
+                progress=Mock()
+                result=replay(store.db,DAY,DAY+timedelta(days=3),progress=progress)
+                self.assertEqual(progress.call_args_list[0].args,(1,3,'2026-10-02'))
+                self.assertEqual(progress.call_args_list[-1].args,(3,3,'2026-10-04'))
                 self.assertEqual(result['held_out_start'],'2026-10-04')
                 self.assertEqual(result['results']['earlier']['overall']['observations'],2)
                 self.assertEqual(result['results']['held_out']['overall']['observations'],1)
                 self.assertIn('no option P&L',result['status'])
+                self.assertEqual(result['results']['held_out']['nonoverlapping']['overall']['bot']['observations'],1)
+                self.assertIn('not option profits',summary_text(result))
             finally:store.close()
 
 

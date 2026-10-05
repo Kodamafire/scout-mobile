@@ -135,9 +135,12 @@ def main():
     parser.add_argument('--database',default='.scout-options/stock-history.sqlite')
     parser.add_argument('--retry-incomplete',action='store_true')
     parser.add_argument('--max-sessions',type=int)
+    parser.add_argument('--report',type=Path,help='Save coverage and replay JSON; show a compact comparison in the terminal')
     args = parser.parse_args()
     if args.start >= args.end or (args.max_sessions is not None and args.max_sessions < 1):
         parser.error('Use start before end and a positive session limit')
+    if args.report and args.report.resolve() == Path(args.database).resolve():
+        parser.error('Report must not overwrite the history database')
     store = HistoryStore(args.database)
     try:
         if args.collect:
@@ -148,11 +151,32 @@ def main():
             print('Downloading free IEX stock history. No option prices or brokerage orders.',flush=True)
             collect(store,StockHistoricalDataClient(key,secret),TradingClient(key,secret,paper=True),
                     args.start,args.end,datetime.now(UTC),args.retry_incomplete,args.max_sessions)
-        print(json.dumps(store.summary(args.start,args.end),indent=2))
+        coverage = store.summary(args.start,args.end)
+        print(json.dumps(coverage,indent=2))
+        result = None
         if args.replay:
-            from .replay import replay
+            from .replay import replay,summary_text
             print('Replaying saved stock signals; this may take several minutes. No option P&L is calculated.',flush=True)
-            print(json.dumps(replay(store.db,args.start,args.end),indent=2))
+            result = replay(store.db,args.start,args.end,progress=lambda n,total,day:
+                            print(f'Replayed {n}/{total} sessions; latest {day}.',flush=True))
+            print(summary_text(result) if args.report else json.dumps(result,indent=2))
+        if args.report:
+            import os
+            import tempfile
+            args.report.parent.mkdir(parents=True,exist_ok=True)
+            # Replace only once the entire report has been serialized successfully.
+            with tempfile.NamedTemporaryFile(mode='w',dir=args.report.parent,delete=False,encoding='utf-8') as output:
+                temp_path = Path(output.name)
+                try:
+                    json.dump(dict(coverage=coverage,replay=result),output,indent=2)
+                except Exception:
+                    temp_path.unlink(missing_ok=True)
+                    raise
+            try:
+                os.replace(temp_path,args.report)
+            finally:
+                temp_path.unlink(missing_ok=True)
+            print(f'Comparison report saved: {args.report.resolve()}',flush=True)
     except KeyboardInterrupt:
         print('Download paused. Saved sessions will be reused on the next run.')
         raise SystemExit(130)

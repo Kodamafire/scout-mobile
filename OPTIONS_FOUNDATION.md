@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 212 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 219 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -250,3 +250,34 @@ claimed until real historical data has been collected and evaluated.
 Offline validation covers interruption/resume, invalid and missing data, atomic
 checkpoints, free-feed selection, early close, no future inputs to signals,
 gap rejection and chronological holdout. Actual API coverage remains unverified.
+
+### Matched comparisons
+
+```bash
+python -m scout_options.history --replay --start 2016-01-01 --report .scout-options/comparison.json
+```
+
+This reuses saved data without another download. Progress appears every 25
+sessions. The JSON report contains coverage, both chronological samples,
+overlapping results, matched baselines and nonoverlapping comparisons. The
+terminal shows a compact table. `always_up` and `always_down` measure signed
+stock movement on exactly the bot's signal windows, using the same entry, exit,
+symbol and gap filters. They test directional choice conditional on a signal,
+not timing against all possible entries or buy-and-hold returns.
+
+Nonoverlapping selection takes the first eligible signal for each underlying
+and waits until its fixed exit timestamp before accepting the next. Different
+symbols can overlap. Reports include calls/puts, symbols and predeclared entry
+time buckets in Eastern time (09:30–10:30, 10:30–14:00, 14:00–16:00), handling
+daylight-saving time. These are descriptive comparisons, not optimized filters.
+Session means give each day with signals equal weight; the JSON includes those
+daily means for inspection. Neither view makes observations independent or
+provides a statistical confidence claim. Days without signals do not contribute.
+
+The later sample has already been viewed. Keep the legacy `held_out` field for
+compatibility, but treat it as historical validation for any subsequent change.
+Do not select the best segment and claim a fresh out-of-sample result. A revised
+strategy requires a frozen rule and new future observations. Missing future
+windows also affect eligibility and can introduce selection bias. One-minute
+stock bars cannot test five-second exits, option-profit targets, Greeks or
+executable option quotes. These comparisons never place brokerage orders.
