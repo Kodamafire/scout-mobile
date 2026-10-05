@@ -18,6 +18,7 @@ from alpaca.trading.enums import QueryOrderStatus, AssetStatus
 from alpaca.trading.requests import GetOrdersRequest, GetOptionContractsRequest
 from .core import Config, Contract, PaperEngine, Quote, directional_signal
 from .service import manage, write_status
+from .credentials import load_credentials
 
 EASTERN = ZoneInfo('America/New_York')
 UNIVERSE = ('SPY', 'QQQ', 'IWM')
@@ -117,10 +118,20 @@ class Observer:
             self.subscribed.add(symbol)
 
 
+def stop_stream(stream, thread):
+    """The SDK has no loop before run(); stopping an unstarted stream raises."""
+    if thread is None:
+        return
+    try:
+        stream.stop()
+    except Exception:
+        # Shutdown must release the ledger even if the SDK loop already closed.
+        pass
+    thread.join(timeout=3)
+
+
 async def run(path, capital, status_path):
-    key, secret = os.environ.get('ALPACA_API_KEY'), os.environ.get('ALPACA_SECRET_KEY')
-    if not key or not secret:
-        raise RuntimeError('Existing Alpaca paper credentials must be available in the service environment.')
+    key, secret = load_credentials()
     feed = OptionsFeed(os.environ.get('SCOUT_OPTIONS_FEED', 'opra'))
     engine = PaperEngine(path, capital)
     observer = Observer(engine, key, secret, feed)
@@ -181,6 +192,7 @@ async def run(path, capital, status_path):
         stop.set()
         for task in tasks: task.cancel()
         await asyncio.gather(*tasks, return_exceptions=True)
-        observer.stream.stop()
-        if stream_thread: stream_thread.join(timeout=3)
-        engine.close()
+        try:
+            stop_stream(observer.stream, stream_thread)
+        finally:
+            engine.close()

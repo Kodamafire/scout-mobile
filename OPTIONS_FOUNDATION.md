@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 186 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 188 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -151,3 +151,9 @@ restart recovery, conservative cancellation and position mismatch checks. It is
 not connected to the scanner or simulator and has no activation CLI. No brokerage
 orders were sent. Shared risk coordination, actual account/feed validation,
 external alerts and always-on host supervision remain required.
+
+Local credential input can be checked without displaying values using
+`python -m scout_options.credentials`. Whitespace and unexpected characters
+are rejected before SDK initialization; format validation is not authentication.
+Stopping a service that never started its quote stream no longer calls the SDK's
+uninitialized event loop. Ctrl+C exits without a traceback after cleanup.

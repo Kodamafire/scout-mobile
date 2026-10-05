@@ -83,4 +83,8 @@ def main():
         asyncio.run(run(args.ledger, args.capital, args.status))
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Scout options service stopped. No brokerage orders were submitted.')
