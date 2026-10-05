@@ -14,6 +14,7 @@ on:
       - 'scout_research_log.py'
       - 'scout_volume.py'
       - 'scout_portfolio_report.py'
+      - 'scout_strategy_desk.py'
       - '.github/workflows/scout-trader.yml'
   schedule:
     - cron: "*/15 13-23 * * 1-5"
