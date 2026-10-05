@@ -2735,6 +2735,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-05|SMCI|LONG|QUALIFIED",
+      "session": "2026-10-05",
+      "at": "2026-10-05T08:02:24.071017-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 90,
+      "reference_price": 43.57,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
