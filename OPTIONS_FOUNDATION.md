@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 190 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 193 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -163,3 +163,9 @@ privately for the existing paper key and secret, strips surrounding whitespace
 and terminal paste delimiters, validates format, then starts the read-only
 indicative service with the existing $10,000 research ledger. It does not save
 credentials, change subscriptions or submit broker orders.
+
+`python -m scout_options.diagnostics --running` checks paper account, clock and
+position reads using the same user's single running options service credentials.
+It reads that process environment locally and prints only safe status labels and
+numeric HTTP codes. It never outputs credential values, remote error bodies,
+account details, or makes brokerage changes.
