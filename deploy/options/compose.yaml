@@ -1,0 +1,45 @@
+# Read-only broker adapter + local reference simulator. No brokerage orders.
+services:
+  worker:
+    build:
+      context: ../..
+      dockerfile: deploy/options/Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      ALPACA_API_KEY: ${ALPACA_API_KEY:?Provide the paper API key through host secrets}
+      ALPACA_SECRET_KEY: ${ALPACA_SECRET_KEY:?Provide the paper secret through host secrets}
+      SCOUT_OPTIONS_FEED: opra
+    command: ["python", "-m", "scout_options.service", "--capital", "${SCOUT_OPTIONS_CAPITAL:?Choose virtual research capital}", "--ledger", "/data/ledger.sqlite", "--status", "/data/options-status.json"]
+    volumes:
+      - options-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+  dashboard:
+    build:
+      context: ../..
+      dockerfile: deploy/options/Dockerfile
+    restart: unless-stopped
+    init: true
+    command: ["python", "-m", "scout_options.status_server", "--port", "8080", "--bind", "0.0.0.0", "--directory", "/data"]
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - options-data:/data:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      disable: true
+volumes:
+  options-data:

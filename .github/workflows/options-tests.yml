@@ -5,6 +5,10 @@ on:
       - 'scout_options/**'
       - 'test_scout_options.py'
       - 'test_options_dashboard.py'
+      - 'test_paper_gateway.py'
+      - 'test_options_health.py'
+      - 'test_options_status_server.py'
+      - 'deploy/options/**'
       - 'options.html'
       - '.github/workflows/options-tests.yml'
   push:
@@ -13,6 +17,10 @@ on:
       - 'scout_options/**'
       - 'test_scout_options.py'
       - 'test_options_dashboard.py'
+      - 'test_paper_gateway.py'
+      - 'test_options_health.py'
+      - 'test_options_status_server.py'
+      - 'deploy/options/**'
       - 'options.html'
       - '.github/workflows/options-tests.yml'
 permissions:

@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 167 offline tests pass (22 new options tests); the 10-second
+Validation: all 186 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -130,7 +130,7 @@ Local status writing now creates `options.html` beside the chosen JSON file.
 Serve that directory over HTTP to view it (do not open it as a file URL):
 
 ```bash
-python -m http.server 8080 --directory /persistent/scout-options --bind 127.0.0.1
+python -m scout_options.status_server --port 8080 --directory /persistent/scout-options --bind 127.0.0.1
 ```
 
 Publishing the public dashboard alone does not publish local ledgers or attach
@@ -138,3 +138,16 @@ the always-on service. Future status publishing needs an explicit public-data
 allowlist, authentication choices, and hosting integration. Local phone alerts
 remain unconnected. The public page clearly states it is an undeployed research
 simulator. Dashboard defaults are illustrative; no returns are promised.
+
+## Continuous hosting and staged broker recovery
+
+See `deploy/options/README.md` for a Docker Compose package that runs the
+read-only adapter with persistent storage and a local dashboard. It has not been
+deployed; the container build cannot be validated here because Docker is absent.
+
+`scout_options/paper_gateway.py` now provides a separately staged, paper-only
+durable order outbox with stable client IDs, cumulative broker fill reconciliation,
+restart recovery, conservative cancellation and position mismatch checks. It is
+not connected to the scanner or simulator and has no activation CLI. No brokerage
+orders were sent. Shared risk coordination, actual account/feed validation,
+external alerts and always-on host supervision remain required.
