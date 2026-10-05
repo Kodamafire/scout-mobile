@@ -1,10 +1,12 @@
+import contextlib
+import io
 import tempfile
 import unittest
 from datetime import date,datetime,timedelta,timezone
 from pathlib import Path
 from types import SimpleNamespace as Obj
-from unittest.mock import Mock
-from scout_options.history import HistoryStore,collect,six_year_start
+from unittest.mock import Mock,patch
+from scout_options.history import HistoryStore,collect,six_year_start,main
 from scout_options.replay import evaluate_session,replay
 
 UTC=timezone.utc
@@ -74,6 +76,13 @@ class HistoryTests(unittest.TestCase):
         stocks.get_stock_bars.side_effect=RuntimeError('fixture')
         with self.assertRaises(RuntimeError):collect(self.store,stocks,trading,DAY,DAY+timedelta(days=1),OPEN+timedelta(hours=8))
         self.assertFalse(self.store.done(DAY))
+
+    def test_cli_failed_download_returns_failure_without_remote_payload(self):
+        output=io.StringIO()
+        with patch('sys.argv',['history','--collect','--database',str(self.path)]), patch('scout_options.local_runner.private_load',side_effect=RuntimeError('SECRET REMOTE BODY')), contextlib.redirect_stdout(output):
+            with self.assertRaises(SystemExit) as exc:main()
+        self.assertEqual(exc.exception.code,1)
+        self.assertNotIn('SECRET REMOTE BODY',output.getvalue())
 
     def test_leap_day_start(self):
         self.assertEqual(six_year_start(date(2024,2,29)),date(2018,2,28))

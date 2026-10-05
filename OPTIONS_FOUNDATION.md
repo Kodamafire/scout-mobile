@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 211 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 212 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -215,11 +215,12 @@ payload leakage; lifecycle and heartbeat state are retained in supervisor status
 ## Historical collection and chronological signal replay
 
 No historical market dataset is bundled or downloaded by this PR. The default
-collector requests six years ending before today, using saved local credentials:
+collector defaults to six years ending before today. To probe further back, use
+an explicit start date with saved local credentials:
 
 ```bash
-python -m scout_options.history --collect
-python -m scout_options.history --replay
+python -m scout_options.history --collect --start 2016-01-01
+python -m scout_options.history --replay --start 2016-01-01
 ```
 
 The dataset is SPY/QQQ/IWM stock minute bars from the free IEX feed with raw

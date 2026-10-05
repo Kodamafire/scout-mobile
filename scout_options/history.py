@@ -151,11 +151,14 @@ def main():
         print(json.dumps(store.summary(args.start,args.end),indent=2))
         if args.replay:
             from .replay import replay
+            print('Replaying saved stock signals; this may take several minutes. No option P&L is calculated.',flush=True)
             print(json.dumps(replay(store.db,args.start,args.end),indent=2))
     except KeyboardInterrupt:
         print('Download paused. Saved sessions will be reused on the next run.')
+        raise SystemExit(130)
     except Exception as exc:
         print('History download unavailable: '+type(exc).__name__+'. Saved sessions remain; no remote payload is displayed.')
+        raise SystemExit(1)
     finally:
         store.close()
 
