@@ -130,6 +130,7 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--collect',action='store_true',help='Download using locally saved paper credentials')
     mode.add_argument('--replay',action='store_true',help='Evaluate historical stock signals; not option P&L')
+    mode.add_argument('--compare-exits',action='store_true',help='Compare matched 1-, 5-, 15-minute fixed exits on saved stock bars')
     parser.add_argument('--start',type=date.fromisoformat,default=six_year_start(today))
     parser.add_argument('--end',type=date.fromisoformat,default=today,help='Exclusive end; today excluded by default')
     parser.add_argument('--database',default='.scout-options/stock-history.sqlite')
@@ -154,11 +155,12 @@ def main():
         coverage = store.summary(args.start,args.end)
         print(json.dumps(coverage,indent=2))
         result = None
-        if args.replay:
+        if args.replay or args.compare_exits:
             from .replay import replay,summary_text
             print('Replaying saved stock signals; this may take several minutes. No option P&L is calculated.',flush=True)
             result = replay(store.db,args.start,args.end,progress=lambda n,total,day:
-                            print(f'Replayed {n}/{total} sessions; latest {day}.',flush=True))
+                            print(f'Replayed {n}/{total} sessions; latest {day}.',flush=True),
+                            horizons=(1,5,15) if args.compare_exits else None)
             print(summary_text(result) if args.report else json.dumps(result,indent=2))
         if args.report:
             import os

@@ -8,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace as Obj
 from unittest.mock import Mock,patch
 from scout_options.history import HistoryStore,collect,six_year_start,main
-from scout_options.replay import evaluate_session,replay,comparison,nonoverlapping,time_bucket,summary_text
+from scout_options.replay import evaluate_session,evaluate_session_horizons,replay,comparison,nonoverlapping,time_bucket,summary_text
 
 UTC=timezone.utc
 DAY=date(2026,10,2)
@@ -107,6 +107,25 @@ class HistoryTests(unittest.TestCase):
             with self.assertRaises(SystemExit) as exc:main()
         self.assertEqual(exc.exception.code,2)
 
+    def test_cli_compares_exits_on_saved_data_without_credentials(self):
+        for i in range(2):
+            opened=OPEN+timedelta(days=i)
+            self.store.save_session(opened.date(),opened,opened+timedelta(minutes=45),
+                {'SPY':[bar(opened+timedelta(minutes=j),100+j,200 if j==20 else 100) for j in range(45)]},
+                opened+timedelta(hours=8))
+        report=Path(self.tmp.name)/'exits.json'
+        output=io.StringIO()
+        with patch('sys.argv',['history','--compare-exits','--start',DAY.isoformat(),
+                               '--end',(DAY+timedelta(days=2)).isoformat(),
+                               '--database',str(self.path),'--report',str(report)]), \
+             patch('scout_options.local_runner.private_load',side_effect=AssertionError('Must not read credentials')), \
+             contextlib.redirect_stdout(output):
+            main()
+        result=json.loads(report.read_text())['replay']
+        self.assertEqual(result['selection_spacing_minutes'],15)
+        self.assertEqual(list(result['horizons']),['1','5','15'])
+        self.assertIn('First hour only:',output.getvalue())
+
 
 class ReplayTests(unittest.TestCase):
     def sample(self,direction='PUT',move=10,entry=OPEN,underlying='SPY'):
@@ -148,6 +167,41 @@ class ReplayTests(unittest.TestCase):
     def test_invalid_horizon_rejected(self):
         with self.assertRaises(ValueError):evaluate_session('SPY',[],0)
 
+    def test_exit_comparison_uses_identical_entries_and_known_future_opens(self):
+        rows=self.bars()
+        results=evaluate_session_horizons('SPY',rows)
+        self.assertEqual({h:len(v) for h,v in results.items()},{1:1,5:1,15:1})
+        for horizon,expected in ((1,122),(5,126),(15,136)):
+            row=results[horizon][0]
+            self.assertAlmostEqual(row['signed_move_bps'],(expected/121-1)*10000)
+            self.assertEqual(row['entry_at'],results[15][0]['entry_at'])
+            self.assertEqual(row['selection_exit_at'],results[15][0]['exit_at'])
+        rows[36]=(rows[36][0],80,80,100)
+        changed=evaluate_session_horizons('SPY',rows)
+        self.assertEqual(results[1],changed[1])
+        self.assertEqual(results[5],changed[5])
+        self.assertLess(changed[15][0]['signed_move_bps'],0)
+
+    def test_gap_after_short_exit_excludes_entry_for_every_horizon(self):
+        rows=self.bars();del rows[30]
+        self.assertEqual(evaluate_session_horizons('SPY',rows),{1:[],5:[],15:[]})
+
+    def test_short_exit_cannot_change_matched_nonoverlap_entries(self):
+        rows=self.bars()
+        rows=[(at,o,c,200) for at,o,c,v in rows]
+        # Ascending prices and rising final volume create two nearby signals.
+        rows[20]=(rows[20][0],rows[20][1],rows[20][2],500)
+        rows[22]=(rows[22][0],rows[22][1],rows[22][2],500)
+        results=evaluate_session_horizons('SPY',rows)
+        self.assertEqual(len(results[1]),2)
+        entries=[]
+        for horizon,samples in results.items():
+            selected=nonoverlapping([dict(s,underlying='SPY',session=DAY.isoformat()) for s in samples])
+            entries.append([s['entry_at'] for s in selected])
+        self.assertTrue(entries[0])
+        self.assertEqual(len(entries[0]),1)
+        self.assertEqual(entries[0],entries[1]);self.assertEqual(entries[1],entries[2])
+
     def bars(self):
         return [(OPEN+timedelta(minutes=i),100+i,100+i+.5,200 if i==20 else 100) for i in range(45)]
 
@@ -183,6 +237,14 @@ class ReplayTests(unittest.TestCase):
                 self.assertIn('no option P&L',result['status'])
                 self.assertEqual(result['results']['held_out']['nonoverlapping']['overall']['bot']['observations'],1)
                 self.assertIn('not option profits',summary_text(result))
+                exits=replay(store.db,DAY,DAY+timedelta(days=3),horizons=(1,5,15))
+                self.assertEqual(list(exits['horizons']),['1','5','15'])
+                self.assertEqual(exits['held_out_start'],result['held_out_start'])
+                for report in exits['horizons'].values():
+                    later=report['results']['held_out']['nonoverlapping']
+                    self.assertEqual(later['overall']['bot']['observations'],1)
+                    self.assertEqual(len(later['by_entry_time']['09:30-10:30 ET']['daily']),1)
+                self.assertIn('same entries and spacing',summary_text(exits))
             finally:store.close()
 
 

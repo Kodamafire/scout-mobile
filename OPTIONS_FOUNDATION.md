@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 219 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 223 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -281,3 +281,33 @@ strategy requires a frozen rule and new future observations. Missing future
 windows also affect eligibility and can introduce selection bias. One-minute
 stock bars cannot test five-second exits, option-profit targets, Greeks or
 executable option quotes. These comparisons never place brokerage orders.
+
+### Matched 1-, 5-, and 15-minute exits
+
+```bash
+python -m scout_options.history --compare-exits --start 2016-01-01 --report .scout-options/exit-comparison.json
+```
+
+This is one pass over the saved database, without credentials, downloads or
+orders. Each completed signal is computed once. All horizons use the same
+symbols and entry timestamps, requiring consecutive minute bars through the
+longest (15-minute) exit. The nonoverlapping selection reserves each underlying
+until that longest exit, even in the 1-minute and 5-minute versions. This holds
+the entry sample fixed to isolate exit timing; it does not model immediate
+re-entry after a shorter exit. Shorter exits near gaps or session close that
+lack the full longest window are excluded from all three variants.
+
+Reports keep both earlier and already-viewed later samples. Each horizon has
+matched upward/downward baselines, calls/puts, symbols and Eastern time buckets.
+Daily observations and average stock moves are now retained for every
+nonoverlapping subgroup, allowing checks of day weighting, unusual days and
+cross-day consistency. The terminal displays equal-weight session means for
+all signals and opening-hour signals, rather than selecting a winning version.
+Days without eligible signals remain excluded. The tests cover exact future
+exit opens, unchanged earlier exits after changing a later price, common gap
+exclusions, fixed nonoverlap selection and a credential-free CLI report.
+
+These are fixed exits, not profit targets, trailing stops or position management.
+Do not interpret the output as five-second option trades, executable prices,
+portfolio P&L or a fresh holdout. Option quotes and a new future evaluation are
+still required before drawing conclusions about the proposed options strategy.
