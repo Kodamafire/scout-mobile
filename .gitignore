@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.scout-options/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite.lock
