@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 188 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 190 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -157,3 +157,9 @@ Local credential input can be checked without displaying values using
 are rejected before SDK initialization; format validation is not authentication.
 Stopping a service that never started its quote stream no longer calls the SDK's
 uninitialized event loop. Ctrl+C exits without a traceback after cleanup.
+
+For easier local setup, `python -m scout_options.credentials --connect` prompts
+privately for the existing paper key and secret, strips surrounding whitespace
+and terminal paste delimiters, validates format, then starts the read-only
+indicative service with the existing $10,000 research ledger. It does not save
+credentials, change subscriptions or submit broker orders.

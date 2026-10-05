@@ -2,7 +2,7 @@ import contextlib
 import io
 import unittest
 from unittest.mock import Mock, patch
-from scout_options.credentials import load_credentials, credential_status, main
+from scout_options.credentials import load_credentials, credential_status, main, connect
 from scout_options.alpaca_observer import stop_stream
 
 
@@ -22,6 +22,23 @@ class SetupTests(unittest.TestCase):
             self.assertNotIn('PRIVATEKEY',str(exc.exception))
             self.assertNotIn('PRIVATESECRET',str(exc.exception))
         self.assertEqual(load_credentials({'ALPACA_API_KEY':'abc','ALPACA_SECRET_KEY':'xyz'}),('abc','xyz'))
+
+    def test_private_connect_normalizes_paste_and_forces_read_only_feed(self):
+        with patch('getpass.getpass',side_effect=['\x1b[200~abc123\x1b[201~',' xyz789\r']), patch('os.execve') as execute, contextlib.redirect_stdout(io.StringIO()) as output:
+            connect()
+        executable, command, environ = execute.call_args.args
+        self.assertEqual(environ['ALPACA_API_KEY'],'abc123')
+        self.assertEqual(environ['ALPACA_SECRET_KEY'],'xyz789')
+        self.assertEqual(environ['SCOUT_OPTIONS_FEED'],'indicative')
+        self.assertEqual(command[2],'scout_options.service')
+        self.assertNotIn('abc123',output.getvalue())
+        self.assertNotIn('xyz789',output.getvalue())
+
+    def test_invalid_input_reprompts_without_leaking_value(self):
+        with patch('getpass.getpass',side_effect=['BAD!VALUE','abc','xyz']), patch('os.execve') as execute, contextlib.redirect_stdout(io.StringIO()) as output:
+            connect()
+        self.assertNotIn('BAD!VALUE',output.getvalue())
+        self.assertEqual(execute.call_args.args[2]['ALPACA_API_KEY'],'abc')
 
     def test_shutdown_unstarted_and_already_closed_stream(self):
         stream=Mock()
