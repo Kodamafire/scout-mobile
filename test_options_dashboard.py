@@ -14,6 +14,7 @@ class OptionsDashboardTests(unittest.TestCase):
         self.assertIn('Saved alert history',html)
         self.assertIn('Fresh-session test',html)
         self.assertIn('Results update after market close',html)
+        self.assertIn('Option quote recorder',html)
         self.assertIn('Service offline / stale',html)
         self.assertNotIn('innerHTML',html)
 

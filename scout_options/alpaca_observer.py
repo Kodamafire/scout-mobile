@@ -8,6 +8,7 @@ import threading
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
+from dataclasses import asdict
 
 from alpaca.data.enums import DataFeed, OptionsFeed
 from alpaca.data.historical import StockHistoricalDataClient, OptionHistoricalDataClient
@@ -42,6 +43,7 @@ class Observer:
         self.contracts = {}
         self.subscribed = set()
         self.decisions = []
+        self.recorder = None
 
     def refresh_account(self):
         clock = self.trading.get_clock()
@@ -55,8 +57,12 @@ class Observer:
                             pending_orders=bool(orders))
 
     async def quote_handler(self, q):
+        now=datetime.now(timezone.utc)
+        if self.recorder:
+            contract=self.contracts.get(q.symbol)
+            self.recorder.quote(q,self.feed,now,asdict(contract) if contract else None)
         self.engine.on_quote(Quote(q.symbol, float(q.bid_price), float(q.ask_price),
-            int(q.bid_size), int(q.ask_size), q.timestamp, self.feed), datetime.now(timezone.utc))
+            int(q.bid_size), int(q.ask_size), q.timestamp, self.feed), now)
 
     def discover(self):
         now = datetime.now(timezone.utc)
@@ -76,6 +82,7 @@ class Observer:
                 decisions.append(dict(underlying=symbol, stage='WAIT', reason='No completed-minute trend/volume signal.'))
                 continue
             signals.append(signal)
+            if self.recorder:self.recorder.signal(signal,self.feed,now)
             lower, upper = day+timedelta(days=self.engine.cfg.min_dte), day+timedelta(days=self.engine.cfg.max_dte)
             close = rows[-1][1]
             response = self.trading.get_option_contracts(GetOptionContractsRequest(
@@ -136,6 +143,8 @@ async def run(path, capital, status_path):
     feed = OptionsFeed(os.environ.get('SCOUT_OPTIONS_FEED', 'opra'))
     engine = PaperEngine(path, capital)
     observer = Observer(engine, key, secret, feed)
+    from .quote_recorder import QuoteRecorder
+    observer.recorder=QuoteRecorder(Path(path).parent/'option-quotes.sqlite')
     stop = asyncio.Event()
     observer.restore_subscriptions()
     stream_thread = None
@@ -204,7 +213,8 @@ async def run(path, capital, status_path):
              asyncio.create_task(forward_task()),
              asyncio.create_task(manage(engine, lambda: observer.context, status_path, stop,
                  lambda: dict(feed=observer.feed, scanner=observer.decisions, universe=list(UNIVERSE),
-                              forward_test=forward_status)))]
+                              forward_test=forward_status,
+                              quote_recorder=dict(observer.recorder.snapshot(),subscribed_contracts=len(observer.subscribed)))))]
     try:
         await asyncio.gather(*tasks)
     finally:
@@ -214,4 +224,5 @@ async def run(path, capital, status_path):
         try:
             stop_stream(observer.stream, stream_thread)
         finally:
+            observer.recorder.close()
             engine.close()

@@ -12,6 +12,7 @@ on:
       - 'test_options_startup_verification.py'
       - 'test_options_history.py'
       - 'test_options_forward.py'
+      - 'test_options_quotes.py'
       - 'test_options_health.py'
       - 'test_options_status_server.py'
       - 'deploy/options/**'

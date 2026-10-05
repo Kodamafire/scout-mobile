@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 233 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 243 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -353,3 +353,44 @@ hosting is activated. Windows sign-in startup still requires local verification.
 Offline tests cover frozen-date persistence, code changes, edited study identity,
 pre-start/no-network behavior, unfinished sessions, one-day reporting, resume,
 old-data exclusion, missing windows, network failure and competing writers.
+
+### Timestamped option observations
+
+The existing shortlisted option subscriptions now enqueue quote observations to
+`option-quotes.sqlite` through a separate SQLite writer thread. Each row retains
+the SDK quote timestamp, desktop receipt timestamp, bid/ask, sizes, exchange
+codes, conditions, feed and available contract metadata. Signal observations are
+also recorded before contract discovery. This is a tape of received updates,
+not a full option-chain archive or execution simulator. No extra subscriptions,
+paid data or broker orders are activated. The supervisor still forces the free
+indicative feed; those quotes are modified and are not executable OPRA prices.
+
+The SDK exposes Python datetimes: original feed nanoseconds are not preserved.
+Arrival delays can be negative if clocks differ. Crossed/zero-price/zero-size
+quotes are retained with quality labels; invalid provenance and nonfinite
+values are dropped and counted. A bounded 10,000-event queue avoids database
+writes in the stream callback. The writer pauses once database plus WAL storage
+reaches the default 256 MiB threshold, with at most one batch of overshoot. It
+does not delete existing observations. Each process run has a durable start/end
+marker and drop counters; an unclosed run or any drops prevents assuming a
+continuous quote path. Disconnects, subscription coverage and source quality
+still need consideration even in runs with no recorded drops.
+
+The dashboard **Option quote recorder** panel shows subscriptions, saved quotes
+this run, drops, timestamps and queued events. An empty tape after market close
+is expected. Quotes are recorded only for contracts the scanner has subscribed
+to; missing Greeks or failed contract discovery can leave no subscriptions.
+There is no option-return/target-hit evaluator yet.
+
+```bash
+python -m scout_options.quote_recorder
+```
+
+This optional access probe reuses privately saved credentials. It chooses one
+standard active QQQ contract from a bounded metadata request and separately
+requests the latest indicative and OPRA quotes. It reports request acceptance,
+quote timestamp or sanitized HTTP status, never secret values or remote error
+bodies. An accepted REST request does not establish stream entitlement,
+freshness or executable fills; an empty contract response is inconclusive.
+The probe cannot buy data or change an account's subscriptions. Actual user
+entitlement and a market-open stream test remain pending desktop verification.
