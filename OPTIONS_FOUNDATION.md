@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 202 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 211 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -210,3 +210,42 @@ worker restart and stale heartbeat readiness are tested offline. Actual Windows
 COM shortcut creation, WSL console independence and sign-in behavior require
 local verification. Child console output is discarded to avoid credential/error
 payload leakage; lifecycle and heartbeat state are retained in supervisor status.
+
+
+## Historical collection and chronological signal replay
+
+No historical market dataset is bundled or downloaded by this PR. The default
+collector requests six years ending before today, using saved local credentials:
+
+```bash
+python -m scout_options.history --collect
+python -m scout_options.history --replay
+```
+
+The dataset is SPY/QQQ/IWM stock minute bars from the free IEX feed with raw
+prices, stored at `.scout-options/stock-history.sqlite`. It is not a consolidated
+stock feed or historical option premiums. Access and actual coverage must be
+verified from the returned data. Alpaca documents option history only since
+February 2024; this collector does not request options history.
+
+Collection uses the exchange calendar, including early closes and daylight-saving
+time. SDK pagination has no total-result limit. Each complete network response
+is saved in an atomic session transaction. Interrupted sessions are requested
+again; saved sessions resume automatically. Missing or invalid bars are reported,
+not invented. `--retry-incomplete` re-fetches sessions with missing/rejected bars.
+`--start YYYY-MM-DD --end YYYY-MM-DD` selects an inclusive start and exclusive end.
+`--max-sessions 5` permits a small initial download; stopping with Ctrl+C is safe.
+The foreground downloader does not change the existing background supervisor.
+
+Replay evaluates the current completed-minute trend/volume signal and measures
+signed underlying-stock movement from the next minute open to a minute open 15
+minutes later. It skips gapped windows and never crosses a session boundary.
+The earlier 70% of available sessions and later 30% are reported separately.
+Repeated signals overlap and are not independent trades. Outputs do not model
+option premiums, fill quality, fees, spreads, position sizing, stops or trailing
+exits, and are not a full options-strategy backtest. No profitability evidence is
+claimed until real historical data has been collected and evaluated.
+
+Offline validation covers interruption/resume, invalid and missing data, atomic
+checkpoints, free-feed selection, early close, no future inputs to signals,
+gap rejection and chronological holdout. Actual API coverage remains unverified.
