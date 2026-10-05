@@ -7,6 +7,7 @@ import os
 import threading
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
+from pathlib import Path
 
 from alpaca.data.enums import DataFeed, OptionsFeed
 from alpaca.data.historical import StockHistoricalDataClient, OptionHistoricalDataClient
@@ -138,6 +139,7 @@ async def run(path, capital, status_path):
     stop = asyncio.Event()
     observer.restore_subscriptions()
     stream_thread = None
+    forward_status = dict(status='Preparing frozen future-session study',sessions_available=0)
 
     def run_stream():
         try:
@@ -183,9 +185,26 @@ async def run(path, capital, status_path):
                     engine._save()
             await asyncio.sleep(engine.cfg.scan_seconds)
 
+    async def forward_task():
+        nonlocal forward_status
+        from .forward_test import cycle
+        # Separate read-only clients keep slow historical requests off the management loop.
+        stocks=StockHistoricalDataClient(key,secret)
+        trading=TradingClient(key,secret,paper=True)
+        while not stop.is_set():
+            try:
+                forward_status=await asyncio.to_thread(cycle,Path(path).parent,stocks,trading,
+                                                       datetime.now(timezone.utc))
+            except Exception as exc:
+                forward_status=dict(forward_status,status='Forward study unavailable: '+type(exc).__name__,
+                                    checked_at=datetime.now(timezone.utc).isoformat())
+            await asyncio.sleep(300)
+
     tasks = [asyncio.create_task(account_task()), asyncio.create_task(scan_task()),
+             asyncio.create_task(forward_task()),
              asyncio.create_task(manage(engine, lambda: observer.context, status_path, stop,
-                 lambda: dict(feed=observer.feed, scanner=observer.decisions, universe=list(UNIVERSE))))]
+                 lambda: dict(feed=observer.feed, scanner=observer.decisions, universe=list(UNIVERSE),
+                              forward_test=forward_status)))]
     try:
         await asyncio.gather(*tasks)
     finally:

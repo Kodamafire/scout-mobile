@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 223 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 233 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -311,3 +311,45 @@ These are fixed exits, not profit targets, trailing stops or position management
 Do not interpret the output as five-second option trades, executable prices,
 portfolio P&L or a fresh holdout. Option quotes and a new future evaluation are
 still required before drawing conclusions about the proposed options strategy.
+
+### Frozen future-session study
+
+The read-only service now runs a separate background study every five minutes.
+It freezes its rules and start date at first launch in `forward-plan.json`,
+beginning on the next Eastern calendar date (non-exchange days are skipped).
+It collects only completed exchange sessions on or after that date into a
+separate `forward-history.sqlite`, never importing the viewed historical sample.
+The frozen candidate is the same completed-minute trend/volume signal on
+SPY/QQQ/IWM, entries from 09:30 inclusive to 10:30 exclusive Eastern, and a
+five-minute fixed exit. References are opening-hour 15-minute exits and matched
+always-up/down movements; the all-day 15-minute reference is also retained.
+All horizons keep identical entry windows and 15-minute selection spacing.
+
+Results are future-session stock replays performed after close, not real-time
+signals, option fills or brokerage paper orders. Requests use separate read-only
+clients in a background thread so they do not block one-second management.
+Unfinished sessions are not downloaded/checkpointed. Missing windows remain
+excluded. Durable session transactions permit restart/resume. A study lock
+prevents competing writers; the database pins the study identity. A source hash
+covers the signal and evaluation functions. Changed rules, edited study dates
+or mismatched saved results refuse reuse rather than silently mixing versions.
+
+`forward-results.json` retains full coverage and daily subgroup results.
+The local dashboard's **Fresh-session test** panel shows readiness, frozen start,
+completed sessions, candidate windows and equal-weight daily means. A failed
+study check is displayed independently of the options worker. No sample size or
+favorable result automatically enables trading. Fees, option prices, execution,
+immediate re-entry and five-second behavior remain untested.
+
+To install the new background task and refresh the local dashboard:
+
+```bash
+git pull --ff-only
+python -m scout_options.local_runner --update
+```
+
+This reuses the user's saved credentials and current free feed. No paid data or
+hosting is activated. Windows sign-in startup still requires local verification.
+Offline tests cover frozen-date persistence, code changes, edited study identity,
+pre-start/no-network behavior, unfinished sessions, one-day reporting, resume,
+old-data exclusion, missing windows, network failure and competing writers.

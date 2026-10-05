@@ -12,6 +12,8 @@ class OptionsDashboardTests(unittest.TestCase):
         self.assertIn('Made-up prices',html)
         self.assertIn('Local background research is available; cloud hosting is not configured',html)
         self.assertIn('Saved alert history',html)
+        self.assertIn('Fresh-session test',html)
+        self.assertIn('Results update after market close',html)
         self.assertIn('Service offline / stale',html)
         self.assertNotIn('innerHTML',html)
 

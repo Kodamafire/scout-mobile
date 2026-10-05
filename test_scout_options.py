@@ -221,8 +221,8 @@ class SafetyTests(unittest.TestCase):
         tree=ast.parse(Path('scout_options/alpaca_observer.py').read_text())
         calls=[n for n in ast.walk(tree) if isinstance(n,ast.Call)]
         clients=[n for n in calls if isinstance(n.func,ast.Name) and n.func.id=='TradingClient']
-        self.assertEqual(len(clients),1)
-        self.assertTrue(any(k.arg=='paper' and isinstance(k.value,ast.Constant) and k.value.value is True for k in clients[0].keywords))
+        self.assertGreaterEqual(len(clients),1)
+        self.assertTrue(all(any(k.arg=='paper' and isinstance(k.value,ast.Constant) and k.value.value is True for k in client.keywords) for client in clients))
         forbidden={'submit_order','close_position','close_all_positions','cancel_order_by_id','exercise_options_position'}
         self.assertFalse(any(isinstance(n.func,ast.Attribute) and n.func.attr in forbidden for n in calls))
 
