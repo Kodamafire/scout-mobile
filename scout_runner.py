@@ -1,3 +1,4 @@
+from scout_strategy_desk import build_desk, desk_html
 from shadow_profit_trial import update_trial, trial_html
 from profit_variants_dashboard import variants_html
 from scout_research_log import account_snapshot, record_inputs
@@ -888,7 +889,7 @@ def dashboard_html(report):
     <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
     <p class="sub">New entries must pass the $20 million average daily dollar-volume minimum on our IEX feed. Volume strength compares completed 15-minute intervals with the same part of 20 earlier trading sessions. Missing volume data blocks new entries.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {desk_html(report.get("strategy_desk", {}))}{journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -1066,12 +1067,18 @@ def run_scout_cycle():
         print("Activity journal unavailable:", type(exc).__name__)
         report["journal"] = state.get("activity_journal", {})
         report["journal"]["sync_note"] = "Journal update unavailable; showing saved activity."
+    try:
+        report["strategy_desk"] = build_desk(report, CFG)
+    except Exception as exc:
+        print("Read-only strategy desk unavailable:", type(exc).__name__)
+        report["strategy_desk"] = {}
+    research_inputs["strategy_desk"] = report["strategy_desk"]
     research_inputs["qualified_candidates"] = candidates
     try:
         source_root = Path(__file__).parent
         report["research_log"] = record_inputs(
             STATE_FILE.parent / "research", cycle, started, market_open, asdict(CFG), research_inputs,
-            [source_root / name for name in ("scout_runner.py", "scout_profit_protection.py", "scout_shadow_v48.py", "scout_volume.py")])
+            [source_root / name for name in ("scout_runner.py", "scout_profit_protection.py", "scout_shadow_v48.py", "scout_volume.py", "scout_strategy_desk.py")])
     except Exception as exc:
         print("Research input logging unavailable:", type(exc).__name__)
         report["research_log"] = {"status": "UNAVAILABLE"}
