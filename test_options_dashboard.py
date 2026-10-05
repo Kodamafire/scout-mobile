@@ -10,7 +10,8 @@ class OptionsDashboardTests(unittest.TestCase):
         self.assertIn('const STATUS_FILE="status.json";',html)
         self.assertIn('No brokerage orders',html)
         self.assertIn('Made-up prices',html)
-        self.assertIn('always-on service has not been deployed',html)
+        self.assertIn('Local background research is available; cloud hosting is not configured',html)
+        self.assertIn('Saved alert history',html)
         self.assertIn('Service offline / stale',html)
         self.assertNotIn('innerHTML',html)
 

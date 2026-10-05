@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 198 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 202 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -187,7 +187,18 @@ ledger. The dashboard stays bound to localhost. Startup is after Windows sign-in
 not before login; do not enable automatic Windows login. Windows startup execution
 must be verified on the user's machine. No cloud service or purchase is involved.
 
-`python -m scout_options.local_runner --status` prints supervisor state only.
+For an existing installation, `python -m scout_options.local_runner --update`
+rechecks paper access, refreshes the shortcut and dashboard, and restarts using
+locally saved credentials. No key entry is needed. The dashboard labels saved
+alerts as history, since an earlier error can remain after recovery.
+
+`python -m scout_options.local_runner --status` reports current readiness and
+launch origin without credentials. `startup_verified: true` requires a fresh,
+ready supervisor from the current WSL boot with `launch_source: windows_signin`.
+An installer/update launch has source `setup`; a direct `--run` has source
+`manual`. These do not establish Windows startup success. Check after the next
+Windows sign-in. This is launch evidence, not proof of market-data readiness or
+profitable trading.
 `--stop` stops the background instance but leaves sign-in startup enabled. To
 disable sign-in startup, remove `ScoutOptionsResearch.lnk` from `shell:startup`.
 The two original console windows become unnecessary only after the background

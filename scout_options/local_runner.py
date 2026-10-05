@@ -66,7 +66,7 @@ def psquote(value):
 
 def shortcut_script(distro, user, root, python):
     arguments=subprocess.list2cmdline(['-d',distro,'-u',user,'--cd',str(root),
-                                       '--',str(python),'-m','scout_options.local_runner','--run'])
+                                       '--',str(python),'-m','scout_options.local_runner','--run','--source','windows_signin'])
     return ("$ErrorActionPreference='Stop'; "
             "$startup=[Environment]::GetFolderPath('Startup'); "
             "$shell=New-Object -ComObject WScript.Shell; "
@@ -89,7 +89,16 @@ def stop_process(pid):
     try:
         os.kill(pid,signal.SIGTERM)
     except ProcessLookupError:
-        pass
+        return
+    for _ in range(50):
+        try:
+            status=Path('/proc',str(pid),'status').read_text()
+        except FileNotFoundError:
+            return
+        if any(line.startswith('State:') and 'Z (zombie)' in line for line in status.splitlines()):
+            return
+        time.sleep(.1)
+    raise RuntimeError('Previous local service has not stopped; replacement not started')
 
 
 def stop_child(child):
@@ -119,7 +128,9 @@ def worker_ready(started_at):
         return False
 
 
-def supervise():
+def supervise(source='manual'):
+    started_at=datetime.now(timezone.utc).isoformat()
+    boot_id=current_boot_id()
     DATA.mkdir(exist_ok=True)
     with (DATA/'supervisor.lock').open('a') as writer:
         try:
@@ -158,11 +169,11 @@ def supervise():
                         started[name]=now
                         started_wall[name]=datetime.now(timezone.utc)
                 write_supervisor(dict(pid=os.getpid(),children={k:v.pid for k,v in children.items()},
-                    restarts=restarts,worker_ready=worker_ready(started_wall.get('worker')),mode='READ_ONLY_INDICATIVE'))
+                    restarts=restarts,worker_ready=worker_ready(started_wall.get('worker')),mode='READ_ONLY_INDICATIVE',source=source,started_at=started_at,boot_id=boot_id))
                 time.sleep(1)
         finally:
             for child in children.values(): stop_child(child)
-            write_supervisor(dict(pid=None,children={},worker_ready=False,mode='STOPPED'))
+            write_supervisor(dict(pid=None,children={},worker_ready=False,mode='STOPPED',source=source,started_at=started_at,boot_id=boot_id))
 
 
 def install():
@@ -189,7 +200,7 @@ def install():
     for module in ('scout_options.service','scout_options.status_server'):
         for pid in processes(module): stop_process(pid)
     DATA.mkdir(exist_ok=True)
-    subprocess.Popen([sys.executable,'-m','scout_options.local_runner','--run'],cwd=ROOT,
+    subprocess.Popen([sys.executable,'-m','scout_options.local_runner','--run','--source','setup'],cwd=ROOT,
         start_new_session=True,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     print('Windows sign-in startup shortcut installed. Credentials saved locally with owner-only file permissions.')
     print('Starting supervised read-only research. No subscriptions or brokerage orders.')
@@ -206,6 +217,70 @@ def install():
     print('Startup readiness not confirmed. Run python -m scout_options.local_runner --status')
 
 
+
+def current_boot_id():
+    try:
+        return Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+    except OSError:
+        return None
+
+
+def verified_status(state=None, now=None, boot_id=None):
+    now=now or datetime.now(timezone.utc)
+    boot_id=boot_id or current_boot_id()
+    try:
+        state=state if state is not None else json.loads((DATA/'supervisor-status.json').read_text())
+        at=datetime.fromisoformat(state['at'])
+        age=(now-at).total_seconds()
+        fresh=0 <= age <= 5 and bool(state.get('pid'))
+        same_boot=bool(boot_id) and state.get('boot_id') == boot_id
+        automatic=(fresh and same_boot and state.get('source') == 'windows_signin'
+                   and state.get('worker_ready') is True)
+        return dict(supervisor_fresh=fresh,worker_ready=fresh and state.get('worker_ready') is True,
+                    startup_verified=automatic,launch_source=state.get('source','unknown'),
+                    started_at=state.get('started_at'),restarts=state.get('restarts',0),
+                    same_wsl_boot=same_boot,
+                    startup_result='Verified Windows sign-in launch' if automatic else 'Sign-in launch not yet verified')
+    except (OSError,ValueError,TypeError,KeyError):
+        return dict(supervisor_fresh=False,worker_ready=False,startup_verified=False,
+                    startup_result='No current supervisor status available')
+
+
+def update():
+    """Refresh existing installation without asking the user to paste keys again."""
+    from alpaca.trading.client import TradingClient
+    from .dashboard import dashboard_html
+    distro=os.environ.get('WSL_DISTRO_NAME')
+    if not distro:
+        raise RuntimeError('Requires WSL')
+    key,secret=private_load()
+    if not check(TradingClient(key,secret,paper=True)):
+        print('Update stopped; existing service left unchanged.')
+        return
+    user=pwd.getpwuid(os.getuid()).pw_name
+    completed=subprocess.run(['powershell.exe','-NoProfile','-NonInteractive','-Command',
+                              shortcut_script(distro,user,ROOT,sys.executable)],
+                             stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    if completed.returncode:
+        print('Startup shortcut update failed; running service left unchanged.')
+        return
+    for module in ('scout_options.local_runner','scout_options.service','scout_options.status_server'):
+        for pid in processes(module): stop_process(pid)
+    DATA.mkdir(exist_ok=True)
+    (DATA/'options.html').write_text(dashboard_html('options-status.json'))
+    subprocess.Popen([sys.executable,'-m','scout_options.local_runner','--run','--source','setup'],
+        cwd=ROOT,start_new_session=True,stdin=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    for _ in range(30):
+        time.sleep(1)
+        state=verified_status()
+        if state.get('supervisor_fresh') and state.get('worker_ready') and state.get('launch_source') == 'setup':
+            print('BACKGROUND SERVICE READY. Startup tracking installed; no keys need re-entry.')
+            print('Next Windows sign-in must show launch_source: windows_signin and startup_verified: true.')
+            return
+    print('Readiness not confirmed. Check --status. Credentials remain saved locally.')
+
+
 def main():
     parser=argparse.ArgumentParser(description='Read-only local research background service')
     group=parser.add_mutually_exclusive_group(required=True)
@@ -213,15 +288,18 @@ def main():
     group.add_argument('--run',action='store_true')
     group.add_argument('--status',action='store_true')
     group.add_argument('--stop',action='store_true')
+    group.add_argument('--update',action='store_true',help='Update sign-in shortcut and restart using locally saved credentials')
+    parser.add_argument('--source',choices=['manual','setup','windows_signin'],default='manual')
     args=parser.parse_args()
     try:
         if args.install: install()
-        elif args.run: supervise()
+        elif args.run: supervise(args.source)
+        elif args.update: update()
         elif args.stop:
             for pid in processes('scout_options.local_runner'): os.kill(pid,signal.SIGTERM)
             print('Stop requested. Startup shortcut remains installed.')
         else:
-            print((DATA/'supervisor-status.json').read_text())
+            print(json.dumps(verified_status(),indent=2))
     except (OSError,ValueError,RuntimeError):
         print('Local setup needs attention. No credential values or remote error details are displayed.')
 
