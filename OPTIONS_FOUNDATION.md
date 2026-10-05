@@ -118,3 +118,23 @@ Sources checked October 5, 2026:
 - https://docs.alpaca.markets/us/docs/options-trading
 - https://docs.alpaca.markets/us/docs/real-time-option-data
 - https://docs.alpaca.markets/us/docs/about-market-data-api
+
+## Options dashboard
+
+The public `options.html` page is a mobile research dashboard with a four-step
+fictional demo. It polls a same-origin `options-status.json` every second and
+shows disconnected/stale status when no service publishes fresh data. The page
+does not place orders, expose credentials, or turn on the options service.
+
+Local status writing now creates `options.html` beside the chosen JSON file.
+Serve that directory over HTTP to view it (do not open it as a file URL):
+
+```bash
+python -m http.server 8080 --directory /persistent/scout-options --bind 127.0.0.1
+```
+
+Publishing the public dashboard alone does not publish local ledgers or attach
+the always-on service. Future status publishing needs an explicit public-data
+allowlist, authentication choices, and hosting integration. Local phone alerts
+remain unconnected. The public page clearly states it is an undeployed research
+simulator. Dashboard defaults are illustrative; no returns are promised.

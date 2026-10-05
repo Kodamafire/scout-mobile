@@ -4,12 +4,16 @@ on:
     paths:
       - 'scout_options/**'
       - 'test_scout_options.py'
+      - 'test_options_dashboard.py'
+      - 'options.html'
       - '.github/workflows/options-tests.yml'
   push:
     branches: ['feat/options-foundation']
     paths:
       - 'scout_options/**'
       - 'test_scout_options.py'
+      - 'test_options_dashboard.py'
+      - 'options.html'
       - '.github/workflows/options-tests.yml'
 permissions:
   contents: read

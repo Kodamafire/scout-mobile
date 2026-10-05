@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Scout Options</title>
+<style>
+[hidden]{display:none!important}:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#eef4ff;background:#09121f;font-size:15px}*{box-sizing:border-box}body{margin:0}main{max-width:1080px;margin:auto;padding:24px 18px 56px}a{color:#a8cfff}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.brand{font-weight:800;letter-spacing:.06em;font-size:13px;color:#75d4c6}h1{font-size:32px;margin:5px 0 8px;letter-spacing:-.04em}h2{font-size:19px;margin:0 0 14px}h3{font-size:16px;margin:0}.sub{color:#96abc4;line-height:1.5}.banner{border:1px solid #315176;background:#10253d;border-radius:16px;padding:16px;margin:18px 0;line-height:1.6}.badge{display:inline-block;font-size:12px;letter-spacing:.03em;border:1px solid #36506b;border-radius:50px;padding:6px 10px;white-space:nowrap}.good{color:#71dfba}.bad{color:#ff9d9d}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}button{background:#173451;border:1px solid #385b7c;border-radius:10px;color:#edf5ff;padding:11px 15px;font:inherit;cursor:pointer}button.primary{background:#b3f0dd;border-color:#b3f0dd;color:#09241d;font-weight:650}button:focus-visible,a:focus-visible{outline:3px solid #a8cfff;outline-offset:3px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.metric,.panel{border:1px solid #24364c;background:#0f1c2d;border-radius:16px;padding:18px}.metric span{color:#96abc4;font-size:12px}.metric strong{display:block;font-size:25px;margin-top:9px}.layout{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}.panel{margin-bottom:16px}.row{padding:15px 0;border-top:1px solid #24364c}.row:first-child{border-top:0}.row-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.row p{margin:7px 0;color:#96abc4;line-height:1.5}.kv{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0;color:#96abc4}.kv b{color:#edf5ff;text-align:right}.empty{padding:16px 0;line-height:1.6;color:#96abc4}footer{line-height:1.6;font-size:12px;color:#96abc4;margin-top:16px}.state{font-size:14px}.alert{padding:12px;border-left:3px solid #d5a963;background:#272719;margin:9px 0;line-height:1.5}#updated{font-size:12px;margin-top:8px}#demo-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{color:#b3f0dd} @media(max-width:680px){main{padding:20px 14px 36px}header{align-items:flex-start}h1{font-size:28px}.metrics{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.metric strong{font-size:23px}header a{font-size:12px}}
+</style>
+</head>
+<body><main>
+<header><div><div class="brand">SCOUT / OPTIONS LAB</div><h1>Your options desk</h1><div class="sub">Calls. Puts. One-second position checks.</div></div><a href="./">Stock dashboard ↗</a></header>
+<div class="banner"><strong>Research simulator · No brokerage orders</strong><br>This page shows a separate virtual options portfolio. The always-on service has not been deployed. Demo results use made-up prices.</div>
+<div class="row-head"><span id="connection" class="badge">Not connected</span><span id="feed" class="badge">Waiting for data</span></div>
+<div id="updated" class="sub">No service heartbeat available.</div>
+<div class="toolbar"><button id="demo" class="primary">Explore the demo</button><button id="service">Check service data</button><div id="demo-controls" hidden><button id="previous" aria-label="Previous demo step">←</button><span id="step"></span><button id="next" aria-label="Next demo step">→</button></div></div>
+<div class="metrics"><div class="metric"><span>VIRTUAL EQUITY</span><strong id="equity">—</strong></div><div class="metric"><span>AVAILABLE VIRTUAL CASH</span><strong id="cash">—</strong></div><div class="metric"><span>OPEN POSITIONS</span><strong id="count">—</strong></div><div class="metric"><span>NEW ENTRIES</span><strong id="entries">Waiting</strong></div></div>
+<div class="layout"><div><section class="panel"><h2>Positions</h2><div id="positions"><div class="empty">No connected position data. Explore the demo to see how protection works.</div></div></section><section class="panel"><h2>Order lifecycle</h2><div id="orders"><div class="empty">No connected orders.</div></div></section></div><div><section class="panel"><h2>Calls & puts scanner</h2><div id="scanner"><div class="empty">Starter universe: SPY, QQQ, IWM.<br>Waiting for completed minute bars and fresh option quotes.</div></div></section><section class="panel"><h2>Protection & alerts</h2><div id="alerts"><div class="empty">No service alerts available.</div></div><div class="kv"><span>Position checks</span><b>Every second</b><span>Entry scan</span><b>Every 60 seconds</b><span>Broker execution</span><b>Disabled</b><span>Phone notifications</span><b>Not connected</b></div></section></div></div>
+<footer>Reference simulation only. Bid/ask prices are not guaranteed fills. Fees, queue priority, and actual executable liquidity are not modeled. A one-second check does not guarantee an exit or a maximum loss. No results here establish profitability.<br>Options development: <a href="https://github.com/Kodamafire/scout-mobile/pull/8">View the build and tests</a>.</footer>
+</main>
+<script>
+'use strict';
+const STATUS_FILE='options-status.json';
+const $=id=>document.getElementById(id);
+let mode='service', step=0, loading=false, latest=null;
+const money=v=>Number.isFinite(v)?v.toLocaleString('en-US',{style:'currency',currency:'USD'}):'—';
+const pct=v=>Number.isFinite(v)?(v>=0?'+':'')+(v*100).toFixed(1)+'%':'—';
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n;}
+function list(id,rows,empty,render){const root=$(id);root.replaceChildren();if(!rows.length){root.append(node('div',empty,'empty'));return;}rows.forEach(r=>root.append(render(r)));}
+function row(title,status,detail){const n=node('div',undefined,'row'),head=node('div',undefined,'row-head');head.append(node('h3',title),node('span',status,'pill'));n.append(head,node('p',detail));return n;}
+const base={synthetic:true,capital:10000,cash:10000,equity:10000,accepting:false,paused:false,positions:{},orders:{},alerts:[],scanner:[{underlying:'SPY',stage:'CALL',reason:'Synthetic rising trend; contract selected.'},{underlying:'QQQ',stage:'PUT',reason:'Synthetic bearish setup; waiting for entry confirmation.'},{underlying:'IWM',stage:'WAIT',reason:'No confirmed direction.'}]};
+const demoSteps=[
+{label:'1 / 4 · Setup found',data:{...base,accepting:true,orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:0,limit:.9,status:'OPEN',reason:'Synthetic trend entry'}}}},
+{label:'2 / 4 · Buy filled',data:{...base,cash:9910,equity:9998,accepting:true,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:.88,peak_bid:.88,expiry:'Demo expiry'}},orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:1,limit:.9,status:'FILLED',reason:'Synthetic buy filled on a later quote'}}}},
+{label:'3 / 4 · Winner running',data:{...base,cash:9910,equity:10040,accepting:true,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:1.3,peak_bid:1.3,expiry:'Demo expiry'}},orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:1,limit:.9,status:'FILLED',reason:'Synthetic entry complete; trailing armed'}}}},
+{label:'4 / 4 · Trail breached; exit pending',data:{...base,cash:9910,equity:10013,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:1.03,peak_bid:1.3,expiry:'Demo expiry'}},orders:{b:{symbol:'SPY DEMO CALL',side:'SELL',qty:1,filled:0,limit:1.03,status:'OPEN',reason:'Synthetic runner trail breached; waiting for a later fill'}},alerts:['Example: an unfilled exit would be flagged locally. Phone notifications are not connected.']}}
+];
+function render(data){
+ const synthetic=mode==='demo'||data.synthetic===true;
+ const heartbeat=Date.parse(data.heartbeat),age=(Date.now()-heartbeat)/1000;
+ const fresh=!synthetic&&Number.isFinite(age)&&age>=0&&age<=5;
+ $('connection').textContent=synthetic?'DEMO · Made-up prices':fresh?'Connected · Reference simulation':'Service offline / stale';
+ $('feed').textContent=synthetic?'Synthetic feed':data.feed==='opra'?'OPRA quotes':data.feed==='indicative'?'Indicative · Entries blocked':'Feed unknown';
+ $('updated').textContent=synthetic?'Interactive example — not market activity.':Number.isFinite(heartbeat)?'Last service check: '+new Date(heartbeat).toLocaleString()+' · '+Math.max(0,Math.floor(age))+' seconds ago':'No service heartbeat available.';
+ $('equity').textContent=money(data.equity);$('cash').textContent=money(data.cash);
+ const positions=Object.values(data.positions||{});$('count').textContent=String(positions.length);
+ $('entries').textContent=data.paused?'Paused':!synthetic&&(!fresh||data.feed!=='opra'||data.exchange_context_fresh===false)?'Blocked':data.accepting?'Allowed':'Waiting';
+ list('positions',positions,'No open simulated positions.',p=>{
+ const gain=Number.isFinite(p.last_bid)&&p.entry>0?p.last_bid/p.entry-1:NaN;
+ const n=row(p.underlying+' · '+(p.kind||'OPTION'),pct(gain),'Simulated mark vs average entry.');
+ n.append(node('p',p.symbol),node('p','Contracts: '+p.qty+' · Entry '+money(p.entry)+' · Bid '+money(p.last_bid)),node('p','Peak bid '+money(p.peak_bid)+' · Expiry '+p.expiry));return n;});
+ list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated order intents.',o=>row(o.symbol,o.side+' · '+o.status,'Filled '+o.filled+'/'+o.qty+' · Limit '+money(o.limit)+' · '+o.reason));
+ list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No current scanner observations.',s=>row(s.underlying,s.stage,s.reason||'Check complete.'));
+ list('alerts',Array.isArray(data.alerts)?data.alerts.slice(-4).reverse():[],'No recorded local alerts.',a=>node('div',a,'alert'));
+}
+function disconnected(){latest=null;$('connection').textContent='Not connected';$('feed').textContent='Waiting for data';$('updated').textContent='The one-second service is not publishing data to this page.';['equity','cash','count'].forEach(id=>$(id).textContent='—');$('entries').textContent='Blocked';['positions','orders','scanner','alerts'].forEach(id=>list(id,[],'No connected '+id+' data.',()=>node('div')));}
+async function poll(){if(mode!=='service'||loading)return;loading=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),1500);try{const response=await fetch(STATUS_FILE+'?t='+Date.now(),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!data||typeof data!=='object'||Array.isArray(data)||typeof data.mode!=='string'||!data.mode.startsWith('ISOLATED REFERENCE SIMULATION'))throw Error('Invalid status');if(mode==='service'){latest=data;render(data);}}catch{if(mode==='service'){if(latest){render({...latest,heartbeat:null});$('updated').textContent='Service connection unavailable; showing the last saved snapshot.';}else disconnected();}}finally{clearTimeout(timer);loading=false;}}
+function showDemo(){mode='demo';$('demo-controls').hidden=false;$('step').textContent=demoSteps[step].label;render(demoSteps[step].data);}
+$('demo').addEventListener('click',()=>{step=0;showDemo();});$('previous').addEventListener('click',()=>{step=(step+demoSteps.length-1)%demoSteps.length;showDemo();});$('next').addEventListener('click',()=>{step=(step+1)%demoSteps.length;showDemo();});$('service').addEventListener('click',()=>{mode='service';$('demo-controls').hidden=true;disconnected();poll();});
+poll();setInterval(()=>{if(mode==='service'&&latest)render(latest);poll();},1000);
+</script>
+</body></html>
