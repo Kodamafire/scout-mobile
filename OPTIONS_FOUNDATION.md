@@ -95,7 +95,7 @@ displayed quote sizes may not be obtainable. Treat simulated returns accordingly
 
 ## Validation and remaining deployment work
 
-Validation: all 193 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
+Validation: all 198 offline tests pass (options lifecycle, dashboard, paper outbox, healthcheck and status-server tests); the 10-second
 synthetic demo completed a buy, runner trail and exit. `git diff --check` passes.
 
 `python -m unittest discover -q` covers calls/puts, contract filters, data age,
@@ -169,3 +169,33 @@ position reads using the same user's single running options service credentials.
 It reads that process environment locally and prints only safe status labels and
 numeric HTTP codes. It never outputs credential values, remote error bodies,
 account details, or makes brokerage changes.
+
+## Windows local supervision
+
+After verifying the running reference service, use
+`python -m scout_options.local_runner --install` inside the same checkout. It
+rechecks read-only paper access, saves existing credentials inside Ubuntu at
+`~/.config/scout-options/credentials.json` with directory mode 700 and file mode
+600, and creates a current-user Windows Startup shortcut. This file is not
+encrypted; the Ubuntu user and administrators can read it. No credentials enter
+GitHub, the shortcut, console output or the dashboard.
+
+The installer hands off the known local worker and dashboard to a single-writer
+background supervisor. It restarts exited children and a worker whose heartbeat
+has stalled, always in read-only indicative mode with the existing research
+ledger. The dashboard stays bound to localhost. Startup is after Windows sign-in,
+not before login; do not enable automatic Windows login. Windows startup execution
+must be verified on the user's machine. No cloud service or purchase is involved.
+
+`python -m scout_options.local_runner --status` prints supervisor state only.
+`--stop` stops the background instance but leaves sign-in startup enabled. To
+disable sign-in startup, remove `ScoutOptionsResearch.lnk` from `shell:startup`.
+The two original console windows become unnecessary only after the background
+service and dashboard are verified. Losing power or rebooting still interrupts
+monitoring until Windows sign-in; phone alerts are not connected.
+
+Validation: private file permissions, symlink rejection, shortcut construction,
+worker restart and stale heartbeat readiness are tested offline. Actual Windows
+COM shortcut creation, WSL console independence and sign-in behavior require
+local verification. Child console output is discarded to avoid credential/error
+payload leakage; lifecycle and heartbeat state are retained in supervisor status.
