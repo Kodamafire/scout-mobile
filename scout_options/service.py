@@ -15,7 +15,7 @@ def write_status(path, engine, **extra):
     path.parent.mkdir(parents=True, exist_ok=True)
     ensure_dashboard(path)
     temp = path.with_suffix('.tmp')
-    temp.write_text(json.dumps(dict(engine.snapshot(), **extra), indent=2, allow_nan=False))
+    temp.write_text(json.dumps(dict(engine.snapshot(), research_settings=asdict(engine.cfg), **extra), indent=2, allow_nan=False))
     temp.replace(path)
 
 
