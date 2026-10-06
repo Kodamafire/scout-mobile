@@ -1,6 +1,6 @@
 {
-  "cycle": "20261006_095652",
-  "updated": "2026-10-06T09:56:52.076158-07:00",
+  "cycle": "20261006_101122",
+  "updated": "2026-10-06T10:11:22.970234-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -12,13 +12,13 @@
     },
     "symbols_scanned": 100,
     "symbols_scored": 70,
-    "qualified_long": 3,
+    "qualified_long": 1,
     "qualified_short": 0,
     "long": [
       {
         "symbol": "SMCI",
         "direction": "LONG",
-        "price": 43.82,
+        "price": 43.67,
         "setup_score": 85,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -41,59 +41,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "MRNA",
-        "direction": "LONG",
-        "price": 190.95,
-        "setup_score": 75,
-        "entry_score": 80,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "PLTR",
-        "direction": "LONG",
-        "price": 191.705,
-        "setup_score": 70,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
-        "held": true,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 5,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 5,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "RXRX",
         "direction": "LONG",
-        "price": 4.565,
+        "price": 4.53,
         "setup_score": 90,
         "entry_score": 75,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -118,7 +68,7 @@
       {
         "symbol": "BB",
         "direction": "LONG",
-        "price": 9.545,
+        "price": 9.61,
         "setup_score": 90,
         "entry_score": 75,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -143,7 +93,7 @@
       {
         "symbol": "RKLB",
         "direction": "LONG",
-        "price": 73.99,
+        "price": 74.235,
         "setup_score": 62,
         "entry_score": 100,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -193,7 +143,7 @@
       {
         "symbol": "SOXL",
         "direction": "LONG",
-        "price": 167.095,
+        "price": 165.96,
         "setup_score": 90,
         "entry_score": 65,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -218,7 +168,7 @@
       {
         "symbol": "LABD",
         "direction": "LONG",
-        "price": 7.96,
+        "price": 8.02,
         "setup_score": 55,
         "entry_score": 100,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -241,9 +191,59 @@
         "required_entry": 70
       },
       {
+        "symbol": "PLTR",
+        "direction": "LONG",
+        "price": 192.565,
+        "setup_score": 90,
+        "entry_score": 65,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
+        "held": true,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_strength": 20,
+          "participation": 5,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 5,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 5,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "SDEV",
         "direction": "LONG",
-        "price": 3.92,
+        "price": 3.85,
+        "setup_score": 80,
+        "entry_score": 65,
+        "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_strength": 20,
+          "participation": 5,
+          "liquidity": 0
+        },
+        "entry_parts": {
+          "not_extended": 5,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 5,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "APUS",
+        "direction": "LONG",
+        "price": 7.14,
         "setup_score": 80,
         "entry_score": 65,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -270,7 +270,7 @@
       {
         "symbol": "MDT",
         "direction": "SHORT",
-        "price": 87.135,
+        "price": 87.255,
         "setup_score": 85,
         "entry_score": 80,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -293,9 +293,34 @@
         "required_entry": 70
       },
       {
+        "symbol": "NKE",
+        "direction": "SHORT",
+        "price": 34.3,
+        "setup_score": 90,
+        "entry_score": 70,
+        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 25,
+          "relative_weakness": 20,
+          "participation": 5,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 25,
+          "rsi_window": 20,
+          "volume_confirm": 5,
+          "relative_weakness": 10
+        },
+        "required_entry": 70
+      },
+      {
         "symbol": "IREN",
         "direction": "SHORT",
-        "price": 41.48,
+        "price": 41.37,
         "setup_score": 87,
         "entry_score": 70,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -345,32 +370,7 @@
       {
         "symbol": "NVD",
         "direction": "SHORT",
-        "price": 3.27,
-        "setup_score": 95,
-        "entry_score": 55,
-        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 25,
-          "relative_weakness": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_weakness": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "NFLX",
-        "direction": "SHORT",
-        "price": 67.995,
+        "price": 3.28,
         "setup_score": 95,
         "entry_score": 55,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -395,7 +395,7 @@
       {
         "symbol": "SOFI",
         "direction": "SHORT",
-        "price": 15.95,
+        "price": 15.935,
         "setup_score": 82,
         "entry_score": 60,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -420,7 +420,7 @@
       {
         "symbol": "RKT",
         "direction": "SHORT",
-        "price": 11.685,
+        "price": 11.665,
         "setup_score": 82,
         "entry_score": 60,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -443,34 +443,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "ACHR",
-        "direction": "SHORT",
-        "price": 4.64,
-        "setup_score": 85,
-        "entry_score": 55,
-        "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
-        "held": false,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 25,
-          "relative_weakness": 20,
-          "participation": 10,
-          "liquidity": 0
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_weakness": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "SMR",
         "direction": "SHORT",
-        "price": 8.225,
+        "price": 8.215,
         "setup_score": 75,
         "entry_score": 60,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -495,7 +470,7 @@
       {
         "symbol": "VALE",
         "direction": "SHORT",
-        "price": 14.065,
+        "price": 14.055,
         "setup_score": 72,
         "entry_score": 60,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -516,13 +491,38 @@
           "relative_weakness": 10
         },
         "required_entry": 70
+      },
+      {
+        "symbol": "HBAN",
+        "direction": "SHORT",
+        "price": 15.305,
+        "setup_score": 77,
+        "entry_score": 50,
+        "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
+        "held": false,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 15,
+          "relative_weakness": 20,
+          "participation": 5,
+          "liquidity": 7
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 5,
+          "rsi_window": 20,
+          "volume_confirm": 5,
+          "relative_weakness": 10
+        },
+        "required_entry": 70
       }
     ],
     "held": [
       {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 114.43,
+        "price": 114.045,
         "setup_score": 65,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -547,9 +547,9 @@
       {
         "symbol": "INTC",
         "direction": "SHORT",
-        "price": 114.43,
+        "price": 114.045,
         "setup_score": 30,
-        "entry_score": 20,
+        "entry_score": 45,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
         "held": true,
         "main_score": null,
@@ -561,7 +561,7 @@
           "liquidity": 10
         },
         "entry_parts": {
-          "not_extended": 5,
+          "not_extended": 30,
           "momentum_live": 25,
           "rsi_window": 5,
           "volume_confirm": 5,
@@ -572,7 +572,7 @@
       {
         "symbol": "AAPL",
         "direction": "LONG",
-        "price": 332.605,
+        "price": 332.755,
         "setup_score": 60,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -597,7 +597,7 @@
       {
         "symbol": "AAPL",
         "direction": "SHORT",
-        "price": 332.605,
+        "price": 332.755,
         "setup_score": 30,
         "entry_score": 45,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -622,22 +622,22 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 191.705,
-        "setup_score": 70,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
+        "price": 192.565,
+        "setup_score": 90,
+        "entry_score": 65,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
         "held": true,
         "main_score": null,
         "setup_parts": {
           "trend": 30,
-          "momentum": 5,
+          "momentum": 25,
           "relative_strength": 20,
           "participation": 5,
           "liquidity": 10
         },
         "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
+          "not_extended": 5,
+          "momentum_live": 25,
           "rsi_window": 20,
           "volume_confirm": 5,
           "relative_strength": 10
@@ -647,7 +647,7 @@
       {
         "symbol": "PLTR",
         "direction": "SHORT",
-        "price": 191.705,
+        "price": 192.565,
         "setup_score": 20,
         "entry_score": 0,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -724,7 +724,7 @@
       {
         "symbol": "INTC",
         "direction": "LONG",
-        "price": 114.43,
+        "price": 114.045,
         "setup_score": 65,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -749,7 +749,7 @@
       {
         "symbol": "NU",
         "direction": "LONG",
-        "price": 15.54,
+        "price": 15.52,
         "setup_score": 65,
         "entry_score": 65,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -799,7 +799,7 @@
       {
         "symbol": "EWZ",
         "direction": "LONG",
-        "price": 42.86,
+        "price": 42.895,
         "setup_score": 80,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -824,7 +824,7 @@
       {
         "symbol": "SOXL",
         "direction": "LONG",
-        "price": 167.095,
+        "price": 165.96,
         "setup_score": 90,
         "entry_score": 65,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -849,7 +849,7 @@
       {
         "symbol": "TQQQ",
         "direction": "LONG",
-        "price": 84.71,
+        "price": 84.55,
         "setup_score": 90,
         "entry_score": 50,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -874,7 +874,7 @@
       {
         "symbol": "ITUB",
         "direction": "LONG",
-        "price": 10.08,
+        "price": 10.105,
         "setup_score": 77,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -899,7 +899,7 @@
       {
         "symbol": "PBR",
         "direction": "LONG",
-        "price": 23.95,
+        "price": 23.955,
         "setup_score": 77,
         "entry_score": 60,
         "decision": "WAIT \u2014 ENTRY NOT READY",
@@ -924,7 +924,7 @@
       {
         "symbol": "RKLB",
         "direction": "LONG",
-        "price": 73.99,
+        "price": 74.235,
         "setup_score": 62,
         "entry_score": 100,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -949,7 +949,7 @@
       {
         "symbol": "SMCI",
         "direction": "LONG",
-        "price": 43.82,
+        "price": 43.67,
         "setup_score": 85,
         "entry_score": 90,
         "decision": "QUALIFIED",
@@ -972,34 +972,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "MRNA",
-        "direction": "LONG",
-        "price": 190.95,
-        "setup_score": 75,
-        "entry_score": 80,
-        "decision": "QUALIFIED",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "AAPL",
         "direction": "LONG",
-        "price": 332.605,
+        "price": 332.755,
         "setup_score": 60,
         "entry_score": 70,
         "decision": "WATCH \u2014 SETUP TOO WEAK",
@@ -1024,22 +999,22 @@
       {
         "symbol": "PLTR",
         "direction": "LONG",
-        "price": 191.705,
-        "setup_score": 70,
-        "entry_score": 70,
-        "decision": "QUALIFIED",
+        "price": 192.565,
+        "setup_score": 90,
+        "entry_score": 65,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
         "held": true,
         "main_score": null,
         "setup_parts": {
           "trend": 30,
-          "momentum": 5,
+          "momentum": 25,
           "relative_strength": 20,
           "participation": 5,
           "liquidity": 10
         },
         "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
+          "not_extended": 5,
+          "momentum_live": 25,
           "rsi_window": 20,
           "volume_confirm": 5,
           "relative_strength": 10
@@ -1089,8 +1064,8 @@
       },
       {
         "symbol": "PLTR",
-        "decision": "HOLD",
-        "exit_score": 2,
+        "decision": "LET RUN",
+        "exit_score": 0,
         "order_status": "NO ACTION"
       },
       {
@@ -1143,11 +1118,6 @@
       },
       {
         "symbol": "RKLB",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "MRNA",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       }
