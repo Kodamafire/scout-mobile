@@ -12,12 +12,9 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-06T12:56:38.276198-07:00",
+  "last_cycle": "2026-10-06T13:11:19.561695-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-06",
-    "timestamp": 1791315852.53424
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -4821,7 +4818,8 @@
       "20261006_120759",
       "20261006_122758",
       "20261006_124412",
-      "20261006_125638"
+      "20261006_125638",
+      "20261006_131119"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4857,7 +4855,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-06T19:56:59.284828+00:00",
+      "checked_at": "2026-10-06T20:11:40.082941+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
@@ -10387,6 +10385,46 @@
     {
       "cycle": "20261006_125638",
       "updated": "2026-10-06T12:56:38.276198-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.926,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261006_131119",
+      "updated": "2026-10-06T13:11:19.561695-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 0.291,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.7834675262183315,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261006_131119",
+      "updated": "2026-10-06T13:11:19.561695-07:00",
+      "symbol": "INTC",
+      "pnl_pct": -7.444000000000001,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 4.06445,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261006_131119",
+      "updated": "2026-10-06T13:11:19.561695-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 12.676000000000002,
+      "runner_floor": 4.666080493965763,
+      "runner_signal": false,
+      "legacy_floor": 10.150778276733092,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261006_131119",
+      "updated": "2026-10-06T13:11:19.561695-07:00",
       "symbol": "WBD",
       "pnl_pct": 3.926,
       "runner_floor": null,
