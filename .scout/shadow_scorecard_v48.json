@@ -3248,6 +3248,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-06|TSLG|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-06",
+      "at": "2026-10-06T07:34:36.722409-07:00",
+      "symbol": "TSLG",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 52,
+      "entry_score": 100,
+      "reference_price": 5.17,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-06|SMCI|LONG|QUALIFIED",
+      "session": "2026-10-06",
+      "at": "2026-10-06T07:34:36.722409-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 85,
+      "entry_score": 90,
+      "reference_price": 43.68,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
