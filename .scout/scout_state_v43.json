@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-06T14:42:43.896775-07:00",
+  "last_cycle": "2026-10-06T14:54:41.490308-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -4824,7 +4824,8 @@
       "20261006_135434",
       "20261006_140742",
       "20261006_142719",
-      "20261006_144243"
+      "20261006_144243",
+      "20261006_145441"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4860,7 +4861,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-06T21:42:59.698668+00:00",
+      "checked_at": "2026-10-06T21:54:58.458453+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
@@ -10630,6 +10631,46 @@
     {
       "cycle": "20261006_144243",
       "updated": "2026-10-06T14:42:43.896775-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.926,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261006_145441",
+      "updated": "2026-10-06T14:54:41.490308-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 0.322,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.7834675262183315,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261006_145441",
+      "updated": "2026-10-06T14:54:41.490308-07:00",
+      "symbol": "INTC",
+      "pnl_pct": -7.133000000000001,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 4.06445,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261006_145441",
+      "updated": "2026-10-06T14:54:41.490308-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 12.641,
+      "runner_floor": 4.666080493965763,
+      "runner_signal": false,
+      "legacy_floor": 10.150778276733092,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261006_145441",
+      "updated": "2026-10-06T14:54:41.490308-07:00",
       "symbol": "WBD",
       "pnl_pct": 3.926,
       "runner_floor": null,
