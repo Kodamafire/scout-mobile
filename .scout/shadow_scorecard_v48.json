@@ -3282,6 +3282,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-06|BITO|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-06",
+      "at": "2026-10-06T07:57:22.356502-07:00",
+      "symbol": "BITO",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 45,
+      "reference_price": 11.57,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
