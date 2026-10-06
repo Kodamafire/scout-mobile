@@ -3231,6 +3231,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-06|MRNA|LONG|QUALIFIED",
+      "session": "2026-10-06",
+      "at": "2026-10-06T07:14:51.629792-07:00",
+      "symbol": "MRNA",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 75,
+      "entry_score": 80,
+      "reference_price": 190.07,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
