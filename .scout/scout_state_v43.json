@@ -12,11 +12,11 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-07T06:57:31.875005-07:00",
+  "last_cycle": "2026-10-07T07:14:47.899433-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-10-07",
-    "timestamp": 1791381452.194277
+    "timestamp": 1791382488.088778
   },
   "activity_journal": {
     "events": [
@@ -4846,7 +4846,8 @@
       "20261006_165442",
       "20261007_061315",
       "20261007_063442",
-      "20261007_065731"
+      "20261007_065731",
+      "20261007_071447"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4882,7 +4883,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-07T13:57:54.002714+00:00",
+      "checked_at": "2026-10-07T14:15:06.161422+00:00",
       "status": "History checked",
       "orders_checked": 8
     }
@@ -4892,7 +4893,7 @@
     "PLTR": 4.72285380129901
   },
   "legacy_profit_floor": {
-    "AAPL": 0.7986290624584913,
+    "AAPL": 0.8010272981403519,
     "INTC": 4.06445,
     "PLTR": 10.253889108954715,
     "WBD": 2.41520512938789
@@ -11138,6 +11139,46 @@
       "runner_signal": false,
       "legacy_floor": 2.41520512938789,
       "legacy_signal": false
+    },
+    {
+      "cycle": "20261007_071447",
+      "updated": "2026-10-07T07:14:47.899433-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 0.791,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.8010272981403519,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261007_071447",
+      "updated": "2026-10-07T07:14:47.899433-07:00",
+      "symbol": "INTC",
+      "pnl_pct": -6.088,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 4.06445,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261007_071447",
+      "updated": "2026-10-07T07:14:47.899433-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 11.949,
+      "runner_floor": 4.72285380129901,
+      "runner_signal": false,
+      "legacy_floor": 10.253889108954715,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261007_071447",
+      "updated": "2026-10-07T07:14:47.899433-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.8240000000000003,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
@@ -11158,29 +11199,29 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-07T06:57:31.875005-07:00"
+        "last_at": "2026-10-07T07:14:47.899433-07:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 191.845,
-        "units": 0.0052735104425621696,
-        "cash": 0.0,
+        "last": 190.44,
+        "units": 0.0,
+        "cash": 1.003283041352858,
         "entry": 191.705,
         "peak": 193.665,
-        "pending": "SELL",
-        "fills": 4,
+        "pending": null,
+        "fills": 5,
         "reentries": 0,
         "session": "2026-10-07",
         "confirmations": 0,
         "confirm_at": null,
-        "status": "EXIT SIGNAL \u2014 next observation",
-        "last_at": "2026-10-07T06:57:31.875005-07:00"
+        "status": "SIMULATED CASH",
+        "last_at": "2026-10-07T07:14:47.899433-07:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 113.66,
+        "last": 113.99,
         "units": 0.008698146523366148,
         "cash": 0.0,
         "entry": 116.92,
@@ -11192,12 +11233,12 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED RE-ENTRY",
-        "last_at": "2026-10-07T06:57:31.875005-07:00"
+        "last_at": "2026-10-07T07:14:47.899433-07:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 334.915,
+        "last": 335.24,
         "units": 0.0,
         "cash": 1.0062391863939428,
         "entry": 329.55,
@@ -11209,10 +11250,10 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-07T06:57:31.875005-07:00"
+        "last_at": "2026-10-07T07:14:47.899433-07:00"
       }
     },
-    "last_at": "2026-10-07T06:57:31.875005-07:00",
+    "last_at": "2026-10-07T07:14:47.899433-07:00",
     "cost_per_side": 0.001
   }
 }

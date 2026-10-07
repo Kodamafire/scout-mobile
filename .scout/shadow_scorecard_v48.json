@@ -3555,6 +3555,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-07|RWM|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-07",
+      "at": "2026-10-07T07:14:47.899433-07:00",
+      "symbol": "RWM",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 37,
+      "entry_score": 80,
+      "reference_price": 14.42,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
