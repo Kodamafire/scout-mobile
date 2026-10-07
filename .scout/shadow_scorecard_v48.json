@@ -3572,6 +3572,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-07|NU|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T07:34:49.743350-07:00",
+      "symbol": "NU",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 65,
+      "reference_price": 15.575,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|ITUB|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-07",
+      "at": "2026-10-07T07:34:49.743350-07:00",
+      "symbol": "ITUB",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 67,
+      "entry_score": 50,
+      "reference_price": 10.03,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
