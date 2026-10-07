@@ -2,67 +2,618 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark"><title>Scout Options</title>
+<meta name="color-scheme" content="light dark"><title>Scout Options</title>
 <style>
-[hidden]{display:none!important}:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#eef4ff;background:#09121f;font-size:15px}*{box-sizing:border-box}body{margin:0}main{max-width:1080px;margin:auto;padding:24px 18px 56px}a{color:#a8cfff}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.brand{font-weight:800;letter-spacing:.06em;font-size:13px;color:#75d4c6}h1{font-size:32px;margin:5px 0 8px;letter-spacing:-.04em}h2{font-size:19px;margin:0 0 14px}h3{font-size:16px;margin:0}.sub{color:#96abc4;line-height:1.5}.banner{border:1px solid #315176;background:#10253d;border-radius:16px;padding:16px;margin:18px 0;line-height:1.6}.badge{display:inline-block;font-size:12px;letter-spacing:.03em;border:1px solid #36506b;border-radius:50px;padding:6px 10px;white-space:nowrap}.good{color:#71dfba}.bad{color:#ff9d9d}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}button{background:#173451;border:1px solid #385b7c;border-radius:10px;color:#edf5ff;padding:11px 15px;font:inherit;cursor:pointer}button.primary{background:#b3f0dd;border-color:#b3f0dd;color:#09241d;font-weight:650}button:focus-visible,a:focus-visible{outline:3px solid #a8cfff;outline-offset:3px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.metric,.panel{border:1px solid #24364c;background:#0f1c2d;border-radius:16px;padding:18px}.metric span{color:#96abc4;font-size:12px}.metric strong{display:block;font-size:25px;margin-top:9px}.layout{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}.panel{margin-bottom:16px}.row{padding:15px 0;border-top:1px solid #24364c}.row:first-child{border-top:0}.row-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.row p{margin:7px 0;color:#96abc4;line-height:1.5}.kv{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0;color:#96abc4}.kv b{color:#edf5ff;text-align:right}.empty{padding:16px 0;line-height:1.6;color:#96abc4}footer{line-height:1.6;font-size:12px;color:#96abc4;margin-top:16px}.state{font-size:14px}.alert{padding:12px;border-left:3px solid #d5a963;background:#272719;margin:9px 0;line-height:1.5}#updated{font-size:12px;margin-top:8px}#demo-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{color:#b3f0dd} @media(max-width:680px){main{padding:20px 14px 36px}header{align-items:flex-start}h1{font-size:28px}.metrics{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.metric strong{font-size:23px}header a{font-size:12px}}
+:root{--paper:#f3f5f7;--panel:#fff;--ink:#14202b;--muted:#546574;--line:#d6dde4;--go:#17724a;--go-bg:#e2f2e9;--wait:#8f5b00;--wait-bg:#fbefd6;--stop:#ad2219;--stop-bg:#fbe5e2;--info:#2253a3;--info-bg:#e3ecf9;--focus:#2253a3;
+font:16px/1.5 "Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--paper:#0d1620;--panel:#142030;--ink:#e8eff6;--muted:#a2b3c4;--line:#27394b;--go:#63d6a0;--go-bg:#11352a;--wait:#ecbb62;--wait-bg:#3a2c10;--stop:#ff938a;--stop-bg:#401b1b;--info:#92b9f4;--info-bg:#172c48;--focus:#92b9f4}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink)}
+main{max-width:960px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:20px;margin:0;font-weight:700;letter-spacing:-.01em}
+h2{font-size:17px;margin:0 0 4px;font-weight:700}
+h3{font-size:15px;margin:0;font-weight:650}
+p{margin:6px 0}
+a{color:var(--info)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+button{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer}
+button:hover{border-color:var(--muted)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-bottom:16px}
+.status-line{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}
+.dot.on{background:var(--go)}.dot.off{background:var(--stop)}
+.note{font-size:14px;color:var(--muted);margin:0 0 14px}
+
+.verdict{border-radius:14px;padding:20px 22px 20px 26px;border:1px solid var(--line);border-left-width:8px;background:var(--panel)}
+.verdict h2{font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 6px}
+.verdict p{margin:0;font-size:16px;max-width:60ch}
+.verdict.go{border-left-color:var(--go);background:var(--go-bg)}
+.verdict.wait{border-left-color:var(--wait);background:var(--wait-bg)}
+.verdict.stop{border-left-color:var(--stop);background:var(--stop-bg)}
+.verdict.info{border-left-color:var(--info);background:var(--info-bg)}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.checks{list-style:none;margin:10px 0 0;padding:0}
+.checks li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:0 12px;padding:12px 0;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.mark{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;margin-top:1px}
+.ok .mark{background:var(--go-bg);color:var(--go)}
+.block .mark{background:var(--stop-bg);color:var(--stop)}
+.wait .mark{background:var(--wait-bg);color:var(--wait)}
+.unknown .mark{background:var(--line);color:var(--muted)}
+.checks .what{font-weight:650}
+.checks .tag{font-weight:500;font-size:13px;margin-left:8px;padding:1px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.block .tag{color:var(--stop)}.wait .tag{color:var(--wait)}
+.checks .why,.checks .fix{margin:0;font-size:14.5px;color:var(--muted)}
+.checks .fix{color:var(--ink)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 2px;max-width:320px}
+.bar>i{display:block;height:100%;background:var(--wait)}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;margin-top:10px}
+.stat span{display:block;font-size:13px;color:var(--muted)}
+.stat strong{display:block;font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.25}
+.up{color:var(--go)}.down{color:var(--stop)}
+
+.tabs{display:flex;gap:4px;margin:22px 0 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:10px 14px;white-space:nowrap;color:var(--muted)}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink);font-weight:650}
+.panel{padding:6px 0}
+.row{padding:14px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.row p{color:var(--muted);font-size:14.5px;margin:4px 0 0}
+.pill{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{padding:14px 0;color:var(--muted)}
+.alert{padding:10px 12px;border-left:3px solid var(--wait);background:var(--wait-bg);margin:8px 0;font-size:14.5px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 14px;margin:10px 0;font-size:14.5px}
+.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:right}
+.section{padding:14px 0;border-top:1px solid var(--line)}
+.section:first-child{border-top:0}
+details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
+@media(max-width:700px){
+ main{padding:14px 12px 40px}
+ .grid{grid-template-columns:1fr}
+ .verdict{padding:16px 16px 16px 18px}.verdict h2{font-size:25px}
+ .stat strong{font-size:22px}
+ .tabs button{padding:12px 12px}
+}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:18px 0}.kv span{color:var(--muted)}.kv b{text-align:right;overflow-wrap:anywhere}.demo-bar #step{flex:1;min-width:130px;font-size:14px}button:disabled{opacity:.45;cursor:default}#demo-story p{line-height:1.6}#demo-story{margin-bottom:16px}#demo-story .row-head{flex-wrap:wrap}
+.grid:has(#checklist-box[hidden]){grid-template-columns:1fr}
+
+/* ---------- Demo tour ---------- */
+:root{--stock:#2b63c4;--option:#6a4bc4;--neutral-bg:#eceff3}
+@media(prefers-color-scheme:dark){:root{--stock:#8fb6f5;--option:#b9a5f3;--neutral-bg:#1c2a3a}}
+.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.link-btn{min-height:40px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--info);border-color:var(--info);background:transparent}
+.tour-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.eyebrow{margin:0 0 2px;font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--info)}
+.tour-head h2{font-size:24px;letter-spacing:-.015em;margin:0}
+.tour-head #exit-demo{white-space:nowrap;flex:none}
+.tour-head p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:5px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:14px}
+.seg button{border:0;border-radius:10px;background:transparent;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;text-align:left}
+.seg button[aria-selected=true]{background:var(--paper);box-shadow:inset 0 0 0 2px var(--ink)}
+.seg b{font-size:15.5px;overflow-wrap:anywhere}.seg span{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.contract{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:12px 20px;background:var(--paper);border-bottom:1px solid var(--line);font-size:14.5px}
+.contract strong{font-size:15.5px}.contract .muted{font-size:14px}
+.stage-body{padding:18px 20px 20px}
+.step-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:14px;color:var(--muted)}
+.badge{font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--neutral-bg);color:var(--ink)}
+.badge.info{background:var(--info-bg);color:var(--info)}.badge.go{background:var(--go-bg);color:var(--go)}.badge.wait{background:var(--wait-bg);color:var(--wait)}.badge.stop{background:var(--stop-bg);color:var(--stop)}
+.step-title{font-size:23px;line-height:1.25;letter-spacing:-.015em;margin:0 0 6px}
+.step-text{margin:0;font-size:16px;line-height:1.6;max-width:64ch}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.tile{background:var(--paper);border-radius:12px;padding:12px 14px;border-top:4px solid var(--line)}
+.tile.stock{border-top-color:var(--stock)}.tile.option{border-top-color:var(--option)}
+.tile span{display:block;font-size:13px;color:var(--muted);font-weight:600}
+.tile strong{display:block;font-size:25px;line-height:1.25;font-variant-numeric:tabular-nums;letter-spacing:-.01em;margin-top:2px}
+.tile small{display:block;font-size:13px;color:var(--muted);line-height:1.35;margin-top:2px}
+.chart{margin-top:18px}.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:inherit;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px}
+.legend i.dash{border-top-style:dashed;border-top-width:2px}
+.stepper{display:flex;align-items:center;gap:12px;margin-top:14px}
+.stepper .dots{flex:1;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.stepper .dots button{min-height:0;width:12px;height:12px;padding:0;border-radius:99px;border:0;background:var(--line)}
+.stepper .dots button.seen{background:var(--muted)}
+.stepper .dots button[aria-current=step]{width:30px;background:var(--ink)}
+.stepper #next{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:650}
+.summary{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-left:8px solid var(--info);border-radius:14px;padding:16px 20px}
+.summary h3{font-size:17px;margin:0 0 8px}
+.summary .kv{margin:8px 0 6px;max-width:360px}
+.math{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 20px 12px}
+.math ul{margin:4px 0 0;padding-left:18px;font-size:15px;line-height:1.7}
+@media(max-width:700px){
+ .tour-head h2{font-size:21px}.stage-body{padding:16px 14px 16px}.contract{padding:10px 14px}
+ .tiles{grid-template-columns:1fr 1fr}.tile strong{font-size:22px}.step-title{font-size:20px}
+ .seg button{flex-direction:column;align-items:flex-start;gap:0;padding:8px 12px}
+ .math,.summary{padding-left:14px;padding-right:14px}
+}
+.contract-summary{margin:7px 0 12px}.contract-summary p{font-size:13px!important;color:var(--muted);line-height:1.5!important;margin:3px 0!important}.contract-summary p:first-child{color:var(--ink)}
 </style>
 </head>
 <body><main>
-<header><div><div class="brand">SCOUT / OPTIONS LAB</div><h1>Your options desk</h1><div class="sub">Calls. Puts. One-second position checks.</div></div><a href="./">Stock dashboard ↗</a></header>
-<div class="banner"><strong>Research simulator · No brokerage orders</strong><br>This page shows a separate virtual options portfolio. The always-on service has not been deployed. Demo results use made-up prices.</div>
-<div class="row-head"><span id="connection" class="badge">Not connected</span><span id="feed" class="badge">Waiting for data</span></div>
-<div id="updated" class="sub">No service heartbeat available.</div>
-<div class="toolbar"><button id="demo" class="primary">Explore the demo</button><button id="service">Check service data</button><div id="demo-controls" hidden><button id="previous" aria-label="Previous demo step">←</button><span id="step"></span><button id="next" aria-label="Next demo step">→</button></div></div>
-<div class="metrics"><div class="metric"><span>VIRTUAL EQUITY</span><strong id="equity">—</strong></div><div class="metric"><span>AVAILABLE VIRTUAL CASH</span><strong id="cash">—</strong></div><div class="metric"><span>OPEN POSITIONS</span><strong id="count">—</strong></div><div class="metric"><span>NEW ENTRIES</span><strong id="entries">Waiting</strong></div></div>
-<div class="layout"><div><section class="panel"><h2>Positions</h2><div id="positions"><div class="empty">No connected position data. Explore the demo to see how protection works.</div></div></section><section class="panel"><h2>Order lifecycle</h2><div id="orders"><div class="empty">No connected orders.</div></div></section></div><div><section class="panel"><h2>Calls & puts scanner</h2><div id="scanner"><div class="empty">Starter universe: SPY, QQQ, IWM.<br>Waiting for completed minute bars and fresh option quotes.</div></div></section><section class="panel"><h2>Protection & alerts</h2><div id="alerts"><div class="empty">No service alerts available.</div></div><div class="kv"><span>Position checks</span><b>Every second</b><span>Entry scan</span><b>Every 60 seconds</b><span>Broker execution</span><b>Disabled</b><span>Phone notifications</span><b>Not connected</b></div><details><summary>Research risk settings</summary><div class="kv"><span>Full premium per entry</span><b id="risk-entry">1% of virtual equity</b><span>Total committed premium</span><b id="risk-total">5% of virtual equity</b><span>Session loss pause</span><b id="risk-session">2%</b><span>Premium loss exit</span><b id="risk-stop">25%</b><span>Runner trail</span><b id="risk-trail">After +20%; 15% giveback</b></div><p class="sub">Initial research defaults; not performance-tested. Software exits cannot guarantee a maximum loss.</p></details></section></div></div>
+<header>
+ <h1>Scout Options</h1>
+ <div class="header-right"><div class="status-line"><span id="dot" class="dot"></span><span id="connection">Not connected</span><span id="updated"></span></div><button id="demo-top" class="link-btn">Watch a demo trade</button></div>
+</header>
+<p class="note">Simulation only. No brokerage orders are ever sent.</p>
+
+<section id="tour" hidden aria-label="Demo trades">
+ <div class="tour-head">
+  <div><p class="eyebrow">Demo trade</p><h2>How a Scout trade plays out</h2><p>Step through a win, a loss and a runner that doubles, using the 20% activation and 15% trailing-stop defaults. All prices are made up.</p></div>
+  <button id="exit-demo">Exit demo</button>
+ </div>
+ <div class="seg" role="tablist" aria-label="Choose a demo trade">
+  <button role="tab" id="sc-0" aria-selected="true"><b>Winning trade</b><span class="up">+$18</span></button>
+  <button role="tab" id="sc-1" aria-selected="false"><b>Losing trade</b><span class="down">−$24</span></button>
+  <button role="tab" id="sc-2" aria-selected="false"><b>100% runner</b><span class="up">Exit +70%</span></button>
+ </div>
+ <article class="stage">
+  <div class="contract"><strong>SPY $600 call</strong><span>1 contract covers 100 shares</span><span>Expires in 10 days</span><span class="muted" id="day-note"></span></div>
+  <div class="stage-body" aria-live="polite">
+   <div class="step-top"><span class="badge" id="t-badge"></span><span id="t-count"></span><span id="t-time"></span></div>
+   <h3 class="step-title" id="t-title"></h3>
+   <p class="step-text" id="t-text"></p>
+   <div class="tiles">
+    <div class="tile stock"><span>SPY stock price</span><strong id="v-spot"></strong><small id="v-spot-sub"></small></div>
+    <div class="tile option"><span>Option price (per share)</span><strong id="v-opt"></strong><small id="v-opt-sub"></small></div>
+    <div class="tile"><span id="v-worth-label">Worth now</span><strong id="v-worth"></strong><small id="v-worth-sub"></small></div>
+    <div class="tile"><span id="v-pl-label">Profit / loss</span><strong id="v-pl"></strong><small id="v-pl-sub"></small></div>
+   </div>
+   <div class="chart" id="chart" role="img"></div>
+   <div class="legend" id="legend"></div>
+  </div>
+ </article>
+ <nav class="stepper" aria-label="Demo steps"><button id="previous">← Back</button><div class="dots" id="dots"></div><button id="next">Next →</button></nav>
+ <section class="summary" id="summary" hidden><h3>All three demo trades together</h3><div class="kv"><span>Winning trade</span><b class="up">+$18.00</b><span>Losing trade</span><b class="down">−$24.00</b><span>100% runner</span><b class="up">+$63.00</b><span>Net, before fees</span><b class="up">+$57.00</b></div><p class="muted small">These are invented examples, not results or forecasts. The runner peaks at +100% and exits at +70% with a 15% trail; its final fill is illustrative. Actual fills, costs and other exit rules can change the result.</p></section>
+ <details class="math"><summary>How the numbers are worked out</summary><ul>
+  <li>Cost = price paid × 100 shares. $0.90 × 100 = <b>$90</b>.</li>
+  <li>Worth now = current bid × 100. The bid is what a buyer will pay right now.</li>
+  <li>Profit / loss = worth now − $90 paid. Fees are not included.</li>
+  <li>Stop-loss: sell if the bid falls 25% below $0.90, to <b>$0.675</b>.</li>
+  <li>Profit protection starts once the bid is 20% above $0.90, at <b>$1.08</b>. From then on Scout sells if the bid drops 15% from its highest point.</li>
+  <li>Runner: $0.90 → $1.80 is +100%. The 15% trail is $1.80 × 0.85 = <b>$1.53</b>. A fill there returns $153: <b>+$63 (+70%)</b> before fees, not +95%.</li>
+  <li>A sell order is filled at whatever a buyer pays next, which can be a little lower than the trigger.</li>
+ </ul></details>
+</section>
+
+<div id="dashboard">
+
+<section id="verdict" class="verdict wait" aria-live="polite"><h2 id="verdict-title">Connecting…</h2><p id="verdict-text">Looking for the Scout service.</p></section>
+
+
+<div class="grid">
+ <section class="box" id="checklist-box"><h2>What has to be true before Scout trades</h2><p class="muted small">Scout opens a simulated trade only when every item is checked.</p><ul id="checks" class="checks"></ul></section>
+ <section class="box"><h2>Account</h2><p class="muted small">Virtual money, not a real account.</p>
+  <div class="stats"><div class="stat"><span>Equity</span><strong id="equity">—</strong></div><div class="stat"><span>Today</span><strong id="today">—</strong></div><div class="stat"><span>Cash</span><strong id="cash">—</strong></div><div class="stat"><span>Open trades</span><strong id="count">—</strong></div></div>
+  <p class="muted small" id="entries-note"></p>
+ </section>
+</div>
+
+<div class="tabs" role="tablist" aria-label="Details">
+ <button role="tab" id="tab-trades" aria-selected="true" aria-controls="pane-trades">Trades</button>
+ <button role="tab" id="tab-scanner" aria-selected="false" aria-controls="pane-scanner" tabindex="-1">Scanner</button>
+ <button role="tab" id="tab-alerts" aria-selected="false" aria-controls="pane-alerts" tabindex="-1">Alerts</button>
+ <button role="tab" id="tab-settings" aria-selected="false" aria-controls="pane-settings" tabindex="-1">Settings</button>
+</div>
+
+<section class="panel" role="tabpanel" id="pane-trades" aria-labelledby="tab-trades">
+ <h3 style="margin-top:12px">Open trades</h3><div id="positions"><div class="empty">No open simulated trades.</div></div>
+ <h3 style="margin-top:14px">Recent orders</h3><div id="orders"><div class="empty">No simulated orders yet.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-scanner" aria-labelledby="tab-scanner" hidden>
+ <p class="muted" style="margin-top:12px">Once a minute Scout checks SPY, QQQ and IWM for a clear direction, then tests an option against every rule.</p>
+ <div id="scanner"><div class="empty">Waiting for completed minute bars and fresh option quotes.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-alerts" aria-labelledby="tab-alerts" hidden>
+ <h3 style="margin-top:12px">Connection right now</h3><div id="current-health"><div class="empty">Waiting for current connection checks.</div></div>
+ <h3 style="margin-top:14px">Alert history</h3><p class="muted small">Saved alert history; earlier errors remain here after recovery.</p>
+ <div id="alerts"><div class="empty">No recorded local alerts.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-settings" aria-labelledby="tab-settings" hidden>
+ <div class="section"><h3>Risk limits</h3>
+  <div class="kv"><span id="risk-entry-label">Most Scout will risk per trade</span><b id="risk-entry">—</b><span>Most premium in open trades</span><b id="risk-total">—</b><span>Stops trading for the day after losing</span><b id="risk-session">—</b><span>Exit a trade if it loses</span><b id="risk-stop">—</b><span>Locking in gains</span><b id="risk-trail">—</b></div>
+  <p class="muted small">Starting defaults, not performance-tested. Software exits cannot guarantee a maximum loss.</p></div>
+ <div class="section"><h3>Entry rules</h3><div id="entry-model" class="muted">Waiting for current research settings.</div>
+  <p class="muted small">Sizing estimates option risk from delta, spread and costs; real losses can exceed that estimate. Assumed costs are not verified broker charges.</p></div>
+ <div class="section"><h3>Fresh-session test</h3><p class="muted small">Opening-hour calls and puts: five-minute exit versus fifteen minutes and matched market directions. Results update after market close. Stock movement only; no orders or option fills. This frozen baseline does not evaluate the newer entry filters.</p><div id="forward-study"><div class="empty">Waiting for the frozen future-session study.</div></div></div>
+ <div class="section"><h3>Option quote recorder</h3><p class="muted small">Timestamped bids, asks and sizes for subscribed contracts. Indicative prices are modified; recorded quotes are observations, not fills.</p><div id="quote-tape"><div class="empty">Waiting for the local recorder.</div></div></div>
+ <div class="section"><h3>How it runs</h3><div class="kv"><span>Open trades checked</span><b>Every second</b><span>New setups checked</span><b>Every 60 seconds</b><span>Broker orders</span><b>Disabled</b><span>Phone notifications</span><b>Not connected</b></div>
+  <p class="muted small">Local background research is available; cloud hosting is not configured. Demo results use made-up prices.</p>
+  <div style="margin-top:10px"><button id="demo">Watch a demo trade</button></div></div>
+</section>
+</div>
+
 <footer>Reference simulation only. Bid/ask prices are not guaranteed fills. Fees, queue priority, and actual executable liquidity are not modeled. A one-second check does not guarantee an exit or a maximum loss. No results here establish profitability.<br>Options development: <a href="https://github.com/Kodamafire/scout-mobile/pull/8">View the build and tests</a>.</footer>
 </main>
 <script>
 'use strict';
 const STATUS_FILE='options-status.json';
+/*LOGIC-START*/
+const IV_DAYS_NEEDED=60;
+const REASONS={
+ OPRA_DATA_REQUIRED:'Needs real-time OPRA prices.',
+ IV_HISTORY_MISSING:'Not enough option-price history yet (needs 60 trading days).',
+ IV_NOT_CHEAP:'Options cost more than usual right now.',
+ EVENT_CALENDAR_MISSING:'The event calendar is missing.',
+ EVENT_CALENDAR_STALE:'The event calendar is out of date.',
+ EVENT_CALENDAR_INVALID:'The event calendar file has a problem.',
+ EVENT_COVERAGE_MUST_INCLUDE_OPTION_LIFE:'The event calendar does not cover this option’s whole life.',
+ EARNINGS_INSIDE_OPTION_LIFE:'Earnings are due before this option expires.',
+ RISK_OR_LIQUIDITY_CANNOT_FUND_ONE_CONTRACT:'Even one contract is too expensive or too risky for the account limits.',
+ RISK_OR_LIQUIDITY_CANNOT_FUND_TWO_CONTRACTS:'Two contracts would be too expensive or too risky for the account limits.',
+ SPREAD_LIMIT:'The gap between buy and sell prices is too wide.',
+ BARS_NOT_READY:'Still collecting the first minutes of price data.',
+ HIGHER_TIMEFRAME_WARMUP:'Still collecting longer-term price data.',
+ DAILY_TRADE_LIMIT:'Today’s trade limit is reached.',
+ COOLDOWN:'Waiting after a recent trade in this ticker.',
+ ENTRY_TIME_WINDOW:'Outside entry hours (9:45–15:30 ET).',
+ STOCK_BARS_STALE:'Price data is out of date.',
+ STOCK_CONTEXT_STALE:'Price data is out of date.',
+ TODAY_OPTION_VOLUME_MISSING_OR_LOW:'This option traded too little today.',
+ OPEN_INTEREST:'Too few open contracts.',
+ LOSS_STREAK_PAUSE:'Paused after several losing trades.',
+ DAILY_LOSS_LIMIT:'Daily loss limit reached.',
+ CORRELATED_GROUP_LIMIT:'Already holding a similar position.',
+ ATR_DOES_NOT_COVER_SPREAD:'Expected price movement is too small compared with the buy/sell gap.',
+ SIGNAL_REJECTED:'The setup failed one of the entry rules.',
+ ENTRY_REJECTED:'The option failed one of the entry rules.',
+ CONTRACT_CONTEXT_MISSING:'Option details are still loading.',
+ CONTEXT_FILTERS_PASS:'All entry filters passed.',
+ STOCK_FILTERS_PASS:'Stock filters passed.',
+ ENTRY_ACCEPTED:'Entry accepted.'
+};
+function plain(text){
+ if(typeof text!=='string'||!text)return '';
+ if(/^[A-Z][A-Z0-9_]+$/.test(text)){
+  if(REASONS[text])return REASONS[text];
+  if(text.startsWith('MACRO_DAY_'))return 'A major economic report (Fed, CPI or jobs) is due that day.';
+  const s=text.replace(/_/g,' ').toLowerCase();return s[0].toUpperCase()+s.slice(1)+'.';
+ }
+ return text;
+}
+function sentence(t){t=String(t||'');return t?t[0].toUpperCase()+t.slice(1)+(/[.!?]$/.test(t)?'':'.'):'';}
+function ivDays(iv){
+ const p=iv&&iv.progress;
+ if(!p||typeof p!=='object')return null;
+ let best=null;
+ for(const cells of Object.values(p)){
+  if(!cells||typeof cells!=='object')continue;
+  const counts=Object.values(cells).map(c=>c&&c.sessions).filter(Number.isFinite);
+  if(counts.length){const low=Math.min(...counts);best=best===null?low:Math.min(best,low);}
+ }
+ return best===null?0:best;
+}
+function gates(data,fresh,synthetic){
+ const list=[];
+ const add=(id,label,state,why,fix,extra)=>list.push(Object.assign({id,label,state,why,fix:fix||''},extra||{}));
+ if(fresh)add('service','Scout is running','ok','Updating every second.');
+ else add('service','Scout is running','block','The page is not getting live updates, so what you see is the last saved snapshot.','Start it from Ubuntu: python -m scout_options.local_runner --update',{who:'you'});
+ if(data.feed==='opra')add('feed','Real-time option prices','ok','Using OPRA prices.');
+ else if(data.feed==='indicative')add('feed','Real-time option prices','block','Free “indicative” prices are modified, so Scout can watch but cannot open trades.','Subscribe to OPRA data with Alpaca, set "options_feed":"opra" in runtime-settings.json, then restart.',{who:'you'});
+ else add('feed','Real-time option prices','unknown','Price feed not reported yet.');
+ if(data.exchange_context_fresh===false)add('clock','Market clock','block','The market clock reading is out of date.','Usually fixes itself within a minute. If not, check Alerts.',{who:'time'});
+ const cal=data.macro_calendar&&data.macro_calendar.status;
+ if(typeof cal!=='string')add('calendar','Economic-events calendar','unknown','Not reported by this version.');
+ else if(/^Blocked/i.test(cal)){
+  const missing=/no macro-calendar\.json/i.test(cal);
+  add('calendar','Economic-events calendar','block',sentence(cal.replace(/^Blocked:\s*/i,'')),missing?'Add macro-calendar.json (Fed, CPI and jobs-report dates). See ENTRY_CONTEXT.md.':'Fix the dates file, then restart.',{who:'you'});
+ }else if(/^(OK|Kept)/i.test(cal))add('calendar','Economic-events calendar','ok','Fed, CPI and jobs-report dates are loaded.');
+ else add('calendar','Economic-events calendar','wait',sentence(cal),'',{who:'time'});
+ const days=ivDays(data.iv_history);
+ if(days===null)add('iv','Option-price history','unknown','Not reported by this version.');
+ else if(days>=IV_DAYS_NEEDED)add('iv','Option-price history','unknown',days+' stored trading days. Contract-matched history must still pass the entry check.');
+ else{
+  const off=data.feed!=='opra';
+  add('iv','Option-price history','wait',off?'Collection starts once OPRA prices are on.':days+' of '+IV_DAYS_NEEDED+' trading days collected. Scout adds one per market day.',off?'':(IV_DAYS_NEEDED-days)+' to go. Nothing for you to do.',{who:'time',progress:days/IV_DAYS_NEEDED});
+ }
+ const lossPct=data.trading_rules&&Number.isFinite(data.trading_rules.daily_loss_fraction)?Math.round(data.trading_rules.daily_loss_fraction*100):2;
+ if(data.paused)add('risk','Daily loss limit','block','Paused: today’s loss limit ('+lossPct+'%) was reached.','Resumes next trading session.',{who:'time'});
+ else add('risk','Daily loss limit','ok','Not reached today.');
+ if(data.risk_pause_until&&Date.parse(data.risk_pause_until)>Date.now())add('cooldown','Loss-streak pause','wait','Temporarily paused after consecutive losses.','Resumes after '+data.risk_pause_until,{who:'time'});
+ if(data.daily_trades>=5)add('trade_limit','Daily trade limit','wait','Today’s trade limit has been reached.','Resumes next session.',{who:'time'});
+ const stream=data.current_health&&data.current_health.stream;
+ if(stream&&(stream.status==='Unavailable'||stream.fresh===false))add('stream','Option quote updates','block','Recent quote updates are not verified.','Check Alerts; individual quotes must pass freshness checks.',{who:'you'});
+ if(data.accepting||synthetic)add('hours','Entry hours','ok','Open now (9:45–15:30 ET).');
+ else add('hours','Entry hours','wait','Closed. Scout opens trades 9:45–15:30 ET on market days, up to the daily trade limit.','',{who:'time',hours:true});
+ const order={block:0,wait:1,unknown:2,ok:3};
+ return list.map((g,i)=>[g,i]).sort((a,b)=>order[a[0].state]-order[b[0].state]||a[1]-b[1]).map(x=>x[0]);
+}
+function verdict(data,fresh,synthetic,list){
+ const open=Object.keys(data.positions||{}).length;
+ if(synthetic)return{tone:'info',title:'Demo mode',text:'Made-up prices to show how Scout behaves. Nothing here is real market activity.'};
+ if(!fresh)return{tone:'stop',title:'Scout is offline',text:'This page cannot reach the one-second service. Numbers below are the last saved snapshot.'};
+ if(data.paused)return{tone:'stop',title:'Paused for today',text:'Scout hit its daily loss limit and will not open trades until the next session.'};
+ const blockers=list.filter(g=>g.id!=='service'&&g.id!=='hours'&&(g.state==='block'||g.state==='wait'));
+ if(blockers.length){
+  const you=blockers.filter(g=>g.who==='you').length,time=blockers.length-you;
+  const bits=[];if(you)bits.push(you+(you===1?' needs':' need')+' you');if(time)bits.push(time+(time===1?' just needs':' just need')+' time');
+  return{tone:'wait',title:'Not trading yet',text:(blockers.length===1?'1 thing is':blockers.length+' things are')+' holding Scout back: '+bits.join(', ')+'. Scout keeps running in the meantime.'};
+ }
+ const unknown=list.some(g=>g.state==='unknown');
+ if(unknown)return{tone:'info',title:'Readiness not confirmed',text:'Some required checks are not reported or still need contract-level validation. Check Scanner for each rejected setup.'};
+ if(!data.accepting)return{tone:'info',title:'Entries currently closed',text:'Scout will look for setups 9:45–15:30 ET on market days.'+(open?' Open trades are still checked every second.':'')};
+ return{tone:'go',title:open?'In a trade':'Ready and watching',text:open?'Open trades are checked every second. Scout can still open another if a setup passes every check.':'Scout checks SPY, QQQ and IWM every minute and opens a simulated trade when a setup passes every rule.'};
+}
+/*LOGIC-END*/
 const $=id=>document.getElementById(id);
 let mode='service', step=0, loading=false, latest=null;
 const money=v=>Number.isFinite(v)?v.toLocaleString('en-US',{style:'currency',currency:'USD'}):'—';
 const pct=v=>Number.isFinite(v)?(v>=0?'+':'')+(v*100).toFixed(1)+'%':'—';
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n;}
 function list(id,rows,empty,render){const root=$(id);root.replaceChildren();if(!rows.length){root.append(node('div',empty,'empty'));return;}rows.forEach(r=>root.append(render(r)));}
-function row(title,status,detail){const n=node('div',undefined,'row'),head=node('div',undefined,'row-head');head.append(node('h3',title),node('span',status,'pill'));n.append(head,node('p',detail));return n;}
-const base={synthetic:true,capital:10000,cash:10000,equity:10000,accepting:false,paused:false,positions:{},orders:{},alerts:[],scanner:[{underlying:'SPY',stage:'CALL',reason:'Synthetic rising trend; contract selected.'},{underlying:'QQQ',stage:'PUT',reason:'Synthetic bearish setup; waiting for entry confirmation.'},{underlying:'IWM',stage:'WAIT',reason:'No confirmed direction.'}]};
-const demoSteps=[
-{label:'1 / 4 · Setup found',data:{...base,accepting:true,orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:0,limit:.9,status:'OPEN',reason:'Synthetic trend entry'}}}},
-{label:'2 / 4 · Buy filled',data:{...base,cash:9910,equity:9998,accepting:true,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:.88,peak_bid:.88,expiry:'Demo expiry'}},orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:1,limit:.9,status:'FILLED',reason:'Synthetic buy filled on a later quote'}}}},
-{label:'3 / 4 · Winner running',data:{...base,cash:9910,equity:10040,accepting:true,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:1.3,peak_bid:1.3,expiry:'Demo expiry'}},orders:{a:{symbol:'SPY DEMO CALL',side:'BUY',qty:1,filled:1,limit:.9,status:'FILLED',reason:'Synthetic entry complete; trailing armed'}}}},
-{label:'4 / 4 · Trail breached; exit pending',data:{...base,cash:9910,equity:10013,positions:{a:{symbol:'SPY DEMO CALL',underlying:'SPY',kind:'CALL',qty:1,entry:.9,last_bid:1.03,peak_bid:1.3,expiry:'Demo expiry'}},orders:{b:{symbol:'SPY DEMO CALL',side:'SELL',qty:1,filled:0,limit:1.03,status:'OPEN',reason:'Synthetic runner trail breached; waiting for a later fill'}},alerts:['Example: an unfilled exit would be flagged locally. Phone notifications are not connected.']}}
+function row(title,status,detail){const n=node('div',undefined,'row'),head=node('div',undefined,'row-head');head.append(node('h3',title),node('span',status,'pill'));n.append(head);if(detail)n.append(node('p',detail));return n;}
+function contractFacts(p){
+ const occ=String(p.symbol||'').match(/^[A-Z0-9.]+(\d{2})(\d{2})(\d{2})([CP])(\d{8})$/);
+ const strike=Number.isFinite(p.strike)?p.strike:occ?Number(occ[5])/1000:null;
+ const kind=String(p.kind|| (occ?(occ[4]==='C'?'CALL':'PUT'):'OPTION')).toUpperCase();
+ const multiplier=Number.isFinite(p.multiplier)&&p.multiplier>0?p.multiplier:100;
+ const share=Number.isFinite(p.underlying_price)?money(p.underlying_price):'not reported';
+ return{strike,kind,multiplier,share};
+}
+function contractSummary(p,synthetic=false){
+ const f=contractFacts(p),n=node('div',undefined,'contract-summary');
+ const direction=f.kind==='CALL'?'benefits if the share price rises':f.kind==='PUT'?'benefits if the share price falls':'direction not reported';
+ n.append(node('p',(p.underlying||'Underlying')+' '+f.kind.toLowerCase()+' · '+direction));
+ n.append(node('p',(synthetic?'Example share price: ':'Reported share price: ')+f.share+' · Strike: '+(f.strike===null?'not reported':money(f.strike))+' · Expiry: '+(p.expiry||'not reported')));
+ n.append(node('p',p.qty+' contract'+(p.qty===1?'':'s')+' × '+f.multiplier+' shares · Option entry price: '+money(p.entry)+' per share · Premium: '+money(p.entry*p.qty*f.multiplier)+' before fees'));
+ return n;
+}
+
+// ---------- Demo tour: win, loss and 100% runner (made-up prices) ----------
+const STRIKE=600, ENTRY=0.90, STOP=+(ENTRY*0.75).toFixed(3), ARM=+(ENTRY*1.20).toFixed(2), TRAIL=0.15;
+const SCENARIOS=[
+ {label:'Winning trade',day:'Fictional Day 1',trail:true,steps:[
+  {t:'10:12',spot:600.40,bid:0.88,ask:0.90,phase:'plan',title:'Scout spots a setup',text:'SPY is climbing and trading volume is running 40% above normal. Scout picks the $600 call, which gains value when SPY rises, and places an order to buy one contract at $0.90 or less.'},
+  {t:'10:13',spot:600.45,bid:0.88,ask:0.90,phase:'bought',title:'Bought one call for $90',text:'The order fills at $0.90 a share. One contract covers 100 shares, so the cost is $90. Selling right away would only get the $0.88 bid, so every trade starts a couple of dollars down. That gap is normal.'},
+  {t:'10:40',spot:600.65,bid:1.00,ask:1.02,phase:'hold',title:'Up $10 and holding',text:'SPY rose 20 cents and the option followed it up to $1.00. Scout keeps holding. Profit protection switches on once the option reaches $1.08.'},
+  {t:'11:05',spot:601.25,bid:1.30,ask:1.32,phase:'armed',title:'Up $40, profit protection is on',text:'SPY is now $1.25 above the strike and the option reached $1.30. From here Scout sells if the option drops 15% from its highest price, which puts the sell line at $1.105.'},
+  {t:'11:20',spot:601.05,bid:1.20,ask:1.22,phase:'armed',title:'A small pullback, still holding',text:'SPY eased back and the option slipped to $1.20. That is still above the $1.105 sell line, so Scout keeps holding. The trade is up $30.'},
+  {t:'11:34',spot:600.85,bid:1.10,ask:1.12,phase:'exit',title:'Sell line crossed, selling now',text:'The option fell to $1.10, just under the $1.105 sell line. Scout sends a sell order. The profit is not locked in until a buyer takes it.'},
+  {t:'11:35',spot:600.82,bid:1.08,phase:'done',title:'Sold for $108: an $18 profit',text:'The sale filled at $1.08, a touch below the sell line, which is common. $108 back minus $90 paid is $18 profit before fees. At its best the trade was up $40. Scout gave back $22 of that to stay protected.'}
+ ]},
+ {label:'Losing trade',day:'Fictional Day 2',trail:false,steps:[
+  {t:'13:05',spot:600.40,bid:0.88,ask:0.90,phase:'plan',title:'The same setup on a different day',text:'Same rules and the same $600 call, on another fictional day. SPY looks like it is rising, so Scout orders one contract at $0.90 or less.'},
+  {t:'13:06',spot:600.45,bid:0.88,ask:0.90,phase:'bought',title:'Bought one call for $90',text:'Filled at $0.90, so $90 is paid. The stop-loss is set at the same moment: if the option falls 25% to $0.675, Scout sells.'},
+  {t:'13:30',spot:600.20,bid:0.76,ask:0.78,phase:'hold',title:'SPY turns lower, down $14',text:'The move reverses. SPY slips back toward the strike and the option drops to $0.76. That is still above the $0.675 stop-loss, so Scout holds.'},
+  {t:'13:52',spot:599.98,bid:0.67,ask:0.69,phase:'exit',title:'Stop-loss hit, selling now',text:'SPY dips under $600 and the option falls to $0.67, below the $0.675 stop-loss. Scout sends a sell order to cut the loss.'},
+  {t:'13:53',spot:599.95,bid:0.66,phase:'done',title:'Sold for $66: a $24 loss',text:'The sale filled at $0.66. $66 back minus $90 paid is a $24 loss before fees. The stop-loss kept it to about a quarter of what was paid, instead of letting it slide toward zero.'}
+ ]},
+ {label:'100% runner',day:'Fictional Day 3',trail:true,steps:[
+  {t:'10:12',spot:600.40,bid:0.88,ask:0.90,phase:'plan',title:'A fresh setup, the same rules',text:'Scout chooses one SPY $600 call at $0.90 per share: $90 for one contract. This invented example uses the existing defaults: a 25% initial stop, protection after +20%, then a 15% trail below the highest bid. It is not a forecast.'},
+  {t:'10:13',spot:600.45,bid:0.88,ask:0.90,phase:'bought',title:'Bought one call for $90',text:'The simulated buy fills at $0.90. The current $0.88 bid values it at $88, down $2. The initial stop is $0.675. No profit is locked in yet.'},
+  {t:'10:35',spot:600.85,bid:1.08,ask:1.10,phase:'armed',title:'Up 20%: the trailing stop switches on',text:'The bid reaches $1.08. Protection activates, with a sell line at $0.918: 15% below the highest bid. Scout holds while the bid stays above that line and no other exit rule triggers.'},
+  {t:'11:00',spot:601.10,bid:1.35,ask:1.37,phase:'armed',title:'Up 50%: let the winner run',text:'The option reaches $1.35 and is worth $135, up $45. The sell line rises to $1.1475. Scout does not sell just because the profit reached 50%; the trail follows new highs.'},
+  {t:'11:20',spot:601.40,bid:1.62,ask:1.64,phase:'armed',title:'Up 80%: protection moves higher',text:'The option reaches $1.62, worth $162 and up $72. The sell line rises to $1.377. It moves upward with new highs and never moves back down.'},
+  {t:'11:40',spot:601.65,bid:1.80,ask:1.82,phase:'armed',title:'Up 100%: doubled, still holding',text:'The $90 contract is now worth $180: a $90 unrealized gain, or +100%. Scout keeps holding. The 15% trail is now $1.53. That protects about a 70% return at the trigger, not 95%; the final fill is still unknown.'},
+  {t:'11:55',spot:601.55,bid:1.71,ask:1.73,phase:'armed',title:'Pullback to +90%: stay with the trail',text:'The bid eases to $1.71, worth $171 and up $81. Scout holds because it remains above $1.53. The peak stays $1.80 and the sell line stays $1.53; a pullback does not lower it.'},
+  {t:'12:15',spot:601.35,bid:1.53,ask:1.55,phase:'exit',title:'Trailing stop hit: exit requested',text:'The bid touches $1.53, 15% below the $1.80 peak. Scout requests an exit. At this bid the gain is $63, or +70%, but it is not realized until the sell fills. This path assumes no earlier session, setup or other risk exit.'},
+  {t:'12:16',spot:601.35,bid:1.53,phase:'done',title:'Sold for $153: +$63 (+70%)',text:'For this example the simulated sale fills at the $1.53 trigger. $153 received minus $90 paid leaves $63 profit before fees. The trade peaked at +100% and gave back $27 while following the 15% trail. Real fills may be lower; this is an illustration, not a promised return.'}
+ ]}
 ];
+const PHASE={plan:['Setup found','info'],bought:['Bought','info'],hold:['Holding',''],armed:['Protected','go'],exit:['Selling','wait']};
+let scen=0;
+const usd=v=>'$'+v.toFixed(2);
+const usd3=v=>'$'+(Math.round(v*1000)%10?v.toFixed(3):v.toFixed(2));
+const signed=v=>(v>0.004?'+':v<-0.004?'−':'')+'$'+Math.abs(v).toFixed(2);
+const mins=t=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
+const clock=t=>{const [h,m]=t.split(':').map(Number);return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+(h>=12?' PM':' AM')+' ET';};
+function tourState(sc,i){
+ const steps=sc.steps.slice(0,i+1),s=steps[i];
+ const held=steps.slice(1).map(x=>x.bid);
+ const peak=held.length?Math.max(...held):null;
+ const armed=sc.trail&&peak!==null&&peak>=ARM;
+ return {s,peak,armed,trail:armed?peak*(1-TRAIL):null};
+}
+function renderTour(){
+ const sc=SCENARIOS[scen],n=sc.steps.length,{s,peak,armed,trail}=tourState(sc,step);
+ const done=s.phase==='done',bought=s.phase!=='plan',pl=(s.bid-ENTRY)*100;
+ SCENARIOS.forEach((_,i)=>$('sc-'+i).setAttribute('aria-selected',i===scen));
+ $('day-note').textContent=sc.day;
+ const [plabel,ptone]=done?(pl>=0?['Sold · profit','go']:['Sold · loss','stop']):PHASE[s.phase];
+ $('t-badge').textContent=plabel;$('t-badge').className='badge '+ptone;
+ $('t-count').textContent='Step '+(step+1)+' of '+n;$('t-time').textContent='· '+clock(s.t);
+ $('t-title').textContent=s.title;$('t-text').textContent=s.text;
+ const gap=s.spot-STRIKE;
+ $('v-spot').textContent=usd(s.spot);
+ $('v-spot-sub').textContent=Math.abs(gap)<0.005?'Right at the $600 strike':usd(Math.abs(gap))+(gap>0?' above':' below')+' the $600 strike';
+ $('v-opt').textContent=usd(done?s.bid:bought?s.bid:s.ask);
+ $('v-opt-sub').textContent=done?'Sale price':bought?'Sell price now (bid)':'Buy price (ask)';
+ $('v-worth-label').textContent=done?'Sold for':bought?'Worth now':'Will cost';
+ $('v-worth').textContent=usd((bought?s.bid:ENTRY)*100);
+ $('v-worth-sub').textContent=done?usd(s.bid)+' × 100 shares':bought?usd(s.bid)+' × 100 shares':'$0.90 × 100 shares';
+ $('v-pl-label').textContent=done?'Final result':'Profit / loss';
+ $('v-pl').textContent=bought?signed(pl):'—';$('v-pl').className=bought?(pl>0.004?'up':pl<-0.004?'down':''):'';
+ $('v-pl-sub').textContent=bought?(pl>=0?'+':'−')+Math.abs(pl/90*100).toFixed(0)+'% of the $90 paid'+(done?', before fees':', not locked in'):'Not bought yet';
+ const dots=$('dots');dots.replaceChildren();
+ sc.steps.forEach((_,i)=>{const b=node('button');b.setAttribute('aria-label','Step '+(i+1));if(i===step)b.setAttribute('aria-current','step');else if(i<step)b.className='seen';b.addEventListener('click',()=>{step=i;renderTour();});dots.append(b);});
+ $('previous').disabled=scen===0&&step===0;
+ const last=step===n-1;
+ $('next').textContent=last&&scen<SCENARIOS.length-1?SCENARIOS[scen+1].label+' →':'Next →';
+ $('next').disabled=last&&scen===SCENARIOS.length-1;
+ $('summary').hidden=!(scen===SCENARIOS.length-1&&last);
+ drawChart(sc,step,{armed,trail,peak});
+}
+function svgEl(tag,attrs,text){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;return e;}
+function drawChart(sc,idx,st){
+ const box=$('chart'),W=Math.max(280,box.clientWidth||600),narrow=W<520;
+ const fs=narrow?12:13,padL=narrow?46:54,padR=narrow?8:14,ph=150,top=24,gap=44;
+ const H=top+ph+gap+ph+30,x0=padL,x1=W-padR;
+ const t0=mins(sc.steps[0].t),t1=mins(sc.steps[sc.steps.length-1].t);
+ const X=t=>x0+(mins(t)-t0)/(t1-t0)*(x1-x0);
+ const svg=svgEl('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H});
+ const shown=sc.steps.slice(0,idx+1);
+ // panel helper
+ function panel(y0,title,vals,fmt,color,key,refs){
+  const lo=Math.min(...vals),hi=Math.max(...vals);
+  const inc=[0.05,0.1,0.2,0.25,0.5,1,2].find(d=>Math.ceil((hi+1e-9)/d)-Math.floor((lo-1e-9)/d)<=4)||5;
+  let a=Math.floor((lo-1e-9)/inc)*inc,b=Math.ceil((hi+1e-9)/inc)*inc;
+  if(lo-a<inc*0.15)a-=inc;if(b-hi<inc*0.15)b+=inc;
+  const Y=v=>y0+ph-(v-a)/(b-a)*ph;
+  svg.append(svgEl('text',{x:x0,y:y0-8,'font-size':fs+1,'font-weight':700,fill:color},title));
+  for(let v=a;v<=b+1e-9;v+=inc){const y=Y(v);svg.append(svgEl('line',{x1:x0,x2:x1,y1:y,y2:y,stroke:'var(--line)','stroke-width':1}));svg.append(svgEl('text',{x:x0-6,y:y+4,'font-size':fs-1,fill:'var(--muted)','text-anchor':'end'},fmt(v)));}
+  refs.forEach(r=>{const y=Y(r.v);svg.append(svgEl('line',{x1:x0,x2:x1,y1:y,y2:y,stroke:r.color,'stroke-width':r.w||2,'stroke-dasharray':r.dash}));
+   const label=svgEl('text',{x:x0+28,y:r.below?y+fs+3:y-5,'font-size':fs,'font-weight':650,fill:r.color,'text-anchor':'start',stroke:'var(--panel)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'},r.label);svg.append(label);});
+  const pts=shown.map(s=>[X(s.t),Y(s[key])]);
+  if(pts.length>1)svg.append(svgEl('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:color,'stroke-width':3,'stroke-linejoin':'round','stroke-linecap':'round'}));
+  pts.forEach((p,i)=>{const cur=i===pts.length-1;svg.append(svgEl('circle',{cx:p[0],cy:p[1],r:cur?6.5:3.5,fill:cur?color:'var(--panel)',stroke:color,'stroke-width':cur?3:2}));});
+  const c=pts[pts.length-1],v=shown[shown.length-1][key],up=c[1]>y0+28;
+  const anchor=c[0]>x1-40?'end':c[0]<x0+40?'start':'middle';
+  svg.append(svgEl('text',{x:c[0],y:up?c[1]-13:c[1]+22,'font-size':fs+2,'font-weight':800,fill:'var(--ink)','text-anchor':anchor,stroke:'var(--panel)','stroke-width':5,'paint-order':'stroke','stroke-linejoin':'round'},fmt(v)));
+  return Y;
+ }
+ // top: SPY
+ const spots=sc.steps.map(s=>s.spot).concat([STRIKE]);
+ panel(top,'SPY stock price',spots,v=>'$'+v.toFixed(2),'var(--stock)','spot',[{v:STRIKE,label:'Strike $600',color:'var(--muted)',dash:'2 4',w:1.5,below:true}]);
+ // bottom: option
+ const y2=top+ph+gap,refs=[];
+ const optVals=sc.steps.map(s=>s.bid).concat([ENTRY,STOP]);
+ if(sc.trail)optVals.push(ARM);
+ if(idx>0)refs.push({v:ENTRY,label:'Paid $0.90',color:'var(--muted)',dash:'2 4',w:1.5,below:true});
+ else refs.push({v:ENTRY,label:'Buy at $0.90',color:'var(--info)',dash:'2 4',w:1.5,below:true});
+ if(!st.armed)refs.push({v:STOP,label:'Stop-loss $0.675',color:'var(--stop)',dash:'7 5'});
+ if(sc.trail&&!st.armed)refs.push({v:ARM,label:'Protection starts $1.08',color:'var(--go)',dash:'2 4',w:1.5});
+ if(st.armed)refs.push({v:st.trail,label:'Sell line '+usd3(st.trail),color:'var(--go)',dash:'7 5'});
+ const Y=panel(y2,'Option price per share',optVals,v=>'$'+v.toFixed(2),'var(--option)','bid',refs);
+ // buy / sell markers
+ const mark=(s,txt,color)=>{const x=X(s.t),y=Y(s.bid);svg.append(svgEl('text',{x:x,y:y+24,'font-size':fs,'font-weight':700,fill:color,'text-anchor':x<x0+30?'start':x>x1-30?'end':'middle',stroke:'var(--panel)','stroke-width':4,'paint-order':'stroke'},txt));};
+ // time axis
+ const ty=y2+ph+20;
+ svg.append(svgEl('text',{x:x0,y:ty,'font-size':fs-1,fill:'var(--muted)'},clock(sc.steps[0].t)));
+ svg.append(svgEl('text',{x:x1,y:ty,'font-size':fs-1,fill:'var(--muted)','text-anchor':'end'},clock(sc.steps[sc.steps.length-1].t)));
+ box.replaceChildren(svg);
+ const s=sc.steps[idx];
+ box.setAttribute('aria-label','Chart: SPY at '+usd(s.spot)+', option at '+usd(s.bid)+'.');
+ const leg=$('legend');leg.replaceChildren();
+ const item=(color,txt,dash)=>{const sp=node('span');const i=node('i',undefined,dash?'dash':'');i.style.borderTopColor=color;sp.append(i,document.createTextNode(txt));leg.append(sp);};
+ item('var(--stock)','SPY price');item('var(--option)','Option price');
+ if(!st.armed)item('var(--stop)','Stop-loss: sell here to cap the loss',true);
+ if(st.armed)item('var(--go)','Sell line: 15% below the highest price',true);
+}
+const STAGES={CALL:'Looking for a call',PUT:'Looking for a put',WAIT:'No clear direction'};
+function renderChecks(items){
+ const root=$('checks');root.replaceChildren();
+ items.forEach(g=>{
+  const li=node('li',undefined,g.state),body=node('div'),head=node('div',undefined,'what');
+  li.append(node('span',g.state==='ok'?'✓':g.state==='block'?'✕':g.state==='wait'?'…':'?','mark'),body);
+  head.append(document.createTextNode(g.label));
+  if(g.state==='block'||g.state==='wait')head.append(node('span',g.who==='you'?'needs you':'needs time','tag'));
+  body.append(head,node('p',g.why,'why'));
+  if(typeof g.progress==='number'){const bar=node('div',undefined,'bar'),fill=node('i');fill.style.width=Math.max(2,Math.min(100,g.progress*100))+'%';bar.append(fill);body.append(bar);}
+  if(g.fix)body.append(node('p',g.fix,'fix'));
+  root.append(li);
+ });
+}
 function render(data){
  const synthetic=mode==='demo'||data.synthetic===true;
  const heartbeat=Date.parse(data.heartbeat),age=(Date.now()-heartbeat)/1000;
  const fresh=!synthetic&&Number.isFinite(age)&&age>=0&&age<=5;
- $('connection').textContent=synthetic?'DEMO · Made-up prices':fresh?'Connected · Reference simulation':'Service offline / stale';
- $('feed').textContent=synthetic?'Synthetic feed':data.feed==='opra'?'OPRA quotes':data.feed==='indicative'?'Indicative · Entries blocked':'Feed unknown';
- $('updated').textContent=synthetic?'Interactive example — not market activity.':Number.isFinite(heartbeat)?'Last service check: '+new Date(heartbeat).toLocaleString()+' · '+Math.max(0,Math.floor(age))+' seconds ago':'No service heartbeat available.';
+ $('connection').textContent=synthetic?'Demo · Made-up prices':fresh?'Connected':'Service offline / stale';
+ $('dot').className='dot '+(synthetic?'':fresh?'on':'off');
+ $('updated').textContent=synthetic?'':Number.isFinite(heartbeat)?'· updated '+Math.max(0,Math.floor(age))+' s ago':'· no heartbeat';
+ const items=gates(data,fresh,synthetic),v=verdict(data,fresh,synthetic,items);
+ $('verdict').className='verdict '+v.tone;$('verdict-title').textContent=v.title;$('verdict-text').textContent=v.text;
+ $('checklist-box').hidden=synthetic;
+ if(!synthetic)renderChecks(items);
  const settings=data.research_settings||{};
+ const rules=data.entry_rules||{},costs=data.execution_cost_model||{};
+ $('entry-model').replaceChildren();
+ if(data.entry_context_required){
+  $('entry-model').append(node('p','Needed first: option-price history, an events calendar, normal-versus-current trading volume and agreement from a longer time frame.'));
+  if(Number.isFinite(rules.signal_rvol))$('entry-model').append(node('p','Volume: '+rules.signal_rvol+'× normal on the signal bar, '+rules.three_bar_rvol+'× over the last three · trend: '+rules.fast_ema+'/'+rules.slow_ema+' moving averages, confirmed on the '+rules.higher_minutes+'-minute chart · option price: cheap if in the bottom '+rules.cheap_iv_rank+'% of its range or ≤'+rules.max_iv_realized+'× recent stock movement; skipped if above '+rules.max_iv_rank+'%.'));
+  $('entry-model').append(node('p','Day trades only: entries 9:45–15:30 ET, everything closed by 15:50 ET. No Fed, CPI or jobs-report days, and no earnings before the option expires. '+(rules.min_entry_contracts===1?'One-contract mode: a single contract skips the half sale and is exited by a trailing stop once it is up by its stop distance.':'Two contracts minimum so half can be sold at the first target.')));
+  $('entry-model').append(node('p','Still unproven: needs at least 100 held-out trades with positive results after doubled costs.'));
+ }else $('entry-model').append(node('p','Enhanced entry filters are not enabled in this snapshot.'));
+ if(Number.isFinite(costs.fee_per_contract)&&Number.isFinite(costs.slippage_per_share))$('entry-model').append(node('p','Each fill: buy at ask + '+money(costs.slippage_per_share)+', sell at bid − '+money(costs.slippage_per_share)+', fee '+money(costs.fee_per_contract)+' per contract per side.'));
+ const paid=data.cumulative_costs||{};
+ if(Number.isFinite(paid.fees)&&Number.isFinite(paid.slippage))$('entry-model').append(node('p','Recorded fees: '+money(paid.fees)+', slippage: '+money(paid.slippage)+'. Equity includes estimated liquidation costs.'));
  const fraction=(key,fallback)=>((Number.isFinite(settings[key])?settings[key]:fallback)*100).toFixed(0)+'%';
- $('risk-entry').textContent=fraction('premium_risk_fraction',.01)+' of virtual equity';
- $('risk-total').textContent=fraction('max_total_premium_fraction',.05)+' of virtual equity';
+ $('risk-entry').textContent=fraction('premium_risk_fraction',.01)+' of equity';
+ $('risk-total').textContent=fraction('max_total_premium_fraction',.05)+' of equity';
  $('risk-session').textContent=fraction('session_loss_fraction',.02);
- $('risk-stop').textContent=fraction('stop_fraction',.25);
- $('risk-trail').textContent='After +'+fraction('trail_activation',.20)+'; '+fraction('trail_fraction',.15)+' giveback';
+ $('risk-stop').textContent=fraction('stop_fraction',.25)+' of the option price';
+ $('risk-trail').textContent='After +'+fraction('trail_activation',.20)+', sell if it gives back '+fraction('trail_fraction',.15);
+ const trading=data.trading_rules;
+ $('risk-entry-label').textContent=trading?'Most Scout will risk per trade (estimated)':'Most Scout will pay per trade';
+ if(trading){
+  $('risk-entry').textContent=(trading.risk_fraction*100).toFixed(1)+'% of equity';
+  $('risk-total').textContent=(trading.max_premium_fraction*100).toFixed(0)+'% of equity';
+  $('risk-session').textContent=(trading.daily_loss_fraction*100).toFixed(0)+'%';
+  $('risk-stop').textContent='Underlying moves '+trading.stop_atr+'× its usual range against it, or the option falls '+(trading.premium_stop*100).toFixed(0)+'%';
+  $('risk-trail').textContent=rules.min_entry_contracts===1?'One contract: trail after 1R; larger positions: sell half at 1R and trail the rest':'Sell half at the first target; trail the rest';
+ }
  $('equity').textContent=money(data.equity);$('cash').textContent=money(data.cash);
+ const day=Number.isFinite(data.equity)&&Number.isFinite(data.session_equity)?data.equity-data.session_equity:NaN;
+ $('today').textContent=Number.isFinite(day)?(day>=0?'+':'−')+money(Math.abs(day)):'—';$('today').className=Number.isFinite(day)&&day!==0?(day>0?'up':'down'):'';
  const positions=Object.values(data.positions||{});$('count').textContent=String(positions.length);
- $('entries').textContent=data.paused?'Paused':!synthetic&&(!fresh||data.feed!=='opra'||data.exchange_context_fresh===false)?'Blocked':data.accepting?'Allowed':'Waiting';
- list('positions',positions,'No open simulated positions.',p=>{
- const gain=Number.isFinite(p.last_bid)&&p.entry>0?p.last_bid/p.entry-1:NaN;
- const n=row(p.underlying+' · '+(p.kind||'OPTION'),pct(gain),'Simulated mark vs average entry.');
- n.append(node('p',p.symbol),node('p','Contracts: '+p.qty+' · Entry '+money(p.entry)+' · Bid '+money(p.last_bid)),node('p','Peak bid '+money(p.peak_bid)+' · Expiry '+p.expiry));return n;});
- list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated order intents.',o=>row(o.symbol,o.side+' · '+o.status,'Filled '+o.filled+'/'+o.qty+' · Limit '+money(o.limit)+' · '+o.reason));
- list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No current scanner observations.',s=>row(s.underlying,s.stage,s.reason||'Check complete.'));
+ list('positions',positions,'No open simulated trades.',p=>{
+  const gain=Number.isFinite(p.last_bid)&&p.entry>0?p.last_bid/p.entry-1:NaN;
+  const kind=p.kind?String(p.kind).toLowerCase():'option';
+  const n=row(p.underlying+' '+kind+', '+p.qty+(p.qty===1?' contract':' contracts'),pct(gain),'Bought at '+money(p.entry)+', now '+money(p.last_bid)+' (best bid). Highest so far '+money(p.peak_bid)+'.');
+  n.children[0].children[1].className='pill '+(gain>0?'up':gain<0?'down':'');
+  n.append(contractSummary(p,synthetic),node('p',p.symbol+' · expires '+p.expiry),node('p','Entry premium '+money(p.entry*p.qty*100)+' · Current bid value '+money(p.last_bid*p.qty*100)+' · Unrealized '+money((p.last_bid-p.entry)*p.qty*100)));return n;});
+ list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated orders yet.',o=>row((o.side==='BUY'?'Buy ':'Sell ')+o.symbol,String(o.status).toLowerCase()+', '+o.filled+' of '+o.qty+' filled','Limit '+money(o.limit)+'. '+plain(o.reason)));
+ list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No scanner results yet.',s=>{
+  const n=row(s.underlying,STAGES[s.stage]||s.stage,plain(s.reason)||'Check complete.');
+  if(s.entry_result)n.append(node('p','Entry: '+plain(s.entry_result)));
+  const c=s.context||{};const details=[];
+  if(Number.isFinite(c.three_bar_rvol))details.push('Volume vs normal (last 3 minutes): '+c.three_bar_rvol.toFixed(2)+'×');
+  if(Number.isFinite(c.rvol))details.push('Volume vs normal for this time of day: '+c.rvol.toFixed(2)+'×');
+  if(Number.isFinite(c.higher_minutes))details.push(c.higher_minutes+'-minute chart agrees: '+(c.checks?.higher_timeframe?'yes':'no'));
+  if(Number.isFinite(c.iv_percentile))details.push('Option price vs its past (percentile): '+c.iv_percentile.toFixed(0));
+  if(Number.isFinite(c.iv_rank))details.push('Option price vs its past range (rank): '+c.iv_rank.toFixed(0));
+  if(Number.isFinite(c.iv_realized_ratio))details.push('Option price vs recent stock movement: '+c.iv_realized_ratio.toFixed(2)+'×');
+  if(details.length)n.append(node('p',details.join(' · ')));return n;});
+ list('forward-study',data.forward_test?[data.forward_test]:[],'No future-session study connected.',s=>{
+  const n=row('Frozen five-minute candidate',s.status||'Waiting','First eligible session: '+(s.start_session||'pending')+' · Saved sessions: '+(s.sessions_available||0)+' · Opening-hour windows: '+(s.candidate_windows||0));
+  const bps=x=>Number.isFinite(x)?x.toFixed(3)+' bps':'Waiting';
+  n.append(node('p','Equal-weight daily means: candidate '+bps(s.candidate_bot_bps)+' · Always up '+bps(s.candidate_always_up_bps)+' · Opening 15-minute reference '+bps(s.opening_15_bps)),node('p','Last completed session: '+(s.last_session||'none')+' · Last study check: '+(s.checked_at||'pending')));return n;});
  list('alerts',Array.isArray(data.alerts)?data.alerts.slice(-4).reverse():[],'No recorded local alerts.',a=>node('div',a,'alert'));
+ list('current-health',data.current_health?[data.current_health]:[],'Current connection checks unavailable.',h=>{
+  const account=h.account||{},scan=h.scanner||{},stream=h.stream||{};
+  const n=row('Account and market clock',!fresh?'Unverified':account.fresh?'OK':account.status==='OK'?'Overdue':account.status||'Waiting','Last successful read: '+(account.last_success||'none'));
+  n.append(node('p',fresh?(h.market||'Market state unverified')+' · Scanner: '+(scan.current_state||'Waiting'):'No live updates, so market and scanner state are unverified.'));
+  if(account.error)n.append(node('p','Latest account-read problem: '+account.error+(account.http?' · HTTP '+account.http:'')));
+  if(scan.error)n.append(node('p','Latest scanner problem: '+scan.error));
+  n.append(node('p','Quote updates: '+(!fresh?'unverified':stream.fresh?'recent update received':stream.status==='Unavailable'?'unavailable · '+stream.error:'waiting for updates')));return n;});
+ list('quote-tape',data.quote_recorder?[data.quote_recorder]:[],'No quote recorder connected.',s=>{
+  const receivedAge=(Date.now()-Date.parse(s.last_received_at))/1000;
+  const recorderState=!fresh?'Unverified':s.status==='Recording'?
+   (!s.subscribed_contracts?'Ready · no subscribed contracts':!s.last_received_at?'Ready · waiting for quotes':receivedAge>=0&&receivedAge<=15?'Saving quote updates':'Ready · waiting for updates'):s.status||'Waiting';
+  const n=row('Quote observations',recorderState,'Subscribed contracts: '+(s.subscribed_contracts||0)+' · Quotes saved this run: '+(s.recorded_quotes||0)+' · Dropped events: '+(s.dropped_events||0));
+  n.append(node('p','Feed: '+(s.feed||'waiting')+' · Last quote timestamp: '+(s.last_quote_at||'none')),node('p','Received on desktop: '+(s.last_received_at||'none')+' · Queued events: '+(s.queued_events||0)));return n;});
 }
-function disconnected(){latest=null;$('connection').textContent='Not connected';$('feed').textContent='Waiting for data';$('updated').textContent='The one-second service is not publishing data to this page.';['equity','cash','count'].forEach(id=>$(id).textContent='—');$('entries').textContent='Blocked';['positions','orders','scanner','alerts'].forEach(id=>list(id,[],'No connected '+id+' data.',()=>node('div')));}
-async function poll(){if(mode!=='service'||loading)return;loading=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),1500);try{const response=await fetch(STATUS_FILE+'?t='+Date.now(),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!data||typeof data!=='object'||Array.isArray(data)||typeof data.mode!=='string'||!data.mode.startsWith('ISOLATED REFERENCE SIMULATION'))throw Error('Invalid status');if(mode==='service'){latest=data;render(data);}}catch{if(mode==='service'){if(latest){render({...latest,heartbeat:null});$('updated').textContent='Service connection unavailable; showing the last saved snapshot.';}else disconnected();}}finally{clearTimeout(timer);loading=false;}}
-function showDemo(){mode='demo';$('demo-controls').hidden=false;$('step').textContent=demoSteps[step].label;render(demoSteps[step].data);}
-$('demo').addEventListener('click',()=>{step=0;showDemo();});$('previous').addEventListener('click',()=>{step=(step+demoSteps.length-1)%demoSteps.length;showDemo();});$('next').addEventListener('click',()=>{step=(step+1)%demoSteps.length;showDemo();});$('service').addEventListener('click',()=>{mode='service';$('demo-controls').hidden=true;disconnected();poll();});
-poll();setInterval(()=>{if(mode==='service'&&latest)render(latest);poll();},1000);
+function disconnected(){latest=null;render({heartbeat:null});$('updated').textContent='· waiting for the service';}
+async function poll(){if(mode!=='service'||loading)return;loading=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),1500);try{const response=await fetch(STATUS_FILE+'?t='+Date.now(),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!data||typeof data!=='object'||Array.isArray(data)||typeof data.mode!=='string'||!data.mode.startsWith('ISOLATED REFERENCE SIMULATION'))throw Error('Invalid status');if(mode==='service'){latest=data;render(data);}}catch{if(mode==='service'){if(latest){render({...latest,heartbeat:null});$('updated').textContent='· connection lost, showing last saved snapshot';}else disconnected();}}finally{clearTimeout(timer);loading=false;}}
+function showDemo(){
+ mode='demo';$('tour').hidden=false;$('dashboard').hidden=true;$('demo-top').hidden=true;
+ $('connection').textContent='Demo · made-up prices';$('dot').className='dot';$('updated').textContent='';
+ renderTour();
+}
+function leaveDemo(){mode='service';$('tour').hidden=true;$('dashboard').hidden=false;$('demo-top').hidden=false;disconnected();poll();}
+function startDemo(){scen=0;step=0;showDemo();window.scrollTo({top:0});}
+$('demo').addEventListener('click',startDemo);
+$('demo-top').addEventListener('click',startDemo);
+$('previous').addEventListener('click',()=>{if(step>0)step--;else if(scen>0){scen--;step=SCENARIOS[scen].steps.length-1;}renderTour();});
+$('next').addEventListener('click',()=>{if(step<SCENARIOS[scen].steps.length-1)step++;else if(scen<SCENARIOS.length-1){scen++;step=0;}renderTour();});
+SCENARIOS.forEach((_,i)=>$('sc-'+i).addEventListener('click',()=>{scen=i;step=0;renderTour();}));
+$('exit-demo').addEventListener('click',leaveDemo);
+document.addEventListener('keydown',e=>{if(mode!=='demo'||e.target.closest('input,textarea,[role=tab]'))return;if(e.key==='ArrowRight'&&!$('next').disabled)$('next').click();if(e.key==='ArrowLeft'&&!$('previous').disabled)$('previous').click();});
+let resizeTimer;window.addEventListener('resize',()=>{if(mode!=='demo')return;clearTimeout(resizeTimer);resizeTimer=setTimeout(renderTour,120);});
+const tabs=['trades','scanner','alerts','settings'];
+function selectTab(name,focus){tabs.forEach(t=>{const on=t===name;$('tab-'+t).setAttribute('aria-selected',on);$('tab-'+t).tabIndex=on?0:-1;$('pane-'+t).hidden=!on;if(on&&focus)$('tab-'+t).focus();});}
+tabs.forEach((t,i)=>{$('tab-'+t).addEventListener('click',()=>selectTab(t));$('tab-'+t).addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();selectTab(tabs[(i+d+tabs.length)%tabs.length],true);}});});
+if(location.protocol==='file:'||new URLSearchParams(location.search).has('demo'))showDemo();else{disconnected();poll();}setInterval(()=>{if(mode==='service'&&latest)render(latest);poll();},1000);
 </script>
 </body></html>
