@@ -3606,6 +3606,40 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-07|SMCI|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T07:56:56.219408-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 65,
+      "reference_price": 44.04,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|UNG|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-07",
+      "at": "2026-10-07T07:56:56.219408-07:00",
+      "symbol": "UNG",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 8,
+      "setup_score": 62,
+      "entry_score": 100,
+      "reference_price": 11.15,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
