@@ -1,6 +1,6 @@
 {
-  "cycle": "20261007_132933",
-  "updated": "2026-10-07T13:29:33.505411-07:00",
+  "cycle": "20261007_134705",
+  "updated": "2026-10-07T13:47:05.114965-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -318,9 +318,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "SKYD",
+        "symbol": "APLD",
         "direction": "SHORT",
-        "price": 8.88,
+        "price": 23.81,
         "setup_score": 90,
         "entry_score": 80,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -343,9 +343,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "APLD",
+        "symbol": "SKYD",
         "direction": "SHORT",
-        "price": 23.81,
+        "price": 8.88,
         "setup_score": 90,
         "entry_score": 80,
         "decision": "NO TRADE \u2014 LIQUIDITY BELOW MINIMUM",
@@ -997,31 +997,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "HPE",
-        "direction": "LONG",
-        "price": 72.115,
-        "setup_score": 85,
-        "entry_score": 60,
-        "decision": "WAIT \u2014 ENTRY NOT READY",
-        "held": false,
-        "main_score": 9,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 15,
-          "relative_strength": 20,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 5,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "PLTR",
         "direction": "LONG",
         "price": 194.08,
@@ -1108,11 +1083,6 @@
       },
       {
         "symbol": "NU",
-        "entry_score": 9,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "HPE",
         "entry_score": 9,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
