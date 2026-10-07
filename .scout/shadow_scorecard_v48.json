@@ -3385,6 +3385,176 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-07|SOXL|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "SOXL",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 154.12,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|IBIT|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "IBIT",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 47.17,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|TQQQ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "TQQQ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 65,
+      "reference_price": 82.16,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|NU|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "NU",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 85,
+      "entry_score": 75,
+      "reference_price": 15.6,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|SMCI|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 100,
+      "entry_score": 75,
+      "reference_price": 44.2,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|EWZ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "EWZ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 50,
+      "reference_price": 42.71,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|ETHA|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "ETHA",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 67,
+      "entry_score": 50,
+      "reference_price": 58.26,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|XLE|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 75,
+      "entry_score": 90,
+      "reference_price": 63.865,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|ITUB|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "ITUB",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 77,
+      "entry_score": 60,
+      "reference_price": 10.06,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-07|PLTR|LONG|QUALIFIED",
+      "session": "2026-10-07",
+      "at": "2026-10-07T06:57:31.875005-07:00",
+      "symbol": "PLTR",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 191.845,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
