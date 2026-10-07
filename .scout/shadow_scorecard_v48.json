@@ -3640,6 +3640,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-07|PBR|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-07",
+      "at": "2026-10-07T11:12:54.054234-07:00",
+      "symbol": "PBR",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 72,
+      "entry_score": 60,
+      "reference_price": 24.15,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
