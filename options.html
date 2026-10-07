@@ -95,10 +95,10 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 .tour-head h2{font-size:24px;letter-spacing:-.015em;margin:0}
 .tour-head #exit-demo{white-space:nowrap;flex:none}
 .tour-head p{margin:4px 0 0;color:var(--muted);font-size:15px}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:14px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:5px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:14px}
 .seg button{border:0;border-radius:10px;background:transparent;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;text-align:left}
 .seg button[aria-selected=true]{background:var(--paper);box-shadow:inset 0 0 0 2px var(--ink)}
-.seg b{font-size:15.5px}.seg span{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.seg b{font-size:15.5px;overflow-wrap:anywhere}.seg span{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
 .stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .contract{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:12px 20px;background:var(--paper);border-bottom:1px solid var(--line);font-size:14.5px}
 .contract strong{font-size:15.5px}.contract .muted{font-size:14px}
@@ -148,12 +148,13 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 
 <section id="tour" hidden aria-label="Demo trades">
  <div class="tour-head">
-  <div><p class="eyebrow">Demo trade</p><h2>How a Scout trade plays out</h2><p>Step through one trade that wins and one that loses, using illustrative default rules.</p></div>
+  <div><p class="eyebrow">Demo trade</p><h2>How a Scout trade plays out</h2><p>Step through a win, a loss and a runner that doubles, using the 20% activation and 15% trailing-stop defaults. All prices are made up.</p></div>
   <button id="exit-demo">Exit demo</button>
  </div>
  <div class="seg" role="tablist" aria-label="Choose a demo trade">
   <button role="tab" id="sc-0" aria-selected="true"><b>Winning trade</b><span class="up">+$18</span></button>
   <button role="tab" id="sc-1" aria-selected="false"><b>Losing trade</b><span class="down">−$24</span></button>
+  <button role="tab" id="sc-2" aria-selected="false"><b>100% runner</b><span class="up">Exit +70%</span></button>
  </div>
  <article class="stage">
   <div class="contract"><strong>SPY $600 call</strong><span>1 contract covers 100 shares</span><span>Expires in 10 days</span><span class="muted" id="day-note"></span></div>
@@ -172,13 +173,14 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
   </div>
  </article>
  <nav class="stepper" aria-label="Demo steps"><button id="previous">← Back</button><div class="dots" id="dots"></div><button id="next">Next →</button></nav>
- <section class="summary" id="summary" hidden><h3>Both demo trades together</h3><div class="kv"><span>Winning trade</span><b class="up">+$18.00</b><span>Losing trade</span><b class="down">−$24.00</b><span>Net, before fees</span><b class="down">−$6.00</b></div><p class="muted small">One small loss can erase one small win. That is why Scout needs at least 100 test trades with positive results after costs before these settings are trusted.</p></section>
+ <section class="summary" id="summary" hidden><h3>All three demo trades together</h3><div class="kv"><span>Winning trade</span><b class="up">+$18.00</b><span>Losing trade</span><b class="down">−$24.00</b><span>100% runner</span><b class="up">+$63.00</b><span>Net, before fees</span><b class="up">+$57.00</b></div><p class="muted small">These are invented examples, not results or forecasts. The runner peaks at +100% and exits at +70% with a 15% trail; its final fill is illustrative. Actual fills, costs and other exit rules can change the result.</p></section>
  <details class="math"><summary>How the numbers are worked out</summary><ul>
   <li>Cost = price paid × 100 shares. $0.90 × 100 = <b>$90</b>.</li>
   <li>Worth now = current bid × 100. The bid is what a buyer will pay right now.</li>
   <li>Profit / loss = worth now − $90 paid. Fees are not included.</li>
   <li>Stop-loss: sell if the bid falls 25% below $0.90, to <b>$0.675</b>.</li>
   <li>Profit protection starts once the bid is 20% above $0.90, at <b>$1.08</b>. From then on Scout sells if the bid drops 15% from its highest point.</li>
+  <li>Runner: $0.90 → $1.80 is +100%. The 15% trail is $1.80 × 0.85 = <b>$1.53</b>. A fill there returns $153: <b>+$63 (+70%)</b> before fees, not +95%.</li>
   <li>A sell order is filled at whatever a buyer pays next, which can be a little lower than the trigger.</li>
  </ul></details>
 </section>
@@ -369,7 +371,7 @@ function contractSummary(p,synthetic=false){
  return n;
 }
 
-// ---------- Demo tour: one winning and one losing trade (made-up prices) ----------
+// ---------- Demo tour: win, loss and 100% runner (made-up prices) ----------
 const STRIKE=600, ENTRY=0.90, STOP=+(ENTRY*0.75).toFixed(3), ARM=+(ENTRY*1.20).toFixed(2), TRAIL=0.15;
 const SCENARIOS=[
  {label:'Winning trade',day:'Fictional Day 1',trail:true,steps:[
@@ -387,6 +389,17 @@ const SCENARIOS=[
   {t:'13:30',spot:600.20,bid:0.76,ask:0.78,phase:'hold',title:'SPY turns lower, down $14',text:'The move reverses. SPY slips back toward the strike and the option drops to $0.76. That is still above the $0.675 stop-loss, so Scout holds.'},
   {t:'13:52',spot:599.98,bid:0.67,ask:0.69,phase:'exit',title:'Stop-loss hit, selling now',text:'SPY dips under $600 and the option falls to $0.67, below the $0.675 stop-loss. Scout sends a sell order to cut the loss.'},
   {t:'13:53',spot:599.95,bid:0.66,phase:'done',title:'Sold for $66: a $24 loss',text:'The sale filled at $0.66. $66 back minus $90 paid is a $24 loss before fees. The stop-loss kept it to about a quarter of what was paid, instead of letting it slide toward zero.'}
+ ]},
+ {label:'100% runner',day:'Fictional Day 3',trail:true,steps:[
+  {t:'10:12',spot:600.40,bid:0.88,ask:0.90,phase:'plan',title:'A fresh setup, the same rules',text:'Scout chooses one SPY $600 call at $0.90 per share: $90 for one contract. This invented example uses the existing defaults: a 25% initial stop, protection after +20%, then a 15% trail below the highest bid. It is not a forecast.'},
+  {t:'10:13',spot:600.45,bid:0.88,ask:0.90,phase:'bought',title:'Bought one call for $90',text:'The simulated buy fills at $0.90. The current $0.88 bid values it at $88, down $2. The initial stop is $0.675. No profit is locked in yet.'},
+  {t:'10:35',spot:600.85,bid:1.08,ask:1.10,phase:'armed',title:'Up 20%: the trailing stop switches on',text:'The bid reaches $1.08. Protection activates, with a sell line at $0.918: 15% below the highest bid. Scout holds while the bid stays above that line and no other exit rule triggers.'},
+  {t:'11:00',spot:601.10,bid:1.35,ask:1.37,phase:'armed',title:'Up 50%: let the winner run',text:'The option reaches $1.35 and is worth $135, up $45. The sell line rises to $1.1475. Scout does not sell just because the profit reached 50%; the trail follows new highs.'},
+  {t:'11:20',spot:601.40,bid:1.62,ask:1.64,phase:'armed',title:'Up 80%: protection moves higher',text:'The option reaches $1.62, worth $162 and up $72. The sell line rises to $1.377. It moves upward with new highs and never moves back down.'},
+  {t:'11:40',spot:601.65,bid:1.80,ask:1.82,phase:'armed',title:'Up 100%: doubled, still holding',text:'The $90 contract is now worth $180: a $90 unrealized gain, or +100%. Scout keeps holding. The 15% trail is now $1.53. That protects about a 70% return at the trigger, not 95%; the final fill is still unknown.'},
+  {t:'11:55',spot:601.55,bid:1.71,ask:1.73,phase:'armed',title:'Pullback to +90%: stay with the trail',text:'The bid eases to $1.71, worth $171 and up $81. Scout holds because it remains above $1.53. The peak stays $1.80 and the sell line stays $1.53; a pullback does not lower it.'},
+  {t:'12:15',spot:601.35,bid:1.53,ask:1.55,phase:'exit',title:'Trailing stop hit: exit requested',text:'The bid touches $1.53, 15% below the $1.80 peak. Scout requests an exit. At this bid the gain is $63, or +70%, but it is not realized until the sell fills. This path assumes no earlier session, setup or other risk exit.'},
+  {t:'12:16',spot:601.35,bid:1.53,phase:'done',title:'Sold for $153: +$63 (+70%)',text:'For this example the simulated sale fills at the $1.53 trigger. $153 received minus $90 paid leaves $63 profit before fees. The trade peaked at +100% and gave back $27 while following the 15% trail. Real fills may be lower; this is an illustration, not a promised return.'}
  ]}
 ];
 const PHASE={plan:['Setup found','info'],bought:['Bought','info'],hold:['Holding',''],armed:['Protected','go'],exit:['Selling','wait']};
@@ -427,9 +440,9 @@ function renderTour(){
  sc.steps.forEach((_,i)=>{const b=node('button');b.setAttribute('aria-label','Step '+(i+1));if(i===step)b.setAttribute('aria-current','step');else if(i<step)b.className='seen';b.addEventListener('click',()=>{step=i;renderTour();});dots.append(b);});
  $('previous').disabled=scen===0&&step===0;
  const last=step===n-1;
- $('next').textContent=last&&scen===0?'Losing trade →':'Next →';
+ $('next').textContent=last&&scen<SCENARIOS.length-1?SCENARIOS[scen+1].label+' →':'Next →';
  $('next').disabled=last&&scen===SCENARIOS.length-1;
- $('summary').hidden=!(scen===1&&last);
+ $('summary').hidden=!(scen===SCENARIOS.length-1&&last);
  drawChart(sc,step,{armed,trail,peak});
 }
 function svgEl(tag,attrs,text){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;return e;}
