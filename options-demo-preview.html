@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>Scout Options</title>
+<style>
+:root{--paper:#f3f5f7;--panel:#fff;--ink:#14202b;--muted:#546574;--line:#d6dde4;--go:#17724a;--go-bg:#e2f2e9;--wait:#8f5b00;--wait-bg:#fbefd6;--stop:#ad2219;--stop-bg:#fbe5e2;--info:#2253a3;--info-bg:#e3ecf9;--focus:#2253a3;
+font:16px/1.5 "Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--paper:#0d1620;--panel:#142030;--ink:#e8eff6;--muted:#a2b3c4;--line:#27394b;--go:#63d6a0;--go-bg:#11352a;--wait:#ecbb62;--wait-bg:#3a2c10;--stop:#ff938a;--stop-bg:#401b1b;--info:#92b9f4;--info-bg:#172c48;--focus:#92b9f4}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink)}
+main{max-width:960px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:20px;margin:0;font-weight:700;letter-spacing:-.01em}
+h2{font-size:17px;margin:0 0 4px;font-weight:700}
+h3{font-size:15px;margin:0;font-weight:650}
+p{margin:6px 0}
+a{color:var(--info)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+button{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer}
+button:hover{border-color:var(--muted)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-bottom:16px}
+.status-line{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}
+.dot.on{background:var(--go)}.dot.off{background:var(--stop)}
+.note{font-size:14px;color:var(--muted);margin:0 0 14px}
+
+.verdict{border-radius:14px;padding:20px 22px 20px 26px;border:1px solid var(--line);border-left-width:8px;background:var(--panel)}
+.verdict h2{font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 6px}
+.verdict p{margin:0;font-size:16px;max-width:60ch}
+.verdict.go{border-left-color:var(--go);background:var(--go-bg)}
+.verdict.wait{border-left-color:var(--wait);background:var(--wait-bg)}
+.verdict.stop{border-left-color:var(--stop);background:var(--stop-bg)}
+.verdict.info{border-left-color:var(--info);background:var(--info-bg)}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.checks{list-style:none;margin:10px 0 0;padding:0}
+.checks li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:0 12px;padding:12px 0;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.mark{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;margin-top:1px}
+.ok .mark{background:var(--go-bg);color:var(--go)}
+.block .mark{background:var(--stop-bg);color:var(--stop)}
+.wait .mark{background:var(--wait-bg);color:var(--wait)}
+.unknown .mark{background:var(--line);color:var(--muted)}
+.checks .what{font-weight:650}
+.checks .tag{font-weight:500;font-size:13px;margin-left:8px;padding:1px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.block .tag{color:var(--stop)}.wait .tag{color:var(--wait)}
+.checks .why,.checks .fix{margin:0;font-size:14.5px;color:var(--muted)}
+.checks .fix{color:var(--ink)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 2px;max-width:320px}
+.bar>i{display:block;height:100%;background:var(--wait)}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;margin-top:10px}
+.stat span{display:block;font-size:13px;color:var(--muted)}
+.stat strong{display:block;font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.25}
+.up{color:var(--go)}.down{color:var(--stop)}
+
+.tabs{display:flex;gap:4px;margin:22px 0 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:10px 14px;white-space:nowrap;color:var(--muted)}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink);font-weight:650}
+.panel{padding:6px 0}
+.row{padding:14px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.row p{color:var(--muted);font-size:14.5px;margin:4px 0 0}
+.pill{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{padding:14px 0;color:var(--muted)}
+.alert{padding:10px 12px;border-left:3px solid var(--wait);background:var(--wait-bg);margin:8px 0;font-size:14.5px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 14px;margin:10px 0;font-size:14.5px}
+.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:right}
+.section{padding:14px 0;border-top:1px solid var(--line)}
+.section:first-child{border-top:0}
+details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
+@media(max-width:700px){
+ main{padding:14px 12px 40px}
+ .grid{grid-template-columns:1fr}
+ .verdict{padding:16px 16px 16px 18px}.verdict h2{font-size:25px}
+ .stat strong{font-size:22px}
+ .tabs button{padding:12px 12px}
+}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:18px 0}.kv span{color:var(--muted)}.kv b{text-align:right;overflow-wrap:anywhere}.demo-bar #step{flex:1;min-width:130px;font-size:14px}button:disabled{opacity:.45;cursor:default}#demo-story p{line-height:1.6}#demo-story{margin-bottom:16px}#demo-story .row-head{flex-wrap:wrap}
+</style>
+</head>
+<body><main>
+<header>
+ <h1>Scout Options</h1>
+ <div class="status-line"><span id="dot" class="dot"></span><span id="connection">Not connected</span><span id="updated"></span></div>
+</header>
+<p class="note">Simulation only. No brokerage orders are ever sent.</p>
+<div id="demo-bar" class="demo-bar" hidden><button id="previous" aria-label="Previous demo step">Back</button><strong id="step"></strong><button id="next" aria-label="Next demo step">Next</button><button id="exit-demo">Exit demo</button></div>
+
+<section id="verdict" class="verdict wait" aria-live="polite"><h2 id="verdict-title">Connecting…</h2><p id="verdict-text">Looking for the Scout service.</p></section>
+
+<section id="demo-story" class="box" hidden aria-live="polite"><div class="row-head"><h2 id="demo-title"></h2><span class="pill">Pretend trade</span></div><p id="demo-reason"></p><div id="demo-details" class="kv"></div><div id="demo-protection" class="alert"></div><p id="demo-next" class="muted"></p></section>
+<div class="grid">
+ <section class="box" id="checklist-box"><h2>What has to be true before Scout trades</h2><p class="muted small">Scout opens a simulated trade only when every item is checked.</p><ul id="checks" class="checks"></ul></section>
+ <section class="box"><h2>Account</h2><p class="muted small">Virtual money, not a real account.</p>
+  <div class="stats"><div class="stat"><span>Equity</span><strong id="equity">—</strong></div><div class="stat"><span>Today</span><strong id="today">—</strong></div><div class="stat"><span>Cash</span><strong id="cash">—</strong></div><div class="stat"><span>Open trades</span><strong id="count">—</strong></div></div>
+  <p class="muted small" id="entries-note"></p>
+ </section>
+</div>
+
+<div class="tabs" role="tablist" aria-label="Details">
+ <button role="tab" id="tab-trades" aria-selected="true" aria-controls="pane-trades">Trades</button>
+ <button role="tab" id="tab-scanner" aria-selected="false" aria-controls="pane-scanner" tabindex="-1">Scanner</button>
+ <button role="tab" id="tab-alerts" aria-selected="false" aria-controls="pane-alerts" tabindex="-1">Alerts</button>
+ <button role="tab" id="tab-settings" aria-selected="false" aria-controls="pane-settings" tabindex="-1">Settings</button>
+</div>
+
+<section class="panel" role="tabpanel" id="pane-trades" aria-labelledby="tab-trades">
+ <h3 style="margin-top:12px">Open trades</h3><div id="positions"><div class="empty">No open simulated trades.</div></div>
+ <h3 style="margin-top:14px">Recent orders</h3><div id="orders"><div class="empty">No simulated orders yet.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-scanner" aria-labelledby="tab-scanner" hidden>
+ <p class="muted" style="margin-top:12px">Once a minute Scout checks SPY, QQQ and IWM for a clear direction, then tests an option against every rule.</p>
+ <div id="scanner"><div class="empty">Waiting for completed minute bars and fresh option quotes.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-alerts" aria-labelledby="tab-alerts" hidden>
+ <h3 style="margin-top:12px">Connection right now</h3><div id="current-health"><div class="empty">Waiting for current connection checks.</div></div>
+ <h3 style="margin-top:14px">Alert history</h3><p class="muted small">Saved alert history; earlier errors remain here after recovery.</p>
+ <div id="alerts"><div class="empty">No recorded local alerts.</div></div>
+</section>
+
+<section class="panel" role="tabpanel" id="pane-settings" aria-labelledby="tab-settings" hidden>
+ <div class="section"><h3>Risk limits</h3>
+  <div class="kv"><span id="risk-entry-label">Most Scout will risk per trade</span><b id="risk-entry">—</b><span>Most premium in open trades</span><b id="risk-total">—</b><span>Stops trading for the day after losing</span><b id="risk-session">—</b><span>Exit a trade if it loses</span><b id="risk-stop">—</b><span>Locking in gains</span><b id="risk-trail">—</b></div>
+  <p class="muted small">Starting defaults, not performance-tested. Software exits cannot guarantee a maximum loss.</p></div>
+ <div class="section"><h3>Entry rules</h3><div id="entry-model" class="muted">Waiting for current research settings.</div>
+  <p class="muted small">Sizing estimates option risk from delta, spread and costs; real losses can exceed that estimate. Assumed costs are not verified broker charges.</p></div>
+ <div class="section"><h3>Fresh-session test</h3><p class="muted small">Opening-hour calls and puts: five-minute exit versus fifteen minutes and matched market directions. Results update after market close. Stock movement only; no orders or option fills. This frozen baseline does not evaluate the newer entry filters.</p><div id="forward-study"><div class="empty">Waiting for the frozen future-session study.</div></div></div>
+ <div class="section"><h3>Option quote recorder</h3><p class="muted small">Timestamped bids, asks and sizes for subscribed contracts. Indicative prices are modified; recorded quotes are observations, not fills.</p><div id="quote-tape"><div class="empty">Waiting for the local recorder.</div></div></div>
+ <div class="section"><h3>How it runs</h3><div class="kv"><span>Open trades checked</span><b>Every second</b><span>New setups checked</span><b>Every 60 seconds</b><span>Broker orders</span><b>Disabled</b><span>Phone notifications</span><b>Not connected</b></div>
+  <p class="muted small">Local background research is available; cloud hosting is not configured. Demo results use made-up prices.</p>
+  <div style="margin-top:10px"><button id="demo">Try the demo</button></div></div>
+</section>
+
+<footer>Reference simulation only. Bid/ask prices are not guaranteed fills. Fees, queue priority, and actual executable liquidity are not modeled. A one-second check does not guarantee an exit or a maximum loss. No results here establish profitability.<br>Options development: <a href="https://github.com/Kodamafire/scout-mobile/pull/8">View the build and tests</a>.</footer>
+</main>
+<script>
+'use strict';
+const STATUS_FILE='options-status.json';
+/*LOGIC-START*/
+const IV_DAYS_NEEDED=60;
+const REASONS={
+ OPRA_DATA_REQUIRED:'Needs real-time OPRA prices.',
+ IV_HISTORY_MISSING:'Not enough option-price history yet (needs 60 trading days).',
+ IV_NOT_CHEAP:'Options cost more than usual right now.',
+ EVENT_CALENDAR_MISSING:'The event calendar is missing.',
+ EVENT_CALENDAR_STALE:'The event calendar is out of date.',
+ EVENT_CALENDAR_INVALID:'The event calendar file has a problem.',
+ EVENT_COVERAGE_MUST_INCLUDE_OPTION_LIFE:'The event calendar does not cover this option’s whole life.',
+ EARNINGS_INSIDE_OPTION_LIFE:'Earnings are due before this option expires.',
+ RISK_OR_LIQUIDITY_CANNOT_FUND_ONE_CONTRACT:'Even one contract is too expensive or too risky for the account limits.',
+ RISK_OR_LIQUIDITY_CANNOT_FUND_TWO_CONTRACTS:'Two contracts would be too expensive or too risky for the account limits.',
+ SPREAD_LIMIT:'The gap between buy and sell prices is too wide.',
+ BARS_NOT_READY:'Still collecting the first minutes of price data.',
+ HIGHER_TIMEFRAME_WARMUP:'Still collecting longer-term price data.',
+ DAILY_TRADE_LIMIT:'Today’s trade limit is reached.',
+ COOLDOWN:'Waiting after a recent trade in this ticker.',
+ ENTRY_TIME_WINDOW:'Outside entry hours (9:45–15:30 ET).',
+ STOCK_BARS_STALE:'Price data is out of date.',
+ STOCK_CONTEXT_STALE:'Price data is out of date.',
+ TODAY_OPTION_VOLUME_MISSING_OR_LOW:'This option traded too little today.',
+ OPEN_INTEREST:'Too few open contracts.',
+ LOSS_STREAK_PAUSE:'Paused after several losing trades.',
+ DAILY_LOSS_LIMIT:'Daily loss limit reached.',
+ CORRELATED_GROUP_LIMIT:'Already holding a similar position.',
+ ATR_DOES_NOT_COVER_SPREAD:'Expected price movement is too small compared with the buy/sell gap.',
+ SIGNAL_REJECTED:'The setup failed one of the entry rules.',
+ ENTRY_REJECTED:'The option failed one of the entry rules.',
+ CONTRACT_CONTEXT_MISSING:'Option details are still loading.',
+ CONTEXT_FILTERS_PASS:'All entry filters passed.',
+ STOCK_FILTERS_PASS:'Stock filters passed.',
+ ENTRY_ACCEPTED:'Entry accepted.'
+};
+function plain(text){
+ if(typeof text!=='string'||!text)return '';
+ if(/^[A-Z][A-Z0-9_]+$/.test(text)){
+  if(REASONS[text])return REASONS[text];
+  if(text.startsWith('MACRO_DAY_'))return 'A major economic report (Fed, CPI or jobs) is due that day.';
+  const s=text.replace(/_/g,' ').toLowerCase();return s[0].toUpperCase()+s.slice(1)+'.';
+ }
+ return text;
+}
+function sentence(t){t=String(t||'');return t?t[0].toUpperCase()+t.slice(1)+(/[.!?]$/.test(t)?'':'.'):'';}
+function ivDays(iv){
+ const p=iv&&iv.progress;
+ if(!p||typeof p!=='object')return null;
+ let best=null;
+ for(const cells of Object.values(p)){
+  if(!cells||typeof cells!=='object')continue;
+  const counts=Object.values(cells).map(c=>c&&c.sessions).filter(Number.isFinite);
+  if(counts.length){const low=Math.min(...counts);best=best===null?low:Math.min(best,low);}
+ }
+ return best===null?0:best;
+}
+function gates(data,fresh,synthetic){
+ const list=[];
+ const add=(id,label,state,why,fix,extra)=>list.push(Object.assign({id,label,state,why,fix:fix||''},extra||{}));
+ if(fresh)add('service','Scout is running','ok','Updating every second.');
+ else add('service','Scout is running','block','The page is not getting live updates, so what you see is the last saved snapshot.','Start it from Ubuntu: python -m scout_options.local_runner --update',{who:'you'});
+ if(data.feed==='opra')add('feed','Real-time option prices','ok','Using OPRA prices.');
+ else if(data.feed==='indicative')add('feed','Real-time option prices','block','Free “indicative” prices are modified, so Scout can watch but cannot open trades.','Subscribe to OPRA data with Alpaca, set "options_feed":"opra" in runtime-settings.json, then restart.',{who:'you'});
+ else add('feed','Real-time option prices','unknown','Price feed not reported yet.');
+ if(data.exchange_context_fresh===false)add('clock','Market clock','block','The market clock reading is out of date.','Usually fixes itself within a minute. If not, check Alerts.',{who:'time'});
+ const cal=data.macro_calendar&&data.macro_calendar.status;
+ if(typeof cal!=='string')add('calendar','Economic-events calendar','unknown','Not reported by this version.');
+ else if(/^Blocked/i.test(cal)){
+  const missing=/no macro-calendar\.json/i.test(cal);
+  add('calendar','Economic-events calendar','block',sentence(cal.replace(/^Blocked:\s*/i,'')),missing?'Add macro-calendar.json (Fed, CPI and jobs-report dates). See ENTRY_CONTEXT.md.':'Fix the dates file, then restart.',{who:'you'});
+ }else if(/^(OK|Kept)/i.test(cal))add('calendar','Economic-events calendar','ok','Fed, CPI and jobs-report dates are loaded.');
+ else add('calendar','Economic-events calendar','wait',sentence(cal),'',{who:'time'});
+ const days=ivDays(data.iv_history);
+ if(days===null)add('iv','Option-price history','unknown','Not reported by this version.');
+ else if(days>=IV_DAYS_NEEDED)add('iv','Option-price history','unknown',days+' stored trading days. Contract-matched history must still pass the entry check.');
+ else{
+  const off=data.feed!=='opra';
+  add('iv','Option-price history','wait',off?'Collection starts once OPRA prices are on.':days+' of '+IV_DAYS_NEEDED+' trading days collected. Scout adds one per market day.',off?'':(IV_DAYS_NEEDED-days)+' to go. Nothing for you to do.',{who:'time',progress:days/IV_DAYS_NEEDED});
+ }
+ const lossPct=data.trading_rules&&Number.isFinite(data.trading_rules.daily_loss_fraction)?Math.round(data.trading_rules.daily_loss_fraction*100):2;
+ if(data.paused)add('risk','Daily loss limit','block','Paused: today’s loss limit ('+lossPct+'%) was reached.','Resumes next trading session.',{who:'time'});
+ else add('risk','Daily loss limit','ok','Not reached today.');
+ if(data.risk_pause_until&&Date.parse(data.risk_pause_until)>Date.now())add('cooldown','Loss-streak pause','wait','Temporarily paused after consecutive losses.','Resumes after '+data.risk_pause_until,{who:'time'});
+ if(data.daily_trades>=5)add('trade_limit','Daily trade limit','wait','Today’s trade limit has been reached.','Resumes next session.',{who:'time'});
+ const stream=data.current_health&&data.current_health.stream;
+ if(stream&&(stream.status==='Unavailable'||stream.fresh===false))add('stream','Option quote updates','block','Recent quote updates are not verified.','Check Alerts; individual quotes must pass freshness checks.',{who:'you'});
+ if(data.accepting||synthetic)add('hours','Entry hours','ok','Open now (9:45–15:30 ET).');
+ else add('hours','Entry hours','wait','Closed. Scout opens trades 9:45–15:30 ET on market days, up to the daily trade limit.','',{who:'time',hours:true});
+ const order={block:0,wait:1,unknown:2,ok:3};
+ return list.map((g,i)=>[g,i]).sort((a,b)=>order[a[0].state]-order[b[0].state]||a[1]-b[1]).map(x=>x[0]);
+}
+function verdict(data,fresh,synthetic,list){
+ const open=Object.keys(data.positions||{}).length;
+ if(synthetic)return{tone:'info',title:'Demo mode',text:'Made-up prices to show how Scout behaves. Nothing here is real market activity.'};
+ if(!fresh)return{tone:'stop',title:'Scout is offline',text:'This page cannot reach the one-second service. Numbers below are the last saved snapshot.'};
+ if(data.paused)return{tone:'stop',title:'Paused for today',text:'Scout hit its daily loss limit and will not open trades until the next session.'};
+ const blockers=list.filter(g=>g.id!=='service'&&g.id!=='hours'&&(g.state==='block'||g.state==='wait'));
+ if(blockers.length){
+  const you=blockers.filter(g=>g.who==='you').length,time=blockers.length-you;
+  const bits=[];if(you)bits.push(you+(you===1?' needs':' need')+' you');if(time)bits.push(time+(time===1?' just needs':' just need')+' time');
+  return{tone:'wait',title:'Not trading yet',text:(blockers.length===1?'1 thing is':blockers.length+' things are')+' holding Scout back: '+bits.join(', ')+'. Scout keeps running in the meantime.'};
+ }
+ const unknown=list.some(g=>g.state==='unknown');
+ if(unknown)return{tone:'info',title:'Readiness not confirmed',text:'Some required checks are not reported or still need contract-level validation. Check Scanner for each rejected setup.'};
+ if(!data.accepting)return{tone:'info',title:'Entries currently closed',text:'Scout will look for setups 9:45–15:30 ET on market days.'+(open?' Open trades are still checked every second.':'')};
+ return{tone:'go',title:open?'In a trade':'Ready and watching',text:open?'Open trades are checked every second. Scout can still open another if a setup passes every check.':'Scout checks SPY, QQQ and IWM every minute and opens a simulated trade when a setup passes every rule.'};
+}
+/*LOGIC-END*/
+const $=id=>document.getElementById(id);
+let mode='service', step=0, loading=false, latest=null;
+const money=v=>Number.isFinite(v)?v.toLocaleString('en-US',{style:'currency',currency:'USD'}):'—';
+const pct=v=>Number.isFinite(v)?(v>=0?'+':'')+(v*100).toFixed(1)+'%':'—';
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n;}
+function list(id,rows,empty,render){const root=$(id);root.replaceChildren();if(!rows.length){root.append(node('div',empty,'empty'));return;}rows.forEach(r=>root.append(render(r)));}
+function row(title,status,detail){const n=node('div',undefined,'row'),head=node('div',undefined,'row-head');head.append(node('h3',title),node('span',status,'pill'));n.append(head);if(detail)n.append(node('p',detail));return n;}
+const base={synthetic:true,capital:10000,cash:10000,equity:10000,session_equity:10000,accepting:false,paused:false,positions:{},orders:{},alerts:[],scanner:[{underlying:'SPY',stage:'CALL',reason:'Synthetic rising trend; contract selected.'},{underlying:'QQQ',stage:'PUT',reason:'Synthetic bearish setup; waiting for entry confirmation.'},{underlying:'IWM',stage:'WAIT',reason:'No confirmed direction.'}]};
+const demoContract={symbol:'SPY · $600 CALL · Fictional 10-day expiry',underlying:'SPY',kind:'CALL',qty:1,entry:.90,expiry:'Fictional 10-day expiry'};
+const buy={symbol:demoContract.symbol,side:'BUY',qty:1,filled:1,limit:.90,status:'FILLED',reason:'Fictional buy: 1 × $0.90 × 100 = $90 total premium'};
+function demoPosition(bid,peak,orders={a:buy}){return {...base,cash:9910,equity:9910+bid*100,accepting:true,positions:{a:{...demoContract,last_bid:bid,peak_bid:peak}},orders};}
+const demoSteps=[
+{title:'BUY PLAN · Spend $90, only if filled',reason:'Pretend rising trend and entry confirmation agree. Scout proposes one SPY call; this is an example, not a current signal.',bid:null,peak:null,next:'Next: a later fictional quote fills the buy order.',data:{...base,accepting:true,orders:{a:{...buy,filled:0,status:'OPEN',reason:'Limit $0.90 per share; maximum premium $90 for one standard 100-share contract'}}}},
+{title:'BOUGHT · One call for $90',reason:'The fictional buy filled at $0.90. The current bid is $0.88, so selling immediately would return $88: a $2 unrealized loss.',bid:.88,peak:.90,next:'Next: the bid rises while Scout holds.',data:demoPosition(.88,.90)},
+{title:'HOLD · Up $10; trail not armed',reason:'The bid is $1.00. The position is worth $100, with a $10 unrealized gain. The +20% activation level has not been reached.',bid:1,peak:1,next:'Next: the bid reaches $1.30 and activates profit protection.',data:demoPosition(1,1)},
+{title:'HOLD · Up $40; protection armed',reason:'The bid reached $1.30: $130 position value and $40 unrealized profit. The trail is now armed because the gain exceeded 20%.',bid:1.30,peak:1.30,next:'Next: a small pullback remains above the exit threshold.',data:demoPosition(1.30,1.30)},
+{title:'HOLD · Pullback, still above the trail',reason:'The bid slipped to $1.20, leaving a $30 unrealized gain. It remains above the $1.105 trail threshold, so this example keeps holding.',bid:1.20,peak:1.30,next:'Next: the bid falls through the trail, triggering an exit request.',data:demoPosition(1.20,1.30)},
+{title:'EXIT REQUESTED · Protect the remaining gain',reason:'The bid fell to $1.10, below the $1.105 trail threshold. Scout requests a sale. The $20 gain is still unrealized until that sale fills.',bid:1.10,peak:1.30,next:'Next: a later quote fills the sale at $1.08. An exit request is not a completed exit.',data:demoPosition(1.10,1.30,{b:{...buy,side:'SELL',filled:0,limit:1.10,status:'OPEN',reason:'Fictional trail breach; exit requested, not filled'}})},
+{title:'SOLD · $18 realized profit',reason:'The fictional sale filled later at $1.08: $108 returned minus $90 paid = $18 realized profit, before fees. There is no open position.',bid:1.08,peak:1.30,closed:true,next:'The peak profit was $40. This example kept $18 and gave back $22; the trail does not lock in the peak.',data:{...base,cash:10018,equity:10018,accepting:true,orders:{a:buy,b:{...buy,side:'SELL',limit:1.08,status:'FILLED',reason:'Fictional sale: $108 proceeds; $18 realized profit before fees'}}}},
+{title:'LOSS EXAMPLE · Cut a losing trade',reason:'Separate example: the same $90 call falls to a $0.67 bid. That is a $23 unrealized loss and breaches the 25% premium-loss threshold. Scout requests an exit.',bid:.67,peak:.90,next:'This is a separate losing-trade scenario, not a trade after the profitable sale. Loss remains unrealized while the order is pending.',data:demoPosition(.67,.90,{b:{...buy,side:'SELL',filled:0,limit:.67,status:'OPEN',reason:'Fictional loss-limit breach; waiting for a sale fill'}})}
+].map((s,i)=>({...s,label:(i+1)+' / 8 · '+s.title}));
+function renderDemoStory(){
+ const d=demoSteps[step];$('demo-story').hidden=mode!=='demo';if(mode!=='demo')return;
+ $('demo-title').textContent=d.title;$('demo-reason').textContent=d.reason;$('demo-next').textContent=d.next;
+ const details=$('demo-details');details.replaceChildren();
+ const add=(label,value)=>details.append(node('span',label),node('b',value));
+ add('Pretend contract',demoContract.symbol);add('Premium paid per share','$0.90');add('Contracts × multiplier','1 × 100');add('Total entry premium','$90.00');
+ if(d.bid!==null){add(d.closed?'Fictional sale price':'Current fictional bid',money(d.bid));add(d.closed?'Sale proceeds':'Value if sold at this bid',money(d.bid*100));add(d.closed?'Realized profit before fees':'Unrealized gain / loss',money((d.bid-.90)*100)+' ('+pct(d.bid/.90-1)+')');}
+ add('Initial loss threshold','$0.675 bid · $67.50 value');add('Trail activates at','$1.08 bid · +20%');
+ const armed=d.peak!==null&&d.peak>=1.08;
+ if(armed){add('Highest bid seen',money(d.peak));add('Trail trigger per share','$'+(d.peak*.85).toFixed(3));add('Value at trigger',money(d.peak*.85*100));}
+ $('demo-protection').textContent=armed?'Trail armed: exit when the bid falls 15% from its highest observed bid. At a $1.30 peak, that means $1.105. This is 15% of the option price, not 15% of the profit. A later fill can be lower.':'Trail not armed. The example exits for a 25% premium loss, or arms the trail after a 20% gain. These are illustrative research settings.';
+ $('previous').disabled=step===0;$('next').disabled=step===demoSteps.length-1;
+}
+
+const STAGES={CALL:'Looking for a call',PUT:'Looking for a put',WAIT:'No clear direction'};
+function renderChecks(items){
+ const root=$('checks');root.replaceChildren();
+ items.forEach(g=>{
+  const li=node('li',undefined,g.state),body=node('div'),head=node('div',undefined,'what');
+  li.append(node('span',g.state==='ok'?'✓':g.state==='block'?'✕':g.state==='wait'?'…':'?','mark'),body);
+  head.append(document.createTextNode(g.label));
+  if(g.state==='block'||g.state==='wait')head.append(node('span',g.who==='you'?'needs you':'needs time','tag'));
+  body.append(head,node('p',g.why,'why'));
+  if(typeof g.progress==='number'){const bar=node('div',undefined,'bar'),fill=node('i');fill.style.width=Math.max(2,Math.min(100,g.progress*100))+'%';bar.append(fill);body.append(bar);}
+  if(g.fix)body.append(node('p',g.fix,'fix'));
+  root.append(li);
+ });
+}
+function render(data){
+ renderDemoStory();
+ const synthetic=mode==='demo'||data.synthetic===true;
+ const heartbeat=Date.parse(data.heartbeat),age=(Date.now()-heartbeat)/1000;
+ const fresh=!synthetic&&Number.isFinite(age)&&age>=0&&age<=5;
+ $('connection').textContent=synthetic?'Demo · Made-up prices':fresh?'Connected':'Service offline / stale';
+ $('dot').className='dot '+(synthetic?'':fresh?'on':'off');
+ $('updated').textContent=synthetic?'':Number.isFinite(heartbeat)?'· updated '+Math.max(0,Math.floor(age))+' s ago':'· no heartbeat';
+ const items=gates(data,fresh,synthetic),v=verdict(data,fresh,synthetic,items);
+ $('verdict').className='verdict '+v.tone;$('verdict-title').textContent=v.title;$('verdict-text').textContent=v.text;
+ $('checklist-box').hidden=synthetic;
+ if(!synthetic)renderChecks(items);
+ const settings=data.research_settings||{};
+ const rules=data.entry_rules||{},costs=data.execution_cost_model||{};
+ $('entry-model').replaceChildren();
+ if(data.entry_context_required){
+  $('entry-model').append(node('p','Needed first: option-price history, an events calendar, normal-versus-current trading volume and agreement from a longer time frame.'));
+  if(Number.isFinite(rules.signal_rvol))$('entry-model').append(node('p','Volume: '+rules.signal_rvol+'× normal on the signal bar, '+rules.three_bar_rvol+'× over the last three · trend: '+rules.fast_ema+'/'+rules.slow_ema+' moving averages, confirmed on the '+rules.higher_minutes+'-minute chart · option price: cheap if in the bottom '+rules.cheap_iv_rank+'% of its range or ≤'+rules.max_iv_realized+'× recent stock movement; skipped if above '+rules.max_iv_rank+'%.'));
+  $('entry-model').append(node('p','Day trades only: entries 9:45–15:30 ET, everything closed by 15:50 ET. No Fed, CPI or jobs-report days, and no earnings before the option expires. '+(rules.min_entry_contracts===1?'One-contract mode: a single contract skips the half sale and is exited by a trailing stop once it is up by its stop distance.':'Two contracts minimum so half can be sold at the first target.')));
+  $('entry-model').append(node('p','Still unproven: needs at least 100 held-out trades with positive results after doubled costs.'));
+ }else $('entry-model').append(node('p','Enhanced entry filters are not enabled in this snapshot.'));
+ if(Number.isFinite(costs.fee_per_contract)&&Number.isFinite(costs.slippage_per_share))$('entry-model').append(node('p','Each fill: buy at ask + '+money(costs.slippage_per_share)+', sell at bid − '+money(costs.slippage_per_share)+', fee '+money(costs.fee_per_contract)+' per contract per side.'));
+ const paid=data.cumulative_costs||{};
+ if(Number.isFinite(paid.fees)&&Number.isFinite(paid.slippage))$('entry-model').append(node('p','Recorded fees: '+money(paid.fees)+', slippage: '+money(paid.slippage)+'. Equity includes estimated liquidation costs.'));
+ const fraction=(key,fallback)=>((Number.isFinite(settings[key])?settings[key]:fallback)*100).toFixed(0)+'%';
+ $('risk-entry').textContent=fraction('premium_risk_fraction',.01)+' of equity';
+ $('risk-total').textContent=fraction('max_total_premium_fraction',.05)+' of equity';
+ $('risk-session').textContent=fraction('session_loss_fraction',.02);
+ $('risk-stop').textContent=fraction('stop_fraction',.25)+' of the option price';
+ $('risk-trail').textContent='After +'+fraction('trail_activation',.20)+', sell if it gives back '+fraction('trail_fraction',.15);
+ const trading=data.trading_rules;
+ $('risk-entry-label').textContent=trading?'Most Scout will risk per trade (estimated)':'Most Scout will pay per trade';
+ if(trading){
+  $('risk-entry').textContent=(trading.risk_fraction*100).toFixed(1)+'% of equity';
+  $('risk-total').textContent=(trading.max_premium_fraction*100).toFixed(0)+'% of equity';
+  $('risk-session').textContent=(trading.daily_loss_fraction*100).toFixed(0)+'%';
+  $('risk-stop').textContent='Underlying moves '+trading.stop_atr+'× its usual range against it, or the option falls '+(trading.premium_stop*100).toFixed(0)+'%';
+  $('risk-trail').textContent=rules.min_entry_contracts===1?'One contract: trail after 1R; larger positions: sell half at 1R and trail the rest':'Sell half at the first target; trail the rest';
+ }
+ $('equity').textContent=money(data.equity);$('cash').textContent=money(data.cash);
+ const day=Number.isFinite(data.equity)&&Number.isFinite(data.session_equity)?data.equity-data.session_equity:NaN;
+ $('today').textContent=Number.isFinite(day)?(day>=0?'+':'−')+money(Math.abs(day)):'—';$('today').className=Number.isFinite(day)&&day!==0?(day>0?'up':'down'):'';
+ const positions=Object.values(data.positions||{});$('count').textContent=String(positions.length);
+ list('positions',positions,'No open simulated trades.',p=>{
+  const gain=Number.isFinite(p.last_bid)&&p.entry>0?p.last_bid/p.entry-1:NaN;
+  const kind=p.kind?String(p.kind).toLowerCase():'option';
+  const n=row(p.underlying+' '+kind+', '+p.qty+(p.qty===1?' contract':' contracts'),pct(gain),'Bought at '+money(p.entry)+', now '+money(p.last_bid)+' (best bid). Highest so far '+money(p.peak_bid)+'.');
+  n.append(node('p',p.symbol+' · expires '+p.expiry),node('p','Entry premium '+money(p.entry*p.qty*100)+' · Current bid value '+money(p.last_bid*p.qty*100)+' · Unrealized '+money((p.last_bid-p.entry)*p.qty*100)));return n;});
+ list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated orders yet.',o=>row((o.side==='BUY'?'Buy ':'Sell ')+o.symbol,String(o.status).toLowerCase()+', '+o.filled+' of '+o.qty+' filled','Limit '+money(o.limit)+'. '+plain(o.reason)));
+ list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No scanner results yet.',s=>{
+  const n=row(s.underlying,STAGES[s.stage]||s.stage,plain(s.reason)||'Check complete.');
+  if(s.entry_result)n.append(node('p','Entry: '+plain(s.entry_result)));
+  const c=s.context||{};const details=[];
+  if(Number.isFinite(c.three_bar_rvol))details.push('Volume vs normal (last 3 minutes): '+c.three_bar_rvol.toFixed(2)+'×');
+  if(Number.isFinite(c.rvol))details.push('Volume vs normal for this time of day: '+c.rvol.toFixed(2)+'×');
+  if(Number.isFinite(c.higher_minutes))details.push(c.higher_minutes+'-minute chart agrees: '+(c.checks?.higher_timeframe?'yes':'no'));
+  if(Number.isFinite(c.iv_percentile))details.push('Option price vs its past (percentile): '+c.iv_percentile.toFixed(0));
+  if(Number.isFinite(c.iv_rank))details.push('Option price vs its past range (rank): '+c.iv_rank.toFixed(0));
+  if(Number.isFinite(c.iv_realized_ratio))details.push('Option price vs recent stock movement: '+c.iv_realized_ratio.toFixed(2)+'×');
+  if(details.length)n.append(node('p',details.join(' · ')));return n;});
+ list('forward-study',data.forward_test?[data.forward_test]:[],'No future-session study connected.',s=>{
+  const n=row('Frozen five-minute candidate',s.status||'Waiting','First eligible session: '+(s.start_session||'pending')+' · Saved sessions: '+(s.sessions_available||0)+' · Opening-hour windows: '+(s.candidate_windows||0));
+  const bps=x=>Number.isFinite(x)?x.toFixed(3)+' bps':'Waiting';
+  n.append(node('p','Equal-weight daily means: candidate '+bps(s.candidate_bot_bps)+' · Always up '+bps(s.candidate_always_up_bps)+' · Opening 15-minute reference '+bps(s.opening_15_bps)),node('p','Last completed session: '+(s.last_session||'none')+' · Last study check: '+(s.checked_at||'pending')));return n;});
+ list('alerts',Array.isArray(data.alerts)?data.alerts.slice(-4).reverse():[],'No recorded local alerts.',a=>node('div',a,'alert'));
+ list('current-health',data.current_health?[data.current_health]:[],'Current connection checks unavailable.',h=>{
+  const account=h.account||{},scan=h.scanner||{},stream=h.stream||{};
+  const n=row('Account and market clock',!fresh?'Unverified':account.fresh?'OK':account.status==='OK'?'Overdue':account.status||'Waiting','Last successful read: '+(account.last_success||'none'));
+  n.append(node('p',fresh?(h.market||'Market state unverified')+' · Scanner: '+(scan.current_state||'Waiting'):'No live updates, so market and scanner state are unverified.'));
+  if(account.error)n.append(node('p','Latest account-read problem: '+account.error+(account.http?' · HTTP '+account.http:'')));
+  if(scan.error)n.append(node('p','Latest scanner problem: '+scan.error));
+  n.append(node('p','Quote updates: '+(!fresh?'unverified':stream.fresh?'recent update received':stream.status==='Unavailable'?'unavailable · '+stream.error:'waiting for updates')));return n;});
+ list('quote-tape',data.quote_recorder?[data.quote_recorder]:[],'No quote recorder connected.',s=>{
+  const receivedAge=(Date.now()-Date.parse(s.last_received_at))/1000;
+  const recorderState=!fresh?'Unverified':s.status==='Recording'?
+   (!s.subscribed_contracts?'Ready · no subscribed contracts':!s.last_received_at?'Ready · waiting for quotes':receivedAge>=0&&receivedAge<=15?'Saving quote updates':'Ready · waiting for updates'):s.status||'Waiting';
+  const n=row('Quote observations',recorderState,'Subscribed contracts: '+(s.subscribed_contracts||0)+' · Quotes saved this run: '+(s.recorded_quotes||0)+' · Dropped events: '+(s.dropped_events||0));
+  n.append(node('p','Feed: '+(s.feed||'waiting')+' · Last quote timestamp: '+(s.last_quote_at||'none')),node('p','Received on desktop: '+(s.last_received_at||'none')+' · Queued events: '+(s.queued_events||0)));return n;});
+}
+function disconnected(){latest=null;render({heartbeat:null});$('updated').textContent='· waiting for the service';}
+async function poll(){if(mode!=='service'||loading)return;loading=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),1500);try{const response=await fetch(STATUS_FILE+'?t='+Date.now(),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!data||typeof data!=='object'||Array.isArray(data)||typeof data.mode!=='string'||!data.mode.startsWith('ISOLATED REFERENCE SIMULATION'))throw Error('Invalid status');if(mode==='service'){latest=data;render(data);}}catch{if(mode==='service'){if(latest){render({...latest,heartbeat:null});$('updated').textContent='· connection lost, showing last saved snapshot';}else disconnected();}}finally{clearTimeout(timer);loading=false;}}
+function showDemo(){mode='demo';selectTab('trades');$('demo-bar').hidden=false;$('step').textContent=demoSteps[step].label;render(demoSteps[step].data);}
+function leaveDemo(){mode='service';$('demo-bar').hidden=true;disconnected();poll();}
+$('demo').addEventListener('click',()=>{step=0;showDemo();window.scrollTo({top:0});});
+$('previous').addEventListener('click',()=>{step=Math.max(0,step-1);showDemo();});
+$('next').addEventListener('click',()=>{step=Math.min(demoSteps.length-1,step+1);showDemo();});
+$('exit-demo').addEventListener('click',leaveDemo);
+const tabs=['trades','scanner','alerts','settings'];
+function selectTab(name,focus){tabs.forEach(t=>{const on=t===name;$('tab-'+t).setAttribute('aria-selected',on);$('tab-'+t).tabIndex=on?0:-1;$('pane-'+t).hidden=!on;if(on&&focus)$('tab-'+t).focus();});}
+tabs.forEach((t,i)=>{$('tab-'+t).addEventListener('click',()=>selectTab(t));$('tab-'+t).addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();selectTab(tabs[(i+d+tabs.length)%tabs.length],true);}});});
+if(location.protocol==='file:'||new URLSearchParams(location.search).has('demo'))showDemo();else{disconnected();poll();}setInterval(()=>{if(mode==='service'&&latest)render(latest);poll();},1000);
+</script>
+</body></html>
