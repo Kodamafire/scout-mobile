@@ -83,6 +83,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
  .tabs button{padding:12px 12px}
 }
 .kv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:18px 0}.kv span{color:var(--muted)}.kv b{text-align:right;overflow-wrap:anywhere}.demo-bar #step{flex:1;min-width:130px;font-size:14px}button:disabled{opacity:.45;cursor:default}#demo-story p{line-height:1.6}#demo-story{margin-bottom:16px}#demo-story .row-head{flex-wrap:wrap}
+.grid:has(#checklist-box[hidden]){grid-template-columns:1fr}#demo-story .stats{margin-bottom:14px}#demo-story>p{margin-top:10px}#demo-story h2{font-size:18px}#demo-story .row-head{gap:6px}#demo-story .stat strong{font-size:23px}
 </style>
 </head>
 <body><main>
@@ -95,7 +96,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 
 <section id="verdict" class="verdict wait" aria-live="polite"><h2 id="verdict-title">Connecting…</h2><p id="verdict-text">Looking for the Scout service.</p></section>
 
-<section id="demo-story" class="box" hidden aria-live="polite"><div class="row-head"><h2 id="demo-title"></h2><span class="pill">Pretend trade</span></div><p id="demo-reason"></p><div id="demo-details" class="kv"></div><div id="demo-protection" class="alert"></div><p id="demo-next" class="muted"></p></section>
+
 <div class="grid">
  <section class="box" id="checklist-box"><h2>What has to be true before Scout trades</h2><p class="muted small">Scout opens a simulated trade only when every item is checked.</p><ul id="checks" class="checks"></ul></section>
  <section class="box"><h2>Account</h2><p class="muted small">Virtual money, not a real account.</p>
@@ -112,6 +113,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 </div>
 
 <section class="panel" role="tabpanel" id="pane-trades" aria-labelledby="tab-trades">
+ <section id="demo-story" class="box" hidden aria-live="polite" style="margin-top:14px"><div class="row-head"><h2 id="demo-title"></h2><span class="pill">SPY call · 1 contract</span></div><div class="stats"><div class="stat"><span>Total paid</span><strong>$90.00</strong></div><div class="stat"><span id="demo-profit-label">Profit / loss</span><strong id="demo-profit">—</strong></div><div class="stat"><span id="demo-value-label">Current value</span><strong id="demo-value">—</strong></div><div class="stat"><span>Exit trigger</span><strong id="demo-trigger">—</strong></div></div><p id="demo-reason" class="muted"></p><p id="demo-protection" class="small"></p><details><summary>Trade details & calculations</summary><div id="demo-details" class="kv"></div><p id="demo-next" class="muted small"></p></details></section>
  <h3 style="margin-top:12px">Open trades</h3><div id="positions"><div class="empty">No open simulated trades.</div></div>
  <h3 style="margin-top:14px">Recent orders</h3><div id="orders"><div class="empty">No simulated orders yet.</div></div>
 </section>
@@ -272,18 +274,21 @@ const demoSteps=[
 {title:'EXIT REQUESTED · Protect the remaining gain',reason:'The bid fell to $1.10, below the $1.105 trail threshold. Scout requests a sale. The $20 gain is still unrealized until that sale fills.',bid:1.10,peak:1.30,next:'Next: a later quote fills the sale at $1.08. An exit request is not a completed exit.',data:demoPosition(1.10,1.30,{b:{...buy,side:'SELL',filled:0,limit:1.10,status:'OPEN',reason:'Fictional trail breach; exit requested, not filled'}})},
 {title:'SOLD · $18 realized profit',reason:'The fictional sale filled later at $1.08: $108 returned minus $90 paid = $18 realized profit, before fees. There is no open position.',bid:1.08,peak:1.30,closed:true,next:'The peak profit was $40. This example kept $18 and gave back $22; the trail does not lock in the peak.',data:{...base,cash:10018,equity:10018,accepting:true,orders:{a:buy,b:{...buy,side:'SELL',limit:1.08,status:'FILLED',reason:'Fictional sale: $108 proceeds; $18 realized profit before fees'}}}},
 {title:'LOSS EXAMPLE · Cut a losing trade',reason:'Separate example: the same $90 call falls to a $0.67 bid. That is a $23 unrealized loss and breaches the 25% premium-loss threshold. Scout requests an exit.',bid:.67,peak:.90,next:'This is a separate losing-trade scenario, not a trade after the profitable sale. Loss remains unrealized while the order is pending.',data:demoPosition(.67,.90,{b:{...buy,side:'SELL',filled:0,limit:.67,status:'OPEN',reason:'Fictional loss-limit breach; waiting for a sale fill'}})}
-].map((s,i)=>({...s,label:(i+1)+' / 8 · '+s.title}));
+].map((s,i)=>({...s,label:'Step '+(i+1)+' of 8: '+['setup found','buy filled','holding','profit protected','holding through pullback','exit pending','sale filled','loss exit example'][i]}));
 function renderDemoStory(){
  const d=demoSteps[step];$('demo-story').hidden=mode!=='demo';if(mode!=='demo')return;
  $('demo-title').textContent=d.title;$('demo-reason').textContent=d.reason;$('demo-next').textContent=d.next;
  const details=$('demo-details');details.replaceChildren();
- const add=(label,value)=>details.append(node('span',label),node('b',value));
+ const add=(label,value,cls)=>details.append(node('span',label),node('b',value,cls));
  add('Pretend contract',demoContract.symbol);add('Premium paid per share','$0.90');add('Contracts × multiplier','1 × 100');add('Total entry premium','$90.00');
- if(d.bid!==null){add(d.closed?'Fictional sale price':'Current fictional bid',money(d.bid));add(d.closed?'Sale proceeds':'Value if sold at this bid',money(d.bid*100));add(d.closed?'Realized profit before fees':'Unrealized gain / loss',money((d.bid-.90)*100)+' ('+pct(d.bid/.90-1)+')');}
+ if(d.bid!==null){add(d.closed?'Fictional sale price':'Current fictional bid',money(d.bid));add(d.closed?'Sale proceeds':'Value if sold at this bid',money(d.bid*100));add(d.closed?'Realized profit before fees':'Unrealized gain / loss',money((d.bid-.90)*100)+' ('+pct(d.bid/.90-1)+')',d.bid>.90?'up':d.bid<.90?'down':'');}
  add('Initial loss threshold','$0.675 bid · $67.50 value');add('Trail activates at','$1.08 bid · +20%');
  const armed=d.peak!==null&&d.peak>=1.08;
  if(armed){add('Highest bid seen',money(d.peak));add('Trail trigger per share','$'+(d.peak*.85).toFixed(3));add('Value at trigger',money(d.peak*.85*100));}
  $('demo-protection').textContent=armed?'Trail armed: exit when the bid falls 15% from its highest observed bid. At a $1.30 peak, that means $1.105. This is 15% of the option price, not 15% of the profit. A later fill can be lower.':'Trail not armed. The example exits for a 25% premium loss, or arms the trail after a 20% gain. These are illustrative research settings.';
+ const profit=d.bid===null?null:(d.bid-.90)*100;
+ $('demo-profit').textContent=profit===null?'—':(profit>=0?'+':'−')+money(Math.abs(profit));$('demo-profit').className=profit>0?'up':profit<0?'down':'';
+ $('demo-profit-label').textContent=d.closed?'Realized profit':'Unrealized profit / loss';$('demo-value-label').textContent=d.closed?'Sale proceeds':'Current bid value';$('demo-value').textContent=d.bid===null?'Not bought':money(d.bid*100);$('demo-trigger').textContent=d.closed?'Sold':armed?'$'+(d.peak*.85).toFixed(3):'$0.675';
  $('previous').disabled=step===0;$('next').disabled=step===demoSteps.length-1;
 }
 
@@ -348,6 +353,7 @@ function render(data){
   const gain=Number.isFinite(p.last_bid)&&p.entry>0?p.last_bid/p.entry-1:NaN;
   const kind=p.kind?String(p.kind).toLowerCase():'option';
   const n=row(p.underlying+' '+kind+', '+p.qty+(p.qty===1?' contract':' contracts'),pct(gain),'Bought at '+money(p.entry)+', now '+money(p.last_bid)+' (best bid). Highest so far '+money(p.peak_bid)+'.');
+  n.children[0].children[1].className='pill '+(gain>0?'up':gain<0?'down':'');
   n.append(node('p',p.symbol+' · expires '+p.expiry),node('p','Entry premium '+money(p.entry*p.qty*100)+' · Current bid value '+money(p.last_bid*p.qty*100)+' · Unrealized '+money((p.last_bid-p.entry)*p.qty*100)));return n;});
  list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated orders yet.',o=>row((o.side==='BUY'?'Buy ':'Sell ')+o.symbol,String(o.status).toLowerCase()+', '+o.filled+' of '+o.qty+' filled','Limit '+money(o.limit)+'. '+plain(o.reason)));
  list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No scanner results yet.',s=>{
@@ -382,7 +388,7 @@ function render(data){
 }
 function disconnected(){latest=null;render({heartbeat:null});$('updated').textContent='· waiting for the service';}
 async function poll(){if(mode!=='service'||loading)return;loading=true;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),1500);try{const response=await fetch(STATUS_FILE+'?t='+Date.now(),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!data||typeof data!=='object'||Array.isArray(data)||typeof data.mode!=='string'||!data.mode.startsWith('ISOLATED REFERENCE SIMULATION'))throw Error('Invalid status');if(mode==='service'){latest=data;render(data);}}catch{if(mode==='service'){if(latest){render({...latest,heartbeat:null});$('updated').textContent='· connection lost, showing last saved snapshot';}else disconnected();}}finally{clearTimeout(timer);loading=false;}}
-function showDemo(){mode='demo';selectTab('trades');$('demo-bar').hidden=false;$('step').textContent=demoSteps[step].label;render(demoSteps[step].data);}
+function showDemo(){mode='demo';$('demo-bar').hidden=false;$('step').textContent=demoSteps[step].label;render(demoSteps[step].data);}
 function leaveDemo(){mode='service';$('demo-bar').hidden=true;disconnected();poll();}
 $('demo').addEventListener('click',()=>{step=0;showDemo();window.scrollTo({top:0});});
 $('previous').addEventListener('click',()=>{step=Math.max(0,step-1);showDemo();});
