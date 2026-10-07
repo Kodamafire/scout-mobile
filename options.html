@@ -84,6 +84,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 }
 .kv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:18px 0}.kv span{color:var(--muted)}.kv b{text-align:right;overflow-wrap:anywhere}.demo-bar #step{flex:1;min-width:130px;font-size:14px}button:disabled{opacity:.45;cursor:default}#demo-story p{line-height:1.6}#demo-story{margin-bottom:16px}#demo-story .row-head{flex-wrap:wrap}
 .grid:has(#checklist-box[hidden]){grid-template-columns:1fr}#demo-story .stats{margin-bottom:14px}#demo-story>p{margin-top:10px}#demo-story h2{font-size:18px}#demo-story .row-head{gap:6px}#demo-story .stat strong{font-size:23px}
+.contract-summary{margin:7px 0 12px}.contract-summary p{font-size:13px!important;color:var(--muted);line-height:1.5!important;margin:3px 0!important}.contract-summary p:first-child{color:var(--ink)}
 </style>
 </head>
 <body><main>
@@ -113,7 +114,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.6}
 </div>
 
 <section class="panel" role="tabpanel" id="pane-trades" aria-labelledby="tab-trades">
- <section id="demo-story" class="box" hidden aria-live="polite" style="margin-top:14px"><div class="row-head"><h2 id="demo-title"></h2><span class="pill">SPY call · 1 contract</span></div><div class="stats"><div class="stat"><span>Total paid</span><strong>$90.00</strong></div><div class="stat"><span id="demo-profit-label">Profit / loss</span><strong id="demo-profit">—</strong></div><div class="stat"><span id="demo-value-label">Current value</span><strong id="demo-value">—</strong></div><div class="stat"><span>Exit trigger</span><strong id="demo-trigger">—</strong></div></div><p id="demo-reason" class="muted"></p><p id="demo-protection" class="small"></p><details><summary>Trade details & calculations</summary><div id="demo-details" class="kv"></div><p id="demo-next" class="muted small"></p></details></section>
+ <section id="demo-story" class="box" hidden aria-live="polite" style="margin-top:14px"><div class="row-head"><h2 id="demo-title"></h2><span class="pill">Pretend trade</span></div><div id="demo-contract-summary" class="contract-summary"></div><div class="stats"><div class="stat"><span>Total paid</span><strong>$90.00</strong></div><div class="stat"><span id="demo-profit-label">Profit / loss</span><strong id="demo-profit">—</strong></div><div class="stat"><span id="demo-value-label">Current value</span><strong id="demo-value">—</strong></div><div class="stat"><span>Exit trigger</span><strong id="demo-trigger">—</strong></div></div><p id="demo-reason" class="muted"></p><p id="demo-protection" class="small"></p><details><summary>Trade details & calculations</summary><div id="demo-details" class="kv"></div><p id="demo-next" class="muted small"></p></details></section>
  <h3 style="margin-top:12px">Open trades</h3><div id="positions"><div class="empty">No open simulated trades.</div></div>
  <h3 style="margin-top:14px">Recent orders</h3><div id="orders"><div class="empty">No simulated orders yet.</div></div>
 </section>
@@ -262,7 +263,23 @@ function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefi
 function list(id,rows,empty,render){const root=$(id);root.replaceChildren();if(!rows.length){root.append(node('div',empty,'empty'));return;}rows.forEach(r=>root.append(render(r)));}
 function row(title,status,detail){const n=node('div',undefined,'row'),head=node('div',undefined,'row-head');head.append(node('h3',title),node('span',status,'pill'));n.append(head);if(detail)n.append(node('p',detail));return n;}
 const base={synthetic:true,capital:10000,cash:10000,equity:10000,session_equity:10000,accepting:false,paused:false,positions:{},orders:{},alerts:[],scanner:[{underlying:'SPY',stage:'CALL',reason:'Synthetic rising trend; contract selected.'},{underlying:'QQQ',stage:'PUT',reason:'Synthetic bearish setup; waiting for entry confirmation.'},{underlying:'IWM',stage:'WAIT',reason:'No confirmed direction.'}]};
-const demoContract={symbol:'SPY · $600 CALL · Fictional 10-day expiry',underlying:'SPY',kind:'CALL',qty:1,entry:.90,expiry:'Fictional 10-day expiry'};
+function contractFacts(p){
+ const occ=String(p.symbol||'').match(/^[A-Z0-9.]+(\d{2})(\d{2})(\d{2})([CP])(\d{8})$/);
+ const strike=Number.isFinite(p.strike)?p.strike:occ?Number(occ[5])/1000:null;
+ const kind=String(p.kind|| (occ?(occ[4]==='C'?'CALL':'PUT'):'OPTION')).toUpperCase();
+ const multiplier=Number.isFinite(p.multiplier)&&p.multiplier>0?p.multiplier:100;
+ const share=Number.isFinite(p.underlying_price)?money(p.underlying_price):'not reported';
+ return{strike,kind,multiplier,share};
+}
+function contractSummary(p,synthetic=false){
+ const f=contractFacts(p),n=node('div',undefined,'contract-summary');
+ const direction=f.kind==='CALL'?'benefits if the share price rises':f.kind==='PUT'?'benefits if the share price falls':'direction not reported';
+ n.append(node('p',(p.underlying||'Underlying')+' '+f.kind.toLowerCase()+' · '+direction));
+ n.append(node('p',(synthetic?'Example share price: ':'Reported share price: ')+f.share+' · Strike: '+(f.strike===null?'not reported':money(f.strike))+' · Expiry: '+(p.expiry||'not reported')));
+ n.append(node('p',p.qty+' contract'+(p.qty===1?'':'s')+' × '+f.multiplier+' shares · Option entry price: '+money(p.entry)+' per share · Premium: '+money(p.entry*p.qty*f.multiplier)+' before fees'));
+ return n;
+}
+const demoContract={symbol:'SPY · $600 CALL · Fictional 10-day expiry',underlying:'SPY',kind:'CALL',qty:1,entry:.90,underlying_price:598,strike:600,multiplier:100,expiry:'Fictional 10-day expiry'};
 const buy={symbol:demoContract.symbol,side:'BUY',qty:1,filled:1,limit:.90,status:'FILLED',reason:'Fictional buy: 1 × $0.90 × 100 = $90 total premium'};
 function demoPosition(bid,peak,orders={a:buy}){return {...base,cash:9910,equity:9910+bid*100,accepting:true,positions:{a:{...demoContract,last_bid:bid,peak_bid:peak}},orders};}
 const demoSteps=[
@@ -277,6 +294,7 @@ const demoSteps=[
 ].map((s,i)=>({...s,label:'Step '+(i+1)+' of 8: '+['setup found','buy filled','holding','profit protected','holding through pullback','exit pending','sale filled','loss exit example'][i]}));
 function renderDemoStory(){
  const d=demoSteps[step];$('demo-story').hidden=mode!=='demo';if(mode!=='demo')return;
+ $('demo-contract-summary').replaceChildren(contractSummary(demoContract,true));
  $('demo-title').textContent=d.title;$('demo-reason').textContent=d.reason;$('demo-next').textContent=d.next;
  const details=$('demo-details');details.replaceChildren();
  const add=(label,value,cls)=>details.append(node('span',label),node('b',value,cls));
@@ -354,7 +372,7 @@ function render(data){
   const kind=p.kind?String(p.kind).toLowerCase():'option';
   const n=row(p.underlying+' '+kind+', '+p.qty+(p.qty===1?' contract':' contracts'),pct(gain),'Bought at '+money(p.entry)+', now '+money(p.last_bid)+' (best bid). Highest so far '+money(p.peak_bid)+'.');
   n.children[0].children[1].className='pill '+(gain>0?'up':gain<0?'down':'');
-  n.append(node('p',p.symbol+' · expires '+p.expiry),node('p','Entry premium '+money(p.entry*p.qty*100)+' · Current bid value '+money(p.last_bid*p.qty*100)+' · Unrealized '+money((p.last_bid-p.entry)*p.qty*100)));return n;});
+  n.append(contractSummary(p,synthetic),node('p',p.symbol+' · expires '+p.expiry),node('p','Entry premium '+money(p.entry*p.qty*100)+' · Current bid value '+money(p.last_bid*p.qty*100)+' · Unrealized '+money((p.last_bid-p.entry)*p.qty*100)));return n;});
  list('orders',Object.values(data.orders||{}).slice(-5).reverse(),'No simulated orders yet.',o=>row((o.side==='BUY'?'Buy ':'Sell ')+o.symbol,String(o.status).toLowerCase()+', '+o.filled+' of '+o.qty+' filled','Limit '+money(o.limit)+'. '+plain(o.reason)));
  list('scanner',Array.isArray(data.scanner)?data.scanner:[],'No scanner results yet.',s=>{
   const n=row(s.underlying,STAGES[s.stage]||s.stage,plain(s.reason)||'Check complete.');
