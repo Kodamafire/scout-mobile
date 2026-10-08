@@ -4072,6 +4072,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-08|XLE|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T08:01:43.816143-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 75,
+      "entry_score": 65,
+      "reference_price": 65.175,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
