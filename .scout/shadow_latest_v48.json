@@ -1,6 +1,6 @@
 {
-  "cycle": "20261008_154216",
-  "updated": "2026-10-08T15:42:16.276115-07:00",
+  "cycle": "20261008_155737",
+  "updated": "2026-10-08T15:57:37.732171-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -293,9 +293,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "ORCL",
+        "symbol": "CRWV",
         "direction": "SHORT",
-        "price": 135.555,
+        "price": 81.61,
         "setup_score": 95,
         "entry_score": 80,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
@@ -318,9 +318,9 @@
         "required_entry": 70
       },
       {
-        "symbol": "CRWV",
+        "symbol": "ORCL",
         "direction": "SHORT",
-        "price": 81.61,
+        "price": 135.555,
         "setup_score": 95,
         "entry_score": 80,
         "decision": "NO TRADE \u2014 SHORT REGIME BLOCK",
