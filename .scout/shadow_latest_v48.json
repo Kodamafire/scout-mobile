@@ -1,6 +1,6 @@
 {
-  "cycle": "20261008_145853",
-  "updated": "2026-10-08T14:58:53.917310-07:00",
+  "cycle": "20261008_151613",
+  "updated": "2026-10-08T15:16:13.992681-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -1033,7 +1033,7 @@
       },
       {
         "symbol": "ITUB",
-        "decision": "LET RUN",
+        "decision": "HOLD",
         "exit_score": 0,
         "order_status": "NO ACTION"
       },
