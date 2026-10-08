@@ -3885,6 +3885,159 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-08|SOXL|LONG|QUALIFIED",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "SOXL",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 147.45,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|TQQQ|LONG|QUALIFIED",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "TQQQ",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 82.055,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|SMCI|LONG|QUALIFIED",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "SMCI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 85,
+      "entry_score": 80,
+      "reference_price": 43.595,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|EWZ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "EWZ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 60,
+      "reference_price": 42.615,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|ITUB|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "ITUB",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 87,
+      "entry_score": 60,
+      "reference_price": 9.795,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|XLE|LONG|QUALIFIED",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 75,
+      "entry_score": 90,
+      "reference_price": 64.75,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|PBR|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "PBR",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 77,
+      "entry_score": 60,
+      "reference_price": 24.53,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|NU|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "NU",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 55,
+      "reference_price": 15.64,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-08|ETHA|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T06:58:02.840810-07:00",
+      "symbol": "ETHA",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 77,
+      "entry_score": 60,
+      "reference_price": 56.84,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
