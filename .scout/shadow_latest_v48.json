@@ -1,6 +1,6 @@
 {
-  "cycle": "20261007_165319",
-  "updated": "2026-10-07T16:53:19.734212-07:00",
+  "cycle": "20261008_061411",
+  "updated": "2026-10-08T06:14:11.124180-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -1058,9 +1058,9 @@
       },
       {
         "symbol": "INTC",
-        "decision": "WATCH CLOSELY",
-        "exit_score": 3,
-        "order_status": "NO ACTION"
+        "decision": "EXIT CONFIRMED",
+        "exit_score": 13,
+        "order_status": "WAITING \u2014 MARKET CLOSED"
       },
       {
         "symbol": "PLTR",
