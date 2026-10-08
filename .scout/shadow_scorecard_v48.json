@@ -4140,6 +4140,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-08|PLTR|LONG|QUALIFIED",
+      "session": "2026-10-08",
+      "at": "2026-10-08T10:48:28.288614-07:00",
+      "symbol": "PLTR",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 100,
+      "entry_score": 75,
+      "reference_price": 195.91,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
