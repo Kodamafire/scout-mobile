@@ -4,7 +4,7 @@
     "AAPL": 3.293,
     "PLTR": 18.361,
     "WBD": 3.958,
-    "ITUB": 0.664
+    "ITUB": 1.073
   },
   "warning_streak": {
     "AAPL": 0,
@@ -12,11 +12,11 @@
     "WBD": 0,
     "ITUB": 0
   },
-  "last_cycle": "2026-10-08T07:18:08.119926-07:00",
+  "last_cycle": "2026-10-08T07:45:17.909830-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": {
     "session": "2026-10-08",
-    "timestamp": 1791469088.457761
+    "timestamp": 1791470718.218192
   },
   "activity_journal": {
     "events": [
@@ -4935,7 +4935,8 @@
       "20261008_061411",
       "20261008_063710",
       "20261008_065802",
-      "20261008_071808"
+      "20261008_071808",
+      "20261008_074517"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -4986,7 +4987,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-08T14:18:38.986426+00:00",
+      "checked_at": "2026-10-08T14:46:22.802978+00:00",
       "status": "History checked",
       "orders_checked": 10
     }
@@ -12590,6 +12591,46 @@
       "runner_signal": false,
       "legacy_floor": 2.41520512938789,
       "legacy_signal": false
+    },
+    {
+      "cycle": "20261008_074517",
+      "updated": "2026-10-08T07:45:17.909830-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 1.532,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.937079546176153,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261008_074517",
+      "updated": "2026-10-08T07:45:17.909830-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": 1.073,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261008_074517",
+      "updated": "2026-10-08T07:45:17.909830-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 17.727,
+      "runner_floor": 8.320788158905616,
+      "runner_signal": false,
+      "legacy_floor": 14.543622487670694,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261008_074517",
+      "updated": "2026-10-08T07:45:17.909830-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.8240000000000003,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
@@ -12610,12 +12651,12 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-08T07:18:08.119926-07:00"
+        "last_at": "2026-10-08T07:45:17.909830-07:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 201.755,
+        "last": 200.325,
         "units": 0.005234662143376329,
         "cash": 0.0,
         "entry": 191.47,
@@ -12627,12 +12668,12 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED RE-ENTRY",
-        "last_at": "2026-10-08T07:18:08.119926-07:00"
+        "last_at": "2026-10-08T07:45:17.909830-07:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 109.88,
+        "last": 109.76,
         "units": 0.008698146523366148,
         "cash": 0.0,
         "entry": 116.92,
@@ -12644,12 +12685,12 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED RE-ENTRY",
-        "last_at": "2026-10-08T07:18:08.119926-07:00"
+        "last_at": "2026-10-08T07:45:17.909830-07:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 336.72,
+        "last": 338.11,
         "units": 0.0,
         "cash": 1.0062391863939428,
         "entry": 329.55,
@@ -12661,16 +12702,16 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-08T07:18:08.119926-07:00"
+        "last_at": "2026-10-08T07:45:17.909830-07:00"
       },
       "ITUB": {
         "started": "2026-10-08T07:18:08.119926-07:00",
         "base": 9.84,
-        "last": 9.84,
+        "last": 9.89,
         "units": 0.10152449176839422,
         "cash": 0.0,
         "entry": 9.84,
-        "peak": 9.84,
+        "peak": 9.89,
         "pending": null,
         "fills": 0,
         "reentries": 0,
@@ -12678,10 +12719,10 @@
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-08T07:18:08.119926-07:00"
+        "last_at": "2026-10-08T07:45:17.909830-07:00"
       }
     },
-    "last_at": "2026-10-08T07:18:08.119926-07:00",
+    "last_at": "2026-10-08T07:45:17.909830-07:00",
     "cost_per_side": 0.001
   }
 }
