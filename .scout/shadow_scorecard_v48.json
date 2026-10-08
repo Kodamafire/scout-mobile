@@ -4123,6 +4123,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-08|SOXL|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-08",
+      "at": "2026-10-08T10:29:34.282384-07:00",
+      "symbol": "SOXL",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 55,
+      "reference_price": 138.19,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
