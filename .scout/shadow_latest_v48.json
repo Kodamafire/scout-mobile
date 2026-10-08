@@ -1,6 +1,6 @@
 {
-  "cycle": "20261008_134337",
-  "updated": "2026-10-08T13:43:37.823414-07:00",
+  "cycle": "20261008_135932",
+  "updated": "2026-10-08T13:59:32.929038-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -847,31 +847,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "ITUB",
-        "direction": "LONG",
-        "price": 9.84,
-        "setup_score": 87,
-        "entry_score": 60,
-        "decision": "WAIT \u2014 ENTRY NOT READY",
-        "held": true,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 15,
-          "relative_strength": 20,
-          "participation": 15,
-          "liquidity": 7
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 5,
-          "volume_confirm": 15,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "EWZ",
         "direction": "LONG",
         "price": 42.59,
@@ -886,6 +861,31 @@
           "relative_strength": 20,
           "participation": 15,
           "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 5,
+          "momentum_live": 25,
+          "rsi_window": 5,
+          "volume_confirm": 15,
+          "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "ITUB",
+        "direction": "LONG",
+        "price": 9.84,
+        "setup_score": 87,
+        "entry_score": 60,
+        "decision": "WAIT \u2014 ENTRY NOT READY",
+        "held": true,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 15,
+          "relative_strength": 20,
+          "participation": 15,
+          "liquidity": 7
         },
         "entry_parts": {
           "not_extended": 5,
