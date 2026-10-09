@@ -4594,6 +4594,91 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|SNAP|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:19:41.655561-07:00",
+      "symbol": "SNAP",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 100,
+      "entry_score": 75,
+      "reference_price": 6.27,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|BBD|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:19:41.655561-07:00",
+      "symbol": "BBD",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 85,
+      "entry_score": 60,
+      "reference_price": 4.315,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|SPYM|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:19:41.655561-07:00",
+      "symbol": "SPYM",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 90,
+      "reference_price": 91.6399,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|RXRX|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:19:41.655561-07:00",
+      "symbol": "RXRX",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 85,
+      "entry_score": 80,
+      "reference_price": 4.2594,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|CLF|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:19:41.655561-07:00",
+      "symbol": "CLF",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 95,
+      "entry_score": 75,
+      "reference_price": 13.155,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
