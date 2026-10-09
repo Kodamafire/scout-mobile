@@ -13,13 +13,14 @@ from shadow_profit_trial import update_trial, trial_html
 from profit_variants_dashboard import variants_html
 from scout_research_log import account_snapshot, record_inputs
 from scout_portfolio_report import portfolio_html
+from scout_data_health import scanner_summary, health_panel
 
 source = Path(__file__).with_name('scout_runner.py').read_text(encoding='utf-8')
 tree = ast.parse(source)
 names = {'ScoutConfig', 'entry_eligible', 'prepare_confirmation_cycle', 'analyze_position',
          'confirm_upgrade_persistence', '_order_status_text', '_wait_for_terminal_order',
          'submit_sell_if_allowed', 'submit_buys_if_allowed', 'execute_upgrade_rotation_if_allowed', 'dashboard_html', 'run_scout_cycle'}
-ns = {'portfolio_html': portfolio_html, 'Path': Path, '__file__': str(Path(__file__).with_name('scout_runner.py')), 'asdict': asdict, 'STATE_FILE': Path('/tmp/scout-test-state.json'), 'account_snapshot': account_snapshot, 'record_inputs': __import__('unittest.mock',fromlist=['Mock']).Mock(return_value={'status':'SIMULATED'}), 'variants_html': variants_html, 'update_trial': update_trial, 'trial_html': trial_html, 'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
+ns = {'scanner_summary': scanner_summary, 'health_panel': health_panel, 'portfolio_html': portfolio_html, 'Path': Path, '__file__': str(Path(__file__).with_name('scout_runner.py')), 'asdict': asdict, 'STATE_FILE': Path('/tmp/scout-test-state.json'), 'account_snapshot': account_snapshot, 'record_inputs': __import__('unittest.mock',fromlist=['Mock']).Mock(return_value={'status':'SIMULATED'}), 'variants_html': variants_html, 'update_trial': update_trial, 'trial_html': trial_html, 'update_runner_floor': update_runner_floor, 'risk_sized_budget': risk_sized_budget, 'update_profit_floor': update_profit_floor, 'dataclass': dataclass, 'json': json, 'record_cycle': record_cycle, 'journal_html': journal_html,
       'refresh_loss_log': Mock()}
 exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))
                              and n.name in names], type_ignores=[]), '<isolated scout functions>', 'exec'), ns)
