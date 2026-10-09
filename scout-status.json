@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T16:08:18.840487-07:00",
-  "cycle": "20261009_160818",
+  "updated_at": "2026-10-09T16:27:07.763043-07:00",
+  "cycle": "20261009_162707",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T16:08:19.189900-07:00",
+    "checked_at": "2026-10-09T16:27:07.807348-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T23:05:47.408677+00:00",
-      "age_seconds": 151.781
+      "quote_at": "2026-10-09T23:25:03.801025+00:00",
+      "age_seconds": 124.006
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 10611.409
+      "age_seconds": 11740.026
     }
   },
   "scanner": {
@@ -310,13 +310,13 @@
         ]
       },
       {
-        "symbol": "LABD",
+        "symbol": "MARA",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "MARA",
+        "symbol": "LABD",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -428,17 +428,17 @@
         ]
       },
       {
-        "symbol": "ASTX",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "YMAT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "ASTX",
+        "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -467,15 +467,15 @@
         ]
       },
       {
-        "symbol": "BAC",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "SNXX",
         "reasons": [
           "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -511,13 +511,13 @@
         ]
       },
       {
-        "symbol": "TLT",
+        "symbol": "NKE",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "NKE",
+        "symbol": "TLT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
