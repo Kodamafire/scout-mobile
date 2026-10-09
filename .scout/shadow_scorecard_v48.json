@@ -4560,6 +4560,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|AAOI|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-09",
+      "at": "2026-10-09T08:29:50.633009-07:00",
+      "symbol": "AAOI",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 67,
+      "entry_score": 80,
+      "reference_price": 111.28,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
