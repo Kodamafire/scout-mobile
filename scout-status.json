@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T16:27:07.763043-07:00",
-  "cycle": "20261009_162707",
+  "updated_at": "2026-10-09T16:42:25.728481-07:00",
+  "cycle": "20261009_164225",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T16:27:07.807348-07:00",
+    "checked_at": "2026-10-09T16:42:25.775245-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T23:25:03.801025+00:00",
-      "age_seconds": 124.006
+      "quote_at": "2026-10-09T23:42:06.910910+00:00",
+      "age_seconds": 18.864
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 11740.026
+      "age_seconds": 12657.994
     }
   },
   "scanner": {
@@ -218,15 +218,15 @@
         ]
       },
       {
-        "symbol": "CRGY",
+        "symbol": "PLUG",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "PLUG",
+        "symbol": "CRGY",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -420,19 +420,19 @@
         ]
       },
       {
-        "symbol": "DVLT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "YMAT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "DVLT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -577,7 +577,7 @@
         ]
       },
       {
-        "symbol": "CNH",
+        "symbol": "IBIT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -585,13 +585,13 @@
     ],
     "failed_scoring_checks": {
       "ema20_above_ema50": 67,
-      "relative_volume": 60,
-      "relative_strength": 70,
+      "relative_volume": 61,
+      "relative_strength": 69,
       "liquid": 12,
       "price_above_ema20": 62,
       "price_above_sma200": 63,
       "macd_rising": 35,
-      "rsi_healthy": 58,
+      "rsi_healthy": 57,
       "macd_bullish": 44
     }
   },
