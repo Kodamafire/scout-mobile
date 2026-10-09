@@ -3,6 +3,7 @@ from profit_variants_dashboard import variants_html
 from scout_research_log import account_snapshot, record_inputs
 from scout_portfolio_report import portfolio_html
 from scout_volume import volume_window, same_time_volume
+from scout_data_health import probe_feeds, scanner_summary, health_panel
 # STEP 1 — INSTALL, IMPORT, AND CONFIGURE
 
 import base64
@@ -27,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 from alpaca.data.enums import DataFeed, MostActivesBy
-from alpaca.data.historical import StockHistoricalDataClient
+from alpaca.data.historical import StockHistoricalDataClient, OptionHistoricalDataClient
 from alpaca.data.historical.screener import ScreenerClient
 from alpaca.data.requests import StockBarsRequest, MostActivesRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
@@ -127,6 +128,8 @@ def connect():
     if str(getattr(account, "status", "")).upper().endswith("CLOSED"):
         raise RuntimeError("Alpaca paper account is closed.")
     observed_at = datetime.now(PACIFIC)
+    data._scout_data_health = probe_feeds(data, trading, OptionHistoricalDataClient(key, sec), observed_at)
+    print("DATA HEALTH:", json.dumps(data._scout_data_health))
     data._scout_volume_cache = {}
     data._scout_volume_at = observed_at
     try:
@@ -171,7 +174,7 @@ def bars_frame(data_client, symbols, days=420, with_volume=False):
         symbol_or_symbols=symbols,
         timeframe=TimeFrame.Day,
         start=datetime.now(tz=PACIFIC) - timedelta(days=days),
-        feed=DataFeed.IEX,
+        feed=getattr(data_client, "_scout_feed", DataFeed.IEX),
     )
     raw = data_client.get_stock_bars(request).df
     if raw is None or raw.empty:
@@ -195,7 +198,7 @@ def bars_frame(data_client, symbols, days=420, with_volume=False):
                 request = StockBarsRequest(symbol_or_symbols=missing,
                     timeframe=TimeFrame(15, TimeFrameUnit.Minute),
                     start=window[1][0][0].to_pydatetime(),
-                    end=window[0][1].to_pydatetime(), feed=DataFeed.IEX)
+                    end=window[0][1].to_pydatetime(), feed=getattr(data_client, "_scout_feed", DataFeed.IEX))
                 intraday = data_client.get_stock_bars(request).df
                 for symbol in missing:
                     try:
@@ -886,9 +889,9 @@ def dashboard_html(report):
     <style>*{{box-sizing:border-box}}body{{margin:0;background:#07111f;color:#ecf3ff;font-family:Arial,sans-serif}}main{{max-width:760px;margin:auto;padding:18px}}h1{{margin:0}}.sub{{color:#8ca3bf;margin:6px 0 18px}}.summary,.card,.panel{{background:#101f33;border:1px solid #223955;border-radius:16px;padding:16px;margin:12px 0}}.summary{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}.label{{color:#8ca3bf;font-size:12px}}.value{{font-size:22px;font-weight:bold}}.top{{display:flex;justify-content:space-between;gap:10px}}.pill{{background:#1c3552;padding:5px 9px;border-radius:99px;font-size:12px}}.pnl{{font-size:32px;font-weight:bold;margin:12px 0}}.good{{color:#31d18b}}.bad{{color:#ff6677}}.grid{{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a8bad0}}.grid b{{color:#fff;text-align:right}}li{{margin:9px 0}}.activity-row{{border-top:1px solid #223955;padding:9px 0}}.activity-row b{{font-size:14px}}.activity-row small{{float:right;color:#8ca3bf}}.activity-row p{{margin:4px 0 0;color:#a8bad0;font-size:13px}}details summary{{cursor:pointer;color:#8dc5ff;padding:10px 0}}</style></head>
     <body><main><h1>🤖 Scout Trader</h1><div class="sub">Paper account • Updated {esc(report['updated'])}</div>
     <p class="sub">Let runners run: after +5%, trail by 3× average daily range, with at least 5% room below the peak. Hard loss limit: 7.5%. New entries risk up to 0.75% of account equity, capped at 10% allocation. Checked each cycle; not standing broker stops. Gaps and delays can result in worse fills.</p>
-    <p class="sub">New entries must pass the $20 million average daily dollar-volume minimum on our IEX feed. Volume strength compares completed 15-minute intervals with the same part of 20 earlier trading sessions. Missing volume data blocks new entries.</p>
+    <p class="sub">New entries must pass the $20 million average daily dollar-volume minimum on the {esc(report.get('data_health', {}).get('stock_feed', 'unverified').upper())} feed. Volume strength compares completed 15-minute intervals with the same part of 20 earlier trading sessions. Missing volume data blocks new entries.</p>
     <div class="summary"><div><div class="label">EQUITY</div><div class="value">${report['equity']:,.2f}</div></div><div><div class="label">MARKET</div><div class="value">{'OPEN' if report['market_open'] else 'CLOSED'}</div></div><div><div class="label">POSITIONS</div><div class="value">{len(report['positions'])}</div></div><div><div class="label">CANDIDATES</div><div class="value">{len(report['candidates'])}</div></div></div>
-    {journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
+    {health_panel(report)}{journal_html(report.get('journal', {}), report)}{shadow_panel}{scorecard_panel}{trial_html(report.get("profit_trial", {}))}{variants_html()}{portfolio_html(report.get("research_log", {}))}{replacement_panel}{''.join(cards) or '<div class="panel">No open positions.</div>'}<div class="panel"><h2>Qualified candidates</h2><ul>{candidates or '<li>None this cycle</li>'}</ul></div></main></body></html>'''
 
 def publish_dashboard(html_text):
     DASHBOARD_FILE.write_text(html_text, encoding="utf-8")
@@ -1032,6 +1035,9 @@ def run_scout_cycle():
         "market_open": market_open, "equity": float(account.equity), "cash": float(account.cash),
         "positions": managed, "candidates": buy_results, "upgrade": upgrade,
     }
+    report["data_health"] = getattr(data_client, "_scout_data_health", {})
+    report["scanner_summary"] = scanner_summary(research_inputs["candidate_scan"], candidates, CFG)
+    research_inputs["data_health"] = report["data_health"]
     try:
         report["shadow"] = scan_shadow(screener, data_client, held, candidates,
                                        state.get("profit_trial", {}).get("rows", {}).keys())
@@ -1075,6 +1081,16 @@ def run_scout_cycle():
     except Exception as exc:
         print("Research input logging unavailable:", type(exc).__name__)
         report["research_log"] = {"status": "UNAVAILABLE"}
+    status = {"mode": "PAPER", "updated_at": started.isoformat(), "cycle": cycle,
+              "market_open": market_open, "data_health": report["data_health"],
+              "scanner": report["scanner_summary"],
+              "positions": [{"symbol": p["symbol"], "decision": p["decision"],
+                             "order_status": p["order_status"]} for p in managed],
+              "candidates": [{"symbol": c["symbol"], "entry_score": c["entry_score"],
+                              "order_status": c["order_status"]} for c in buy_results]}
+    pending = Path("scout-status.pending.json")
+    pending.write_text(json.dumps(status, indent=2), encoding="utf-8")
+    pending.replace("scout-status.json")
     save_state(state)
     append_history(report)
     publish_status = publish_dashboard(dashboard_html(report))
