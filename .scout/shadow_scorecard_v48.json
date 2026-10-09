@@ -4492,6 +4492,57 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|PBR|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-09",
+      "at": "2026-10-09T07:46:11.868601-07:00",
+      "symbol": "PBR",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 77,
+      "entry_score": 60,
+      "reference_price": 25.41,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|UNG|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-09",
+      "at": "2026-10-09T07:46:11.868601-07:00",
+      "symbol": "UNG",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 52,
+      "entry_score": 90,
+      "reference_price": 11.09,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-09|MSTR|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T07:46:11.868601-07:00",
+      "symbol": "MSTR",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 156.1,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
