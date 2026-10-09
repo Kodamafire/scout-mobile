@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T15:46:22.936813-07:00",
-  "cycle": "20261009_154622",
+  "updated_at": "2026-10-09T16:08:18.840487-07:00",
+  "cycle": "20261009_160818",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T15:46:22.998547-07:00",
+    "checked_at": "2026-10-09T16:08:19.189900-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T22:41:32.219900+00:00",
-      "age_seconds": 290.779
+      "quote_at": "2026-10-09T23:05:47.408677+00:00",
+      "age_seconds": 151.781
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 9295.217
+      "age_seconds": 10611.409
     }
   },
   "scanner": {
@@ -434,6 +434,15 @@
         ]
       },
       {
+        "symbol": "YMAT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "SOFI",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -458,22 +467,7 @@
         ]
       },
       {
-        "symbol": "YMAT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "BAC",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "F",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -482,6 +476,12 @@
         "symbol": "SNXX",
         "reasons": [
           "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "F",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
