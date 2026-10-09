@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T15:09:15.582267-07:00",
-  "cycle": "20261009_150915",
+  "updated_at": "2026-10-09T15:28:47.882509-07:00",
+  "cycle": "20261009_152847",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T15:09:15.725627-07:00",
+    "checked_at": "2026-10-09T15:28:48.109272-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T22:09:01.801355+00:00",
-      "age_seconds": 13.924
+      "quote_at": "2026-10-09T22:26:25.730923+00:00",
+      "age_seconds": 142.378
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 7067.945
+      "age_seconds": 8240.328
     }
   },
   "scanner": {
@@ -94,17 +94,17 @@
         ]
       },
       {
-        "symbol": "SPCX",
-        "reasons": [
-          "DATA UNAVAILABLE"
-        ]
-      },
-      {
         "symbol": "SDST",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
           "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SPCX",
+        "reasons": [
+          "DATA UNAVAILABLE"
         ]
       },
       {
@@ -488,13 +488,16 @@
         ]
       },
       {
-        "symbol": "RKT",
+        "symbol": "YMAT",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "TLT",
+        "symbol": "RKT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -508,6 +511,12 @@
         ]
       },
       {
+        "symbol": "TLT",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "NKE",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -516,15 +525,6 @@
       {
         "symbol": "SMCI",
         "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "YMAT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
