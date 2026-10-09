@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T13:56:28.960016-07:00",
-  "cycle": "20261009_135628",
+  "updated_at": "2026-10-09T14:11:11.265541-07:00",
+  "cycle": "20261009_141111",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T13:56:29.153441-07:00",
+    "checked_at": "2026-10-09T14:11:11.414507-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T20:56:27.972411+00:00",
-      "age_seconds": 1.181
+      "quote_at": "2026-10-09T21:11:09.133621+00:00",
+      "age_seconds": 2.281
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 2701.372
+      "age_seconds": 3583.633
     }
   },
   "scanner": {
@@ -71,18 +71,18 @@
         ]
       },
       {
-        "symbol": "FRGT",
+        "symbol": "SXTC",
         "reasons": [
           "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "SXTC",
+        "symbol": "FRGT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -461,6 +461,15 @@
         ]
       },
       {
+        "symbol": "ZYBT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "LQD",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -470,15 +479,6 @@
         "symbol": "SNXX",
         "reasons": [
           "DATA UNAVAILABLE"
-        ]
-      },
-      {
-        "symbol": "ZYBT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
