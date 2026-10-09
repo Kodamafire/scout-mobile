@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T13:13:38.034940-07:00",
-  "cycle": "20261009_131338",
+  "updated_at": "2026-10-09T13:31:33.764842-07:00",
+  "cycle": "20261009_133133",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T13:13:38.130901-07:00",
+    "checked_at": "2026-10-09T13:31:33.926817-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T20:13:38.206013+00:00",
-      "age_seconds": -0.075
+      "quote_at": "2026-10-09T20:31:30.657649+00:00",
+      "age_seconds": 3.269
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 130.35
+      "age_seconds": 1206.146
     }
   },
   "scanner": {
@@ -24,9 +24,9 @@
     "qualified_shortlist": 11,
     "rejected_candidates": 86,
     "rejection_counts": {
-      "PRICE OUTSIDE RANGE": 16,
-      "LIQUIDITY BELOW MINIMUM": 10,
-      "SAME-TIME VOLUME UNAVAILABLE": 10,
+      "PRICE OUTSIDE RANGE": 17,
+      "LIQUIDITY BELOW MINIMUM": 11,
+      "SAME-TIME VOLUME UNAVAILABLE": 11,
       "ENTRY SCORE BELOW MINIMUM": 76,
       "DATA UNAVAILABLE": 3
     },
@@ -126,13 +126,13 @@
         ]
       },
       {
-        "symbol": "GRAB",
+        "symbol": "INTC",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "INTC",
+        "symbol": "GRAB",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -363,6 +363,12 @@
         ]
       },
       {
+        "symbol": "AGNC",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "SQQQ",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -372,12 +378,6 @@
         "symbol": "VIVK",
         "reasons": [
           "DATA UNAVAILABLE"
-        ]
-      },
-      {
-        "symbol": "AGNC",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -425,13 +425,13 @@
         ]
       },
       {
-        "symbol": "HL",
+        "symbol": "SOFI",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "SOFI",
+        "symbol": "HL",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -446,6 +446,12 @@
         "symbol": "MRNA",
         "reasons": [
           "PRICE OUTSIDE RANGE"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -468,12 +474,6 @@
       },
       {
         "symbol": "RKT",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "BAC",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -513,6 +513,15 @@
       {
         "symbol": "ALHC",
         "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "ZYBT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -559,19 +568,13 @@
         ]
       },
       {
-        "symbol": "MUB",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "CNH",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "APLD",
+        "symbol": "MUB",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -579,14 +582,14 @@
     ],
     "failed_scoring_checks": {
       "ema20_above_ema50": 67,
-      "relative_volume": 58,
-      "relative_strength": 71,
-      "liquid": 10,
-      "price_above_ema20": 63,
-      "price_above_sma200": 65,
-      "macd_rising": 35,
-      "rsi_healthy": 59,
-      "macd_bullish": 44
+      "relative_volume": 59,
+      "relative_strength": 70,
+      "liquid": 11,
+      "price_above_ema20": 62,
+      "price_above_sma200": 64,
+      "macd_rising": 34,
+      "rsi_healthy": 58,
+      "macd_bullish": 43
     }
   },
   "positions": [
