@@ -4679,6 +4679,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|SNAP|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T11:45:59.292271-07:00",
+      "symbol": "SNAP",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 100,
+      "entry_score": 75,
+      "reference_price": 6.26,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
