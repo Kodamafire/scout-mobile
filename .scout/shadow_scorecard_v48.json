@@ -4543,6 +4543,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|AAOI|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T08:10:19.060103-07:00",
+      "symbol": "AAOI",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 82,
+      "entry_score": 100,
+      "reference_price": 113.26,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
