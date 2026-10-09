@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T14:11:11.265541-07:00",
-  "cycle": "20261009_141111",
+  "updated_at": "2026-10-09T14:29:30.373283-07:00",
+  "cycle": "20261009_142930",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T14:11:11.414507-07:00",
+    "checked_at": "2026-10-09T14:29:30.729602-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T21:11:09.133621+00:00",
-      "age_seconds": 2.281
+      "quote_at": "2026-10-09T21:29:27.038632+00:00",
+      "age_seconds": 3.691
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 3583.633
+      "age_seconds": 4682.948
     }
   },
   "scanner": {
@@ -244,15 +244,15 @@
         ]
       },
       {
-        "symbol": "TSLA",
-        "reasons": [
-          "PRICE OUTSIDE RANGE"
-        ]
-      },
-      {
         "symbol": "JOBY",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "TSLA",
+        "reasons": [
+          "PRICE OUTSIDE RANGE"
         ]
       },
       {
@@ -425,6 +425,15 @@
         ]
       },
       {
+        "symbol": "ZYBT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "SOFI",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -461,12 +470,9 @@
         ]
       },
       {
-        "symbol": "ZYBT",
+        "symbol": "SNXX",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
+          "DATA UNAVAILABLE"
         ]
       },
       {
@@ -476,25 +482,19 @@
         ]
       },
       {
-        "symbol": "SNXX",
-        "reasons": [
-          "DATA UNAVAILABLE"
-        ]
-      },
-      {
         "symbol": "RKT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "NKE",
+        "symbol": "TLT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "SMCI",
+        "symbol": "NKE",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -508,7 +508,7 @@
         ]
       },
       {
-        "symbol": "TLT",
+        "symbol": "SMCI",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
