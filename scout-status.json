@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T15:28:47.882509-07:00",
-  "cycle": "20261009_152847",
+  "updated_at": "2026-10-09T15:46:22.936813-07:00",
+  "cycle": "20261009_154622",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T15:28:48.109272-07:00",
+    "checked_at": "2026-10-09T15:46:22.998547-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T22:26:25.730923+00:00",
-      "age_seconds": 142.378
+      "quote_at": "2026-10-09T22:41:32.219900+00:00",
+      "age_seconds": 290.779
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 8240.328
+      "age_seconds": 9295.217
     }
   },
   "scanner": {
@@ -126,13 +126,13 @@
         ]
       },
       {
-        "symbol": "BITO",
+        "symbol": "INTC",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "INTC",
+        "symbol": "BITO",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -286,13 +286,13 @@
         ]
       },
       {
-        "symbol": "ACHR",
+        "symbol": "ONDS",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "ONDS",
+        "symbol": "ACHR",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -458,6 +458,15 @@
         ]
       },
       {
+        "symbol": "YMAT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "BAC",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -484,15 +493,6 @@
       {
         "symbol": "LQD",
         "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "YMAT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
