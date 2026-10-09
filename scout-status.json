@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-09T16:42:25.728481-07:00",
-  "cycle": "20261009_164225",
+  "updated_at": "2026-10-09T16:55:22.961344-07:00",
+  "cycle": "20261009_165522",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-09T16:42:25.775245-07:00",
+    "checked_at": "2026-10-09T16:55:23.172305-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-09T23:42:06.910910+00:00",
-      "age_seconds": 18.864
+      "quote_at": "2026-10-09T23:55:17.498778+00:00",
+      "age_seconds": 5.674
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-09T20:11:27.781119+00:00",
-      "age_seconds": 12657.994
+      "age_seconds": 13435.391
     }
   },
   "scanner": {
@@ -88,16 +88,16 @@
         ]
       },
       {
-        "symbol": "VZ",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "SDST",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "VZ",
+        "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -344,15 +344,15 @@
         ]
       },
       {
-        "symbol": "KWEB",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "VIVK",
         "reasons": [
           "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "KWEB",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -411,7 +411,7 @@
         ]
       },
       {
-        "symbol": "ZYBT",
+        "symbol": "YMAT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
@@ -420,7 +420,7 @@
         ]
       },
       {
-        "symbol": "YMAT",
+        "symbol": "ZYBT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
@@ -577,21 +577,21 @@
         ]
       },
       {
-        "symbol": "IBIT",
+        "symbol": "APLD",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       }
     ],
     "failed_scoring_checks": {
-      "ema20_above_ema50": 67,
-      "relative_volume": 61,
-      "relative_strength": 69,
+      "ema20_above_ema50": 68,
+      "relative_volume": 60,
+      "relative_strength": 70,
       "liquid": 12,
       "price_above_ema20": 62,
-      "price_above_sma200": 63,
+      "price_above_sma200": 64,
       "macd_rising": 35,
-      "rsi_healthy": 57,
+      "rsi_healthy": 58,
       "macd_bullish": 44
     }
   },
