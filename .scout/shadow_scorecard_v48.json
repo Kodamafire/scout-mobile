@@ -4577,6 +4577,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-09|XLE|LONG|QUALIFIED",
+      "session": "2026-10-09",
+      "at": "2026-10-09T10:27:33.575356-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 65.275,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
