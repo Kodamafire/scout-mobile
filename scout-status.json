@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-12T16:12:28.940635-07:00",
-  "cycle": "20261012_161228",
+  "updated_at": "2026-10-12T16:31:03.518899-07:00",
+  "cycle": "20261012_163103",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-12T16:12:29.145123-07:00",
+    "checked_at": "2026-10-12T16:31:03.741207-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-12T23:12:29.272079+00:00",
-      "age_seconds": -0.127
+      "quote_at": "2026-10-12T23:31:01.723139+00:00",
+      "age_seconds": 2.018
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-12T20:14:59.167987+00:00",
-      "age_seconds": 10649.977
+      "age_seconds": 11764.573
     }
   },
   "scanner": {
@@ -118,17 +118,17 @@
         ]
       },
       {
-        "symbol": "CLWT",
+        "symbol": "NVDA",
         "reasons": [
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
+          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "NVDA",
+        "symbol": "CLWT",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -407,6 +407,15 @@
         ]
       },
       {
+        "symbol": "FCHL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "SQQQ",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -439,15 +448,6 @@
       {
         "symbol": "CMCSA",
         "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "FCHL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
