@@ -12,7 +12,7 @@
     "PLTR": 0,
     "WBD": 0
   },
-  "last_cycle": "2026-10-12T15:14:12.393272-07:00",
+  "last_cycle": "2026-10-12T15:32:50.289738-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -5018,7 +5018,8 @@
       "20261012_141613",
       "20261012_144402",
       "20261012_145831",
-      "20261012_151412"
+      "20261012_151412",
+      "20261012_153250"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5069,7 +5070,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-12T22:14:41.471344+00:00",
+      "checked_at": "2026-10-12T22:33:25.428059+00:00",
       "status": "History checked",
       "orders_checked": 10
     }
@@ -16108,6 +16109,46 @@
     {
       "cycle": "20261012_151412",
       "updated": "2026-10-12T15:14:12.393272-07:00",
+      "symbol": "WBD",
+      "pnl_pct": 3.8240000000000003,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261012_153250",
+      "updated": "2026-10-12T15:32:50.289738-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 2.496,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.937079546176153,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261012_153250",
+      "updated": "2026-10-12T15:32:50.289738-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": 2.758,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261012_153250",
+      "updated": "2026-10-12T15:32:50.289738-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 22.548000000000002,
+      "runner_floor": 11.98549080069703,
+      "runner_signal": false,
+      "legacy_floor": 18.86899412307377,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261012_153250",
+      "updated": "2026-10-12T15:32:50.289738-07:00",
       "symbol": "WBD",
       "pnl_pct": 3.8240000000000003,
       "runner_floor": null,

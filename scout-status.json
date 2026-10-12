@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-12T15:14:12.393272-07:00",
-  "cycle": "20261012_151412",
+  "updated_at": "2026-10-12T15:32:50.289738-07:00",
+  "cycle": "20261012_153250",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-12T15:14:12.556220-07:00",
+    "checked_at": "2026-10-12T15:32:50.494515-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-12T22:14:01.544663+00:00",
-      "age_seconds": 11.012
+      "quote_at": "2026-10-12T22:32:50.652960+00:00",
+      "age_seconds": -0.158
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-12T20:14:59.167987+00:00",
-      "age_seconds": 7153.388
+      "age_seconds": 8271.327
     }
   },
   "scanner": {
@@ -280,15 +280,15 @@
         ]
       },
       {
-        "symbol": "RIG",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "WFF",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "RIG",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -494,6 +494,15 @@
         ]
       },
       {
+        "symbol": "FCHL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "STLA",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
@@ -523,15 +532,6 @@
         "symbol": "BTBT",
         "reasons": [
           "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "FCHL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -573,13 +573,13 @@
         ]
       },
       {
-        "symbol": "QID",
+        "symbol": "NVTS",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "NVTS",
+        "symbol": "QID",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
