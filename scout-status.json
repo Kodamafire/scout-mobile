@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-12T16:31:03.518899-07:00",
-  "cycle": "20261012_163103",
+  "updated_at": "2026-10-12T16:55:56.956153-07:00",
+  "cycle": "20261012_165556",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-12T16:31:03.741207-07:00",
+    "checked_at": "2026-10-12T16:55:57.123159-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-12T23:31:01.723139+00:00",
-      "age_seconds": 2.018
+      "quote_at": "2026-10-12T23:55:55.312202+00:00",
+      "age_seconds": 1.811
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-12T20:14:59.167987+00:00",
-      "age_seconds": 11764.573
+      "age_seconds": 13257.955
     }
   },
   "scanner": {
@@ -228,7 +228,7 @@
         ]
       },
       {
-        "symbol": "SKYA",
+        "symbol": "BMBL",
         "reasons": [
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
@@ -236,7 +236,7 @@
         ]
       },
       {
-        "symbol": "BMBL",
+        "symbol": "SKYA",
         "reasons": [
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
@@ -313,15 +313,15 @@
         ]
       },
       {
-        "symbol": "OPEN",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "DRAM",
         "reasons": [
           "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "OPEN",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -383,6 +383,15 @@
         ]
       },
       {
+        "symbol": "FCHL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "AMZN",
         "reasons": [
           "PRICE OUTSIDE RANGE"
@@ -401,22 +410,13 @@
         ]
       },
       {
-        "symbol": "SMCI",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "FCHL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "SQQQ",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SMCI",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -458,15 +458,15 @@
         ]
       },
       {
-        "symbol": "BAC",
+        "symbol": "MU",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "MU",
+        "symbol": "BAC",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
