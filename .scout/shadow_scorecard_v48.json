@@ -5222,6 +5222,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-12|BBD|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T08:14:02.979840-07:00",
+      "symbol": "BBD",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 65,
+      "reference_price": 4.255,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
