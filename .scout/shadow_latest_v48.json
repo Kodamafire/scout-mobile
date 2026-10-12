@@ -1,6 +1,6 @@
 {
-  "cycle": "20261012_135859",
-  "updated": "2026-10-12T13:58:59.082980-07:00",
+  "cycle": "20261012_141613",
+  "updated": "2026-10-12T14:16:13.881541-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -1072,31 +1072,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "EWZ",
-        "direction": "LONG",
-        "price": 43.54,
-        "setup_score": 70,
-        "entry_score": 50,
-        "decision": "WAIT \u2014 ENTRY NOT READY",
-        "held": false,
-        "main_score": 7,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 20,
-          "participation": 5,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 25,
-          "rsi_window": 5,
-          "volume_confirm": 5,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "WBD",
         "direction": "LONG",
         "price": 30.95,
@@ -1193,11 +1168,6 @@
       },
       {
         "symbol": "TQQQ",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "EWZ",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       }
