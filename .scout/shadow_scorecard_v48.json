@@ -5256,6 +5256,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-12|SPYM|LONG|QUALIFIED",
+      "session": "2026-10-12",
+      "at": "2026-10-12T09:44:04.760968-07:00",
+      "symbol": "SPYM",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 80,
+      "reference_price": 91.5776,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
