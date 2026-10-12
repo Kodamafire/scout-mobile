@@ -5205,6 +5205,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-12|MDT|LONG|QUALIFIED",
+      "session": "2026-10-12",
+      "at": "2026-10-12T07:24:05.943745-07:00",
+      "symbol": "MDT",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 90,
+      "reference_price": 91.055,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
