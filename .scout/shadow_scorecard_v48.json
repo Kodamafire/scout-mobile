@@ -4984,6 +4984,227 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-12|SOXS|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "SOXS",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 90,
+      "reference_price": 36.5761,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|MEDS|LONG|QUALIFIED",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "MEDS",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 3.31,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|WFF|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "WFF",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 60,
+      "reference_price": 19.79,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|TQQQ|LONG|QUALIFIED",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "TQQQ",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 80.1399,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|SNAP|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "SNAP",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 90,
+      "entry_score": 60,
+      "reference_price": 6.37,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|RXRX|LONG|QUALIFIED",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "RXRX",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 4.2,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|TSLG|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "TSLG",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 90,
+      "reference_price": 5.1376,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|MDT|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "MDT",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 80,
+      "entry_score": 65,
+      "reference_price": 92.56,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|XLE|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 55,
+      "reference_price": 66.24,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|CCC|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "CCC",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 100,
+      "entry_score": 60,
+      "reference_price": 7.555,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|NU|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "NU",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 65,
+      "reference_price": 16.115,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|EWZ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "EWZ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 50,
+      "reference_price": 43.56,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-12|AI|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-12",
+      "at": "2026-10-12T06:59:38.563078-07:00",
+      "symbol": "AI",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 82,
+      "entry_score": 60,
+      "reference_price": 12.235,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
