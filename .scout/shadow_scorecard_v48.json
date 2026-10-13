@@ -5571,6 +5571,23 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-13|AAPL|LONG|QUALIFIED",
+      "session": "2026-10-13",
+      "at": "2026-10-13T08:59:40.255284-07:00",
+      "symbol": "AAPL",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 90,
+      "reference_price": 344.44,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
