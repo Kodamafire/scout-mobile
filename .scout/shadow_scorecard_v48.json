@@ -5588,6 +5588,57 @@
         "5": null,
         "10": null
       }
+    },
+    {
+      "id": "2026-10-13|SOXS|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-13",
+      "at": "2026-10-13T09:21:21.955932-07:00",
+      "symbol": "SOXS",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 90,
+      "reference_price": 38.5,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-13|TQQQ|LONG|QUALIFIED",
+      "session": "2026-10-13",
+      "at": "2026-10-13T09:21:21.955932-07:00",
+      "symbol": "TQQQ",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 78.5805,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-13|ITUB|LONG|QUALIFIED",
+      "session": "2026-10-13",
+      "at": "2026-10-13T09:21:21.955932-07:00",
+      "symbol": "ITUB",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 95,
+      "entry_score": 75,
+      "reference_price": 9.885,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
     }
   ]
 }
