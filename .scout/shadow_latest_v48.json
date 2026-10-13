@@ -1,6 +1,6 @@
 {
-  "cycle": "20261012_165556",
-  "updated": "2026-10-12T16:55:56.956153-07:00",
+  "cycle": "20261013_061924",
+  "updated": "2026-10-13T06:19:24.756388-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -668,56 +668,6 @@
           "relative_weakness": 0
         },
         "required_entry": 70
-      },
-      {
-        "symbol": "WBD",
-        "direction": "LONG",
-        "price": 30.95,
-        "setup_score": 65,
-        "entry_score": 30,
-        "decision": "WAIT \u2014 SAME-TIME VOLUME UNAVAILABLE",
-        "held": true,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 15,
-          "participation": 5,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 5,
-          "rsi_window": 5,
-          "volume_confirm": 5,
-          "relative_strength": 10
-        },
-        "required_entry": 70
-      },
-      {
-        "symbol": "WBD",
-        "direction": "SHORT",
-        "price": 30.95,
-        "setup_score": 20,
-        "entry_score": 0,
-        "decision": "WAIT \u2014 SAME-TIME VOLUME UNAVAILABLE",
-        "held": true,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 0,
-          "momentum": 5,
-          "relative_weakness": 0,
-          "participation": 5,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 5,
-          "momentum_live": 5,
-          "rsi_window": 5,
-          "volume_confirm": 5,
-          "relative_weakness": 0
-        },
-        "required_entry": 70
       }
     ],
     "evidence": [
@@ -1078,7 +1028,7 @@
         "setup_score": 65,
         "entry_score": 30,
         "decision": "WAIT \u2014 SAME-TIME VOLUME UNAVAILABLE",
-        "held": true,
+        "held": false,
         "main_score": null,
         "setup_parts": {
           "trend": 30,
@@ -1117,19 +1067,13 @@
         "decision": "LET RUN",
         "exit_score": 0,
         "order_status": "NO ACTION"
-      },
-      {
-        "symbol": "WBD",
-        "decision": "LET RUN",
-        "exit_score": 1,
-        "order_status": "NO ACTION"
       }
     ],
     "candidates": [
       {
         "symbol": "CCC",
         "entry_score": 9,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+        "order_status": "DRY RUN"
       },
       {
         "symbol": "SNAP",

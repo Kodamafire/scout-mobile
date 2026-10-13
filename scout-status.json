@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-12T16:55:56.956153-07:00",
-  "cycle": "20261012_165556",
+  "updated_at": "2026-10-13T06:19:24.756388-07:00",
+  "cycle": "20261013_061924",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-12T16:55:57.123159-07:00",
+    "checked_at": "2026-10-13T06:19:24.960112-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-12T23:55:55.312202+00:00",
-      "age_seconds": 1.811
+      "quote_at": "2026-10-13T13:19:25.164107+00:00",
+      "age_seconds": -0.204
     },
     "opra": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-12T20:14:59.167987+00:00",
-      "age_seconds": 13257.955
+      "quote_at": "2026-10-12T20:14:59.180973+00:00",
+      "age_seconds": 61465.779
     }
   },
   "scanner": {
@@ -40,18 +40,18 @@
         ]
       },
       {
-        "symbol": "LNKS",
-        "reasons": [
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "SDST",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "LNKS",
+        "reasons": [
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -377,17 +377,17 @@
         ]
       },
       {
-        "symbol": "EOSE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "FCHL",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "EOSE",
+        "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -521,16 +521,16 @@
         ]
       },
       {
-        "symbol": "URG",
+        "symbol": "IBIT",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "IBIT",
+        "symbol": "URG",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -638,18 +638,13 @@
       "symbol": "PLTR",
       "decision": "LET RUN",
       "order_status": "NO ACTION"
-    },
-    {
-      "symbol": "WBD",
-      "decision": "LET RUN",
-      "order_status": "NO ACTION"
     }
   ],
   "candidates": [
     {
       "symbol": "CCC",
       "entry_score": 9,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      "order_status": "DRY RUN"
     },
     {
       "symbol": "SNAP",

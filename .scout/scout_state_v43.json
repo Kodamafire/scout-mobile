@@ -1,18 +1,16 @@
 {
   "version": 44,
   "high_water": {
-    "AAPL": 3.293,
+    "AAPL": 3.329,
     "PLTR": 22.848,
-    "WBD": 3.958,
     "ITUB": 3.953
   },
   "warning_streak": {
     "AAPL": 0,
     "ITUB": 0,
-    "PLTR": 0,
-    "WBD": 0
+    "PLTR": 0
   },
-  "last_cycle": "2026-10-12T16:55:56.956153-07:00",
+  "last_cycle": "2026-10-13T06:19:24.756388-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -5023,7 +5021,8 @@
       "20261012_155703",
       "20261012_161228",
       "20261012_163103",
-      "20261012_165556"
+      "20261012_165556",
+      "20261013_061924"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5074,7 +5073,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-12T23:56:29.711710+00:00",
+      "checked_at": "2026-10-13T13:19:53.108937+00:00",
       "status": "History checked",
       "orders_checked": 10
     }
@@ -5085,7 +5084,6 @@
   "legacy_profit_floor": {
     "AAPL": 0.937079546176153,
     "PLTR": 18.86899412307377,
-    "WBD": 2.41520512938789,
     "ITUB": 0.0
   },
   "exit_policy": "runner_v1",
@@ -16318,6 +16316,36 @@
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": 2.41520512938789,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261013_061924",
+      "updated": "2026-10-13T06:19:24.756388-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 3.329,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.937079546176153,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261013_061924",
+      "updated": "2026-10-13T06:19:24.756388-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": 0.511,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261013_061924",
+      "updated": "2026-10-13T06:19:24.756388-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 22.29,
+      "runner_floor": 11.98549080069703,
+      "runner_signal": false,
+      "legacy_floor": 18.86899412307377,
       "legacy_signal": false
     }
   ],
