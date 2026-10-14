@@ -12,12 +12,9 @@
     "ITUB": 0,
     "PLTR": 0
   },
-  "last_cycle": "2026-10-14T10:45:56.051258-07:00",
+  "last_cycle": "2026-10-14T14:14:53.769109-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-14",
-    "timestamp": 1791999956.934425
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -4492,6 +4489,13 @@
         "symbol": "AMC",
         "action": "Order filled",
         "reason": "Buy: 3214.639240506 shares filled at average $3.1600."
+      },
+      {
+        "at": "2026-10-14T14:14:53.769109-07:00",
+        "cycle": "20261014_141453",
+        "symbol": "AMC",
+        "action": "EXIT CONFIRMED",
+        "reason": "Exit confirmed; waiting \u2014 market closed."
       }
     ],
     "orders": {
@@ -5057,7 +5061,8 @@
       "20261013_092121",
       "20261013_142407",
       "20261013_172729",
-      "20261014_104556"
+      "20261014_104556",
+      "20261014_141453"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5108,7 +5113,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-14T17:47:19.961067+00:00",
+      "checked_at": "2026-10-14T21:15:44.154330+00:00",
       "status": "History checked",
       "orders_checked": 11
     }
@@ -16608,6 +16613,46 @@
       "updated": "2026-10-14T10:45:56.051258-07:00",
       "symbol": "PLTR",
       "pnl_pct": 18.511,
+      "runner_floor": 12.357796457701497,
+      "runner_signal": false,
+      "legacy_floor": 18.98005762345193,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261014_141453",
+      "updated": "2026-10-14T14:14:53.769109-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 3.091,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 1.1957799664877653,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261014_141453",
+      "updated": "2026-10-14T14:14:53.769109-07:00",
+      "symbol": "AMC",
+      "pnl_pct": -8.551,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261014_141453",
+      "updated": "2026-10-14T14:14:53.769109-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -1.124,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261014_141453",
+      "updated": "2026-10-14T14:14:53.769109-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 17.316000000000003,
       "runner_floor": 12.357796457701497,
       "runner_signal": false,
       "legacy_floor": 18.98005762345193,
