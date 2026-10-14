@@ -1,6 +1,6 @@
 {
-  "cycle": "20261013_142407",
-  "updated": "2026-10-13T14:24:07.640319-07:00",
+  "cycle": "20261013_172729",
+  "updated": "2026-10-13T17:27:29.016619-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -922,31 +922,6 @@
         "required_entry": 70
       },
       {
-        "symbol": "AAPL",
-        "direction": "LONG",
-        "price": 341.27,
-        "setup_score": 55,
-        "entry_score": 70,
-        "decision": "WATCH \u2014 SETUP TOO WEAK",
-        "held": true,
-        "main_score": null,
-        "setup_parts": {
-          "trend": 30,
-          "momentum": 5,
-          "relative_strength": 0,
-          "participation": 10,
-          "liquidity": 10
-        },
-        "entry_parts": {
-          "not_extended": 30,
-          "momentum_live": 5,
-          "rsi_window": 20,
-          "volume_confirm": 15,
-          "relative_strength": 0
-        },
-        "required_entry": 70
-      },
-      {
         "symbol": "TQQQ",
         "direction": "LONG",
         "price": 78.81,
@@ -968,6 +943,31 @@
           "rsi_window": 20,
           "volume_confirm": 5,
           "relative_strength": 10
+        },
+        "required_entry": 70
+      },
+      {
+        "symbol": "AAPL",
+        "direction": "LONG",
+        "price": 341.27,
+        "setup_score": 55,
+        "entry_score": 70,
+        "decision": "WATCH \u2014 SETUP TOO WEAK",
+        "held": true,
+        "main_score": null,
+        "setup_parts": {
+          "trend": 30,
+          "momentum": 5,
+          "relative_strength": 0,
+          "participation": 10,
+          "liquidity": 10
+        },
+        "entry_parts": {
+          "not_extended": 30,
+          "momentum_live": 5,
+          "rsi_window": 20,
+          "volume_confirm": 15,
+          "relative_strength": 0
         },
         "required_entry": 70
       },
