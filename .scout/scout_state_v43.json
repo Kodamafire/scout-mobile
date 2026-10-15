@@ -12,12 +12,9 @@
     "ITUB": 0,
     "PLTR": 0
   },
-  "last_cycle": "2026-10-15T10:34:33.004137-07:00",
+  "last_cycle": "2026-10-15T13:32:55.191430-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-15",
-    "timestamp": 1792085673.296474
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5074,7 +5071,8 @@
       "20261014_104556",
       "20261014_141453",
       "20261014_165726",
-      "20261015_103433"
+      "20261015_103433",
+      "20261015_133255"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5125,7 +5123,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-15T17:35:35.200004+00:00",
+      "checked_at": "2026-10-15T20:33:44.640140+00:00",
       "status": "History checked",
       "orders_checked": 11
     }
@@ -16745,6 +16743,46 @@
       "updated": "2026-10-15T10:34:33.004137-07:00",
       "symbol": "PLTR",
       "pnl_pct": 16.781,
+      "runner_floor": 12.357796457701497,
+      "runner_signal": false,
+      "legacy_floor": 18.98005762345193,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261015_133255",
+      "updated": "2026-10-15T13:32:55.191430-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 2.704,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 1.1957799664877653,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261015_133255",
+      "updated": "2026-10-15T13:32:55.191430-07:00",
+      "symbol": "AMC",
+      "pnl_pct": -5.035,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261015_133255",
+      "updated": "2026-10-15T13:32:55.191430-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -2.962,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261015_133255",
+      "updated": "2026-10-15T13:32:55.191430-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 17.686,
       "runner_floor": 12.357796457701497,
       "runner_signal": false,
       "legacy_floor": 18.98005762345193,
