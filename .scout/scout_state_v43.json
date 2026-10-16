@@ -2,18 +2,19 @@
   "version": 44,
   "high_water": {
     "AAPL": 3.727,
-    "ITUB": 3.953
+    "ITUB": 3.953,
+    "CCC": -0.131,
+    "RWM": -0.067
   },
   "warning_streak": {
     "AAPL": 0,
-    "ITUB": 0
+    "CCC": 0,
+    "ITUB": 0,
+    "RWM": 0
   },
-  "last_cycle": "2026-10-16T12:56:57.509807-07:00",
+  "last_cycle": "2026-10-16T15:34:54.505548-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-16",
-    "timestamp": 1792180618.413488
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5171,7 +5172,8 @@
       "20261015_161842",
       "20261015_183353",
       "20261016_100931",
-      "20261016_125657"
+      "20261016_125657",
+      "20261016_153454"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5237,7 +5239,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-16T19:58:42.906100+00:00",
+      "checked_at": "2026-10-16T22:35:42.518852+00:00",
       "status": "History checked",
       "orders_checked": 15
     }
@@ -17038,6 +17040,46 @@
       "runner_signal": false,
       "legacy_floor": 0.0,
       "legacy_signal": true
+    },
+    {
+      "cycle": "20261016_153454",
+      "updated": "2026-10-16T15:34:54.505548-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 3.109,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 1.1957799664877653,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261016_153454",
+      "updated": "2026-10-16T15:34:54.505548-07:00",
+      "symbol": "CCC",
+      "pnl_pct": -0.131,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261016_153454",
+      "updated": "2026-10-16T15:34:54.505548-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -3.5749999999999997,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261016_153454",
+      "updated": "2026-10-16T15:34:54.505548-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -0.067,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
