@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-15T16:18:42.672287-07:00",
-  "cycle": "20261015_161842",
+  "updated_at": "2026-10-15T18:33:53.469318-07:00",
+  "cycle": "20261015_183353",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-15T16:18:42.729488-07:00",
+    "checked_at": "2026-10-15T18:33:53.840339-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-15T23:18:42.687678+00:00",
-      "age_seconds": 0.042
+      "quote_at": "2026-10-16T00:00:00.070580+00:00",
+      "age_seconds": 5633.77
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-15T20:14:59.109742+00:00",
-      "age_seconds": 11023.62
+      "age_seconds": 19134.731
     }
   },
   "scanner": {
@@ -260,16 +260,16 @@
         ]
       },
       {
-        "symbol": "GRAB",
+        "symbol": "SXTC",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "SXTC",
+        "symbol": "GRAB",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -332,12 +332,6 @@
         ]
       },
       {
-        "symbol": "RWM",
-        "reasons": [
-          "SAME-TIME VOLUME UNAVAILABLE"
-        ]
-      },
-      {
         "symbol": "OPK",
         "reasons": [
           "PRICE OUTSIDE RANGE",
@@ -347,22 +341,28 @@
         ]
       },
       {
+        "symbol": "RWM",
+        "reasons": [
+          "SAME-TIME VOLUME UNAVAILABLE"
+        ]
+      },
+      {
         "symbol": "MDT",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE"
         ]
       },
       {
-        "symbol": "SKYD",
+        "symbol": "QQQ",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "QQQ",
+        "symbol": "SKYD",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -405,14 +405,14 @@
         ]
       },
       {
-        "symbol": "LQD",
+        "symbol": "TSLL",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "TSLL",
+        "symbol": "LQD",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
@@ -556,14 +556,14 @@
         ]
       },
       {
-        "symbol": "KEEL",
+        "symbol": "CORD",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "CORD",
+        "symbol": "KEEL",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
@@ -586,16 +586,16 @@
         ]
       },
       {
-        "symbol": "BBD",
-        "reasons": [
-          "SAME-TIME VOLUME UNAVAILABLE"
-        ]
-      },
-      {
         "symbol": "SMCI",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "BBD",
+        "reasons": [
+          "SAME-TIME VOLUME UNAVAILABLE"
         ]
       },
       {
@@ -658,6 +658,12 @@
         ]
       },
       {
+        "symbol": "SKHY",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
         "symbol": "HPE",
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
@@ -669,12 +675,6 @@
         "reasons": [
           "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "SKHY",
-        "reasons": [
-          "DATA UNAVAILABLE"
         ]
       },
       {
