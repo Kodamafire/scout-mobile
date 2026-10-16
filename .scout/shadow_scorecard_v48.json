@@ -1096,7 +1096,11 @@
           "close": 3.85,
           "directional_move_pct": 13.569
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 4.84,
+          "directional_move_pct": 42.773
+        }
       }
     },
     {
@@ -1121,7 +1125,11 @@
           "close": 4.06,
           "directional_move_pct": -50.245
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 2.45,
+          "directional_move_pct": -69.975
+        }
       }
     },
     {
@@ -1146,7 +1154,11 @@
           "close": 3.395,
           "directional_move_pct": -14.591
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 2.85,
+          "directional_move_pct": -28.302
+        }
       }
     },
     {
@@ -1171,7 +1183,11 @@
           "close": 142.435,
           "directional_move_pct": -5.591
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 107.35,
+          "directional_move_pct": -28.846
+        }
       }
     },
     {
@@ -1196,7 +1212,11 @@
           "close": 80.21,
           "directional_move_pct": 1.32
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 73.82,
+          "directional_move_pct": -6.752
+        }
       }
     },
     {
@@ -1221,7 +1241,11 @@
           "close": 10.01,
           "directional_move_pct": -9.279
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 9.32,
+          "directional_move_pct": -1.747
+        }
       }
     },
     {
@@ -1246,7 +1270,11 @@
           "close": 15.615,
           "directional_move_pct": 2.1
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 15.09,
+          "directional_move_pct": 5.392
+        }
       }
     },
     {
@@ -1271,7 +1299,11 @@
           "close": 135.555,
           "directional_move_pct": 2.489
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 134.47,
+          "directional_move_pct": 3.269
+        }
       }
     },
     {
@@ -1296,7 +1328,11 @@
           "close": 5.53,
           "directional_move_pct": -6.757
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 5.51,
+          "directional_move_pct": -6.371
+        }
       }
     },
     {
@@ -1321,7 +1357,11 @@
           "close": 1.98,
           "directional_move_pct": -50.562
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 1.02,
+          "directional_move_pct": -74.532
+        }
       }
     },
     {
@@ -1346,7 +1386,11 @@
           "close": 142.435,
           "directional_move_pct": -4.598
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 107.35,
+          "directional_move_pct": -28.098
+        }
       }
     },
     {
@@ -1371,7 +1415,11 @@
           "close": 33.4,
           "directional_move_pct": 1.995
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 36.14,
+          "directional_move_pct": -6.045
+        }
       }
     },
     {
@@ -1417,7 +1465,11 @@
           "close": 14.435,
           "directional_move_pct": -0.035
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 14.57,
+          "directional_move_pct": 0.9
+        }
       }
     },
     {
@@ -1442,7 +1494,11 @@
           "close": 9.84,
           "directional_move_pct": 15.833
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 9.5,
+          "directional_move_pct": 11.83
+        }
       }
     },
     {
@@ -1467,7 +1523,11 @@
           "close": 198.77,
           "directional_move_pct": 4.627
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 200.5,
+          "directional_move_pct": 5.537
+        }
       }
     },
     {
@@ -1492,7 +1552,11 @@
           "close": 80.21,
           "directional_move_pct": 3.25
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 73.82,
+          "directional_move_pct": -4.975
+        }
       }
     },
     {
@@ -1517,7 +1581,11 @@
           "close": 3.55,
           "directional_move_pct": 0.56
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 3.98,
+          "directional_move_pct": -11.485
+        }
       }
     },
     {
@@ -1542,7 +1610,11 @@
           "close": 2.055,
           "directional_move_pct": 10.066
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 1.57,
+          "directional_move_pct": 31.291
+        }
       }
     },
     {
@@ -1567,7 +1639,11 @@
           "close": 5.01,
           "directional_move_pct": -10.596
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 4.66,
+          "directional_move_pct": -2.87
+        }
       }
     },
     {
@@ -1592,7 +1668,11 @@
           "close": 13.65,
           "directional_move_pct": 5.208
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 12.62,
+          "directional_move_pct": 12.361
+        }
       }
     },
     {
@@ -1617,7 +1697,11 @@
           "close": 15.4,
           "directional_move_pct": -19.472
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 14.73,
+          "directional_move_pct": -14.275
+        }
       }
     },
     {
@@ -1642,7 +1726,11 @@
           "close": 7.31,
           "directional_move_pct": 7.644
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 6.15,
+          "directional_move_pct": 22.299
+        }
       }
     },
     {
@@ -1667,7 +1755,11 @@
           "close": 77.865,
           "directional_move_pct": -0.09
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 79.97,
+          "directional_move_pct": -2.796
+        }
       }
     },
     {
@@ -1692,7 +1784,11 @@
           "close": 13.74,
           "directional_move_pct": -14.787
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 12.88,
+          "directional_move_pct": -7.602
+        }
       }
     },
     {
@@ -1717,7 +1813,11 @@
           "close": 11.765,
           "directional_move_pct": -1.204
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 11.07,
+          "directional_move_pct": 4.774
+        }
       }
     },
     {
@@ -1742,7 +1842,11 @@
           "close": 24.59,
           "directional_move_pct": 0.566
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 25.26,
+          "directional_move_pct": -2.143
+        }
       }
     },
     {
@@ -1767,7 +1871,11 @@
           "close": 34.75,
           "directional_move_pct": 3.203
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 37.14,
+          "directional_move_pct": -3.454
+        }
       }
     },
     {
@@ -1792,7 +1900,11 @@
           "close": 10.8,
           "directional_move_pct": -5.83
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 11.09,
+          "directional_move_pct": -8.672
+        }
       }
     },
     {
@@ -1817,7 +1929,11 @@
           "close": 2.76,
           "directional_move_pct": 12.658
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 2.16,
+          "directional_move_pct": 31.646
+        }
       }
     },
     {
@@ -1842,7 +1958,11 @@
           "close": 41.06,
           "directional_move_pct": -3.439
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 41.65,
+          "directional_move_pct": -4.925
+        }
       }
     },
     {
@@ -1867,7 +1987,11 @@
           "close": 12.93,
           "directional_move_pct": 1.748
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 13.64,
+          "directional_move_pct": -3.647
+        }
       }
     },
     {
@@ -1892,7 +2016,11 @@
           "close": 2.3,
           "directional_move_pct": -7.816
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 1.96,
+          "directional_move_pct": -21.443
+        }
       }
     },
     {
@@ -1917,7 +2045,11 @@
           "close": 10.92,
           "directional_move_pct": -3.746
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 11.0,
+          "directional_move_pct": -3.041
+        }
       }
     },
     {
@@ -1942,7 +2074,11 @@
           "close": 13.5,
           "directional_move_pct": 11.243
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 10.04,
+          "directional_move_pct": 33.991
+        }
       }
     },
     {
@@ -1967,7 +2103,11 @@
           "close": 10.92,
           "directional_move_pct": -3.873
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 11.0,
+          "directional_move_pct": -3.169
+        }
       }
     },
     {
@@ -1992,7 +2132,11 @@
           "close": 4.51,
           "directional_move_pct": 1.205
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 4.35,
+          "directional_move_pct": 4.71
+        }
       }
     },
     {
@@ -2017,7 +2161,11 @@
           "close": 77.15,
           "directional_move_pct": -0.351
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 77.13,
+          "directional_move_pct": -0.325
+        }
       }
     },
     {
@@ -2042,7 +2190,11 @@
           "close": 102.46,
           "directional_move_pct": -0.426
         },
-        "10": null
+        "10": {
+          "session": "2026-10-15",
+          "close": 103.5,
+          "directional_move_pct": -1.446
+        }
       }
     },
     {
@@ -4687,7 +4839,11 @@
           "close": 139.76,
           "directional_move_pct": -5.215
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 107.35,
+          "directional_move_pct": -27.196
+        },
         "10": null
       }
     },
@@ -4708,7 +4864,11 @@
           "close": 81.28,
           "directional_move_pct": -0.944
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 73.82,
+          "directional_move_pct": -10.036
+        },
         "10": null
       }
     },
@@ -4729,7 +4889,11 @@
           "close": 41.855,
           "directional_move_pct": -3.991
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 35.09,
+          "directional_move_pct": -19.509
+        },
         "10": null
       }
     },
@@ -4750,7 +4914,11 @@
           "close": 43.54,
           "directional_move_pct": 2.171
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 41.58,
+          "directional_move_pct": -2.429
+        },
         "10": null
       }
     },
@@ -4771,7 +4939,11 @@
           "close": 10.16,
           "directional_move_pct": 3.726
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 9.5,
+          "directional_move_pct": -3.012
+        },
         "10": null
       }
     },
@@ -4792,7 +4964,11 @@
           "close": 65.08,
           "directional_move_pct": 0.51
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 66.56,
+          "directional_move_pct": 2.795
+        },
         "10": null
       }
     },
@@ -4813,7 +4989,11 @@
           "close": 25.3,
           "directional_move_pct": 3.139
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 25.3,
+          "directional_move_pct": 3.139
+        },
         "10": null
       }
     },
@@ -4834,7 +5014,11 @@
           "close": 16.12,
           "directional_move_pct": 3.069
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 14.73,
+          "directional_move_pct": -5.818
+        },
         "10": null
       }
     },
@@ -4855,7 +5039,11 @@
           "close": 55.99,
           "directional_move_pct": -1.495
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 55.41,
+          "directional_move_pct": -2.516
+        },
         "10": null
       }
     },
@@ -4876,7 +5064,11 @@
           "close": 81.28,
           "directional_move_pct": -1.538
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 73.82,
+          "directional_move_pct": -10.575
+        },
         "10": null
       }
     },
@@ -4897,7 +5089,11 @@
           "close": 11.01,
           "directional_move_pct": 0.64
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 11.09,
+          "directional_move_pct": 1.371
+        },
         "10": null
       }
     },
@@ -4918,7 +5114,11 @@
           "close": 65.08,
           "directional_move_pct": -0.146
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 66.56,
+          "directional_move_pct": 2.125
+        },
         "10": null
       }
     },
@@ -4939,7 +5139,11 @@
           "close": 14.37,
           "directional_move_pct": -1.44
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 14.57,
+          "directional_move_pct": -0.069
+        },
         "10": null
       }
     },
@@ -4960,7 +5164,11 @@
           "close": 139.76,
           "directional_move_pct": -0.47
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 107.35,
+          "directional_move_pct": -23.551
+        },
         "10": null
       }
     },
@@ -4981,7 +5189,11 @@
           "close": 139.76,
           "directional_move_pct": 1.136
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 107.35,
+          "directional_move_pct": -22.317
+        },
         "10": null
       }
     },
@@ -5002,7 +5214,11 @@
           "close": 209.05,
           "directional_move_pct": 6.707
         },
-        "5": null,
+        "5": {
+          "session": "2026-10-15",
+          "close": 200.5,
+          "directional_move_pct": 2.343
+        },
         "10": null
       }
     },
@@ -6068,7 +6284,11 @@
       "entry_score": 70,
       "reference_price": 3.615,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 3.45,
+          "directional_move_pct": -4.564
+        },
         "5": null,
         "10": null
       }
@@ -6085,7 +6305,11 @@
       "entry_score": 55,
       "reference_price": 42.29,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 43.64,
+          "directional_move_pct": 3.192
+        },
         "5": null,
         "10": null
       }
@@ -6102,7 +6326,11 @@
       "entry_score": 50,
       "reference_price": 14.805,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 14.57,
+          "directional_move_pct": -1.587
+        },
         "5": null,
         "10": null
       }
@@ -6119,7 +6347,11 @@
       "entry_score": 60,
       "reference_price": 15.015,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 14.73,
+          "directional_move_pct": -1.898
+        },
         "5": null,
         "10": null
       }
@@ -6136,7 +6368,11 @@
       "entry_score": 70,
       "reference_price": 9.48,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 9.32,
+          "directional_move_pct": 1.688
+        },
         "5": null,
         "10": null
       }
@@ -6153,7 +6389,11 @@
       "entry_score": 30,
       "reference_price": 42.595,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 41.58,
+          "directional_move_pct": -2.383
+        },
         "5": null,
         "10": null
       }
@@ -6170,7 +6410,11 @@
       "entry_score": 70,
       "reference_price": 4.735,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 4.66,
+          "directional_move_pct": 1.584
+        },
         "5": null,
         "10": null
       }
@@ -6187,7 +6431,11 @@
       "entry_score": 90,
       "reference_price": 131.33,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 134.47,
+          "directional_move_pct": -2.391
+        },
         "5": null,
         "10": null
       }
@@ -6204,7 +6452,11 @@
       "entry_score": 60,
       "reference_price": 4.165,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 4.03,
+          "directional_move_pct": -3.241
+        },
         "5": null,
         "10": null
       }
@@ -6221,7 +6473,11 @@
       "entry_score": 70,
       "reference_price": 7.905,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 9.23,
+          "directional_move_pct": 16.762
+        },
         "5": null,
         "10": null
       }
@@ -6238,7 +6494,11 @@
       "entry_score": 50,
       "reference_price": 5.945,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 5.93,
+          "directional_move_pct": -0.252
+        },
         "5": null,
         "10": null
       }
@@ -6255,7 +6515,11 @@
       "entry_score": 80,
       "reference_price": 342.18,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 342.0,
+          "directional_move_pct": -0.053
+        },
         "5": null,
         "10": null
       }
@@ -6272,7 +6536,11 @@
       "entry_score": 70,
       "reference_price": 6.005,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 6.44,
+          "directional_move_pct": 7.244
+        },
         "5": null,
         "10": null
       }
@@ -6289,7 +6557,11 @@
       "entry_score": 50,
       "reference_price": 4.65,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 4.075,
+          "directional_move_pct": -12.366
+        },
         "5": null,
         "10": null
       }
@@ -6306,7 +6578,11 @@
       "entry_score": 50,
       "reference_price": 29.475,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 29.44,
+          "directional_move_pct": -0.119
+        },
         "5": null,
         "10": null
       }
@@ -6323,7 +6599,11 @@
       "entry_score": 80,
       "reference_price": 13.205,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 13.02,
+          "directional_move_pct": 1.401
+        },
         "5": null,
         "10": null
       }
@@ -6340,7 +6620,11 @@
       "entry_score": 70,
       "reference_price": 70.285,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-10-15",
+          "close": 72.61,
+          "directional_move_pct": -3.308
+        },
         "5": null,
         "10": null
       }
@@ -6356,6 +6640,401 @@
       "setup_score": 100,
       "entry_score": 90,
       "reference_price": 10.395,
+      "outcomes": {
+        "1": {
+          "session": "2026-10-15",
+          "close": 10.0,
+          "directional_move_pct": -3.8
+        },
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|NVD|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "NVD",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 4.04,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|TSLL|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "TSLL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 95,
+      "entry_score": 90,
+      "reference_price": 8.815,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|CCC|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "CCC",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 100,
+      "entry_score": 65,
+      "reference_price": 7.625,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|TSLG|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "TSLG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 95,
+      "entry_score": 90,
+      "reference_price": 4.409,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|RWM|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "RWM",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 95,
+      "entry_score": 50,
+      "reference_price": 14.815,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|OPEN|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "OPEN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 2.105,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|NOK|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "NOK",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 9.345,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|AAPL|LONG|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "AAPL",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 342.77,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|VRNS|LONG|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "VRNS",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 48.7,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|GRAB|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "GRAB",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 2.915,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|XLF|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "XLF",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 80,
+      "reference_price": 55.22,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|RXRX|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "RXRX",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 90,
+      "reference_price": 3.545,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|XLE|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "XLE",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 90,
+      "entry_score": 65,
+      "reference_price": 67.8,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|T|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "T",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 23.565,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|NCPL|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "NCPL",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 87,
+      "entry_score": 40,
+      "reference_price": 2.25,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|LABD|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "LABD",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 8,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 8.93,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|VALE|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "VALE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 13.09,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|VXX|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "VXX",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 18.75,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|UVXY|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "UVXY",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 18.8313,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|CORD|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "CORD",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 5.02,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|ORCL|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "ORCL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 128.98,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|PGX|SHORT|QUALIFIED",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "PGX",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 70,
+      "reference_price": 10.045,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-10-16|SNAP|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-10-16",
+      "at": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "SNAP",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 60,
+      "reference_price": 6.075,
       "outcomes": {
         "1": null,
         "5": null,

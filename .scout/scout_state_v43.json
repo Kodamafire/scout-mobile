@@ -8,13 +8,16 @@
   },
   "warning_streak": {
     "AAPL": 0,
-    "AMC": 0,
+    "AMC": 1,
     "ITUB": 0,
     "PLTR": 0
   },
-  "last_cycle": "2026-10-15T18:33:53.469318-07:00",
+  "last_cycle": "2026-10-16T10:09:31.015055-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": null,
+  "last_confirmation_check": {
+    "session": "2026-10-16",
+    "timestamp": 1792170572.288329
+  },
   "activity_journal": {
     "events": [
       {
@@ -4503,6 +4506,34 @@
         "symbol": "AMC",
         "action": "EXIT CONFIRMED",
         "reason": "Exit confirmed; waiting \u2014 market closed."
+      },
+      {
+        "at": "2026-10-16T10:09:31.015055-07:00",
+        "cycle": "20261016_100931",
+        "symbol": "AMC",
+        "action": "Sell requested",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; Hard loss limit reached"
+      },
+      {
+        "at": "2026-10-16T10:09:31.015055-07:00",
+        "cycle": "20261016_100931",
+        "symbol": "PLTR",
+        "action": "Sell requested",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; Runner trail breached (+12.36% return)"
+      },
+      {
+        "at": "2026-10-16T10:09:31.015055-07:00",
+        "cycle": "20261016_100931",
+        "symbol": "AMC",
+        "action": "Order filled",
+        "reason": "Sell: 3214.639240506 shares filled at average $2.8400."
+      },
+      {
+        "at": "2026-10-16T10:09:31.015055-07:00",
+        "cycle": "20261016_100931",
+        "symbol": "PLTR",
+        "action": "Order filled",
+        "reason": "Sell: 87 shares filled at average $185.8094."
       }
     ],
     "orders": {
@@ -4575,6 +4606,26 @@
         "price": "3.16",
         "side": "buy",
         "filled_at": "2026-10-13T15:34:24.888094+00:00"
+      },
+      "24097d90-9bfc-4b8e-8e01-2d454c83ff81": {
+        "symbol": "AMC",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; Hard loss limit reached",
+        "status": "filled",
+        "requested_at": "2026-10-16T10:09:31.015055-07:00",
+        "qty": "3214.639240506",
+        "price": "2.84",
+        "side": "sell",
+        "filled_at": "2026-10-16T17:09:35.307658+00:00"
+      },
+      "d86a8084-3094-44b7-9f0c-701e28fb1677": {
+        "symbol": "PLTR",
+        "reason": "Price below EMA20; MACD bearish; MACD falling; Runner trail breached (+12.36% return)",
+        "status": "filled",
+        "requested_at": "2026-10-16T10:09:31.015055-07:00",
+        "qty": "87",
+        "price": "185.809425",
+        "side": "sell",
+        "filled_at": "2026-10-16T17:09:35.389672+00:00"
       }
     },
     "cycles": [
@@ -5074,7 +5125,8 @@
       "20261015_103433",
       "20261015_133255",
       "20261015_161842",
-      "20261015_183353"
+      "20261015_183353",
+      "20261016_100931"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5123,11 +5175,26 @@
           "loss_percent": "9.554199991331416203898245033",
           "reason": "Price below EMA20; MACD bearish; MACD falling; Hard loss limit reached; Runner trail breached (-7.50% return)",
           "status": "Confirmed loss"
+        },
+        {
+          "symbol": "AMC",
+          "sale_id": "24097d90-9bfc-4b8e-8e01-2d454c83ff81",
+          "scout": true,
+          "entry_date": "2026-10-13T15:34:24.888095Z",
+          "last_entry_date": "2026-10-13T15:34:24.888095Z",
+          "exit_date": "2026-10-16T17:09:35.307658Z",
+          "qty": "3214.639240506",
+          "entry_price": "3.16",
+          "exit_price": "2.84",
+          "loss_dollars": "1028.68455696192",
+          "loss_percent": "10.12658227848101265822784810",
+          "reason": "Price below EMA20; MACD bearish; MACD falling; Hard loss limit reached",
+          "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-16T01:34:17.211588+00:00",
+      "checked_at": "2026-10-16T17:11:44.217485+00:00",
       "status": "History checked",
-      "orders_checked": 11
+      "orders_checked": 13
     }
   },
   "profit_floor": {
@@ -16869,6 +16936,46 @@
       "runner_signal": false,
       "legacy_floor": 18.98005762345193,
       "legacy_signal": true
+    },
+    {
+      "cycle": "20261016_100931",
+      "updated": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 2.941,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 1.1957799664877653,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261016_100931",
+      "updated": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "AMC",
+      "pnl_pct": -10.127,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261016_100931",
+      "updated": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -3.981,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261016_100931",
+      "updated": "2026-10-16T10:09:31.015055-07:00",
+      "symbol": "PLTR",
+      "pnl_pct": 9.181000000000001,
+      "runner_floor": 12.357796457701497,
+      "runner_signal": true,
+      "legacy_floor": 18.98005762345193,
+      "legacy_signal": true
     }
   ],
   "profit_trial": {
@@ -16885,16 +16992,16 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-15",
+        "session": "2026-10-16",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 198.84,
+        "last": 186.06,
         "units": 0.0,
         "cash": 1.0413358943379178,
         "entry": 191.47,
@@ -16902,16 +17009,16 @@
         "pending": null,
         "fills": 7,
         "reentries": 0,
-        "session": "2026-10-15",
+        "session": "2026-10-16",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 93.895,
+        "last": 90.9114,
         "units": 0.0,
         "cash": 0.9202125831076506,
         "entry": 116.92,
@@ -16919,16 +17026,16 @@
         "pending": null,
         "fills": 3,
         "reentries": 0,
-        "session": "2026-10-15",
+        "session": "2026-10-16",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 343.87,
+        "last": 342.77,
         "units": 0.0,
         "cash": 1.0062391863939428,
         "entry": 329.55,
@@ -16936,16 +17043,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-10-15",
-        "confirmations": 0,
-        "confirm_at": null,
+        "session": "2026-10-16",
+        "confirmations": 1,
+        "confirm_at": "2026-10-16T10:09:31.015055-07:00",
         "status": "RE-ENTRY RESET \u2014 new session",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       },
       "ITUB": {
         "started": "2026-10-08T07:18:08.119926-07:00",
         "base": 9.84,
-        "last": 9.62,
+        "last": 9.4,
         "units": 0.0,
         "cash": 1.0101727540751932,
         "entry": 9.84,
@@ -16953,31 +17060,31 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-10-15",
+        "session": "2026-10-16",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       },
       "AMC": {
         "started": "2026-10-13T08:59:40.255284-07:00",
         "base": 3.1298,
-        "last": 2.945,
+        "last": 2.8401,
         "units": 0.3191900437730843,
         "cash": 0.0,
         "entry": 3.1298,
         "peak": 3.15,
-        "pending": null,
+        "pending": "SELL",
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-15",
+        "session": "2026-10-16",
         "confirmations": 0,
         "confirm_at": null,
-        "status": "TRACKING",
-        "last_at": "2026-10-15T10:34:33.004137-07:00"
+        "status": "EXIT SIGNAL \u2014 next observation",
+        "last_at": "2026-10-16T10:09:31.015055-07:00"
       }
     },
-    "last_at": "2026-10-15T10:34:33.004137-07:00",
+    "last_at": "2026-10-16T10:09:31.015055-07:00",
     "cost_per_side": 0.001
   }
 }
