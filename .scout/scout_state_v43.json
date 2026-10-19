@@ -3,16 +3,20 @@
   "high_water": {
     "AAPL": 3.727,
     "ITUB": 3.953,
-    "CCC": -0.131,
-    "RWM": -0.067
+    "CCC": -0.127,
+    "RWM": -0.067,
+    "QQQ261022C00729000": 15.315,
+    "QQQ261022C00731000": -19.76
   },
   "warning_streak": {
     "AAPL": 0,
     "CCC": 0,
     "ITUB": 0,
+    "QQQ261022C00729000": 0,
+    "QQQ261022C00731000": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-10-16T17:46:30.205019-07:00",
+  "last_cycle": "2026-10-19T15:50:00.470591-07:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -4559,6 +4563,48 @@
         "symbol": "RWM",
         "action": "Order filled",
         "reason": "Buy: 661.133513149 shares filled at average $14.8300."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "AAPL",
+        "action": "DATA UNAVAILABLE",
+        "reason": "Chart data unavailable; account loss check remains active."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "CCC",
+        "action": "DATA UNAVAILABLE",
+        "reason": "Chart data unavailable; account loss check remains active."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "ITUB",
+        "action": "DATA UNAVAILABLE",
+        "reason": "Chart data unavailable; account loss check remains active."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "QQQ261022C00729000",
+        "action": "DATA UNAVAILABLE",
+        "reason": "Chart data unavailable; account loss check remains active."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "QQQ261022C00731000",
+        "action": "EXIT CONFIRMED",
+        "reason": "Exit confirmed; waiting \u2014 market closed."
+      },
+      {
+        "at": "2026-10-19T15:50:00.470591-07:00",
+        "cycle": "20261019_155000",
+        "symbol": "RWM",
+        "action": "DATA UNAVAILABLE",
+        "reason": "Chart data unavailable; account loss check remains active."
       }
     ],
     "orders": {
@@ -4674,7 +4720,6 @@
       }
     },
     "cycles": [
-      "20260921_064346",
       "20260921_065843",
       "20260921_072033",
       "20260921_074415",
@@ -5173,7 +5218,8 @@
       "20261016_100931",
       "20261016_125657",
       "20261016_153454",
-      "20261016_174630"
+      "20261016_174630",
+      "20261019_155000"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5239,15 +5285,16 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-17T00:46:54.441732+00:00",
+      "checked_at": "2026-10-19T22:50:19.517755+00:00",
       "status": "History checked",
-      "orders_checked": 15
+      "orders_checked": 20
     }
   },
   "profit_floor": {},
   "legacy_profit_floor": {
     "AAPL": 1.1957799664877653,
-    "ITUB": 0.0
+    "ITUB": 0.0,
+    "QQQ261022C00729000": 10.7205
   },
   "exit_policy": "runner_v1",
   "exit_comparison": [
@@ -17116,6 +17163,66 @@
       "updated": "2026-10-16T17:46:30.205019-07:00",
       "symbol": "RWM",
       "pnl_pct": -0.067,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 3.037,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 1.1957799664877653,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "CCC",
+      "pnl_pct": -0.127,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -3.6769999999999996,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "QQQ261022C00729000",
+      "pnl_pct": 15.315000000000001,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 10.7205,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "QQQ261022C00731000",
+      "pnl_pct": -19.759999999999998,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261019_155000",
+      "updated": "2026-10-19T15:50:00.470591-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -0.27,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
