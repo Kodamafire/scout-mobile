@@ -1,6 +1,6 @@
 {
-  "cycle": "20261020_135449",
-  "updated": "2026-10-20T13:54:49.788715-07:00",
+  "cycle": "20261020_163600",
+  "updated": "2026-10-20T16:36:00.669805-07:00",
   "shadow": {
     "status": "UNAVAILABLE",
     "error": "APIError"
@@ -81,11 +81,6 @@
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "ABEV",
-        "entry_score": 8,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
         "symbol": "SOXS",
         "entry_score": 8,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
@@ -102,6 +97,11 @@
       },
       {
         "symbol": "CORD",
+        "entry_score": 7,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "NVD",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       }
