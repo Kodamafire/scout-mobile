@@ -1,6 +1,6 @@
 {
-  "cycle": "20261021_170020",
-  "updated": "2026-10-21T17:00:20.164611-07:00",
+  "cycle": "20261022_140859",
+  "updated": "2026-10-22T14:08:59.649390-07:00",
   "shadow": {
     "status": "UNAVAILABLE",
     "error": "APIError"
@@ -46,7 +46,37 @@
     ],
     "candidates": [
       {
+        "symbol": "KMI",
+        "entry_score": 9,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
         "symbol": "RIG",
+        "entry_score": 9,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "SOXS",
+        "entry_score": 9,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "QGEN",
+        "entry_score": 8,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "BHVN",
+        "entry_score": 8,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "INFY",
+        "entry_score": 8,
+        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+      },
+      {
+        "symbol": "CLF",
         "entry_score": 8,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
@@ -61,42 +91,17 @@
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "SOXS",
+        "symbol": "PATH",
         "entry_score": 8,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "QID",
+        "symbol": "TSCO",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       },
       {
-        "symbol": "IBIT",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "BITO",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "SQQQ",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "NU",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "PATH",
-        "entry_score": 7,
-        "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-      },
-      {
-        "symbol": "XLF",
+        "symbol": "HTZ",
         "entry_score": 7,
         "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
       }
