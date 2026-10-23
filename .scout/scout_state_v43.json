@@ -3,7 +3,7 @@
   "high_water": {
     "AAPL": 4.744,
     "ITUB": 3.953,
-    "CCC": 0.264,
+    "CCC": 0.652,
     "RWM": -0.067
   },
   "warning_streak": {
@@ -12,12 +12,9 @@
     "ITUB": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-10-23T10:40:33.105498-07:00",
+  "last_cycle": "2026-10-23T13:39:11.938064-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-23",
-    "timestamp": 1792777233.402613
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5055,7 +5052,6 @@
       }
     },
     "cycles": [
-      "20260921_095835",
       "20260921_101715",
       "20260921_104218",
       "20260921_105518",
@@ -5554,7 +5550,8 @@
       "20261021_170020",
       "20261022_140859",
       "20261022_165927",
-      "20261023_104033"
+      "20261023_104033",
+      "20261023_133911"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5620,14 +5617,14 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-23T17:42:04.269763+00:00",
+      "checked_at": "2026-10-23T20:39:52.613720+00:00",
       "status": "History checked",
       "orders_checked": 20
     }
   },
   "profit_floor": {},
   "legacy_profit_floor": {
-    "AAPL": 2.330989596879059,
+    "AAPL": 2.3426131281903753,
     "ITUB": 0.0
   },
   "exit_policy": "runner_v1",
@@ -18077,6 +18074,46 @@
       "updated": "2026-10-23T10:40:33.105498-07:00",
       "symbol": "RWM",
       "pnl_pct": -1.821,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261023_133911",
+      "updated": "2026-10-23T13:39:11.938064-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 4.377000000000001,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.3426131281903753,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261023_133911",
+      "updated": "2026-10-23T13:39:11.938064-07:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.652,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261023_133911",
+      "updated": "2026-10-23T13:39:11.938064-07:00",
+      "symbol": "ITUB",
+      "pnl_pct": -1.43,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261023_133911",
+      "updated": "2026-10-23T13:39:11.938064-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -1.889,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
