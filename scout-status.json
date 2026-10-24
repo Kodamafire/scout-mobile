@@ -1,21 +1,21 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-10-23T16:30:36.410506-07:00",
-  "cycle": "20261023_163036",
+  "updated_at": "2026-10-23T18:58:59.837274-07:00",
+  "cycle": "20261023_185859",
   "market_open": false,
   "data_health": {
-    "checked_at": "2026-10-23T16:30:36.446971-07:00",
+    "checked_at": "2026-10-23T18:59:00.336390-07:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-10-23T23:29:41.995226+00:00",
-      "age_seconds": 54.452
+      "quote_at": "2026-10-23T23:59:58.653028+00:00",
+      "age_seconds": 7141.683
     },
     "opra": {
       "access": "CONFIRMED",
       "quote_at": "2026-10-23T20:14:59.383679+00:00",
-      "age_seconds": 11737.063
+      "age_seconds": 20640.953
     }
   },
   "scanner": {
@@ -129,17 +129,17 @@
         ]
       },
       {
-        "symbol": "STLA",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "MYND",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
           "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "STLA",
+        "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -539,21 +539,21 @@
         ]
       },
       {
-        "symbol": "LKQ",
+        "symbol": "IBIT",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       }
     ],
     "failed_scoring_checks": {
-      "ema20_above_ema50": 68,
-      "price_above_sma200": 67,
+      "ema20_above_ema50": 67,
+      "price_above_sma200": 66,
       "liquid": 12,
       "price_above_ema20": 57,
       "macd_bullish": 47,
       "macd_rising": 46,
-      "rsi_healthy": 52,
-      "relative_volume": 55,
+      "rsi_healthy": 51,
+      "relative_volume": 56,
       "relative_strength": 58
     }
   },
