@@ -3,19 +3,18 @@
   "high_water": {
     "AAPL": 4.744,
     "CCC": 0.919,
-    "RWM": -0.067
+    "RWM": -0.067,
+    "RIG": 0.0
   },
   "warning_streak": {
     "AAPL": 0,
     "CCC": 0,
+    "RIG": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-10-27T11:32:10.376375-07:00",
+  "last_cycle": "2026-10-27T15:37:45.205336-07:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-27",
-    "timestamp": 1793125931.074096
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -4973,6 +4972,13 @@
         "symbol": "RIG",
         "action": "Order filled",
         "reason": "Buy: 1487.464396284 shares filled at average $6.4600."
+      },
+      {
+        "at": "2026-10-27T15:37:45.205336-07:00",
+        "cycle": "20261027_153745",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -5108,7 +5114,6 @@
       }
     },
     "cycles": [
-      "20260921_123305",
       "20260921_125350",
       "20260921_131625",
       "20260921_134136",
@@ -5607,7 +5612,8 @@
       "20261026_120020",
       "20261026_160524",
       "20261026_190431",
-      "20261027_113210"
+      "20261027_113210",
+      "20261027_153745"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5688,7 +5694,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-27T18:33:01.754049+00:00",
+      "checked_at": "2026-10-27T22:38:10.853819+00:00",
       "status": "History checked",
       "orders_checked": 22
     }
@@ -18394,6 +18400,46 @@
       "updated": "2026-10-27T11:32:10.376375-07:00",
       "symbol": "RWM",
       "pnl_pct": -3.237,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261027_153745",
+      "updated": "2026-10-27T15:37:45.205336-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 4.35,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 2.3426131281903753,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261027_153745",
+      "updated": "2026-10-27T15:37:45.205336-07:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.919,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261027_153745",
+      "updated": "2026-10-27T15:37:45.205336-07:00",
+      "symbol": "RIG",
+      "pnl_pct": 0.0,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261027_153745",
+      "updated": "2026-10-27T15:37:45.205336-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -3.304,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
