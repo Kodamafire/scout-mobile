@@ -1,7 +1,7 @@
 {
   "version": 44,
   "high_water": {
-    "AAPL": 4.744,
+    "AAPL": 5.198,
     "CCC": 0.919,
     "RWM": -0.067,
     "RIG": 4.644
@@ -12,15 +12,18 @@
     "RIG": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-10-28T19:04:00.963245-07:00",
+  "last_cycle": "2026-10-29T11:47:00.383596-07:00",
   "upgrade_challenge": {
-    "candidate_symbol": "PACB",
+    "candidate_symbol": "CART",
     "replace_symbol": "RWM",
-    "confirmations": 0,
+    "confirmations": 1,
     "entry_score": 9,
-    "score_advantage": 7
+    "score_advantage": 8
   },
-  "last_confirmation_check": null,
+  "last_confirmation_check": {
+    "session": "2026-10-29",
+    "timestamp": 1793299621.720169
+  },
   "activity_journal": {
     "events": [
       {
@@ -5034,6 +5037,20 @@
         "symbol": "RWM \u2192 PACB",
         "action": "Replacement check",
         "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
+      },
+      {
+        "at": "2026-10-29T11:47:00.383596-07:00",
+        "cycle": "20261029_114700",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-10-29T11:47:00.383596-07:00",
+        "cycle": "20261029_114700",
+        "symbol": "RWM \u2192 CART",
+        "action": "Replacement check",
+        "reason": "1 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 1/3."
       }
     ],
     "orders": {
@@ -5169,7 +5186,6 @@
       }
     },
     "cycles": [
-      "20260921_141602",
       "20260921_144119",
       "20260921_145527",
       "20260922_061731",
@@ -5668,7 +5684,8 @@
       "20261027_184352",
       "20261028_113821",
       "20261028_155209",
-      "20261028_190400"
+      "20261028_190400",
+      "20261029_114700"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5749,14 +5766,16 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-29T02:04:27.462111+00:00",
+      "checked_at": "2026-10-29T18:48:46.966883+00:00",
       "status": "History checked",
       "orders_checked": 22
     }
   },
-  "profit_floor": {},
+  "profit_floor": {
+    "AAPL": -0.2689711675253381
+  },
   "legacy_profit_floor": {
-    "AAPL": 2.3426131281903753,
+    "AAPL": 3.3787,
     "RIG": 0.0
   },
   "exit_policy": "runner_v1",
@@ -18660,6 +18679,46 @@
       "runner_signal": false,
       "legacy_floor": null,
       "legacy_signal": false
+    },
+    {
+      "cycle": "20261029_114700",
+      "updated": "2026-10-29T11:47:00.383596-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 5.1979999999999995,
+      "runner_floor": -0.2689711675253381,
+      "runner_signal": false,
+      "legacy_floor": 3.3787,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261029_114700",
+      "updated": "2026-10-29T11:47:00.383596-07:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.722,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261029_114700",
+      "updated": "2026-10-29T11:47:00.383596-07:00",
+      "symbol": "RIG",
+      "pnl_pct": 3.019,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": 0.0,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261029_114700",
+      "updated": "2026-10-29T11:47:00.383596-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -4.258,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
@@ -18676,16 +18735,16 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 194.82,
+        "last": 193.63,
         "units": 0.0,
         "cash": 1.0413358943379178,
         "entry": 191.47,
@@ -18693,16 +18752,16 @@
         "pending": null,
         "fills": 7,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 95.3265,
+        "last": 91.06,
         "units": 0.0,
         "cash": 0.9202125831076506,
         "entry": 116.92,
@@ -18710,16 +18769,16 @@
         "pending": null,
         "fills": 3,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 345.18,
+        "last": 350.15,
         "units": 0.0,
         "cash": 1.0062391863939428,
         "entry": 329.55,
@@ -18727,16 +18786,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-10-28",
-        "confirmations": 0,
-        "confirm_at": null,
+        "session": "2026-10-29",
+        "confirmations": 1,
+        "confirm_at": "2026-10-29T11:47:00.383596-07:00",
         "status": "RE-ENTRY RESET \u2014 new session",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "ITUB": {
         "started": "2026-10-08T07:18:08.119926-07:00",
         "base": 9.84,
-        "last": 7.4684,
+        "last": 7.3317,
         "units": 0.0,
         "cash": 1.0101727540751932,
         "entry": 9.84,
@@ -18744,16 +18803,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "AMC": {
         "started": "2026-10-13T08:59:40.255284-07:00",
         "base": 3.1298,
-        "last": 3.01,
+        "last": 3.045,
         "units": 0.0,
         "cash": 0.9231311215463559,
         "entry": 3.1298,
@@ -18761,33 +18820,33 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "CCC": {
         "started": "2026-10-23T10:40:33.105498-07:00",
         "base": 7.6301,
-        "last": 7.66,
+        "last": 7.675,
         "units": 0.13092895230744017,
         "cash": 0.0,
         "entry": 7.6301,
-        "peak": 7.67,
+        "peak": 7.675,
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "RWM": {
         "started": "2026-10-23T10:40:33.105498-07:00",
         "base": 14.565,
-        "last": 14.285,
+        "last": 14.195,
         "units": 0.06858915200830752,
         "cash": 0.0,
         "entry": 14.565,
@@ -18795,16 +18854,16 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       },
       "RIG": {
         "started": "2026-10-28T11:38:21.645500-07:00",
         "base": 6.705,
-        "last": 6.705,
+        "last": 6.655,
         "units": 0.14899343758404163,
         "cash": 0.0,
         "entry": 6.705,
@@ -18812,14 +18871,14 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-10-28",
+        "session": "2026-10-29",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-10-28T11:38:21.645500-07:00"
+        "last_at": "2026-10-29T11:47:00.383596-07:00"
       }
     },
-    "last_at": "2026-10-28T11:38:21.645500-07:00",
+    "last_at": "2026-10-29T11:47:00.383596-07:00",
     "cost_per_side": 0.001
   }
 }
