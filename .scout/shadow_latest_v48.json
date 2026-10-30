@@ -1,6 +1,6 @@
 {
-  "cycle": "20261029_160500",
-  "updated": "2026-10-29T16:05:00.230951-07:00",
+  "cycle": "20261029_193519",
+  "updated": "2026-10-29T19:35:19.647955-07:00",
   "shadow": {
     "status": "OK",
     "regime": {
@@ -11,7 +11,7 @@
       "short_gate": true
     },
     "symbols_scanned": 100,
-    "symbols_scored": 75,
+    "symbols_scored": 74,
     "qualified_long": 1,
     "qualified_short": 8,
     "long": [
