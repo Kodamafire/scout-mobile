@@ -4,7 +4,7 @@
     "AAPL": 5.877,
     "CCC": 0.919,
     "RWM": -0.067,
-    "RIG": 6.347
+    "RIG": 7.43
   },
   "warning_streak": {
     "AAPL": 0,
@@ -12,12 +12,15 @@
     "RIG": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-10-30T11:23:37.294066-07:00",
-  "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-10-30",
-    "timestamp": 1793384617.956624
+  "last_cycle": "2026-10-30T15:33:45.622029-07:00",
+  "upgrade_challenge": {
+    "candidate_symbol": "KDP",
+    "replace_symbol": "RWM",
+    "confirmations": 0,
+    "entry_score": 9,
+    "score_advantage": 7
   },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5059,6 +5062,20 @@
         "symbol": "RWM",
         "action": "RISK WARNING",
         "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-10-30T15:33:45.622029-07:00",
+        "cycle": "20261030_153345",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-10-30T15:33:45.622029-07:00",
+        "cycle": "20261030_153345",
+        "symbol": "RWM \u2192 KDP",
+        "action": "Replacement check",
+        "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
       }
     ],
     "orders": {
@@ -5194,7 +5211,6 @@
       }
     },
     "cycles": [
-      "20260922_064447",
       "20260922_065845",
       "20260922_072055",
       "20260922_074539",
@@ -5693,7 +5709,8 @@
       "20261029_114700",
       "20261029_160500",
       "20261029_193519",
-      "20261030_112337"
+      "20261030_112337",
+      "20261030_153345"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5774,18 +5791,18 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-10-30T18:25:36.971805+00:00",
+      "checked_at": "2026-10-30T22:34:43.330583+00:00",
       "status": "History checked",
       "orders_checked": 22
     }
   },
   "profit_floor": {
     "AAPL": 0.388802690931338,
-    "RIG": -6.092939838460133
+    "RIG": -5.009146768217376
   },
   "legacy_profit_floor": {
     "AAPL": 3.8200500000000006,
-    "RIG": 4.12555
+    "RIG": 4.8295
   },
   "exit_policy": "runner_v1",
   "exit_comparison": [
@@ -18844,6 +18861,46 @@
       "updated": "2026-10-30T11:23:37.294066-07:00",
       "symbol": "RWM",
       "pnl_pct": -2.428,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261030_153345",
+      "updated": "2026-10-30T15:33:45.622029-07:00",
+      "symbol": "AAPL",
+      "pnl_pct": 3.662,
+      "runner_floor": 0.388802690931338,
+      "runner_signal": false,
+      "legacy_floor": 3.8200500000000006,
+      "legacy_signal": true
+    },
+    {
+      "cycle": "20261030_153345",
+      "updated": "2026-10-30T15:33:45.622029-07:00",
+      "symbol": "CCC",
+      "pnl_pct": -0.262,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261030_153345",
+      "updated": "2026-10-30T15:33:45.622029-07:00",
+      "symbol": "RIG",
+      "pnl_pct": 7.430000000000001,
+      "runner_floor": -5.009146768217376,
+      "runner_signal": false,
+      "legacy_floor": 4.8295,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261030_153345",
+      "updated": "2026-10-30T15:33:45.622029-07:00",
+      "symbol": "RWM",
+      "pnl_pct": -3.102,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
