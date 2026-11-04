@@ -1,29 +1,16 @@
 {
   "version": 44,
   "high_water": {
-    "AAPL": 5.877,
     "CCC": 0.919,
-    "RWM": -0.067,
-    "RIG": 7.43
+    "RWM": -0.067
   },
   "warning_streak": {
-    "AAPL": 0,
     "CCC": 0,
-    "RIG": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-11-03T11:56:17.981425-08:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "AMC",
-    "replace_symbol": "RWM",
-    "confirmations": 1,
-    "entry_score": 9,
-    "score_advantage": 7
-  },
-  "last_confirmation_check": {
-    "session": "2026-11-03",
-    "timestamp": 1793735779.280332
-  },
+  "last_cycle": "2026-11-03T16:23:12.355657-08:00",
+  "upgrade_challenge": null,
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5170,6 +5157,13 @@
         "symbol": "RIG",
         "action": "Order filled",
         "reason": "Sell: 1487.464396284 shares filled at average $5.9700."
+      },
+      {
+        "at": "2026-11-03T16:23:12.355657-08:00",
+        "cycle": "20261103_162312",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -5325,7 +5319,6 @@
       }
     },
     "cycles": [
-      "20260922_084244",
       "20260922_085633",
       "20260922_091840",
       "20260922_094359",
@@ -5824,7 +5817,8 @@
       "20261030_184934",
       "20261102_140513",
       "20261102_192807",
-      "20261103_115617"
+      "20261103_115617",
+      "20261103_162312"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5935,19 +5929,13 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-03T19:58:17.714385+00:00",
+      "checked_at": "2026-11-04T00:23:48.692756+00:00",
       "status": "History checked",
       "orders_checked": 24
     }
   },
-  "profit_floor": {
-    "AAPL": 0.388802690931338,
-    "RIG": -5.009146768217376
-  },
-  "legacy_profit_floor": {
-    "AAPL": 3.8200500000000006,
-    "RIG": 4.8295
-  },
+  "profit_floor": {},
+  "legacy_profit_floor": {},
   "exit_policy": "runner_v1",
   "exit_comparison": [
     {
@@ -19205,6 +19193,26 @@
       "updated": "2026-11-03T11:56:17.981425-08:00",
       "symbol": "RWM",
       "pnl_pct": -3.27,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261103_162312",
+      "updated": "2026-11-03T16:23:12.355657-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.787,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261103_162312",
+      "updated": "2026-11-03T16:23:12.355657-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -3.372,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
