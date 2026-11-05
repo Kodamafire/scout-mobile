@@ -1,39 +1,72 @@
 {
   "mode": "PAPER",
-  "updated_at": "2026-11-04T16:55:44.674748-08:00",
-  "cycle": "20261104_165544",
-  "market_open": false,
+  "updated_at": "2026-11-05T12:27:22.541683-08:00",
+  "cycle": "20261105_122722",
+  "market_open": true,
   "data_health": {
-    "checked_at": "2026-11-04T16:55:44.886442-08:00",
+    "checked_at": "2026-11-05T12:27:22.929259-08:00",
     "stock_feed": "sip",
     "scope": "REST access only; not streaming or Scout Options worker readiness",
     "sip": {
       "access": "CONFIRMED",
-      "quote_at": "2026-11-05T00:55:44.708563+00:00",
-      "age_seconds": 0.178
+      "quote_at": "2026-11-05T20:27:23.088583+00:00",
+      "age_seconds": -0.159
     },
     "opra": {
       "access": "CONFIRMED",
-      "quote_at": "2026-11-04T21:14:59.926487+00:00",
-      "age_seconds": 13244.96
+      "quote_at": "2026-11-05T20:27:23.509335+00:00",
+      "age_seconds": -0.58
     }
   },
   "scanner": {
     "status": "COMPLETE",
-    "symbols_scanned": 97,
+    "symbols_scanned": 98,
     "qualified_shortlist": 12,
-    "rejected_candidates": 81,
+    "rejected_candidates": 80,
     "rejection_counts": {
-      "ENTRY SCORE BELOW MINIMUM": 72,
-      "PRICE OUTSIDE RANGE": 26,
-      "LIQUIDITY BELOW MINIMUM": 13,
-      "SAME-TIME VOLUME UNAVAILABLE": 14,
-      "DATA UNAVAILABLE": 3,
-      "QUALIFIED OUTSIDE SHORTLIST": 4
+      "DATA UNAVAILABLE": 8,
+      "ENTRY SCORE BELOW MINIMUM": 69,
+      "PRICE OUTSIDE RANGE": 25,
+      "LIQUIDITY BELOW MINIMUM": 8,
+      "SAME-TIME VOLUME UNAVAILABLE": 8,
+      "QUALIFIED OUTSIDE SHORTLIST": 6
     },
     "rejected": [
       {
+        "symbol": "LABT",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
         "symbol": "SOXL",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "BDMD",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SNXX",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "TQQQ",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -45,32 +78,13 @@
         ]
       },
       {
-        "symbol": "CRIS",
+        "symbol": "SPDN",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
+          "SAME-TIME VOLUME UNAVAILABLE"
         ]
       },
       {
-        "symbol": "NWGL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "NVDA",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "HPAI",
+        "symbol": "NTCL",
         "reasons": [
           "PRICE OUTSIDE RANGE",
           "LIQUIDITY BELOW MINIMUM",
@@ -85,21 +99,86 @@
         ]
       },
       {
-        "symbol": "TQQQ",
+        "symbol": "KORU",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "ORCL",
+        "symbol": "QQQ",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "PLCE",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "IREN",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "SNXX",
+        "symbol": "TSLG",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SPY",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "DRAM",
         "reasons": [
           "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "ZNB",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "WULF",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "JDZG",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "MUU",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
@@ -110,17 +189,34 @@
         ]
       },
       {
+        "symbol": "DVLT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "CRWV",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "NU",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
         "symbol": "CIFR",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
       {
-        "symbol": "FTCI",
+        "symbol": "TSLL",
         "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       },
@@ -138,416 +234,7 @@
         ]
       },
       {
-        "symbol": "AAPL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE"
-        ]
-      },
-      {
-        "symbol": "SMCI",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "NU",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "RIOT",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "BBD",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "BITO",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "IREN",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "WULF",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "XLE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "HYG",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "SPDN",
-        "reasons": [
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MSTZ",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "QQQ",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "SPY",
-        "reasons": [
-          "PRICE OUTSIDE RANGE"
-        ]
-      },
-      {
-        "symbol": "NOK",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "CRWV",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "IBIT",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "ARRY",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "KORU",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "RCT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
         "symbol": "SOFI",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "RIG",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "ONDS",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "PLCE",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "GOOGL",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "OPEN",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "EOSE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "AMD",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MSFT",
-        "reasons": [
-          "PRICE OUTSIDE RANGE"
-        ]
-      },
-      {
-        "symbol": "PARA",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "TSLG",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "NFLX",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "TSLL",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "TSLA",
-        "reasons": [
-          "PRICE OUTSIDE RANGE"
-        ]
-      },
-      {
-        "symbol": "T",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "BAC",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "ERY",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MARA",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "CDE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MRVL",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "NIO",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "ADT",
-        "reasons": [
-          "SAME-TIME VOLUME UNAVAILABLE"
-        ]
-      },
-      {
-        "symbol": "HL",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "XXII",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "TE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "IRE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "DRAM",
-        "reasons": [
-          "DATA UNAVAILABLE"
-        ]
-      },
-      {
-        "symbol": "JBLU",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "LABD",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "RIVN",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "GDX",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "KEEL",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "DKI",
-        "reasons": [
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "KPTI",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "EWZ",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MERC",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "VALE",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "MUU",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "CENN",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "RBNE",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "LIQUIDITY BELOW MINIMUM",
-          "SAME-TIME VOLUME UNAVAILABLE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "FIS",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "FRMI",
-        "reasons": [
-          "PRICE OUTSIDE RANGE",
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "CLSK",
-        "reasons": [
-          "ENTRY SCORE BELOW MINIMUM"
-        ]
-      },
-      {
-        "symbol": "BMNR",
         "reasons": [
           "ENTRY SCORE BELOW MINIMUM"
         ]
@@ -560,29 +247,327 @@
         ]
       },
       {
-        "symbol": "PBR",
+        "symbol": "TSLA",
         "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "ELPW",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "MSTZ",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SNAP",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "IBIT",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "CDT",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "LIQUIDITY BELOW MINIMUM",
+          "SAME-TIME VOLUME UNAVAILABLE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "EEM",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "HYG",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "ONDS",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "AMD",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "RIG",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SMCI",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "PLTD",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "AAOX",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "XLE",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "KEEL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SOXX",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "AAPL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE"
+        ]
+      },
+      {
+        "symbol": "MRVL",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "AAL",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "HTZ",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "BBD",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "LABD",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "EWZ",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "ORCL",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "APLD",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "IRE",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "IWM",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "RIOT",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "NIO",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "GOOGL",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SKHY",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "BITO",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "NBIS",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SNDG",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "STLA",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "PLTR",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "RAM",
+        "reasons": [
+          "DATA UNAVAILABLE"
+        ]
+      },
+      {
+        "symbol": "JOBY",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "RIVN",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "MARA",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "SGOV",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "BMNR",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "EOSE",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "CDE",
+        "reasons": [
+          "ENTRY SCORE BELOW MINIMUM"
+        ]
+      },
+      {
+        "symbol": "OPEN",
+        "reasons": [
+          "PRICE OUTSIDE RANGE",
           "ENTRY SCORE BELOW MINIMUM"
         ]
       }
     ],
     "failed_scoring_checks": {
-      "price_above_ema20": 59,
-      "ema20_above_ema50": 75,
+      "price_above_ema20": 61,
+      "ema20_above_ema50": 69,
       "price_above_sma200": 75,
-      "macd_bullish": 38,
-      "macd_rising": 38,
-      "rsi_healthy": 55,
-      "relative_strength": 63,
-      "relative_volume": 27,
-      "liquid": 13
+      "macd_bullish": 47,
+      "macd_rising": 54,
+      "rsi_healthy": 64,
+      "relative_strength": 60,
+      "relative_volume": 17,
+      "liquid": 8
     }
   },
   "positions": [
     {
       "symbol": "AMC",
-      "decision": "HOLD",
-      "order_status": "NO ACTION"
+      "decision": "EXIT CONFIRMED",
+      "order_status": "SUBMITTED 2f8a109d-71b6-438c-8427-4a79f3c155b2"
     },
     {
       "symbol": "CCC",
@@ -591,73 +576,73 @@
     },
     {
       "symbol": "PFE",
-      "decision": "LET RUN",
+      "decision": "HOLD",
       "order_status": "NO ACTION"
     },
     {
       "symbol": "RWM",
-      "decision": "RISK WARNING",
+      "decision": "HOLD",
       "order_status": "NO ACTION"
     }
   ],
   "candidates": [
+    {
+      "symbol": "U",
+      "entry_score": 9,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
     {
       "symbol": "XLF",
       "entry_score": 9,
       "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
     },
     {
+      "symbol": "BTG",
+      "entry_score": 8,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
       "symbol": "SOXS",
-      "entry_score": 9,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "XLU",
       "entry_score": 8,
       "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
     },
     {
-      "symbol": "SNAP",
+      "symbol": "SCHD",
       "entry_score": 8,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
+      "symbol": "TLT",
+      "entry_score": 8,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
+      "symbol": "RKT",
+      "entry_score": 8,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
+      "symbol": "VXX",
+      "entry_score": 7,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
+      "symbol": "KWEB",
+      "entry_score": 7,
+      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
+    },
+    {
+      "symbol": "UVXY",
+      "entry_score": 7,
       "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
     },
     {
       "symbol": "SQQQ",
-      "entry_score": 8,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "NVD",
-      "entry_score": 8,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "AAL",
-      "entry_score": 8,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "FXI",
-      "entry_score": 7,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "UBER",
-      "entry_score": 7,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "PLTD",
       "entry_score": 7,
       "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
     },
     {
       "symbol": "GRAB",
-      "entry_score": 7,
-      "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
-    },
-    {
-      "symbol": "STLA",
       "entry_score": 7,
       "order_status": "WATCHLIST \u2014 PORTFOLIO FULL"
     }

@@ -7,20 +7,17 @@
     "PFE": 0.489
   },
   "warning_streak": {
-    "AMC": 0,
+    "AMC": 1,
     "CCC": 0,
     "PFE": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-11-04T16:55:44.674748-08:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "XLF",
-    "replace_symbol": "RWM",
-    "confirmations": 0,
-    "entry_score": 9,
-    "score_advantage": 8
+  "last_cycle": "2026-11-05T12:27:22.541683-08:00",
+  "upgrade_challenge": null,
+  "last_confirmation_check": {
+    "session": "2026-11-05",
+    "timestamp": 1793910443.669014
   },
-  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5223,6 +5220,20 @@
         "symbol": "RWM \u2192 XLF",
         "action": "Replacement check",
         "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
+      },
+      {
+        "at": "2026-11-05T12:27:22.541683-08:00",
+        "cycle": "20261105_122722",
+        "symbol": "AMC",
+        "action": "Sell requested",
+        "reason": "MACD falling; Hard loss limit reached"
+      },
+      {
+        "at": "2026-11-05T12:27:22.541683-08:00",
+        "cycle": "20261105_122722",
+        "symbol": "AMC",
+        "action": "Order filled",
+        "reason": "Sell: 2749.270348837 shares filled at average $3.1000."
       }
     ],
     "orders": {
@@ -5395,10 +5406,19 @@
         "price": "30.68",
         "side": "buy",
         "filled_at": "2026-11-04T20:17:15.945864+00:00"
+      },
+      "2f8a109d-71b6-438c-8427-4a79f3c155b2": {
+        "symbol": "AMC",
+        "reason": "MACD falling; Hard loss limit reached",
+        "status": "filled",
+        "requested_at": "2026-11-05T12:27:22.541683-08:00",
+        "qty": "2749.270348837",
+        "price": "3.1",
+        "side": "sell",
+        "filled_at": "2026-11-05T20:27:25.560777+00:00"
       }
     },
     "cycles": [
-      "20260922_094359",
       "20260922_095731",
       "20260922_101733",
       "20260922_104136",
@@ -5897,7 +5917,8 @@
       "20261103_115617",
       "20261103_162312",
       "20261104_121458",
-      "20261104_165544"
+      "20261104_165544",
+      "20261105_122722"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -6006,11 +6027,26 @@
           "loss_percent": "7.585139318885448916408668731",
           "reason": "Price below EMA20; MACD falling; Runner trail breached (-5.01% return)",
           "status": "Confirmed loss"
+        },
+        {
+          "symbol": "AMC",
+          "sale_id": "2f8a109d-71b6-438c-8427-4a79f3c155b2",
+          "scout": true,
+          "entry_date": "2026-11-04T20:17:16.461469Z",
+          "last_entry_date": "2026-11-04T20:17:16.461469Z",
+          "exit_date": "2026-11-05T20:27:25.560778Z",
+          "qty": "2749.270348837",
+          "entry_price": "3.44",
+          "exit_price": "3.1",
+          "loss_dollars": "934.75191860458",
+          "loss_percent": "9.883720930232558139534883721",
+          "reason": "MACD falling; Hard loss limit reached",
+          "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-05T00:56:23.545987+00:00",
+      "checked_at": "2026-11-05T20:29:20.886177+00:00",
       "status": "History checked",
-      "orders_checked": 26
+      "orders_checked": 27
     }
   },
   "profit_floor": {},
@@ -19356,6 +19392,46 @@
       "runner_signal": false,
       "legacy_floor": null,
       "legacy_signal": false
+    },
+    {
+      "cycle": "20261105_122722",
+      "updated": "2026-11-05T12:27:22.541683-08:00",
+      "symbol": "AMC",
+      "pnl_pct": -9.884,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261105_122722",
+      "updated": "2026-11-05T12:27:22.541683-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.5910000000000001,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261105_122722",
+      "updated": "2026-11-05T12:27:22.541683-08:00",
+      "symbol": "PFE",
+      "pnl_pct": -2.021,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261105_122722",
+      "updated": "2026-11-05T12:27:22.541683-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -0.471,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
     }
   ],
   "profit_trial": {
@@ -19372,16 +19448,16 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "PLTR": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 190.62,
-        "last": 171.67,
+        "last": 155.0151,
         "units": 0.0,
         "cash": 1.0413358943379178,
         "entry": 191.47,
@@ -19389,16 +19465,16 @@
         "pending": null,
         "fills": 7,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "INTC": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 120.495,
-        "last": 57.845,
+        "last": 53.65,
         "units": 0.0,
         "cash": 0.9202125831076506,
         "entry": 116.92,
@@ -19406,16 +19482,16 @@
         "pending": null,
         "fills": 3,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "AAPL": {
         "started": "2026-10-01T12:26:06.685317-07:00",
         "base": 329.55,
-        "last": 352.44,
+        "last": 345.165,
         "units": 0.0,
         "cash": 1.0062391863939428,
         "entry": 329.55,
@@ -19423,16 +19499,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 1,
-        "confirm_at": "2026-11-04T12:14:58.931837-08:00",
+        "confirm_at": "2026-11-05T12:27:22.541683-08:00",
         "status": "RE-ENTRY RESET \u2014 new session",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "ITUB": {
         "started": "2026-10-08T07:18:08.119926-07:00",
         "base": 9.84,
-        "last": 7.255,
+        "last": 7.275,
         "units": 0.0,
         "cash": 1.0101727540751932,
         "entry": 9.84,
@@ -19440,16 +19516,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "AMC": {
         "started": "2026-10-13T08:59:40.255284-07:00",
         "base": 3.1298,
-        "last": 3.435,
+        "last": 3.1099,
         "units": 0.0,
         "cash": 0.9231311215463559,
         "entry": 3.1298,
@@ -19457,16 +19533,16 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-11-04",
-        "confirmations": 0,
-        "confirm_at": null,
+        "session": "2026-11-05",
+        "confirmations": 1,
+        "confirm_at": "2026-11-05T12:27:22.541683-08:00",
         "status": "SIMULATED CASH",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "CCC": {
         "started": "2026-10-23T10:40:33.105498-07:00",
         "base": 7.6301,
-        "last": 7.685,
+        "last": 7.665,
         "units": 0.13092895230744017,
         "cash": 0.0,
         "entry": 7.6301,
@@ -19474,33 +19550,33 @@
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "RWM": {
         "started": "2026-10-23T10:40:33.105498-07:00",
         "base": 14.565,
-        "last": 14.17,
+        "last": 14.785,
         "units": 0.06858915200830752,
         "cash": 0.0,
         "entry": 14.565,
-        "peak": 14.565,
+        "peak": 14.785,
         "pending": null,
         "fills": 0,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "TRACKING",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       },
       "RIG": {
         "started": "2026-10-28T11:38:21.645500-07:00",
         "base": 6.705,
-        "last": 5.435,
+        "last": 5.175,
         "units": 0.0,
         "cash": 0.8089695539359969,
         "entry": 6.705,
@@ -19508,14 +19584,31 @@
         "pending": null,
         "fills": 1,
         "reentries": 0,
-        "session": "2026-11-04",
+        "session": "2026-11-05",
         "confirmations": 0,
         "confirm_at": null,
         "status": "SIMULATED CASH",
-        "last_at": "2026-11-04T12:14:58.931837-08:00"
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
+      },
+      "PFE": {
+        "started": "2026-11-05T12:27:22.541683-08:00",
+        "base": 30.06,
+        "last": 30.06,
+        "units": 0.03323356616769791,
+        "cash": 0.0,
+        "entry": 30.06,
+        "peak": 30.06,
+        "pending": null,
+        "fills": 0,
+        "reentries": 0,
+        "session": "2026-11-05",
+        "confirmations": 0,
+        "confirm_at": null,
+        "status": "TRACKING",
+        "last_at": "2026-11-05T12:27:22.541683-08:00"
       }
     },
-    "last_at": "2026-11-04T12:14:58.931837-08:00",
+    "last_at": "2026-11-05T12:27:22.541683-08:00",
     "cost_per_side": 0.001
   }
 }
