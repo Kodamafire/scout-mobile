@@ -2,18 +2,25 @@
   "version": 44,
   "high_water": {
     "CCC": 0.919,
-    "RWM": -0.067
+    "RWM": -0.067,
+    "AMC": -0.573,
+    "PFE": 0.489
   },
   "warning_streak": {
+    "AMC": 0,
     "CCC": 0,
+    "PFE": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-11-04T12:14:58.931837-08:00",
-  "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-11-04",
-    "timestamp": 1793823299.968524
+  "last_cycle": "2026-11-04T16:55:44.674748-08:00",
+  "upgrade_challenge": {
+    "candidate_symbol": "XLF",
+    "replace_symbol": "RWM",
+    "confirmations": 0,
+    "entry_score": 9,
+    "score_advantage": 8
   },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5202,6 +5209,20 @@
         "symbol": "PFE",
         "action": "Order filled",
         "reason": "Buy: 308.262385919 shares filled at average $30.6800."
+      },
+      {
+        "at": "2026-11-04T16:55:44.674748-08:00",
+        "cycle": "20261104_165544",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-11-04T16:55:44.674748-08:00",
+        "cycle": "20261104_165544",
+        "symbol": "RWM \u2192 XLF",
+        "action": "Replacement check",
+        "reason": "0 of 3 checks confirmed. WATCH ONLY \u2014 CONFIRMING 0/3. Market closed; confirmations do not advance."
       }
     ],
     "orders": {
@@ -5377,7 +5398,6 @@
       }
     },
     "cycles": [
-      "20260922_091840",
       "20260922_094359",
       "20260922_095731",
       "20260922_101733",
@@ -5876,7 +5896,8 @@
       "20261102_192807",
       "20261103_115617",
       "20261103_162312",
-      "20261104_121458"
+      "20261104_121458",
+      "20261104_165544"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -5987,7 +6008,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-04T20:17:40.530523+00:00",
+      "checked_at": "2026-11-05T00:56:23.545987+00:00",
       "status": "History checked",
       "orders_checked": 26
     }
@@ -19291,6 +19312,46 @@
       "updated": "2026-11-04T12:14:58.931837-08:00",
       "symbol": "RWM",
       "pnl_pct": -4.45,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261104_165544",
+      "updated": "2026-11-04T16:55:44.674748-08:00",
+      "symbol": "AMC",
+      "pnl_pct": -0.573,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261104_165544",
+      "updated": "2026-11-04T16:55:44.674748-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.787,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261104_165544",
+      "updated": "2026-11-04T16:55:44.674748-08:00",
+      "symbol": "PFE",
+      "pnl_pct": 0.48900000000000005,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261104_165544",
+      "updated": "2026-11-04T16:55:44.674748-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -5.208,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
