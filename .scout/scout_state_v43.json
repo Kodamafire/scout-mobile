@@ -3,19 +3,18 @@
   "high_water": {
     "CCC": 0.919,
     "RWM": -0.067,
-    "PFE": 0.489
+    "PFE": 0.489,
+    "SOXS": -0.308
   },
   "warning_streak": {
     "CCC": 0,
     "PFE": 0,
-    "RWM": 0
+    "RWM": 0,
+    "SOXS": 0
   },
-  "last_cycle": "2026-11-06T11:49:36.772022-08:00",
+  "last_cycle": "2026-11-06T15:55:39.415343-08:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-11-06",
-    "timestamp": 1793994577.180998
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5441,7 +5440,6 @@
       }
     },
     "cycles": [
-      "20260922_104136",
       "20260922_105518",
       "20260922_112101",
       "20260922_114537",
@@ -5940,7 +5938,8 @@
       "20261104_165544",
       "20261105_122722",
       "20261105_170337",
-      "20261106_114936"
+      "20261106_114936",
+      "20261106_155539"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -6066,7 +6065,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-06T19:52:37.363325+00:00",
+      "checked_at": "2026-11-06T23:56:33.566266+00:00",
       "status": "History checked",
       "orders_checked": 28
     }
@@ -19510,6 +19509,46 @@
       "updated": "2026-11-06T11:49:36.772022-08:00",
       "symbol": "RWM",
       "pnl_pct": -1.214,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261106_155539",
+      "updated": "2026-11-06T15:55:39.415343-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.525,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261106_155539",
+      "updated": "2026-11-06T15:55:39.415343-08:00",
+      "symbol": "PFE",
+      "pnl_pct": -4.433,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261106_155539",
+      "updated": "2026-11-06T15:55:39.415343-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -4.189,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261106_155539",
+      "updated": "2026-11-06T15:55:39.415343-08:00",
+      "symbol": "SOXS",
+      "pnl_pct": -0.308,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
