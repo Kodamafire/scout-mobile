@@ -10290,7 +10290,11 @@
           "close": 4.425,
           "directional_move_pct": 7.273
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 5.47,
+          "directional_move_pct": 32.606
+        },
         "10": null
       }
     },
@@ -10311,7 +10315,11 @@
           "close": 8.56,
           "directional_move_pct": 7.907
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 7.46,
+          "directional_move_pct": 19.742
+        },
         "10": null
       }
     },
@@ -10332,7 +10340,11 @@
           "close": 15.09,
           "directional_move_pct": 6.23
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 16.94,
+          "directional_move_pct": 19.254
+        },
         "10": null
       }
     },
@@ -10353,7 +10365,11 @@
           "close": 11.01,
           "directional_move_pct": -7.75
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 8.76,
+          "directional_move_pct": -26.602
+        },
         "10": null
       }
     },
@@ -10374,7 +10390,11 @@
           "close": 16.76,
           "directional_move_pct": -4.337
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 16.04,
+          "directional_move_pct": -8.447
+        },
         "10": null
       }
     },
@@ -10395,7 +10415,11 @@
           "close": 5.59,
           "directional_move_pct": -2.528
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 4.05,
+          "directional_move_pct": -29.381
+        },
         "10": null
       }
     },
@@ -10416,7 +10440,11 @@
           "close": 11.76,
           "directional_move_pct": -4.626
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 11.25,
+          "directional_move_pct": -0.089
+        },
         "10": null
       }
     },
@@ -10437,7 +10465,11 @@
           "close": 13.53,
           "directional_move_pct": 6.042
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 14.45,
+          "directional_move_pct": -0.347
+        },
         "10": null
       }
     },
@@ -10458,7 +10490,11 @@
           "close": 5.62,
           "directional_move_pct": 4.826
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 4.37,
+          "directional_move_pct": 25.995
+        },
         "10": null
       }
     },
@@ -10479,7 +10515,11 @@
           "close": 10.33,
           "directional_move_pct": 1.027
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 9.89,
+          "directional_move_pct": -3.276
+        },
         "10": null
       }
     },
@@ -10500,7 +10540,11 @@
           "close": 56.51,
           "directional_move_pct": -0.589
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 57.5,
+          "directional_move_pct": 1.152
+        },
         "10": null
       }
     },
@@ -10521,7 +10565,11 @@
           "close": 41.98,
           "directional_move_pct": 0.862
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 44.64,
+          "directional_move_pct": -5.42
+        },
         "10": null
       }
     },
@@ -10542,7 +10590,11 @@
           "close": 344.63,
           "directional_move_pct": -1.576
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 344.17,
+          "directional_move_pct": -1.708
+        },
         "10": null
       }
     },
@@ -10563,7 +10615,11 @@
           "close": 11.17,
           "directional_move_pct": -2.622
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 8.1,
+          "directional_move_pct": -29.386
+        },
         "10": null
       }
     },
@@ -10584,7 +10640,11 @@
           "close": 2.7,
           "directional_move_pct": 4.085
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 2.28,
+          "directional_move_pct": 19.005
+        },
         "10": null
       }
     },
@@ -10605,7 +10665,11 @@
           "close": 56.45,
           "directional_move_pct": -1.535
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 57.79,
+          "directional_move_pct": 0.802
+        },
         "10": null
       }
     },
@@ -10626,7 +10690,11 @@
           "close": 70.02,
           "directional_move_pct": 2.301
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 61.63,
+          "directional_move_pct": -9.957
+        },
         "10": null
       }
     },
@@ -10647,7 +10715,11 @@
           "close": 35.78,
           "directional_move_pct": 0.917
         },
-        "5": null,
+        "5": {
+          "session": "2026-11-05",
+          "close": 35.42,
+          "directional_move_pct": -0.099
+        },
         "10": null
       }
     },
@@ -11524,7 +11596,11 @@
       "entry_score": 65,
       "reference_price": 4.5257,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 5.47,
+          "directional_move_pct": 20.865
+        },
         "5": null,
         "10": null
       }
@@ -11541,7 +11617,11 @@
       "entry_score": 65,
       "reference_price": 59.73,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 81.22,
+          "directional_move_pct": 35.979
+        },
         "5": null,
         "10": null
       }
@@ -11558,7 +11638,11 @@
       "entry_score": 90,
       "reference_price": 62.3901,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 50.465,
+          "directional_move_pct": 19.114
+        },
         "5": null,
         "10": null
       }
@@ -11575,7 +11659,11 @@
       "entry_score": 80,
       "reference_price": 14.17,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 14.79,
+          "directional_move_pct": -4.375
+        },
         "5": null,
         "10": null
       }
@@ -11592,7 +11680,11 @@
       "entry_score": 90,
       "reference_price": 41.44,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 49.55,
+          "directional_move_pct": 19.57
+        },
         "5": null,
         "10": null
       }
@@ -11609,7 +11701,11 @@
       "entry_score": 90,
       "reference_price": 13.6101,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 12.93,
+          "directional_move_pct": -4.997
+        },
         "5": null,
         "10": null
       }
@@ -11626,7 +11722,11 @@
       "entry_score": 70,
       "reference_price": 11.76,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 10.08,
+          "directional_move_pct": 14.286
+        },
         "5": null,
         "10": null
       }
@@ -11643,7 +11743,11 @@
       "entry_score": 70,
       "reference_price": 352.44,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 344.17,
+          "directional_move_pct": -2.346
+        },
         "5": null,
         "10": null
       }
@@ -11660,7 +11764,11 @@
       "entry_score": 90,
       "reference_price": 124.51,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 115.16,
+          "directional_move_pct": 7.509
+        },
         "5": null,
         "10": null
       }
@@ -11677,7 +11785,11 @@
       "entry_score": 65,
       "reference_price": 5.15,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 5.64,
+          "directional_move_pct": 9.515
+        },
         "5": null,
         "10": null
       }
@@ -11694,7 +11806,11 @@
       "entry_score": 80,
       "reference_price": 8.2244,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 7.46,
+          "directional_move_pct": 9.294
+        },
         "5": null,
         "10": null
       }
@@ -11711,7 +11827,11 @@
       "entry_score": 70,
       "reference_price": 5.9356,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 5.09,
+          "directional_move_pct": -14.246
+        },
         "5": null,
         "10": null
       }
@@ -11728,7 +11848,11 @@
       "entry_score": 70,
       "reference_price": 3.275,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 3.2,
+          "directional_move_pct": 2.29
+        },
         "5": null,
         "10": null
       }
@@ -11745,7 +11869,11 @@
       "entry_score": 70,
       "reference_price": 14.645,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 14.63,
+          "directional_move_pct": 0.102
+        },
         "5": null,
         "10": null
       }
@@ -11762,7 +11890,11 @@
       "entry_score": 50,
       "reference_price": 59.01,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 57.5,
+          "directional_move_pct": -2.559
+        },
         "5": null,
         "10": null
       }
@@ -11779,7 +11911,11 @@
       "entry_score": 90,
       "reference_price": 6.695,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 7.83,
+          "directional_move_pct": -16.953
+        },
         "5": null,
         "10": null
       }
@@ -11796,7 +11932,11 @@
       "entry_score": 50,
       "reference_price": 3.435,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 3.08,
+          "directional_move_pct": -10.335
+        },
         "5": null,
         "10": null
       }
@@ -11813,7 +11953,11 @@
       "entry_score": 90,
       "reference_price": 43.7203,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 43.3,
+          "directional_move_pct": -0.961
+        },
         "5": null,
         "10": null
       }
@@ -11830,7 +11974,11 @@
       "entry_score": 65,
       "reference_price": 30.69,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 29.88,
+          "directional_move_pct": -2.639
+        },
         "5": null,
         "10": null
       }
@@ -11847,7 +11995,11 @@
       "entry_score": 70,
       "reference_price": 2.1166,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 1.65,
+          "directional_move_pct": 22.045
+        },
         "5": null,
         "10": null
       }
@@ -11864,7 +12016,11 @@
       "entry_score": 65,
       "reference_price": 34.56,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 34.94,
+          "directional_move_pct": 1.1
+        },
         "5": null,
         "10": null
       }
@@ -11881,7 +12037,11 @@
       "entry_score": 90,
       "reference_price": 70.24,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-05",
+          "close": 68.78,
+          "directional_move_pct": -2.079
+        },
         "5": null,
         "10": null
       }
@@ -12220,6 +12380,431 @@
       "setup_score": 90,
       "entry_score": 70,
       "reference_price": 30.06,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|NVD|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "NVD",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 55,
+      "reference_price": 5.1099,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|SOXS|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "SOXS",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 9,
+      "setup_score": 95,
+      "entry_score": 65,
+      "reference_price": 71.418,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|IREN|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "IREN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 70,
+      "reference_price": 21.475,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|WULF|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "WULF",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 70,
+      "reference_price": 11.105,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|SQQQ|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "SQQQ",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 70,
+      "entry_score": 65,
+      "reference_price": 47.1497,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|GRAB|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "GRAB",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 3.435,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|TSLL|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "TSLL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 8.905,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|ORCL|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "ORCL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 95,
+      "entry_score": 90,
+      "reference_price": 115.06,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|TSLG|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "TSLG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 80,
+      "reference_price": 4.455,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|PLTD|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "PLTD",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 5.425,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|RIOT|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "RIOT",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 90,
+      "reference_price": 16.92,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|ONDS|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "ONDS",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 5.34,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|VALE|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "VALE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 85,
+      "entry_score": 70,
+      "reference_price": 11.5836,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|SMR|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "SMR",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 70,
+      "reference_price": 4.995,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|IONQ|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "IONQ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 80,
+      "entry_score": 70,
+      "reference_price": 31.72,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|LYG|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "LYG",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 75,
+      "entry_score": 80,
+      "reference_price": 5.085,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|TLT|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "TLT",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 80,
+      "reference_price": 81.98,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|APLD|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "APLD",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 95,
+      "entry_score": 90,
+      "reference_price": 15.58,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|ERY|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "ERY",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 65,
+      "entry_score": 65,
+      "reference_price": 9.24,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|VXX|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "VXX",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 8,
+      "setup_score": 70,
+      "entry_score": 65,
+      "reference_price": 21.23,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|XLF|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "XLF",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 80,
+      "entry_score": 60,
+      "reference_price": 57.415,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|QID|LONG|WATCH \u2014 SETUP TOO WEAK",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "QID",
+      "direction": "LONG",
+      "shadow_decision": "WATCH \u2014 SETUP TOO WEAK",
+      "main_score": 7,
+      "setup_score": 60,
+      "entry_score": 55,
+      "reference_price": 16.391,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|SCHD|LONG|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "SCHD",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 85,
+      "entry_score": 70,
+      "reference_price": 35.285,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|CORZ|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "CORZ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 100,
+      "entry_score": 90,
+      "reference_price": 11.915,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-06|DNN|SHORT|QUALIFIED",
+      "session": "2026-11-06",
+      "at": "2026-11-06T11:49:36.772022-08:00",
+      "symbol": "DNN",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 70,
+      "entry_score": 70,
+      "reference_price": 2.175,
       "outcomes": {
         "1": null,
         "5": null,
