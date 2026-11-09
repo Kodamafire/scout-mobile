@@ -1,7 +1,7 @@
 {
   "version": 44,
   "high_water": {
-    "CCC": 0.919,
+    "CCC": 0.938,
     "RWM": -0.067,
     "PFE": 0.489,
     "SOXS": -0.308
@@ -12,7 +12,7 @@
     "RWM": 0,
     "SOXS": 0
   },
-  "last_cycle": "2026-11-06T15:55:39.415343-08:00",
+  "last_cycle": "2026-11-09T14:51:39.803957-08:00",
   "upgrade_challenge": null,
   "last_confirmation_check": null,
   "activity_journal": {
@@ -5245,6 +5245,20 @@
         "symbol": "SOXS",
         "action": "Order filled",
         "reason": "Buy: 130.950154018 shares filled at average $71.4200."
+      },
+      {
+        "at": "2026-11-09T14:51:39.803957-08:00",
+        "cycle": "20261109_145139",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
+      },
+      {
+        "at": "2026-11-09T14:51:39.803957-08:00",
+        "cycle": "20261109_145139",
+        "symbol": "SOXS",
+        "action": "EXIT CONFIRMED",
+        "reason": "Exit confirmed; waiting \u2014 market closed."
       }
     ],
     "orders": {
@@ -5440,7 +5454,6 @@
       }
     },
     "cycles": [
-      "20260922_105518",
       "20260922_112101",
       "20260922_114537",
       "20260922_121416",
@@ -5939,7 +5952,8 @@
       "20261105_122722",
       "20261105_170337",
       "20261106_114936",
-      "20261106_155539"
+      "20261106_155539",
+      "20261109_145139"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -6065,7 +6079,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-06T23:56:33.566266+00:00",
+      "checked_at": "2026-11-09T22:52:00.391420+00:00",
       "status": "History checked",
       "orders_checked": 28
     }
@@ -19549,6 +19563,46 @@
       "updated": "2026-11-06T15:55:39.415343-08:00",
       "symbol": "SOXS",
       "pnl_pct": -0.308,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261109_145139",
+      "updated": "2026-11-09T14:51:39.803957-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 0.938,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261109_145139",
+      "updated": "2026-11-09T14:51:39.803957-08:00",
+      "symbol": "PFE",
+      "pnl_pct": -4.759,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261109_145139",
+      "updated": "2026-11-09T14:51:39.803957-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -4.181,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261109_145139",
+      "updated": "2026-11-09T14:51:39.803957-08:00",
+      "symbol": "SOXS",
+      "pnl_pct": -23.383000000000003,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
