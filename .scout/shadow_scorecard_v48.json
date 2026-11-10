@@ -9179,7 +9179,11 @@
           "close": 4.54,
           "directional_move_pct": 13.782
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 5.62,
+          "directional_move_pct": 40.849
+        }
       }
     },
     {
@@ -9204,7 +9208,11 @@
           "close": 68.17,
           "directional_move_pct": 25.789
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 56.24,
+          "directional_move_pct": 38.776
+        }
       }
     },
     {
@@ -9229,7 +9237,11 @@
           "close": 11.39,
           "directional_move_pct": 4.767
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 9.76,
+          "directional_move_pct": -10.226
+        }
       }
     },
     {
@@ -9254,7 +9266,11 @@
           "close": 5.7,
           "directional_move_pct": 4.781
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 4.88,
+          "directional_move_pct": -10.292
+        }
       }
     },
     {
@@ -9279,7 +9295,11 @@
           "close": 15.5,
           "directional_move_pct": 9.04
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 15.4,
+          "directional_move_pct": 8.336
+        }
       }
     },
     {
@@ -9304,7 +9324,11 @@
           "close": 10.94,
           "directional_move_pct": 11.021
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 12.37,
+          "directional_move_pct": -0.61
+        }
       }
     },
     {
@@ -9329,7 +9353,11 @@
           "close": 6.23,
           "directional_move_pct": -4.813
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 5.16,
+          "directional_move_pct": -21.161
+        }
       }
     },
     {
@@ -9354,7 +9382,11 @@
           "close": 45.05,
           "directional_move_pct": -4.914
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 46.09,
+          "directional_move_pct": -7.336
+        }
       }
     },
     {
@@ -9379,7 +9411,11 @@
           "close": 5.45,
           "directional_move_pct": -12.73
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 5.045,
+          "directional_move_pct": -19.215
+        }
       }
     },
     {
@@ -9404,7 +9440,11 @@
           "close": 67.25,
           "directional_move_pct": -3.418
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 61.96,
+          "directional_move_pct": -11.015
+        }
       }
     },
     {
@@ -9429,7 +9469,11 @@
           "close": 26.99,
           "directional_move_pct": 4.451
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 26.98,
+          "directional_move_pct": 4.412
+        }
       }
     },
     {
@@ -9454,7 +9498,11 @@
           "close": 13.34,
           "directional_move_pct": -5.658
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 12.97,
+          "directional_move_pct": -8.274
+        }
       }
     },
     {
@@ -9479,7 +9527,11 @@
           "close": 35.9,
           "directional_move_pct": 2.148
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 35.645,
+          "directional_move_pct": 1.423
+        }
       }
     },
     {
@@ -9504,7 +9556,11 @@
           "close": 6.66,
           "directional_move_pct": 14.039
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 6.34,
+          "directional_move_pct": 8.56
+        }
       }
     },
     {
@@ -9529,7 +9585,11 @@
           "close": 5.04,
           "directional_move_pct": 6.925
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 5.255,
+          "directional_move_pct": 2.955
+        }
       }
     },
     {
@@ -9554,7 +9614,11 @@
           "close": 54.47,
           "directional_move_pct": 1.718
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 48.87,
+          "directional_move_pct": -8.739
+        }
       }
     },
     {
@@ -9579,7 +9643,11 @@
           "close": 54.84,
           "directional_move_pct": 0.1
         },
-        "10": null
+        "10": {
+          "session": "2026-11-09",
+          "close": 49.93,
+          "directional_move_pct": -8.862
+        }
       }
     },
     {
@@ -12642,7 +12710,11 @@
       "entry_score": 55,
       "reference_price": 5.1099,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 5.62,
+          "directional_move_pct": 9.983
+        },
         "5": null,
         "10": null
       }
@@ -12659,7 +12731,11 @@
       "entry_score": 65,
       "reference_price": 71.418,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 55.18,
+          "directional_move_pct": -22.737
+        },
         "5": null,
         "10": null
       }
@@ -12676,7 +12752,11 @@
       "entry_score": 70,
       "reference_price": 21.475,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 21.39,
+          "directional_move_pct": 0.396
+        },
         "5": null,
         "10": null
       }
@@ -12693,7 +12773,11 @@
       "entry_score": 70,
       "reference_price": 11.105,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 12.37,
+          "directional_move_pct": -11.391
+        },
         "5": null,
         "10": null
       }
@@ -12710,7 +12794,11 @@
       "entry_score": 65,
       "reference_price": 47.1497,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 42.805,
+          "directional_move_pct": -9.215
+        },
         "5": null,
         "10": null
       }
@@ -12727,7 +12815,11 @@
       "entry_score": 65,
       "reference_price": 3.435,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 3.44,
+          "directional_move_pct": 0.146
+        },
         "5": null,
         "10": null
       }
@@ -12744,7 +12836,11 @@
       "entry_score": 80,
       "reference_price": 8.905,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 9.76,
+          "directional_move_pct": -9.601
+        },
         "5": null,
         "10": null
       }
@@ -12761,7 +12857,11 @@
       "entry_score": 90,
       "reference_price": 115.06,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 119.77,
+          "directional_move_pct": -4.094
+        },
         "5": null,
         "10": null
       }
@@ -12778,7 +12878,11 @@
       "entry_score": 80,
       "reference_price": 4.455,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 4.88,
+          "directional_move_pct": -9.54
+        },
         "5": null,
         "10": null
       }
@@ -12795,7 +12899,11 @@
       "entry_score": 65,
       "reference_price": 5.425,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 5.145,
+          "directional_move_pct": -5.161
+        },
         "5": null,
         "10": null
       }
@@ -12812,7 +12920,11 @@
       "entry_score": 90,
       "reference_price": 16.92,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 17.65,
+          "directional_move_pct": 4.314
+        },
         "5": null,
         "10": null
       }
@@ -12829,7 +12941,11 @@
       "entry_score": 80,
       "reference_price": 5.34,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 5.96,
+          "directional_move_pct": -11.61
+        },
         "5": null,
         "10": null
       }
@@ -12846,7 +12962,11 @@
       "entry_score": 70,
       "reference_price": 11.5836,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 11.97,
+          "directional_move_pct": -3.336
+        },
         "5": null,
         "10": null
       }
@@ -12863,7 +12983,11 @@
       "entry_score": 70,
       "reference_price": 4.995,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 5.435,
+          "directional_move_pct": -8.809
+        },
         "5": null,
         "10": null
       }
@@ -12880,7 +13004,11 @@
       "entry_score": 70,
       "reference_price": 31.72,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 35.35,
+          "directional_move_pct": -11.444
+        },
         "5": null,
         "10": null
       }
@@ -12897,7 +13025,11 @@
       "entry_score": 80,
       "reference_price": 5.085,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 5.255,
+          "directional_move_pct": -3.343
+        },
         "5": null,
         "10": null
       }
@@ -12914,7 +13046,11 @@
       "entry_score": 80,
       "reference_price": 81.98,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 81.96,
+          "directional_move_pct": -0.024
+        },
         "5": null,
         "10": null
       }
@@ -12931,7 +13067,11 @@
       "entry_score": 90,
       "reference_price": 15.58,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 16.705,
+          "directional_move_pct": -7.221
+        },
         "5": null,
         "10": null
       }
@@ -12948,7 +13088,11 @@
       "entry_score": 65,
       "reference_price": 9.24,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 9.2,
+          "directional_move_pct": -0.433
+        },
         "5": null,
         "10": null
       }
@@ -12965,7 +13109,11 @@
       "entry_score": 65,
       "reference_price": 21.23,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 19.01,
+          "directional_move_pct": -10.457
+        },
         "5": null,
         "10": null
       }
@@ -12982,7 +13130,11 @@
       "entry_score": 60,
       "reference_price": 57.415,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 57.98,
+          "directional_move_pct": 0.984
+        },
         "5": null,
         "10": null
       }
@@ -12999,7 +13151,11 @@
       "entry_score": 55,
       "reference_price": 16.391,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 15.4,
+          "directional_move_pct": -6.046
+        },
         "5": null,
         "10": null
       }
@@ -13016,7 +13172,11 @@
       "entry_score": 70,
       "reference_price": 35.285,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 35.645,
+          "directional_move_pct": 1.02
+        },
         "5": null,
         "10": null
       }
@@ -13033,7 +13193,11 @@
       "entry_score": 90,
       "reference_price": 11.915,
       "outcomes": {
-        "1": null,
+        "1": {
+          "session": "2026-11-09",
+          "close": 12.72,
+          "directional_move_pct": -6.756
+        },
         "5": null,
         "10": null
       }
@@ -13049,6 +13213,163 @@
       "setup_score": 70,
       "entry_score": 70,
       "reference_price": 2.175,
+      "outcomes": {
+        "1": {
+          "session": "2026-11-09",
+          "close": 2.345,
+          "directional_move_pct": -7.816
+        },
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|SOXL|SHORT|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "SOXL",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 70,
+      "reference_price": 55.13,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|NVD|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "NVD",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 70,
+      "entry_score": 40,
+      "reference_price": 6.31,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|SOXS|LONG|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "SOXS",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 85,
+      "entry_score": 70,
+      "reference_price": 56.19,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|TQQQ|SHORT|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "TQQQ",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 55.9,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|AAL|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "AAL",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 77,
+      "entry_score": 55,
+      "reference_price": 14.025,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|VALE|SHORT|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "VALE",
+      "direction": "SHORT",
+      "shadow_decision": "QUALIFIED",
+      "main_score": null,
+      "setup_score": 72,
+      "entry_score": 70,
+      "reference_price": 11.61,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|SCHD|LONG|WAIT \u2014 ENTRY NOT READY",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "SCHD",
+      "direction": "LONG",
+      "shadow_decision": "WAIT \u2014 ENTRY NOT READY",
+      "main_score": 7,
+      "setup_score": 77,
+      "entry_score": 60,
+      "reference_price": 35.805,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|JHX|LONG|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "JHX",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 9,
+      "setup_score": 97,
+      "entry_score": 90,
+      "reference_price": 28.845,
+      "outcomes": {
+        "1": null,
+        "5": null,
+        "10": null
+      }
+    },
+    {
+      "id": "2026-11-10|XLF|LONG|QUALIFIED",
+      "session": "2026-11-10",
+      "at": "2026-11-10T12:11:07.024518-08:00",
+      "symbol": "XLF",
+      "direction": "LONG",
+      "shadow_decision": "QUALIFIED",
+      "main_score": 8,
+      "setup_score": 90,
+      "entry_score": 80,
+      "reference_price": 58.3,
       "outcomes": {
         "1": null,
         "5": null,
