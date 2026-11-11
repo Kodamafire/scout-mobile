@@ -3,27 +3,16 @@
   "high_water": {
     "CCC": 1.312,
     "RWM": -0.067,
-    "PFE": 0.489,
-    "SOXS": -0.308
+    "PFE": 0.489
   },
   "warning_streak": {
     "CCC": 0,
     "PFE": 0,
-    "RWM": 0,
-    "SOXS": 1
+    "RWM": 0
   },
-  "last_cycle": "2026-11-10T12:11:07.024518-08:00",
-  "upgrade_challenge": {
-    "candidate_symbol": "JHX",
-    "replace_symbol": "RWM",
-    "confirmations": 1,
-    "entry_score": 9,
-    "score_advantage": 7
-  },
-  "last_confirmation_check": {
-    "session": "2026-11-10",
-    "timestamp": 1794341467.193457
-  },
+  "last_cycle": "2026-11-10T16:40:02.127918-08:00",
+  "upgrade_challenge": null,
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5310,6 +5299,13 @@
         "symbol": "SOXS",
         "action": "Order filled",
         "reason": "Sell: 130.950154018 shares filled at average $56.2041."
+      },
+      {
+        "at": "2026-11-10T16:40:02.127918-08:00",
+        "cycle": "20261110_164002",
+        "symbol": "RWM",
+        "action": "RISK WARNING",
+        "reason": "Exit conditions not met."
       }
     ],
     "orders": {
@@ -5515,7 +5511,6 @@
       }
     },
     "cycles": [
-      "20260922_121416",
       "20260922_123016",
       "20260922_124550",
       "20260922_131602",
@@ -6014,7 +6009,8 @@
       "20261106_155539",
       "20261109_145139",
       "20261109_202826",
-      "20261110_121107"
+      "20261110_121107",
+      "20261110_164002"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -6155,7 +6151,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-10T20:12:01.834450+00:00",
+      "checked_at": "2026-11-11T00:40:16.174843+00:00",
       "status": "History checked",
       "orders_checked": 29
     }
@@ -19759,6 +19755,36 @@
       "updated": "2026-11-10T12:11:07.024518-08:00",
       "symbol": "SOXS",
       "pnl_pct": -21.395,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261110_164002",
+      "updated": "2026-11-10T16:40:02.127918-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 1.1809999999999998,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261110_164002",
+      "updated": "2026-11-10T16:40:02.127918-08:00",
+      "symbol": "PFE",
+      "pnl_pct": -4.465,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261110_164002",
+      "updated": "2026-11-10T16:40:02.127918-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -3.7150000000000003,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
