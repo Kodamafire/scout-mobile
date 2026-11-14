@@ -4,7 +4,7 @@
     "CCC": 1.312,
     "RWM": -0.067,
     "PFE": 0.489,
-    "NVD": 17.391
+    "NVD": 17.739
   },
   "warning_streak": {
     "CCC": 0,
@@ -12,12 +12,9 @@
     "PFE": 0,
     "RWM": 0
   },
-  "last_cycle": "2026-11-13T12:16:39.340273-08:00",
+  "last_cycle": "2026-11-13T16:57:18.728696-08:00",
   "upgrade_challenge": null,
-  "last_confirmation_check": {
-    "session": "2026-11-13",
-    "timestamp": 1794601000.167787
-  },
+  "last_confirmation_check": null,
   "activity_journal": {
     "events": [
       {
@@ -5568,7 +5565,6 @@
       }
     },
     "cycles": [
-      "20260922_141612",
       "20260922_144229",
       "20260922_145542",
       "20260923_061813",
@@ -6067,7 +6063,8 @@
       "20261111_175137",
       "20261112_123750",
       "20261112_172852",
-      "20261113_121639"
+      "20261113_121639",
+      "20261113_165718"
     ],
     "sync_note": "Order status checked during the latest cycle.",
     "loss_log": {
@@ -6208,7 +6205,7 @@
           "status": "Confirmed loss"
         }
       ],
-      "checked_at": "2026-11-13T20:17:14.677176+00:00",
+      "checked_at": "2026-11-14T00:57:36.730579+00:00",
       "status": "History checked",
       "orders_checked": 30
     }
@@ -6217,7 +6214,7 @@
     "NVD": -7.5
   },
   "legacy_profit_floor": {
-    "NVD": 12.1737
+    "NVD": 12.4173
   },
   "exit_policy": "runner_v1",
   "exit_comparison": [
@@ -20036,6 +20033,46 @@
       "updated": "2026-11-13T12:16:39.340273-08:00",
       "symbol": "RWM",
       "pnl_pct": -2.461,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261113_165718",
+      "updated": "2026-11-13T16:57:18.728696-08:00",
+      "symbol": "CCC",
+      "pnl_pct": 1.18,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261113_165718",
+      "updated": "2026-11-13T16:57:18.728696-08:00",
+      "symbol": "NVD",
+      "pnl_pct": 17.739,
+      "runner_floor": -7.5,
+      "runner_signal": false,
+      "legacy_floor": 12.4173,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261113_165718",
+      "updated": "2026-11-13T16:57:18.728696-08:00",
+      "symbol": "PFE",
+      "pnl_pct": -5.712,
+      "runner_floor": null,
+      "runner_signal": false,
+      "legacy_floor": null,
+      "legacy_signal": false
+    },
+    {
+      "cycle": "20261113_165718",
+      "updated": "2026-11-13T16:57:18.728696-08:00",
+      "symbol": "RWM",
+      "pnl_pct": -1.8880000000000001,
       "runner_floor": null,
       "runner_signal": false,
       "legacy_floor": null,
